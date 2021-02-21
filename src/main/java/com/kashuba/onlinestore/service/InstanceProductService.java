@@ -1,4 +1,4 @@
 package com.kashuba.onlinestore.service;
 
-public interface ProductService {
+public interface InstanceProductService {
 }
