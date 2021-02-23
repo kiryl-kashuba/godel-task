@@ -3,18 +3,10 @@ package com.kashuba.onlinestore.entity;
 import java.util.List;
 import java.util.Objects;
 
-public class Category {
-    private long id;
+public class Category extends BaseEntity {
+
     private String name;
     private List<ProductAttribute> productAttribute;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -33,26 +25,25 @@ public class Category {
     }
 
     @Override
+    public String toString() {
+        return "Category{" +
+                "name='" + name + '\'' +
+                ", productAttribute=" + productAttribute +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Category category = (Category) o;
-        return id == category.id &&
-                Objects.equals(name, category.name) &&
+        return Objects.equals(name, category.name) &&
                 Objects.equals(productAttribute, category.productAttribute);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, productAttribute);
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", productAttribute=" + productAttribute +
-                '}';
+        return Objects.hash(super.hashCode(), name, productAttribute);
     }
 }

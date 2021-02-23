@@ -2,20 +2,11 @@ package com.kashuba.onlinestore.entity;
 
 import java.util.Objects;
 
-public class Cart {
+public class Cart extends BaseEntity{
 
-    private long id;
     private int number;
     private Client client;
     private InstanceProduct instanceProduct;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public int getNumber() {
         return number;
@@ -42,28 +33,27 @@ public class Cart {
     }
 
     @Override
+    public String toString() {
+        return "Cart{" +
+                "number=" + number +
+                ", client=" + client +
+                ", instanceProduct=" + instanceProduct +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Cart cart = (Cart) o;
-        return id == cart.id &&
-                number == cart.number &&
+        return number == cart.number &&
                 Objects.equals(client, cart.client) &&
                 Objects.equals(instanceProduct, cart.instanceProduct);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, number, client, instanceProduct);
-    }
-
-    @Override
-    public String toString() {
-        return "Cart{" +
-                "id=" + id +
-                ", number=" + number +
-                ", client=" + client +
-                ", instanceProduct=" + instanceProduct +
-                '}';
+        return Objects.hash(super.hashCode(), number, client, instanceProduct);
     }
 }

@@ -2,7 +2,7 @@ package com.kashuba.onlinestore.entity;
 
 import java.util.Objects;
 
-public class Client {
+public class Client extends User {
 
     public enum Status {
         ACTIVE,

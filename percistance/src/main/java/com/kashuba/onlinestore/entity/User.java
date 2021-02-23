@@ -2,9 +2,9 @@ package com.kashuba.onlinestore.entity;
 
 import java.util.Objects;
 
-public class User {
+public class User extends BaseEntity{
 
-    public enum Role{
+    public enum Role {
         GUEST,
         CLIENT,
         ADMIN;
@@ -12,18 +12,8 @@ public class User {
         //getUserRole
     }
 
-    private long id;
     private String email;
     private Role role;
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getEmail() {
         return email;
@@ -44,8 +34,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
+                "email='" + email + '\'' +
                 ", role=" + role +
                 '}';
     }
@@ -54,14 +43,15 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         User user = (User) o;
-        return id == user.id &&
-                Objects.equals(email, user.email) &&
+        return Objects.equals(email, user.email) &&
                 role == user.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, role);
+        return Objects.hash(super.hashCode(), email, role);
     }
+
 }

@@ -2,20 +2,11 @@ package com.kashuba.onlinestore.entity;
 
 import java.util.Objects;
 
-public class ProductAttributeValue {
+public class ProductAttributeValue extends BaseEntity{
 
-    private long id;
     private String value;
     private String type;
     private ProductAttribute productAttribute;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getValue() {
         return value;
@@ -42,28 +33,28 @@ public class ProductAttributeValue {
     }
 
     @Override
+    public String toString() {
+        return "ProductAttributeValue{" +
+                "value='" + value + '\'' +
+                ", type='" + type + '\'' +
+                ", productAttribute=" + productAttribute +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         ProductAttributeValue that = (ProductAttributeValue) o;
-        return id == that.id &&
-                Objects.equals(value, that.value) &&
+        return Objects.equals(value, that.value) &&
                 Objects.equals(type, that.type) &&
                 Objects.equals(productAttribute, that.productAttribute);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, value, type, productAttribute);
+        return Objects.hash(super.hashCode(), value, type, productAttribute);
     }
 
-    @Override
-    public String toString() {
-        return "ProductAttributeValue{" +
-                "id=" + id +
-                ", value='" + value + '\'' +
-                ", type='" + type + '\'' +
-                ", productAttribute=" + productAttribute +
-                '}';
-    }
 }
