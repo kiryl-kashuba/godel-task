@@ -69,6 +69,9 @@ public class Client extends User {
         return "Client{" +
                 "firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
+                ", id='" + getId() + '\'' +
+                ", Role='" + getRole() + '\'' +
+                ", password='" + getPassword() + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 ", status=" + status +
                 '}';

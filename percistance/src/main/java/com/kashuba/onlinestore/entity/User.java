@@ -14,6 +14,11 @@ public class User extends BaseEntity{
 
     private String email;
     private Role role;
+    private String password;
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
 
     public String getEmail() {
         return email;
@@ -46,12 +51,12 @@ public class User extends BaseEntity{
         if (!super.equals(o)) return false;
         User user = (User) o;
         return Objects.equals(email, user.email) &&
-                role == user.role;
+                role == user.role &&
+                Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), email, role);
+        return Objects.hash(super.hashCode(), email, role, password);
     }
-
 }
