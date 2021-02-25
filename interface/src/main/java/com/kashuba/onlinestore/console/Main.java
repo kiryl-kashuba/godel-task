@@ -5,6 +5,7 @@ import com.budhash.cliche.Command;
 import com.budhash.cliche.ShellFactory;
 import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.entity.User;
+import com.kashuba.onlinestore.service.impl.ClientServiceImpl;
 
 
 import java.io.IOException;
@@ -24,6 +25,8 @@ public class Main {
     @Command
     public Client addClient(String email, Long id, String pass,
                             String fname, String sname, long number) {
+        //Validate
+        ClientServiceImpl clientService = new ClientServiceImpl();
         Client buildingClient = new Client();
         buildingClient.setEmail(email);
         buildingClient.setId(id);
@@ -32,6 +35,7 @@ public class Main {
         buildingClient.setSecondName(sname);
         buildingClient.setPhoneNumber(number);
         System.out.println(buildingClient);
+        clientService.add(buildingClient);
         return buildingClient;
     }
 

@@ -1,5 +1,7 @@
 package com.kashuba.onlinestore.entity;
 
+import com.opencsv.bean.CsvBindByPosition;
+
 import java.util.Objects;
 
 public class Client extends User {
@@ -11,9 +13,13 @@ public class Client extends User {
         //getClientStatus
     }
 
+    @CsvBindByPosition(position = 4)
     private String firstName;
+    @CsvBindByPosition(position = 5)
     private String secondName;
+    @CsvBindByPosition(position = 6)
     private long phoneNumber;
+    @CsvBindByPosition(position = 7)
     private Status status;
 
     public String getFirstName() {

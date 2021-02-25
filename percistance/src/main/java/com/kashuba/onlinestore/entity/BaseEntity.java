@@ -1,9 +1,12 @@
 package com.kashuba.onlinestore.entity;
 
+import com.opencsv.bean.CsvBindByPosition;
+
 import java.util.Objects;
 
 public abstract class BaseEntity {
 
+    @CsvBindByPosition(position = 0)
     private long id;
 
     public long getId() {

@@ -1,5 +1,7 @@
 package com.kashuba.onlinestore.entity;
 
+import com.opencsv.bean.CsvBindByPosition;
+
 import java.util.Objects;
 
 public class User extends BaseEntity{
@@ -11,9 +13,11 @@ public class User extends BaseEntity{
 
         //getUserRole
     }
-
+    @CsvBindByPosition(position = 1)
     private String email;
+    @CsvBindByPosition(position = 2)
     private Role role;
+    @CsvBindByPosition(position = 3)
     private String password;
 
     public String getPassword() { return password; }

@@ -10,14 +10,15 @@ import java.util.Optional;
 
 public interface ClientService {
 
-    boolean add(Map<String, String> clientParameters) throws ServiceProjectException;
+    Client add(Client client);
 
-    boolean updateClientStatus(Client updatingClient, String statusData) throws ServiceProjectException;
+    Client updateClient(Client client);
 
-    List<Client> findClientsByStatus(String clientStatusData) throws ServiceProjectException;
+    Client removeClient(Client client);
 
-    boolean authorizeUser(String email, String password) throws ServiceProjectException;
+    Client findClients(Client client);
 
-    boolean existUser(String email) throws ServiceProjectException;
+    Client updateClientStatus(Client updatingClient, String statusData);
 
+    List<Client> findClientsById(String clientIdData);
 }
