@@ -4,6 +4,7 @@ package com.kashuba.onlinestore.console;
 import com.budhash.cliche.Command;
 import com.budhash.cliche.ShellFactory;
 import com.kashuba.onlinestore.FileRepository;
+import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.entity.*;
 
 
@@ -57,7 +58,7 @@ public class Main {
     public List<Client> addClientmap(String email, String pass, String fname, String sname, long number)  {
         User.Role role = User.Role.CLIENT;
         Client.Status status = Client.Status.ACTIVE;
-        int id = readedClients.size() + 1;
+        long id = IdGenerator.createID();
         Client client = new Client( email, role, pass, id, fname, sname, number, status);
         readedClients.add(client);
         return readedClients;
