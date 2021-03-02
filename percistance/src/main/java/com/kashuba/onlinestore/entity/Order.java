@@ -9,6 +9,14 @@ public class Order extends BaseEntity {
     private int amount;
     private Cart cart;
 
+    public Order(LocalDate localDate, int amount, Cart cart, long id) {
+        super(id);
+        this.localDate = localDate;
+        this.amount = amount;
+        this.cart = cart;
+    }
+
+
     public LocalDate getLocalDate() {
         return localDate;
     }

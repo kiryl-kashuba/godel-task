@@ -8,6 +8,13 @@ public class ProductAttributeValue extends BaseEntity{
     private String type;
     private ProductAttribute productAttribute;
 
+    public ProductAttributeValue(String value, String type, ProductAttribute productAttribute, long id) {
+        super(id);
+        this.value = value;
+        this.type = type;
+        this.productAttribute = productAttribute;
+    }
+
     public String getValue() {
         return value;
     }

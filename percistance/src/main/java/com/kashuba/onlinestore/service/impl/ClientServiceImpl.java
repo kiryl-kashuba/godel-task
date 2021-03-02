@@ -16,7 +16,6 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client add(Client client) {
             clientDao.add(client);
-        System.out.println("Service " + client);
         return null;
     }
 

@@ -8,6 +8,12 @@ public class Category extends BaseEntity {
     private String name;
     private List<ProductAttribute> productAttribute;
 
+    public Category(String name, List<ProductAttribute> productAttribute, long id) {
+        super(id);
+        this.name = name;
+        this.productAttribute = productAttribute;
+    }
+
     public String getName() {
         return name;
     }

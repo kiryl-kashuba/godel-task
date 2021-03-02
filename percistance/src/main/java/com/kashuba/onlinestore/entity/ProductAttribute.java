@@ -23,6 +23,12 @@ public class ProductAttribute extends BaseEntity {
         this.mandatory = mandatory;
     }
 
+    public ProductAttribute(String name, boolean mandatory, long id) {
+        super(id);
+        this.name = name;
+        this.mandatory = mandatory;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

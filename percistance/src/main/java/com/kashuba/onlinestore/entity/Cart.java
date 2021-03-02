@@ -8,6 +8,13 @@ public class Cart extends BaseEntity{
     private Client client;
     private InstanceProduct instanceProduct;
 
+    public Cart(int number, Client client, InstanceProduct instanceProduct, long id) {
+        super(id);
+        this.number = number;
+        this.client = client;
+        this.instanceProduct = instanceProduct;
+    }
+
     public int getNumber() {
         return number;
     }

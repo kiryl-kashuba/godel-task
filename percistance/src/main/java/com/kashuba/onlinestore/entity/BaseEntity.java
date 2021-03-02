@@ -2,12 +2,16 @@ package com.kashuba.onlinestore.entity;
 
 import com.opencsv.bean.CsvBindByPosition;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class BaseEntity {
+public abstract class BaseEntity implements Serializable {
 
-    @CsvBindByPosition(position = 0)
     private long id;
+
+    public BaseEntity(long id) {
+        this.id = id;
+    }
 
     public long getId() {
         return id;

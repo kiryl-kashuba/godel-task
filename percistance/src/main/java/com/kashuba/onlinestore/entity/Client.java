@@ -1,7 +1,5 @@
 package com.kashuba.onlinestore.entity;
 
-import com.opencsv.bean.CsvBindByPosition;
-
 import java.util.Objects;
 
 public class Client extends User {
@@ -13,14 +11,19 @@ public class Client extends User {
         //getClientStatus
     }
 
-    @CsvBindByPosition(position = 4)
     private String firstName;
-    @CsvBindByPosition(position = 5)
     private String secondName;
-    @CsvBindByPosition(position = 6)
     private long phoneNumber;
-    @CsvBindByPosition(position = 7)
     private Status status;
+
+    public Client(String firstName, String secondName, long phoneNumber, Status status,
+                  String email, Role role, String password, long id) {
+        super(email, role, password, id);
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.phoneNumber = phoneNumber;
+        this.status = status;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -70,14 +73,12 @@ public class Client extends User {
         return Objects.hash(firstName, secondName, phoneNumber, status);
     }
 
+
     @Override
     public String toString() {
         return "Client{" +
                 "firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
-                ", id='" + getId() + '\'' +
-                ", Role='" + getRole() + '\'' +
-                ", password='" + getPassword() + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 ", status=" + status +
                 '}';

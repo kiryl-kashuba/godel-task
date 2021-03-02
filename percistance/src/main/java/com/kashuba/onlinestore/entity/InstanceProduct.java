@@ -1,5 +1,7 @@
 package com.kashuba.onlinestore.entity;
 
+import com.opencsv.bean.CsvBindByPosition;
+
 import java.util.Objects;
 
 public class InstanceProduct extends BaseEntity {
@@ -9,6 +11,15 @@ public class InstanceProduct extends BaseEntity {
     private int price;
     private Category category;
     private ProductAttributeValue productAttributeValue;
+
+    public InstanceProduct(String name, String articulation, int price, Category category, ProductAttributeValue productAttributeValue, long id) {
+        super(id);
+        this.name = name;
+        this.articulation = articulation;
+        this.price = price;
+        this.category = category;
+        this.productAttributeValue = productAttributeValue;
+    }
 
     public String getName() {
         return name;
