@@ -16,9 +16,9 @@ public class Client extends User {
     private long phoneNumber;
     private Status status;
 
-    public Client(String firstName, String secondName, long phoneNumber, Status status,
-                  String email, Role role, String password, long id) {
-        super(email, role, password, id);
+    public Client(String email, Role role, String password, long id, String firstName,
+                  String secondName, long phoneNumber, Status status) {
+        super(id, email, role, password);
         this.firstName = firstName;
         this.secondName = secondName;
         this.phoneNumber = phoneNumber;
@@ -72,7 +72,6 @@ public class Client extends User {
     public int hashCode() {
         return Objects.hash(firstName, secondName, phoneNumber, status);
     }
-
 
     @Override
     public String toString() {

@@ -5,26 +5,24 @@ import com.opencsv.bean.CsvBindByPosition;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class User implements Serializable {
+public class User extends BaseEntity {
+
+    public User(long id, String email, Role role, String password) {
+        super(id);
+        this.email = email;
+        this.role = role;
+        this.password = password;
+    }
 
     public enum Role {
         GUEST,
         CLIENT,
         ADMIN;
-
-        //getUserRole
     }
     private String email;
     private Role role;
     private String password;
-    private long id;
 
-    public User(String email, Role role, String password, long id) {
-        this.id = id;
-        this.email = email;
-        this.role = role;
-        this.password = password;
-    }
 
     public String getPassword() { return password; }
 
@@ -68,7 +66,6 @@ public class User implements Serializable {
                 "email='" + email + '\'' +
                 ", role=" + role +
                 ", password='" + password + '\'' +
-                ", id=" + id +
                 '}';
     }
 }

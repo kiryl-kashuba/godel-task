@@ -8,6 +8,8 @@ import com.kashuba.onlinestore.entity.*;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -33,8 +35,9 @@ public class Main {
 
      {
         try {
-
+            System.out.println(readedClients);
             readedClients = (List<Client>) FileRepository.readObject(CLIENTR);
+            System.out.println(readedClients);
             readedOrder = (List<Order>) FileRepository.readObject(ORDERR);
             readedCart = (List<Cart>) FileRepository.readObject(CARTR);
             readedProduct = (List<InstanceProduct>) FileRepository.readObject(PRODUCTR);
@@ -46,16 +49,16 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            new ArrayList<>();
         }
     }
 
     @Command
-    public List<Client> addClientmap(String email, String pass, String fname, String sname, long number) throws IOException {
+    public List<Client> addClientmap(String email, String pass, String fname, String sname, long number)  {
         User.Role role = User.Role.CLIENT;
         Client.Status status = Client.Status.ACTIVE;
-        int id = readedClients.size();
-        Client client = new Client(fname, sname, number, status, email, role, pass, id);
+        int id = readedClients.size() + 1;
+        Client client = new Client( email, role, pass, id, fname, sname, number, status);
         readedClients.add(client);
         return readedClients;
     }
@@ -68,8 +71,7 @@ public class Main {
 
     @Command
     public int test() {
-
-        return readedClients.size();
+        return readedOrder.size();
     }
 
 
