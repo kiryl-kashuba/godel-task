@@ -21,6 +21,8 @@ public class Main {
     public static String PAR = "ProductAttribute.txt";
     public static String PAVR = "ProductAttributeValue.txt";
     public static String USERR = "User.txt";
+    public static String IDR = "Id.txt";
+
 
     List<Client> readedClients;
     List<Order> readedOrder;
@@ -30,7 +32,6 @@ public class Main {
     List<ProductAttribute> readedPA;
     List<ProductAttributeValue> readedPAV;
     List<User> readedUser;
-//    Map<String, Object> lists = new HashMap<>();
 
 
 
@@ -47,6 +48,8 @@ public class Main {
             readedPA = (List<ProductAttribute>) FileRepository.readObject(PAR);
             readedPAV = (List<ProductAttributeValue>) FileRepository.readObject(PAVR);
             readedUser = (List<User>) FileRepository.readObject(USERR);
+            IdGenerator.setIdCounter(FileRepository.readId(IDR));
+
             System.out.println("Initialization successful");
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,6 +66,7 @@ public class Main {
         Client client = new Client( email, role, pass, id, fname, sname, number, status);
         readedClients.add(client);
         return readedClients;
+
     }
 
     @Command
@@ -72,8 +76,9 @@ public class Main {
 
 
     @Command
-    public int test() {
-        return readedOrder.size();
+    public List<Client> remove(int idList) {
+        readedClients.removeIf(x -> x.getId() == idList);
+        return readedClients;
     }
 
     @Command
@@ -98,11 +103,14 @@ public class Main {
         listsOfFile.add(PAVR);
         listsOfFile.add(USERR);
 
-
         for (int x= 0; x<lists.size(); x++)
         {
             FileRepository.writeObject((String) listsOfFile.get(x), lists.get(x));
         }
+
+        FileRepository.writeId(IDR ,IdGenerator.getIdCounter());
+
+
         System.out.println("Data saved");
     }
 

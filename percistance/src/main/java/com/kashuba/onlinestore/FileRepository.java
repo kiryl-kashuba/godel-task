@@ -24,4 +24,23 @@ public class FileRepository {
 
         return objectInputStream.readObject();
     }
+
+    public static void writeId(String fileName, long id) throws IOException {
+        FileOutputStream outputStream = new FileOutputStream(fileName);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+        objectOutputStream.writeObject(id);
+    }
+
+    public static Long readId(String fileName) throws IOException, ClassNotFoundException {
+        FileInputStream inputStream = new FileInputStream(fileName);
+        ObjectInputStream objectInputStream;
+        try {
+            objectInputStream = new ObjectInputStream(inputStream);
+        } catch (EOFException e) {
+            System.out.println(fileName + "is empty. " + e);
+            return (long)0;
+        }
+
+        return (long)objectInputStream.readObject();
+    }
 }
