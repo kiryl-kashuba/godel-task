@@ -78,8 +78,12 @@ public class Client extends User {
         return "Client{" +
                 "firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", status=" + status +
+                ", phoneNumber=" + phoneNumber + '\'' +
+                ", status=" + status + '\'' +
+                ", Email='" + super.getEmail() + '\'' +
+                ", Id='" + super.getId() + '\'' +
+                ", Password='" + super.getPassword() + '\'' +
+                ", Role='" + super.getRole() + '\'' +
                 '}';
     }
 }
