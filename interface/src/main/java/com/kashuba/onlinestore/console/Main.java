@@ -9,9 +9,7 @@ import com.kashuba.onlinestore.entity.*;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 
 public class Main {
@@ -32,6 +30,9 @@ public class Main {
     List<ProductAttribute> readedPA;
     List<ProductAttributeValue> readedPAV;
     List<User> readedUser;
+//    Map<String, Object> lists = new HashMap<>();
+
+
 
 
      {
@@ -77,7 +78,32 @@ public class Main {
 
     @Command
     public void save() throws IOException {
-        FileRepository.writeObject(CLIENTR, readedClients);
+        List<Object> lists = new ArrayList();
+        lists.add(readedClients);
+        lists.add(readedOrder);
+        lists.add(readedCart);
+        lists.add(readedCategory);
+        lists.add(readedPA);
+        lists.add(readedPAV);
+        lists.add(readedProduct);
+        lists.add(readedUser);
+
+        List<Object> listsOfFile = new ArrayList();
+        listsOfFile.add(CLIENTR);
+        listsOfFile.add(CARTR);
+        listsOfFile.add(CATEGORYR);
+        listsOfFile.add(ORDERR);
+        listsOfFile.add(PRODUCTR);
+        listsOfFile.add(PAR);
+        listsOfFile.add(PAVR);
+        listsOfFile.add(USERR);
+
+
+        for (int x= 0; x<lists.size(); x++)
+        {
+            FileRepository.writeObject((String) listsOfFile.get(x), lists.get(x));
+        }
+        System.out.println("Data saved");
     }
 
     // Client

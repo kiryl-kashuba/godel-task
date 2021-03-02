@@ -12,13 +12,13 @@ public class FileRepository {
         objectOutputStream.writeObject(object);
     }
 
-    public static  Object readObject(String fileName) throws IOException, ClassNotFoundException {
+    public static Object readObject(String fileName) throws IOException, ClassNotFoundException {
         FileInputStream inputStream = new FileInputStream(fileName);
         ObjectInputStream objectInputStream;
         try {
             objectInputStream = new ObjectInputStream(inputStream);
             } catch (EOFException e) {
-            System.out.println(fileName + "is empty " + e);
+            System.out.println(fileName + "is empty. " + e);
                 return new ArrayList<>();
             }
 
