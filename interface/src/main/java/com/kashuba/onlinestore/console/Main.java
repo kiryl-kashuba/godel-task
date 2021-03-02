@@ -74,9 +74,6 @@ public class Main {
         return readedOrder.size();
     }
 
-
-//.set(1, client)
-
     @Command
     public void save() throws IOException {
         FileRepository.writeObject(CLIENTR, readedClients);

@@ -76,12 +76,12 @@ public class Client extends User {
     @Override
     public String toString() {
         return "Client{" +
-                "firstName='" + firstName + '\'' +
+                "Id='" + super.getId() + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", phoneNumber=" + phoneNumber + '\'' +
                 ", status=" + status + '\'' +
                 ", Email='" + super.getEmail() + '\'' +
-                ", Id='" + super.getId() + '\'' +
                 ", Password='" + super.getPassword() + '\'' +
                 ", Role='" + super.getRole() + '\'' +
                 '}';
