@@ -58,7 +58,7 @@ public class Main {
     }
 
     @Command
-    public List<Client> createClient(String email, String pass, String fname, String sname, long number)  {
+    public List<Client> cReateClient(String email, String pass, String fname, String sname, long number)  {
         User.Role role = User.Role.CLIENT;
         Client.Status status = Client.Status.ACTIVE;
         long id = IdGenerator.createID();
@@ -69,7 +69,7 @@ public class Main {
     }
 
     @Command
-    public List<Client> findClients(){
+    public List<Client> fINdClients(){
         return readedClients;
     }
 
@@ -88,6 +88,7 @@ public class Main {
         return readedPA;
 
     }
+
 
     @Command
     public List<ProductAttribute> findProductAttributes(){
@@ -119,14 +120,10 @@ public class Main {
 
     }
 
-
-
     @Command
-    public List<Category> findСategories(){
-        System.out.println(readedCategory);
+    public List<Category> findCategory(){
         return readedCategory;
     }
-
 
     @Command
     public List<Category> deleteCategory(int idList) {
