@@ -47,7 +47,8 @@ public class ProductAttribute extends BaseEntity {
     @Override
     public String toString() {
         return "ProductAttribute{" +
-                "name='" + name + '\'' +
+                "Id='" + super.getId() + '\'' +
+                ", name='" + name + '\'' +
                 ", mandatory=" + mandatory +
                 '}';
     }

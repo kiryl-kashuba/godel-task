@@ -38,14 +38,14 @@ public class Main {
 
      {
         try {
-            System.out.println(readedClients);
             readedClients = (List<Client>) FileRepository.readObject(CLIENTR);
-            System.out.println(readedClients);
             readedOrder = (List<Order>) FileRepository.readObject(ORDERR);
             readedCart = (List<Cart>) FileRepository.readObject(CARTR);
             readedProduct = (List<InstanceProduct>) FileRepository.readObject(PRODUCTR);
             readedCategory = (List<Category>) FileRepository.readObject(CATEGORYR);
+            System.out.println(readedPA);
             readedPA = (List<ProductAttribute>) FileRepository.readObject(PAR);
+            System.out.println(readedPA);
             readedPAV = (List<ProductAttributeValue>) FileRepository.readObject(PAVR);
             readedUser = (List<User>) FileRepository.readObject(USERR);
             IdGenerator.setIdCounter(FileRepository.readId(IDR));
@@ -59,7 +59,7 @@ public class Main {
     }
 
     @Command
-    public List<Client> addClientmap(String email, String pass, String fname, String sname, long number)  {
+    public List<Client> addClient(String email, String pass, String fname, String sname, long number)  {
         User.Role role = User.Role.CLIENT;
         Client.Status status = Client.Status.ACTIVE;
         long id = IdGenerator.createID();
@@ -76,21 +76,42 @@ public class Main {
 
 
     @Command
-    public List<Client> remove(int idList) {
+    public List<Client> removeClient(int idList) {
         readedClients.removeIf(x -> x.getId() == idList);
         return readedClients;
     }
 
     @Command
-    public void save() throws IOException {
+    public List<ProductAttribute> addProductAttribute(String name, boolean mandatory)  {
+        long id = IdGenerator.createID();
+        ProductAttribute productAttribute = new ProductAttribute( name, mandatory, id);
+        readedPA.add(productAttribute);
+        return readedPA;
+
+    }
+
+    @Command
+    public List<ProductAttribute> findProductAttributes(){
+        return readedPA;
+    }
+
+
+    @Command
+    public List<ProductAttribute> removeProductAttribute(int idList) {
+        readedPA.removeIf(x -> x.getId() == idList);
+        return readedPA;
+    }
+
+    @Command
+    public void saveInfo() throws IOException {
         List<Object> lists = new ArrayList();
         lists.add(readedClients);
-        lists.add(readedOrder);
         lists.add(readedCart);
         lists.add(readedCategory);
+        lists.add(readedOrder);
+        lists.add(readedProduct);
         lists.add(readedPA);
         lists.add(readedPAV);
-        lists.add(readedProduct);
         lists.add(readedUser);
 
         List<Object> listsOfFile = new ArrayList();
