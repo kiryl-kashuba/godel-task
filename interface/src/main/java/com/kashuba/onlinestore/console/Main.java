@@ -1,16 +1,13 @@
 package com.kashuba.onlinestore.console;
 
-
 import com.budhash.cliche.Command;
 import com.budhash.cliche.ShellFactory;
 import com.kashuba.onlinestore.FileRepository;
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.entity.*;
 
-
 import java.io.IOException;
 import java.util.*;
-
 
 public class Main {
     public static String CLIENTR = "Client.txt";
@@ -23,7 +20,6 @@ public class Main {
     public static String USERR = "User.txt";
     public static String IDR = "Id.txt";
 
-
     List<Client> readedClients;
     List<Order> readedOrder;
     List<Cart> readedCart;
@@ -32,9 +28,6 @@ public class Main {
     List<ProductAttribute> readedPA;
     List<ProductAttributeValue> readedPAV;
     List<User> readedUser;
-
-
-
 
      {
         try {
@@ -58,7 +51,7 @@ public class Main {
     }
 
     @Command
-    public List<Client> cReateClient(String email, String pass, String fname, String sname, long number)  {
+    public List<Client> createCLient(String email, String pass, String fname, String sname, long number)  {
         User.Role role = User.Role.CLIENT;
         Client.Status status = Client.Status.ACTIVE;
         long id = IdGenerator.createID();
@@ -69,24 +62,23 @@ public class Main {
     }
 
     @Command
-    public List<Client> fINdClients(){
+    public List<Client> findCLients(){
         return readedClients;
     }
 
 
     @Command
-    public List<Client> deleteClient(int idList) {
+    public List<Client> deleteCLient(int idList) {
         readedClients.removeIf(x -> x.getId() == idList);
         return readedClients;
     }
 
     @Command
-    public List<ProductAttribute> createProductAttribute(String name, boolean mandatory)  {
+    public List<ProductAttribute> createProductAttribute(String name, boolean mandatory, String type)  {
         long id = IdGenerator.createID();
-        ProductAttribute productAttribute = new ProductAttribute( name, mandatory, id);
+        ProductAttribute productAttribute = new ProductAttribute( name, mandatory, id, type );
         readedPA.add(productAttribute);
         return readedPA;
-
     }
 
 
@@ -102,9 +94,8 @@ public class Main {
         return readedPA;
     }
 
-
     @Command
-    public List<Category> createCategory(String name, Integer ...idValue)  {
+    public List<Category> createCAtegory(String name, Integer ...idValue)  {
         long id = IdGenerator.createID();
         List<ProductAttribute> list = new ArrayList<>();
         for (int i=0; i< idValue.length;i++){
@@ -121,36 +112,76 @@ public class Main {
     }
 
     @Command
-    public List<Category> findCategory(){
+    public List<Category> findCAtegory(){
         return readedCategory;
     }
 
     @Command
-    public List<Category> deleteCategory(int idList) {
+    public List<Category> deleteCAtegory(int idList) {
         readedPA.removeIf(x -> x.getId() == idList);
         return readedCategory;
     }
 
+    @Command
+    public List<InstanceProduct> createINstance(String name, String articulation, int price, int idOfCategory)  {
+        long id = IdGenerator.createID();
+        InstanceProduct instanceProduct = new InstanceProduct(id, name, articulation, price);
+        for (Category category : readedCategory){
+            if (idOfCategory == category.getId()){
+                instanceProduct.setCategory(category);
+            }
+        }
+
+        List<ProductAttributeValue> list = new ArrayList<>();
+
+        for (Category category : readedCategory){
+            if (idOfCategory == category.getId()){
+                int size = (category.getProductAttribute()).size();
+                for (int i=0; i < size; i++){
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("Enter value of " + ((category.getProductAttribute()).get(i)).getName());
+                    String value = sc.nextLine();
+                    list.add(createProductAttributeValue(value, (category.getProductAttribute()).get(i)));
+                }
+            }
+        }
+        instanceProduct.setProductAttributeValue(list);
+        readedProduct.add(instanceProduct);
+        return readedProduct;
+    }
+
+
+
+    @Command
+    public ProductAttributeValue createProductAttributeValue(String value, ProductAttribute productAttribute)  {
+        long id = IdGenerator.createID();
+        ProductAttributeValue productAttributeValue = new ProductAttributeValue(value, productAttribute, id);
+        return productAttributeValue;
+    }
+
+    @Command
+    public List<InstanceProduct> findINstance() {
+        return readedProduct;
+    }
+
+
+    @Command
+    public List<InstanceProduct> deleteINstance(int idList) {
+        readedProduct.removeIf(x -> x.getId() == idList);
+        return readedProduct;
+    }
+
 //    @Command
-//    public List<ProductAttribute> addProductAttribute(String name, boolean mandatory)  {
-//        long id = IdGenerator.createID();
-//        ProductAttribute productAttribute = new ProductAttribute( name, mandatory, id);
-//        readedPA.add(productAttribute);
-//        return readedPA;
-//
-//    }
-//
-//    @Command
-//    public List<ProductAttribute> findProductAttributes(){
-//        return readedPA;
-//    }
-//
-//
-//    @Command
-//    public List<ProductAttribute> removeProductAttribute(int idList) {
-//        readedPA.removeIf(x -> x.getId() == idList);
-//        return readedPA;
-//    }
+//    public void test(int idOfCategory){
+//        for (Category category : readedCategory){
+//            if (idOfCategory == category.getId()){
+//                System.out.println(category.getProductAttribute());
+//            }
+//        }
+//     }
+
+
+
 
     @Command
     public void saveinfo() throws IOException {

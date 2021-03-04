@@ -33,8 +33,9 @@ public class Category extends BaseEntity {
     @Override
     public String toString() {
         return "Category{" +
+                "Id='" + super.getId() + '\'' +
                 "name='" + name + '\'' +
-                ", productAttribute=" + productAttribute +
+                ", " + productAttribute +
                 '}';
     }
 

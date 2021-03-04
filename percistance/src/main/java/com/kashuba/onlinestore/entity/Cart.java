@@ -42,6 +42,7 @@ public class Cart extends BaseEntity{
     @Override
     public String toString() {
         return "Cart{" +
+                "Id='" + super.getId() + '\'' +
                 "number=" + number +
                 ", client=" + client +
                 ", instanceProduct=" + instanceProduct +

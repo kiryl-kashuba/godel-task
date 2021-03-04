@@ -44,6 +44,7 @@ public class Order extends BaseEntity {
     @Override
     public String toString() {
         return "Order{" +
+                "Id='" + super.getId() + '\'' +
                 "localDate=" + localDate +
                 ", amount=" + amount +
                 ", cart=" + cart +

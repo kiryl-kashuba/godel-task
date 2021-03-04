@@ -2,6 +2,7 @@ package com.kashuba.onlinestore.entity;
 
 import com.opencsv.bean.CsvBindByPosition;
 
+import java.util.List;
 import java.util.Objects;
 
 public class InstanceProduct extends BaseEntity {
@@ -10,15 +11,22 @@ public class InstanceProduct extends BaseEntity {
     private String articulation;
     private int price;
     private Category category;
-    private ProductAttributeValue productAttributeValue;
+    private List<ProductAttributeValue> productAttributeValue;
 
-    public InstanceProduct(String name, String articulation, int price, Category category, ProductAttributeValue productAttributeValue, long id) {
+
+
+    public InstanceProduct(String name, String articulation, int price, ProductAttributeValue productAttributeValue, long id) {
         super(id);
         this.name = name;
         this.articulation = articulation;
         this.price = price;
-        this.category = category;
-        this.productAttributeValue = productAttributeValue;
+    }
+
+    public InstanceProduct(long id, String name, String articulation, int price) {
+        super(id);
+        this.name = name;
+        this.articulation = articulation;
+        this.price = price;
     }
 
     public String getName() {
@@ -53,21 +61,22 @@ public class InstanceProduct extends BaseEntity {
         this.category = category;
     }
 
-    public ProductAttributeValue getProductAttributeValue() {
+    public List<ProductAttributeValue> getProductAttributeValue() {
         return productAttributeValue;
     }
 
-    public void setProductAttributeValue(ProductAttributeValue productAttributeValue) {
+    public void setProductAttributeValue(List<ProductAttributeValue> productAttributeValue) {
         this.productAttributeValue = productAttributeValue;
     }
 
     @Override
     public String toString() {
         return "InstanceProduct{" +
+                "Id='" + super.getId() + '\'' +
                 "name='" + name + '\'' +
                 ", articulation='" + articulation + '\'' +
                 ", price=" + price +
-                ", category=" + category +
+                ", " + category +
                 ", productAttributeValue=" + productAttributeValue +
                 '}';
     }

@@ -6,6 +6,11 @@ public class ProductAttribute extends BaseEntity {
 
     private String name;
     private boolean mandatory;
+    private String type;
+
+    public String getType() { return type; }
+
+    public void setType(String type) { this.type = type; }
 
     public String getName() {
         return name;
@@ -23,10 +28,11 @@ public class ProductAttribute extends BaseEntity {
         this.mandatory = mandatory;
     }
 
-    public ProductAttribute(String name, boolean mandatory, long id) {
+    public ProductAttribute(String name, boolean mandatory, long id, String type) {
         super(id);
         this.name = name;
         this.mandatory = mandatory;
+        this.type = type;
     }
 
     @Override
@@ -36,20 +42,22 @@ public class ProductAttribute extends BaseEntity {
         if (!super.equals(o)) return false;
         ProductAttribute that = (ProductAttribute) o;
         return mandatory == that.mandatory &&
-                Objects.equals(name, that.name);
+                Objects.equals(name, that.name) &&
+                Objects.equals(type, that.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), name, mandatory);
+        return Objects.hash(super.hashCode(), name, mandatory, type);
     }
 
     @Override
     public String toString() {
         return "ProductAttribute{" +
                 "Id='" + super.getId() + '\'' +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", mandatory=" + mandatory +
+                ", type='" + type + '\'' +
                 '}';
     }
 }
