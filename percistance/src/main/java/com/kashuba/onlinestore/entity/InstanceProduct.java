@@ -11,15 +11,17 @@ public class InstanceProduct extends BaseEntity {
     private String articulation;
     private int price;
     private Category category;
+    private int number;
     private List<ProductAttributeValue> productAttributeValue;
 
 
-
-    public InstanceProduct(String name, String articulation, int price, ProductAttributeValue productAttributeValue, long id) {
+    public InstanceProduct(long id, String name, String articulation, int price, Category category, List<ProductAttributeValue> productAttributeValue) {
         super(id);
         this.name = name;
         this.articulation = articulation;
         this.price = price;
+        this.category = category;
+        this.productAttributeValue = productAttributeValue;
     }
 
     public InstanceProduct(long id, String name, String articulation, int price) {
@@ -69,6 +71,14 @@ public class InstanceProduct extends BaseEntity {
         this.productAttributeValue = productAttributeValue;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
     @Override
     public String toString() {
         return "InstanceProduct{" +
@@ -76,8 +86,9 @@ public class InstanceProduct extends BaseEntity {
                 "name='" + name + '\'' +
                 ", articulation='" + articulation + '\'' +
                 ", price=" + price +
-                ", " + category +
+                ", category=" + category +
                 ", productAttributeValue=" + productAttributeValue +
+                ", number=" + number +
                 '}';
     }
 
@@ -88,6 +99,7 @@ public class InstanceProduct extends BaseEntity {
         if (!super.equals(o)) return false;
         InstanceProduct that = (InstanceProduct) o;
         return price == that.price &&
+                number == that.number &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(articulation, that.articulation) &&
                 Objects.equals(category, that.category) &&
@@ -96,6 +108,6 @@ public class InstanceProduct extends BaseEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), name, articulation, price, category, productAttributeValue);
+        return Objects.hash(super.hashCode(), name, articulation, price, category, number, productAttributeValue);
     }
 }

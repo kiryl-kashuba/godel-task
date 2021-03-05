@@ -150,7 +150,16 @@ public class Main {
         return readedProduct;
     }
 
+    @Command
+    public List<InstanceProduct> findINstance() {
+        return readedProduct;
+    }
 
+    @Command
+    public List<InstanceProduct> deleteINstance(int idList) {
+        readedProduct.removeIf(x -> x.getId() == idList);
+        return readedProduct;
+    }
 
     @Command
     public ProductAttributeValue createProductAttributeValue(String value, ProductAttribute productAttribute)  {
@@ -160,28 +169,46 @@ public class Main {
     }
 
     @Command
-    public List<InstanceProduct> findINstance() {
-        return readedProduct;
-    }
+    public List<Cart> createCART(int idClient)  {
+        long id = IdGenerator.createID();
+        List<InstanceProduct> list = new ArrayList<>();
+        Cart cart = new Cart(id, list);
+        for (Client client : readedClients){
+            if (idClient == client.getId()){
+                cart.setClient(client);
+            }
+        }
+        readedCart.add(cart);
+        return readedCart;
 
+    }
 
     @Command
-    public List<InstanceProduct> deleteINstance(int idList) {
-        readedProduct.removeIf(x -> x.getId() == idList);
-        return readedProduct;
+    public List<Cart> findCART(){
+        return readedCart;
     }
 
-//    @Command
-//    public void test(int idOfCategory){
-//        for (Category category : readedCategory){
-//            if (idOfCategory == category.getId()){
-//                System.out.println(category.getProductAttribute());
-//            }
-//        }
-//     }
+    @Command
+    public List<Cart> deleteCART(int idList) {
+        readedPA.removeIf(x -> x.getId() == idList);
+        return readedCart;
+    }
 
+    @Command
+    public List<Cart> addInstanceToCart(int idCart, int idInstance)  {
+        for (Cart cart : readedCart){
+            if (idCart == cart.getId()){
+                for (InstanceProduct instanceProduct : readedProduct){
+                    if (idInstance == instanceProduct.getId()){
+                        cart.addInstanceProduct(instanceProduct);
+                    }
+                }
+            }
+        }
+        readedCart.add(); // Я не знаю как вернуть изменённый объект в list (readedCart)
+        return readedCart;
 
-
+    }
 
     @Command
     public void saveinfo() throws IOException {

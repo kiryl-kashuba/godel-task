@@ -1,26 +1,36 @@
 package com.kashuba.onlinestore.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Cart extends BaseEntity{
 
-    private int number;
     private Client client;
-    private InstanceProduct instanceProduct;
+    private List<InstanceProduct> instanceProduct;
 
-    public Cart(int number, Client client, InstanceProduct instanceProduct, long id) {
+    public Cart(long id, Client client, List<InstanceProduct> instanceProduct) {
         super(id);
-        this.number = number;
         this.client = client;
         this.instanceProduct = instanceProduct;
     }
 
-    public int getNumber() {
-        return number;
+    public Cart(long id, Client client) {
+        super(id);
+        this.client = client;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public Cart(long id, List<InstanceProduct> instanceProduct) {
+        super(id);
+        this.instanceProduct = instanceProduct;
+    }
+
+    public Cart(long id) {
+        super(id);
+    }
+
+    public List<InstanceProduct> addInstanceProduct (InstanceProduct instanceProduct){
+        this.instanceProduct.add(instanceProduct);
+        return this.instanceProduct;
     }
 
     public Client getClient() {
@@ -31,11 +41,11 @@ public class Cart extends BaseEntity{
         this.client = client;
     }
 
-    public InstanceProduct getInstanceProduct() {
+    public List<InstanceProduct> getInstanceProduct() {
         return instanceProduct;
     }
 
-    public void setInstanceProduct(InstanceProduct instanceProduct) {
+    public void setInstanceProduct(List<InstanceProduct> instanceProduct) {
         this.instanceProduct = instanceProduct;
     }
 
@@ -43,7 +53,6 @@ public class Cart extends BaseEntity{
     public String toString() {
         return "Cart{" +
                 "Id='" + super.getId() + '\'' +
-                "number=" + number +
                 ", client=" + client +
                 ", instanceProduct=" + instanceProduct +
                 '}';
@@ -55,13 +64,12 @@ public class Cart extends BaseEntity{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Cart cart = (Cart) o;
-        return number == cart.number &&
-                Objects.equals(client, cart.client) &&
+        return Objects.equals(client, cart.client) &&
                 Objects.equals(instanceProduct, cart.instanceProduct);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), number, client, instanceProduct);
+        return Objects.hash(super.hashCode(), client, instanceProduct);
     }
 }
