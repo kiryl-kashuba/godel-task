@@ -74,6 +74,13 @@ public class Main {
     }
 
     @Command
+    public List<Client> updateCLients(){
+
+        return readedClients;
+    }
+
+
+    @Command
     public List<ProductAttribute> createProductAttribute(String name, boolean mandatory, String type)  {
         long id = IdGenerator.createID();
         ProductAttribute productAttribute = new ProductAttribute( name, mandatory, id, type );
@@ -195,7 +202,7 @@ public class Main {
     }
 
     @Command
-    public List<Cart> addInstanceToCart(int idCart, int idInstance)  {
+    public void addInstanceToCart(int idCart, int idInstance)  {
         for (Cart cart : readedCart){
             if (idCart == cart.getId()){
                 for (InstanceProduct instanceProduct : readedProduct){
@@ -205,9 +212,6 @@ public class Main {
                 }
             }
         }
-        readedCart.add(); // Я не знаю как вернуть изменённый объект в list (readedCart)
-        return readedCart;
-
     }
 
     @Command
