@@ -202,12 +202,15 @@ public class Main {
     }
 
     @Command
-    public void addInstanceToCart(int idCart, int idInstance)  {
+    public void addInstanceToCart(int idCart, int idInstance, Integer amount)  {
+        Map<InstanceProduct, Integer> number = new HashMap<>();
         for (Cart cart : readedCart){
             if (idCart == cart.getId()){
                 for (InstanceProduct instanceProduct : readedProduct){
                     if (idInstance == instanceProduct.getId()){
                         cart.addInstanceProduct(instanceProduct);
+                        number.put(instanceProduct, amount);
+                        cart.setNumber(number);
                     }
                 }
             }

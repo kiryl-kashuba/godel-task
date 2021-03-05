@@ -11,7 +11,6 @@ public class InstanceProduct extends BaseEntity {
     private String articulation;
     private int price;
     private Category category;
-    private int number;
     private List<ProductAttributeValue> productAttributeValue;
 
 
@@ -71,14 +70,6 @@ public class InstanceProduct extends BaseEntity {
         this.productAttributeValue = productAttributeValue;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
     @Override
     public String toString() {
         return "InstanceProduct{" +
@@ -88,7 +79,6 @@ public class InstanceProduct extends BaseEntity {
                 ", price=" + price +
                 ", category=" + category +
                 ", productAttributeValue=" + productAttributeValue +
-                ", number=" + number +
                 '}';
     }
 
@@ -99,7 +89,6 @@ public class InstanceProduct extends BaseEntity {
         if (!super.equals(o)) return false;
         InstanceProduct that = (InstanceProduct) o;
         return price == that.price &&
-                number == that.number &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(articulation, that.articulation) &&
                 Objects.equals(category, that.category) &&
@@ -108,6 +97,6 @@ public class InstanceProduct extends BaseEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), name, articulation, price, category, number, productAttributeValue);
+        return Objects.hash(super.hashCode(), name, articulation, price, category, productAttributeValue);
     }
 }

@@ -1,12 +1,14 @@
 package com.kashuba.onlinestore.entity;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Cart extends BaseEntity{
 
     private Client client;
     private List<InstanceProduct> instanceProduct;
+    private Map<InstanceProduct, Integer> number;
 
     public Cart(long id, Client client, List<InstanceProduct> instanceProduct) {
         super(id);
@@ -49,14 +51,24 @@ public class Cart extends BaseEntity{
         this.instanceProduct = instanceProduct;
     }
 
+    public Map<InstanceProduct, Integer> getNumber() {
+        return number;
+    }
+
+    public void setNumber(Map<InstanceProduct, Integer> number) {
+        this.number = number;
+    }
+
     @Override
     public String toString() {
         return "Cart{" +
                 "Id='" + super.getId() + '\'' +
-                ", client=" + client +
+                "client=" + client +
                 ", instanceProduct=" + instanceProduct +
+                ", number=" + number +
                 '}';
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -65,11 +77,12 @@ public class Cart extends BaseEntity{
         if (!super.equals(o)) return false;
         Cart cart = (Cart) o;
         return Objects.equals(client, cart.client) &&
-                Objects.equals(instanceProduct, cart.instanceProduct);
+                Objects.equals(instanceProduct, cart.instanceProduct) &&
+                Objects.equals(number, cart.number);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), client, instanceProduct);
+        return Objects.hash(super.hashCode(), client, instanceProduct, number);
     }
 }
