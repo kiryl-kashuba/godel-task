@@ -72,13 +72,6 @@ public class Main {
     }
 
     @Command
-    public List<Client> updateCLients() {
-
-        return readedClients;
-    }
-
-
-    @Command
     public List<ProductAttribute> createProductAttribute(String name, boolean mandatory, String type) {
         long id = IdGenerator.createID();
         ProductAttribute productAttribute = new ProductAttribute(name, mandatory, id, type);
