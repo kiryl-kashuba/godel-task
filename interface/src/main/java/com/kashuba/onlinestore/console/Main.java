@@ -18,7 +18,6 @@ public class Main {
     public static String PRODUCTR = "InstanceProduct.txt";
     public static String ORDERR = "Order.txt";
     public static String PAR = "ProductAttribute.txt";
-    public static String PAVR = "ProductAttributeValue.txt";
     public static String USERR = "User.txt";
     public static String IDR = "Id.txt";
 
