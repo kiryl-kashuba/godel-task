@@ -1,6 +1,7 @@
 package com.kashuba.onlinestore.console;
 
 import com.budhash.cliche.Command;
+import com.budhash.cliche.Param;
 import com.budhash.cliche.ShellFactory;
 import com.kashuba.onlinestore.FileRepository;
 import com.kashuba.onlinestore.IdGenerator;
@@ -39,8 +40,11 @@ public class Main {
             readedCategory = (List<Category>) FileRepository.readObject(CATEGORYR);
             System.out.println(readedCategory);
             readedPA = (List<ProductAttribute>) FileRepository.readObject(PAR);
+            System.out.println(readedPA);
             readedPAV = (List<ProductAttributeValue>) FileRepository.readObject(PAVR);
+            System.out.println(readedPAV);
             readedUser = (List<User>) FileRepository.readObject(USERR);
+            System.out.println(readedUser);
             IdGenerator.setIdCounter(FileRepository.readId(IDR));
 
             System.out.println("Initialization successful");
@@ -177,10 +181,11 @@ public class Main {
     }
 
     @Command
-    public List<Cart> createCART(int idClient) {
+    public List<Cart> createCArt(int idClient) {
         long id = IdGenerator.createID();
         List<InstanceProduct> list = new ArrayList<>();
-        Cart cart = new Cart(id, list);
+        Map<InstanceProduct, Integer> number = new HashMap<>();
+        Cart cart = new Cart(id, list, number);
         for (Client client : readedClients) {
             if (idClient == client.getId()) {
                 cart.setClient(client);
@@ -198,20 +203,18 @@ public class Main {
 
     @Command
     public List<Cart> deleteCART(int idList) {
-        readedPA.removeIf(x -> x.getId() == idList);
+        readedCart.removeIf(x -> x.getId() == idList);
         return readedCart;
     }
 
     @Command
     public void addInstanceToCart(int idCart, int idInstance, Integer amount) {
-        Map<InstanceProduct, Integer> number = new HashMap<>();
         for (Cart cart : readedCart) {
             if (idCart == cart.getId()) {
                 for (InstanceProduct instanceProduct : readedProduct) {
                     if (idInstance == instanceProduct.getId()) {
+                        cart.getNumber().put(instanceProduct,amount);
                         cart.addInstanceProduct(instanceProduct);
-                        number.put(instanceProduct, amount);
-                        cart.setNumber(number);
                     }
                 }
             }

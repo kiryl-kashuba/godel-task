@@ -16,6 +16,12 @@ public class Cart extends BaseEntity{
         this.instanceProduct = instanceProduct;
     }
 
+    public Cart(long id, List<InstanceProduct> instanceProduct, Map<InstanceProduct, Integer> number) {
+        super(id);
+        this.instanceProduct = instanceProduct;
+        this.number = number;
+    }
+
     public Cart(long id, Client client) {
         super(id);
         this.client = client;
