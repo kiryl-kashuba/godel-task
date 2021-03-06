@@ -32,14 +32,11 @@ public class Main {
     {
         try {
             readedClients = (List<Client>) FileRepository.readObject(CLIENTR);
-            System.out.println("Clients " + readedClients);
             readedOrder = (List<Order>) FileRepository.readObject(ORDERR);
             readedCart = (List<Cart>) FileRepository.readObject(CARTR);
             readedProduct = (List<InstanceProduct>) FileRepository.readObject(PRODUCTR);
             readedCategory = (List<Category>) FileRepository.readObject(CATEGORYR);
-            System.out.println("Category " + readedCategory);
             readedPA = (List<ProductAttribute>) FileRepository.readObject(PAR);
-            System.out.println("ProductAttribute " + readedPA);
             readedUser = (List<User>) FileRepository.readObject(USERR);
             IdGenerator.setIdCounter(FileRepository.readId(IDR));
 
