@@ -30,6 +30,8 @@ public class Cart extends BaseEntity{
         super(id);
     }
 
+
+
     public List<InstanceProduct> addInstanceProduct (InstanceProduct instanceProduct){
         this.instanceProduct.add(instanceProduct);
         return this.instanceProduct;

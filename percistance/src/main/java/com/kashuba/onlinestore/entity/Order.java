@@ -5,24 +5,34 @@ import java.util.Objects;
 
 public class Order extends BaseEntity {
 
-    private LocalDate localDate;
+    private LocalDate dateOrder;
     private int amount;
     private Cart cart;
 
-    public Order(LocalDate localDate, int amount, Cart cart, long id) {
+    public Order(long id, LocalDate dateOrder) {
         super(id);
-        this.localDate = localDate;
+        this.dateOrder = dateOrder;
+    }
+
+    public Order(long id, LocalDate dateOrder, Cart cart) {
+        super(id);
+        this.dateOrder = dateOrder;
+        this.cart = cart;
+    }
+
+    public Order(long id, LocalDate dateOrder, int amount, Cart cart) {
+        super(id);
+        this.dateOrder = dateOrder;
         this.amount = amount;
         this.cart = cart;
     }
 
-
-    public LocalDate getLocalDate() {
-        return localDate;
+    public LocalDate getDateOrder() {
+        return dateOrder;
     }
 
-    public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
+    public void setDateOrder(LocalDate dateOrder) {
+        this.dateOrder = dateOrder;
     }
 
     public int getAmount() {
@@ -45,7 +55,7 @@ public class Order extends BaseEntity {
     public String toString() {
         return "Order{" +
                 "Id='" + super.getId() + '\'' +
-                "localDate=" + localDate +
+                "dateOrder=" + dateOrder +
                 ", amount=" + amount +
                 ", cart=" + cart +
                 '}';
@@ -58,12 +68,12 @@ public class Order extends BaseEntity {
         if (!super.equals(o)) return false;
         Order order = (Order) o;
         return amount == order.amount &&
-                Objects.equals(localDate, order.localDate) &&
+                Objects.equals(dateOrder, order.dateOrder) &&
                 Objects.equals(cart, order.cart);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), localDate, amount, cart);
+        return Objects.hash(super.hashCode(), dateOrder, amount, cart);
     }
 }

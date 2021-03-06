@@ -7,6 +7,7 @@ import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.entity.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 
 public class Main {
@@ -29,7 +30,7 @@ public class Main {
     List<ProductAttributeValue> readedPAV;
     List<User> readedUser;
 
-     {
+    {
         try {
             readedClients = (List<Client>) FileRepository.readObject(CLIENTR);
             readedOrder = (List<Order>) FileRepository.readObject(ORDERR);
@@ -51,18 +52,18 @@ public class Main {
     }
 
     @Command
-    public List<Client> createCLient(String email, String pass, String fname, String sname, long number)  {
+    public List<Client> createCLient(String email, String pass, String fname, String sname, long number) {
         User.Role role = User.Role.CLIENT;
         Client.Status status = Client.Status.ACTIVE;
         long id = IdGenerator.createID();
-        Client client = new Client( email, role, pass, id, fname, sname, number, status);
+        Client client = new Client(email, role, pass, id, fname, sname, number, status);
         readedClients.add(client);
         return readedClients;
 
     }
 
     @Command
-    public List<Client> findCLients(){
+    public List<Client> findCLients() {
         return readedClients;
     }
 
@@ -74,23 +75,23 @@ public class Main {
     }
 
     @Command
-    public List<Client> updateCLients(){
+    public List<Client> updateCLients() {
 
         return readedClients;
     }
 
 
     @Command
-    public List<ProductAttribute> createProductAttribute(String name, boolean mandatory, String type)  {
+    public List<ProductAttribute> createProductAttribute(String name, boolean mandatory, String type) {
         long id = IdGenerator.createID();
-        ProductAttribute productAttribute = new ProductAttribute( name, mandatory, id, type );
+        ProductAttribute productAttribute = new ProductAttribute(name, mandatory, id, type);
         readedPA.add(productAttribute);
         return readedPA;
     }
 
 
     @Command
-    public List<ProductAttribute> findProductAttributes(){
+    public List<ProductAttribute> findProductAttributes() {
         return readedPA;
     }
 
@@ -102,12 +103,12 @@ public class Main {
     }
 
     @Command
-    public List<Category> createCAtegory(String name, Integer ...idValue)  {
+    public List<Category> createCAtegory(String name, Integer... idValue) {
         long id = IdGenerator.createID();
         List<ProductAttribute> list = new ArrayList<>();
-        for (int i=0; i< idValue.length;i++){
-            for (ProductAttribute productAttribute : readedPA){
-                if (idValue[i] == productAttribute.getId()){
+        for (int i = 0; i < idValue.length; i++) {
+            for (ProductAttribute productAttribute : readedPA) {
+                if (idValue[i] == productAttribute.getId()) {
                     list.add(productAttribute);
                 }
             }
@@ -119,7 +120,7 @@ public class Main {
     }
 
     @Command
-    public List<Category> findCAtegory(){
+    public List<Category> findCAtegory() {
         return readedCategory;
     }
 
@@ -130,21 +131,21 @@ public class Main {
     }
 
     @Command
-    public List<InstanceProduct> createINstance(String name, String articulation, int price, int idOfCategory)  {
+    public List<InstanceProduct> createINstance(String name, String articulation, int price, int idOfCategory) {
         long id = IdGenerator.createID();
         InstanceProduct instanceProduct = new InstanceProduct(id, name, articulation, price);
-        for (Category category : readedCategory){
-            if (idOfCategory == category.getId()){
+        for (Category category : readedCategory) {
+            if (idOfCategory == category.getId()) {
                 instanceProduct.setCategory(category);
             }
         }
 
         List<ProductAttributeValue> list = new ArrayList<>();
 
-        for (Category category : readedCategory){
-            if (idOfCategory == category.getId()){
+        for (Category category : readedCategory) {
+            if (idOfCategory == category.getId()) {
                 int size = (category.getProductAttribute()).size();
-                for (int i=0; i < size; i++){
+                for (int i = 0; i < size; i++) {
                     Scanner sc = new Scanner(System.in);
                     System.out.println("Enter value of " + ((category.getProductAttribute()).get(i)).getName());
                     String value = sc.nextLine();
@@ -169,19 +170,19 @@ public class Main {
     }
 
     @Command
-    public ProductAttributeValue createProductAttributeValue(String value, ProductAttribute productAttribute)  {
+    public ProductAttributeValue createProductAttributeValue(String value, ProductAttribute productAttribute) {
         long id = IdGenerator.createID();
         ProductAttributeValue productAttributeValue = new ProductAttributeValue(value, productAttribute, id);
         return productAttributeValue;
     }
 
     @Command
-    public List<Cart> createCART(int idClient)  {
+    public List<Cart> createCART(int idClient) {
         long id = IdGenerator.createID();
         List<InstanceProduct> list = new ArrayList<>();
         Cart cart = new Cart(id, list);
-        for (Client client : readedClients){
-            if (idClient == client.getId()){
+        for (Client client : readedClients) {
+            if (idClient == client.getId()) {
                 cart.setClient(client);
             }
         }
@@ -191,7 +192,7 @@ public class Main {
     }
 
     @Command
-    public List<Cart> findCART(){
+    public List<Cart> findCART() {
         return readedCart;
     }
 
@@ -202,12 +203,12 @@ public class Main {
     }
 
     @Command
-    public void addInstanceToCart(int idCart, int idInstance, Integer amount)  {
+    public void addInstanceToCart(int idCart, int idInstance, Integer amount) {
         Map<InstanceProduct, Integer> number = new HashMap<>();
-        for (Cart cart : readedCart){
-            if (idCart == cart.getId()){
-                for (InstanceProduct instanceProduct : readedProduct){
-                    if (idInstance == instanceProduct.getId()){
+        for (Cart cart : readedCart) {
+            if (idCart == cart.getId()) {
+                for (InstanceProduct instanceProduct : readedProduct) {
+                    if (idInstance == instanceProduct.getId()) {
                         cart.addInstanceProduct(instanceProduct);
                         number.put(instanceProduct, amount);
                         cart.setNumber(number);
@@ -216,6 +217,45 @@ public class Main {
             }
         }
     }
+
+    @Command
+    public List<Order> createORder(int idCart) {
+        long id = IdGenerator.createID();
+        Order order = new Order(id, LocalDate.now());
+        for (Cart cart : readedCart) {
+            if (idCart == cart.getId()) {
+                order.setCart(cart);
+            }
+        }
+        int amount = 0;
+
+        for (Cart cart : readedCart) {
+            if (idCart == cart.getId()) {
+                order.setCart(cart);
+                for (Map.Entry<InstanceProduct, Integer> entry : cart.getNumber().entrySet()) {
+                    InstanceProduct product = entry.getKey();
+                    Integer number = entry.getValue();
+                    amount += product.getPrice() * number;
+                }
+            }
+        }
+        order.setAmount(amount);
+        readedOrder.add(order);
+        return readedOrder;
+    }
+
+
+    @Command
+    public List<Order> findORder() {
+        return readedOrder;
+    }
+
+    @Command
+    public List<Order> deleteORder(int idList) {
+        readedPA.removeIf(x -> x.getId() == idList);
+        return readedOrder;
+    }
+
 
     @Command
     public void saveinfo() throws IOException {
@@ -239,17 +279,15 @@ public class Main {
         listsOfFile.add(PAVR);
         listsOfFile.add(USERR);
 
-        for (int x= 0; x<lists.size(); x++)
-        {
+        for (int x = 0; x < lists.size(); x++) {
             FileRepository.writeObject((String) listsOfFile.get(x), lists.get(x));
         }
 
-        FileRepository.writeId(IDR ,IdGenerator.getIdCounter());
+        FileRepository.writeId(IDR, IdGenerator.getIdCounter());
 
 
         System.out.println("Data saved");
     }
-
 
 
     public static void main(String[] args) throws IOException {
