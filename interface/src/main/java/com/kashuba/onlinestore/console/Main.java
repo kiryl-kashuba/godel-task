@@ -28,23 +28,20 @@ public class Main {
     List<InstanceProduct> readedProduct;
     List<Category> readedCategory;
     List<ProductAttribute> readedPA;
-    List<ProductAttributeValue> readedPAV;
     List<User> readedUser;
 
     {
         try {
             readedClients = (List<Client>) FileRepository.readObject(CLIENTR);
+            System.out.println("Clients " + readedClients);
             readedOrder = (List<Order>) FileRepository.readObject(ORDERR);
             readedCart = (List<Cart>) FileRepository.readObject(CARTR);
             readedProduct = (List<InstanceProduct>) FileRepository.readObject(PRODUCTR);
             readedCategory = (List<Category>) FileRepository.readObject(CATEGORYR);
-            System.out.println(readedCategory);
+            System.out.println("Category " + readedCategory);
             readedPA = (List<ProductAttribute>) FileRepository.readObject(PAR);
-            System.out.println(readedPA);
-            readedPAV = (List<ProductAttributeValue>) FileRepository.readObject(PAVR);
-            System.out.println(readedPAV);
+            System.out.println("ProductAttribute " + readedPA);
             readedUser = (List<User>) FileRepository.readObject(USERR);
-            System.out.println(readedUser);
             IdGenerator.setIdCounter(FileRepository.readId(IDR));
 
             System.out.println("Initialization successful");
@@ -163,6 +160,30 @@ public class Main {
     }
 
     @Command
+    public void updateINstance(int idOfProduct, String name, String articulation, int price, int idOfCategory) {
+        List<ProductAttributeValue> list = new ArrayList<>();
+        for (Category category : readedCategory) {
+            if (idOfCategory == category.getId()) {
+                int size = (category.getProductAttribute()).size();
+                for (int i = 0; i < size; i++) {
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("Enter value of " + ((category.getProductAttribute()).get(i)).getName());
+                    String value = sc.nextLine();
+                    list.add(createProductAttributeValue(value, (category.getProductAttribute()).get(i)));
+                }
+            }
+        }
+        for (InstanceProduct instanceProduct : readedProduct) {
+            if (idOfProduct == instanceProduct.getId()) {
+                instanceProduct.setName(name);
+                instanceProduct.setArticulation(articulation);
+                instanceProduct.setPrice(price);
+                instanceProduct.setProductAttributeValue(list);
+            }
+        }
+    }
+
+    @Command
     public List<InstanceProduct> findINstance() {
         return readedProduct;
     }
@@ -269,7 +290,6 @@ public class Main {
         lists.add(readedOrder);
         lists.add(readedProduct);
         lists.add(readedPA);
-        lists.add(readedPAV);
         lists.add(readedUser);
 
         List<Object> listsOfFile = new ArrayList();
@@ -279,7 +299,6 @@ public class Main {
         listsOfFile.add(ORDERR);
         listsOfFile.add(PRODUCTR);
         listsOfFile.add(PAR);
-        listsOfFile.add(PAVR);
         listsOfFile.add(USERR);
 
         for (int x = 0; x < lists.size(); x++) {
