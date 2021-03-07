@@ -1,8 +1,5 @@
 package com.kashuba.onlinestore.entity;
 
-import com.opencsv.bean.CsvBindByPosition;
-
-import java.io.Serializable;
 import java.util.Objects;
 
 public class User extends BaseEntity {
@@ -14,19 +11,40 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    public enum Role {
-        GUEST,
-        CLIENT,
-        ADMIN;
+    public User(String email, String password) {
+        this.password = password;
+        this.email = email;
     }
+
+    public enum Role {
+        GUEST("guest"),
+        CLIENT("client"),
+        ADMIN("admin");
+
+        private final String valueOfRole;
+
+        Role(String valueOfRole) {
+            this.valueOfRole = valueOfRole;
+        }
+
+        public String getvalueOfRole() {
+            return valueOfRole;
+        }
+    }
+
+
     private String email;
     private Role role;
     private String password;
 
 
-    public String getPassword() { return password; }
+    public String getPassword() {
+        return password;
+    }
 
-    public void setPassword(String password) { this.password = password; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getEmail() {
         return email;

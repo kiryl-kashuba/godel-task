@@ -5,10 +5,18 @@ import java.util.Objects;
 public class Client extends User {
 
     public enum Status {
-        ACTIVE,
-        BLOCKED;
+        ACTIVE("active"),
+        BLOCKED("blocked");
 
-        //getClientStatus
+        private final String valueOfStatus;
+
+        Status(String value) {
+            this.valueOfStatus = value;
+        }
+
+        public String getValue() {
+            return valueOfStatus;
+        }
     }
 
     private String firstName;
@@ -23,6 +31,13 @@ public class Client extends User {
         this.secondName = secondName;
         this.phoneNumber = phoneNumber;
         this.status = status;
+    }
+
+    public Client(String email, String password, String firstName, String secondName, long phoneNumber) {
+        super(email, password);
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getFirstName() {

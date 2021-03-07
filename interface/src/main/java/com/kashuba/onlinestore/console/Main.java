@@ -9,6 +9,8 @@ import com.kashuba.onlinestore.console.command.impl.DeleteClientCommand;
 import com.kashuba.onlinestore.console.command.impl.FindClientCommand;
 import com.kashuba.onlinestore.entity.*;
 import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
+import com.kashuba.onlinestore.entity.User.Role;
+import com.kashuba.onlinestore.service.EnumService;
 
 import java.io.IOException;
 import java.util.*;
@@ -54,7 +56,11 @@ public class Main {
 
 
     @Command
-    public List<Client> createCLient(String email, String pass, String fname, String sname, long number) {
+    public List<Client> createCLient(String email, String pass, String fname, String sname, long number, String role, String status) {
+        Client client = new Client(email, pass, fname, sname, number);
+        client.setRole(EnumService.findRole(role));
+        client.setStatus(EnumService.findStatus(status));
+
         CreateClientCommand createClientCommand = new CreateClientCommand();
         return createClientCommand.createCLient(email, pass, fname, sname, number, fileInitialization.getReadedClients());
     }
