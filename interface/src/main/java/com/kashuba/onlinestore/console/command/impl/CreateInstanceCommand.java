@@ -1,10 +1,16 @@
 package com.kashuba.onlinestore.console.command.impl;
 
-import com.kashuba.onlinestore.console.command.ActionCommand;
+public class CreateInstanceCommand {
 
-public class CreateInstanceCommand implements ActionCommand {
-    @Override
-    public void execute() {
+    private static CreateInstanceCommand instance;
 
+    private CreateInstanceCommand() {
+    }
+
+    public static CreateInstanceCommand getInstance() {
+        if (instance == null) {
+            instance = new CreateInstanceCommand();
+        }
+        return instance;
     }
 }

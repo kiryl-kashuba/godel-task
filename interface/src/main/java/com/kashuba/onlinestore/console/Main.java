@@ -2,18 +2,17 @@ package com.kashuba.onlinestore.console;
 
 import com.budhash.cliche.Command;
 import com.budhash.cliche.ShellFactory;
-import com.kashuba.onlinestore.dao.fileservice.FileRepository;
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.console.command.impl.CreateClientCommand;
 import com.kashuba.onlinestore.console.command.impl.DeleteClientCommand;
 import com.kashuba.onlinestore.console.command.impl.FindClientCommand;
-import com.kashuba.onlinestore.entity.*;
-import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
-import com.kashuba.onlinestore.entity.User.Role;
+import com.kashuba.onlinestore.dao.fileservice.FileRepository;
+import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.service.EnumService;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.kashuba.onlinestore.dao.fileservice.FileInitialization.*;
 
@@ -52,8 +51,6 @@ public class Main {
 //        }
 //    }
 
-    FileInitialization fileInitialization = new FileInitialization();
-
 
     @Command
     public List<Client> createCLient(String email, String pass, String fname, String sname, long number, String role, String status) {
@@ -61,14 +58,13 @@ public class Main {
         client.setRole(EnumService.findRole(role));
         client.setStatus(EnumService.findStatus(status));
 
-        CreateClientCommand createClientCommand = new CreateClientCommand();
-        return createClientCommand.createCLient(client);
+        return CreateClientCommand.getInstance().createCLient(client);
     }
 
     @Command
     public List<Client> findCLients() {
         FindClientCommand findClientCommand = new FindClientCommand();
-        return findClientCommand.findCLients(fileInitialization.getReadedClients());
+        return findClientCommand.findCLients();
     }
 
     @Command

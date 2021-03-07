@@ -8,11 +8,24 @@ import java.util.List;
 
 public class DeleteClientCommand {
 
+    private static DeleteClientCommand instance;
+
+    private DeleteClientCommand() {
+    }
+
+    public static DeleteClientCommand getInstance() {
+        if (instance == null) {
+            instance = new DeleteClientCommand();
+        }
+        return instance;
+    }
+
+    ClientService clientService = new ClientServiceImpl();
+
     public List<Client> deleteCLient(int idClient, List<Client> readedClients) {
-        ClientService clientService = new ClientServiceImpl();
-        clientService.deleteClient(idClient, readedClients);
+        clientService.deleteClient(idClient);
         readedClients.removeIf(x -> x.getId() == idClient);
         return readedClients;
 
-}
+    }
 }

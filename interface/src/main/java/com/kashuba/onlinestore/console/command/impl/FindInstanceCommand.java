@@ -1,10 +1,16 @@
 package com.kashuba.onlinestore.console.command.impl;
 
-import com.kashuba.onlinestore.console.command.ActionCommand;
+public class FindInstanceCommand {
 
-public class FindInstanceCommand implements ActionCommand {
-    @Override
-    public void execute() {
+    private static FindInstanceCommand instance;
 
+    private FindInstanceCommand() {
+    }
+
+    public static FindInstanceCommand getInstance() {
+        if (instance == null) {
+            instance = new FindInstanceCommand();
+        }
+        return instance;
     }
 }

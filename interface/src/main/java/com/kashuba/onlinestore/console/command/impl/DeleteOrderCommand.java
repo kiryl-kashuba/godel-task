@@ -1,10 +1,16 @@
 package com.kashuba.onlinestore.console.command.impl;
 
-import com.kashuba.onlinestore.console.command.ActionCommand;
+public class DeleteOrderCommand {
 
-public class DeleteOrderCommand implements ActionCommand {
-    @Override
-    public void execute() {
+    private static DeleteOrderCommand instance;
 
+    private DeleteOrderCommand() {
+    }
+
+    public static DeleteOrderCommand getInstance() {
+        if (instance == null) {
+            instance = new DeleteOrderCommand();
+        }
+        return instance;
     }
 }

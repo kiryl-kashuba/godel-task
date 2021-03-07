@@ -1,10 +1,16 @@
 package com.kashuba.onlinestore.console.command.impl;
 
-import com.kashuba.onlinestore.console.command.ActionCommand;
+public class CreateProductAttributeValueCommand {
 
-public class CreateProductAttributeValueCommand implements ActionCommand {
-    @Override
-    public void execute() {
+    private static CreateProductAttributeValueCommand instance;
 
+    private CreateProductAttributeValueCommand() {
+    }
+
+    public static CreateProductAttributeValueCommand getInstance() {
+        if (instance == null) {
+            instance = new CreateProductAttributeValueCommand();
+        }
+        return instance;
     }
 }

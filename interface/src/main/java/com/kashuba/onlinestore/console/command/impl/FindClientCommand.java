@@ -5,7 +5,20 @@ import com.kashuba.onlinestore.entity.Client;
 import java.util.List;
 
 public class FindClientCommand {
-    public List<Client> findCLients(List readedClients) {
+
+    private static FindClientCommand instance;
+
+    private FindClientCommand() {
+    }
+
+    public static FindClientCommand getInstance() {
+        if (instance == null) {
+            instance = new FindClientCommand();
+        }
+        return instance;
+    }
+
+    public List<Client> findCLients() {
         return readedClients;
     }
 
