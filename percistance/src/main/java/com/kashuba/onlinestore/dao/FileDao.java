@@ -1,14 +1,14 @@
 package com.kashuba.onlinestore.dao;
 
 import com.kashuba.onlinestore.IdGenerator;
-import com.kashuba.onlinestore.fileservice.FileInitialization;
-import com.kashuba.onlinestore.fileservice.FileRepository;
+import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
+import com.kashuba.onlinestore.dao.fileservice.FileRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.kashuba.onlinestore.fileservice.FileInitialization.*;
+import static com.kashuba.onlinestore.dao.fileservice.FileInitialization.*;
 
 public class FileDao {
     public String saveInfo(FileInitialization fileInitialization) {

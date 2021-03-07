@@ -13,6 +13,10 @@ public abstract class BaseEntity implements Serializable {
         this.id = id;
     }
 
+    public BaseEntity() {
+
+    }
+
     public long getId() {
         return id;
     }

@@ -17,8 +17,7 @@ public class ClientServiceImpl implements ClientService {
     public List<Client> createClient(String email, String pass, String fname, String sname, long number, List<Client> readedClients) {
         User.Role role = User.Role.CLIENT;
         Client.Status status = Client.Status.ACTIVE;
-        long id = IdGenerator.createID();
-        Client client = new Client(email, role, pass, id, fname, sname, number, status);
+        Client client = new Client(email, role, pass, fname, sname, number, status);
         return clientDao.createClient(client, readedClients);
     }
 

@@ -2,19 +2,18 @@ package com.kashuba.onlinestore.console;
 
 import com.budhash.cliche.Command;
 import com.budhash.cliche.ShellFactory;
-import com.kashuba.onlinestore.fileservice.FileRepository;
+import com.kashuba.onlinestore.dao.fileservice.FileRepository;
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.console.command.impl.CreateClientCommand;
 import com.kashuba.onlinestore.console.command.impl.DeleteClientCommand;
 import com.kashuba.onlinestore.console.command.impl.FindClientCommand;
 import com.kashuba.onlinestore.entity.*;
-import com.kashuba.onlinestore.fileservice.FileInitialization;
+import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.*;
 
-import static com.kashuba.onlinestore.fileservice.FileInitialization.*;
+import static com.kashuba.onlinestore.dao.fileservice.FileInitialization.*;
 
 public class Main {
 //    public static String CLIENTR = "Client.txt";

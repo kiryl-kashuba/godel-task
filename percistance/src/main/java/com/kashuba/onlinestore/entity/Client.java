@@ -16,9 +16,9 @@ public class Client extends User {
     private long phoneNumber;
     private Status status;
 
-    public Client(String email, Role role, String password, long id, String firstName,
+    public Client(String email, Role role, String password, String firstName,
                   String secondName, long phoneNumber, Status status) {
-        super(id, email, role, password);
+        super(email, role, password);
         this.firstName = firstName;
         this.secondName = secondName;
         this.phoneNumber = phoneNumber;

@@ -7,8 +7,8 @@ import java.util.Objects;
 
 public class User extends BaseEntity {
 
-    public User(long id, String email, Role role, String password) {
-        super(id);
+    public User(String email, Role role, String password) {
+        super();
         this.email = email;
         this.role = role;
         this.password = password;

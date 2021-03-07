@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore.fileservice;
+package com.kashuba.onlinestore.dao.fileservice;
 
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.entity.*;

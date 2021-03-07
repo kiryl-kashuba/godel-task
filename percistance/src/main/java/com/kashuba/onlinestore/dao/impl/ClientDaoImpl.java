@@ -1,5 +1,6 @@
 package com.kashuba.onlinestore.dao.impl;
 
+import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.ClientDao;
 import com.kashuba.onlinestore.entity.Client;
 
@@ -10,6 +11,7 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public List<Client> createClient(Client client, List<Client> readedClients) {
+        client.setId(IdGenerator.createID());
         readedClients.add(client);
         return readedClients;
     }
