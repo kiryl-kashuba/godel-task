@@ -5,6 +5,7 @@ import com.budhash.cliche.Param;
 import com.budhash.cliche.ShellFactory;
 import com.kashuba.onlinestore.FileRepository;
 import com.kashuba.onlinestore.IdGenerator;
+import com.kashuba.onlinestore.command.impl.CreateClientCommand;
 import com.kashuba.onlinestore.entity.*;
 
 import java.io.IOException;
@@ -56,7 +57,12 @@ public class Main {
         Client client = new Client(email, role, pass, id, fname, sname, number, status);
         readedClients.add(client);
         return readedClients;
+    }
 
+    @Command
+    public List<Client> createClientTest(String email, String pass, String fname, String sname, long number) {
+        CreateClientCommand createClientCommand = new CreateClientCommand();
+        return createClientCommand.createCLient(email, pass, fname, sname, number, readedClients);
     }
 
     @Command
