@@ -62,7 +62,7 @@ public class Main {
         client.setStatus(EnumService.findStatus(status));
 
         CreateClientCommand createClientCommand = new CreateClientCommand();
-        return createClientCommand.createCLient(email, pass, fname, sname, number, fileInitialization.getReadedClients());
+        return createClientCommand.createCLient(client);
     }
 
     @Command

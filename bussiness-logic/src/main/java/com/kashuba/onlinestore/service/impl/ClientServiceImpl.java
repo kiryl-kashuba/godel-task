@@ -13,20 +13,17 @@ public class ClientServiceImpl implements ClientService {
 
 
     @Override
-    public List<Client> createClient(String email, String pass, String fname, String sname, long number, List<Client> readedClients) {
-        User.Role role = User.Role.CLIENT;
-        Client.Status status = Client.Status.ACTIVE;
-        Client client = new Client(email, role, pass, fname, sname, number, status);
-        return clientDao.createClient(client, readedClients);
+    public List<Client> createClient(Client client) {
+        return clientDao.createClient(client);
     }
 
     @Override
-    public List<Client> deleteClient(int idClient, List<Client> readedClients) {
-        return clientDao.deleteClient(idClient, readedClients);
+    public List<Client> deleteClient(int idClient) {
+        return clientDao.deleteClient(idClient);
     }
 
     @Override
-    public List<Client> findClients(List<Client> readedClients) {
-        return clientDao.findClients(readedClients);
+    public List<Client> findClients() {
+        return clientDao.findClients();
     }
 }

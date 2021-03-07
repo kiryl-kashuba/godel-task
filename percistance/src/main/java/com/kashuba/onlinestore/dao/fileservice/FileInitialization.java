@@ -22,9 +22,7 @@ public class FileInitialization {
     List<InstanceProduct> readedProduct;
     List<Category> readedCategory;
     List<ProductAttribute> readedPA;
-    List<User> readedUser;
-
-
+    private List<User> readedUser;
 
     public List<Client> getReadedClients() {
         return readedClients;
