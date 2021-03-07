@@ -4,7 +4,6 @@ import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.ClientDao;
 import com.kashuba.onlinestore.entity.Client;
 
-import java.io.IOException;
 import java.util.List;
 
 public class ClientDaoImpl implements ClientDao {

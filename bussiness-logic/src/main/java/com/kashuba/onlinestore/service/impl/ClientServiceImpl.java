@@ -1,6 +1,5 @@
 package com.kashuba.onlinestore.service.impl;
 
-import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.ClientDao;
 import com.kashuba.onlinestore.dao.impl.ClientDaoImpl;
 import com.kashuba.onlinestore.entity.Client;

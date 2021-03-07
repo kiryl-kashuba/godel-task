@@ -2,7 +2,6 @@ package com.kashuba.onlinestore.service.impl;
 
 import com.kashuba.onlinestore.dao.InstanceProductDao;
 import com.kashuba.onlinestore.dao.impl.InstanceProductDaoImpl;
-import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.entity.InstanceProduct;
 import com.kashuba.onlinestore.service.InstanceProductService;
 
