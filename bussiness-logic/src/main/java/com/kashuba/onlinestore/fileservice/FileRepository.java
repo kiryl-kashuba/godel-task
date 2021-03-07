@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore;
+package com.kashuba.onlinestore.fileservice;
 
 import java.io.*;
 import java.util.ArrayList;
