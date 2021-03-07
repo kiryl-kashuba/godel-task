@@ -1,10 +1,13 @@
 package com.kashuba.onlinestore.command.impl;
 
 import com.kashuba.onlinestore.command.ActionCommand;
+import com.kashuba.onlinestore.entity.Client;
 
-public class FindClientCommand implements ActionCommand {
-    @Override
-    public void execute() {
+import java.util.List;
 
+public class FindClientCommand {
+    public List<Client> findCLients(List readedClients) {
+        return readedClients;
     }
+
 }

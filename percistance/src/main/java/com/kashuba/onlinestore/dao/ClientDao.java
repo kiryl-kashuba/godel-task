@@ -9,15 +9,10 @@ import java.util.List;
 
 public interface ClientDao {
 
-    Client add(Client client);
+    List<Client> createClient(Client client, List<Client> readedClients);
 
-    Client updateClient(Client client);
+    List<Client> deleteClient(int idClient, List<Client> readedClients);
 
-    Client removeClient(Client client);
+    List<Client> findClients(List<Client> readedClients);
 
-    Client findClients(Client client);
-
-    Client updateClientStatus(Client updatingClient, String statusData);
-
-    List<Client> findClientsById(String clientIdData);
 }

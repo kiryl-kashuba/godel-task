@@ -6,6 +6,8 @@ import com.budhash.cliche.ShellFactory;
 import com.kashuba.onlinestore.FileRepository;
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.command.impl.CreateClientCommand;
+import com.kashuba.onlinestore.command.impl.DeleteClientCommand;
+import com.kashuba.onlinestore.command.impl.FindClientCommand;
 import com.kashuba.onlinestore.entity.*;
 
 import java.io.IOException;
@@ -51,31 +53,21 @@ public class Main {
 
     @Command
     public List<Client> createCLient(String email, String pass, String fname, String sname, long number) {
-        User.Role role = User.Role.CLIENT;
-        Client.Status status = Client.Status.ACTIVE;
-        long id = IdGenerator.createID();
-        Client client = new Client(email, role, pass, id, fname, sname, number, status);
-        readedClients.add(client);
-        return readedClients;
-    }
-
-    @Command
-    public List<Client> createClientTest(String email, String pass, String fname, String sname, long number) {
         CreateClientCommand createClientCommand = new CreateClientCommand();
         return createClientCommand.createCLient(email, pass, fname, sname, number, readedClients);
     }
 
     @Command
     public List<Client> findCLients() {
-        return readedClients;
+        FindClientCommand findClientCommand = new FindClientCommand();
+        return findClientCommand.findCLients(readedClients);
     }
-
 
     @Command
-    public List<Client> deleteCLient(int idList) {
-        readedClients.removeIf(x -> x.getId() == idList);
-        return readedClients;
-    }
+        public List<Client> deleteCLient(int idClient) {
+        DeleteClientCommand deleteClientCommand = new DeleteClientCommand();
+        return deleteClientCommand.deleteCLient(idClient, readedClients);
+        }
 
     @Command
     public List<ProductAttribute> createProductAttribute(String name, boolean mandatory, String type) {

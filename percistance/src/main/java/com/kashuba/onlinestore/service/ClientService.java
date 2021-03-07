@@ -10,15 +10,10 @@ import java.util.Optional;
 
 public interface ClientService {
 
-    Client add(Client client);
+    List<Client> createClient(String email, String pass, String fname, String sname, long number, List<Client> readedClients );
 
-    Client updateClient(Client client);
+    List<Client> deleteClient(int idClient, List<Client> readedClients);
 
-    Client removeClient(Client client);
+    List<Client> findClients(List<Client> readedClients);
 
-    Client findClients(Client client);
-
-    Client updateClientStatus(Client updatingClient, String statusData);
-
-    List<Client> findClientsById(String clientIdData);
 }
