@@ -1,13 +1,12 @@
 package com.kashuba.onlinestore.console;
 
 import com.budhash.cliche.Command;
-import com.budhash.cliche.Param;
 import com.budhash.cliche.ShellFactory;
 import com.kashuba.onlinestore.FileRepository;
 import com.kashuba.onlinestore.IdGenerator;
-import com.kashuba.onlinestore.command.impl.CreateClientCommand;
-import com.kashuba.onlinestore.command.impl.DeleteClientCommand;
-import com.kashuba.onlinestore.command.impl.FindClientCommand;
+import com.kashuba.onlinestore.console.command.impl.CreateClientCommand;
+import com.kashuba.onlinestore.console.command.impl.DeleteClientCommand;
+import com.kashuba.onlinestore.console.command.impl.FindClientCommand;
 import com.kashuba.onlinestore.entity.*;
 
 import java.io.IOException;
