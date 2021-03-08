@@ -1,6 +1,5 @@
 package com.kashuba.onlinestore.service.impl;
 
-import com.kashuba.onlinestore.dao.InstanceProductDao;
 import com.kashuba.onlinestore.dao.impl.InstanceProductDaoImpl;
 import com.kashuba.onlinestore.entity.InstanceProduct;
 import com.kashuba.onlinestore.service.InstanceProductService;
@@ -10,13 +9,25 @@ import java.util.Map;
 import java.util.Optional;
 
 public class InstanceProductServiceImpl implements InstanceProductService {
-    InstanceProductDao instanceProductDao = new InstanceProductDaoImpl();
+
+    private static InstanceProductServiceImpl instance;
+
+    private InstanceProductServiceImpl() {
+    }
+
+    public static InstanceProductServiceImpl getInstance() {
+        if (instance == null) {
+            instance = new InstanceProductServiceImpl();
+        }
+        return instance;
+    }
 
     @Override
     public InstanceProduct add(InstanceProduct instanceProduct) {
-        instanceProductDao.add(instanceProduct);
-            return null;
-        }
+
+        InstanceProductDaoImpl.getInstance().add(instanceProduct);
+        return null;
+    }
 
     @Override
     public InstanceProduct updateInstanceProduct(InstanceProduct InstanceProduct) {

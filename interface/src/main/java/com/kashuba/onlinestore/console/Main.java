@@ -2,21 +2,22 @@ package com.kashuba.onlinestore.console;
 
 import com.budhash.cliche.Command;
 import com.budhash.cliche.ShellFactory;
-import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.console.command.impl.CreateClientCommand;
 import com.kashuba.onlinestore.console.command.impl.DeleteClientCommand;
 import com.kashuba.onlinestore.console.command.impl.FindClientCommand;
-import com.kashuba.onlinestore.dao.fileservice.FileRepository;
+import com.kashuba.onlinestore.console.command.impl.SaveInfoCommand;
+import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
 import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.service.EnumService;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import static com.kashuba.onlinestore.dao.fileservice.FileInitialization.*;
-
 public class Main {
+
+    {
+        FileInitialization.getInstance();
+    }
 //    public static String CLIENTR = "Client.txt";
 //    public static String CARTR = "Cart.txt";
 //    public static String CATEGORYR = "Category.txt";
@@ -63,15 +64,18 @@ public class Main {
 
     @Command
     public List<Client> findCLients() {
-        FindClientCommand findClientCommand = new FindClientCommand();
-        return findClientCommand.findCLients();
+        return FindClientCommand.getInstance().findCLients();
     }
 
     @Command
-        public List<Client> deleteCLient(int idClient) {
-        DeleteClientCommand deleteClientCommand = new DeleteClientCommand();
-        return deleteClientCommand.deleteCLient(idClient, fileInitialization.getReadedClients());
-        }
+    public List<Client> deleteCLient(int idClient) {
+        return DeleteClientCommand.getInstance().deleteCLient(idClient, FileInitialization.getInstance().getReadedClients());
+    }
+
+    @Command
+    public String saveinfo() {
+        return SaveInfoCommand.getInstance().saveInfo(FileInitialization.getInstance());
+    }
 //
 //    @Command
 //    public List<ProductAttribute> createProductAttribute(String name, boolean mandatory, String type) {
@@ -270,36 +274,6 @@ public class Main {
 //        readedPA.removeIf(x -> x.getId() == idList);
 //        return readedOrder;
 //    }
-
-    @Command
-    public void saveinfo() throws IOException {
-        List<Object> lists = new ArrayList();
-        lists.add(fileInitialization.getReadedClients());
-        lists.add(fileInitialization.getReadedCart());
-        lists.add(fileInitialization.getReadedCategory());
-        lists.add(fileInitialization.getReadedOrder());
-        lists.add(fileInitialization.getReadedProduct());
-        lists.add(fileInitialization.getReadedPA());
-        lists.add(fileInitialization.getReadedUser());
-
-        List<Object> listsOfFile = new ArrayList();
-        listsOfFile.add(CLIENTR);
-        listsOfFile.add(CARTR);
-        listsOfFile.add(CATEGORYR);
-        listsOfFile.add(ORDERR);
-        listsOfFile.add(PRODUCTR);
-        listsOfFile.add(PAR);
-        listsOfFile.add(USERR);
-
-        for (int x = 0; x < lists.size(); x++) {
-            FileRepository.writeObject((String) listsOfFile.get(x), lists.get(x));
-        }
-
-        FileRepository.writeId(IDR, IdGenerator.getIdCounter());
-
-        System.out.println("Data saved");
-    }
-
 
     public static void main(String[] args) throws IOException {
         System.out.println("Enter \"?l\" to see the available commands. Exit to terminate the program");

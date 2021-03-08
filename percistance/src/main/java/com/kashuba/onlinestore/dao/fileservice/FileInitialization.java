@@ -7,6 +7,19 @@ import java.io.IOException;
 import java.util.List;
 
 public class FileInitialization {
+
+    private static FileInitialization instance;
+
+    private FileInitialization() {
+    }
+
+    public static FileInitialization getInstance() {
+        if (instance == null) {
+            instance = new FileInitialization();
+        }
+        return instance;
+    }
+
     public static String CLIENTR = "Client.txt";
     public static String CARTR = "Cart.txt";
     public static String CATEGORYR = "Category.txt";

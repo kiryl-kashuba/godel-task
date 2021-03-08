@@ -1,6 +1,7 @@
 package com.kashuba.onlinestore.console.command.impl;
 
 import com.kashuba.onlinestore.entity.Client;
+import com.kashuba.onlinestore.service.impl.ClientServiceImpl;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class FindClientCommand {
     }
 
     public List<Client> findCLients() {
-        return readedClients;
+        return ClientServiceImpl.getInstance().findClients();
     }
 
 }

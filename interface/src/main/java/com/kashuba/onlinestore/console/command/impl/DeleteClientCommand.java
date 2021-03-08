@@ -1,7 +1,6 @@
 package com.kashuba.onlinestore.console.command.impl;
 
 import com.kashuba.onlinestore.entity.Client;
-import com.kashuba.onlinestore.service.ClientService;
 import com.kashuba.onlinestore.service.impl.ClientServiceImpl;
 
 import java.util.List;
@@ -20,10 +19,9 @@ public class DeleteClientCommand {
         return instance;
     }
 
-    ClientService clientService = new ClientServiceImpl();
 
     public List<Client> deleteCLient(int idClient, List<Client> readedClients) {
-        clientService.deleteClient(idClient);
+        ClientServiceImpl.getInstance().deleteClient(idClient);
         readedClients.removeIf(x -> x.getId() == idClient);
         return readedClients;
 

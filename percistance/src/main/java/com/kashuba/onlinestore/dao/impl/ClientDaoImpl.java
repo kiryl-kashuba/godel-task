@@ -8,24 +8,37 @@ import com.kashuba.onlinestore.entity.Client;
 import java.util.List;
 
 public class ClientDaoImpl implements ClientDao {
-    FileInitialization fileInitialization = new FileInitialization();
+
+    private static ClientDaoImpl instance;
+
+    private ClientDaoImpl() {
+    }
+
+    public static ClientDaoImpl getInstance() {
+        if (instance == null) {
+            instance = new ClientDaoImpl();
+        }
+        return instance;
+    }
+
 
     @Override
     public List<Client> createClient(Client client) {
+
         client.setId(IdGenerator.createID());
-        fileInitialization.getReadedClients().add(client);
-        return fileInitialization.getReadedClients();
+        FileInitialization.getInstance().getReadedClients().add(client);
+        return FileInitialization.getInstance().getReadedClients();
     }
 
     @Override
     public List<Client> deleteClient(int idClient) {
-        fileInitialization.getReadedClients().removeIf(x -> x.getId() == idClient);
-        return fileInitialization.getReadedClients();
+        FileInitialization.getInstance().getReadedClients().removeIf(x -> x.getId() == idClient);
+        return FileInitialization.getInstance().getReadedClients();
     }
 
     @Override
     public List<Client> findClients() {
-        return fileInitialization.getReadedClients();
+        return FileInitialization.getInstance().getReadedClients();
     }
 
 }
