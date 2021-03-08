@@ -19,7 +19,7 @@ public class DeleteOrderCommand {
         return instance;
     }
 
-    public List<Order> deleteCLient(int idOrder) {
+    public List<Order> deleteOrder(int idOrder) {
         return OrderServiceImpl.getInstance().deleteOrder(idOrder);
     }
 }

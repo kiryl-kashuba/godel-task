@@ -9,6 +9,9 @@ public class Order extends BaseEntity {
     private int amount;
     private Cart cart;
 
+    public Order() {
+    }
+
     public Order(long id, LocalDate dateOrder) {
         super(id);
         this.dateOrder = dateOrder;

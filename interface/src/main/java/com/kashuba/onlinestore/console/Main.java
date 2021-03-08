@@ -175,44 +175,24 @@ public class Main {
         return AddInstanceToCartCommand.getInstance().addInstanceToCart(idCart, idInstance, amount);
     }
 
-//
-//    @Command
-//    public List<Order> createORder(int idCart) {
-//        long id = IdGenerator.createID();
-//        Order order = new Order(id, LocalDate.now());
-//        for (Cart cart : readedCart) {
-//            if (idCart == cart.getId()) {
-//                order.setCart(cart);
-//            }
-//        }
-//        int amount = 0;
-//
-//        for (Cart cart : readedCart) {
-//            if (idCart == cart.getId()) {
-//                order.setCart(cart);
-//                for (Map.Entry<InstanceProduct, Integer> entry : cart.getNumber().entrySet()) {
-//                    InstanceProduct product = entry.getKey();
-//                    Integer number = entry.getValue();
-//                    amount += product.getPrice() * number;
-//                }
-//            }
-//        }
-//        order.setAmount(amount);
-//        readedOrder.add(order);
-//        return readedOrder;
-//    }
-//
-//
-//    @Command
-//    public List<Order> findORder() {
-//        return readedOrder;
-//    }
-//
-//    @Command
-//    public List<Order> deleteORder(int idList) {
-//        readedPA.removeIf(x -> x.getId() == idList);
-//        return readedOrder;
-//    }
+
+    @Command
+    public List<Order> createORder(int idCart) {
+        Order order = new Order();
+
+        return CreateOrderCommand.getInstance().createOrder(order, idCart);
+    }
+
+
+    @Command
+    public List<Order> findORder() {
+        return FindOrderCommand.getInstance().findOrders();
+    }
+
+    @Command
+    public List<Order> deleteORder(int idOrder) {
+        return DeleteOrderCommand.getInstance().deleteOrder(idOrder);
+    }
 
     public static void main(String[] args) throws IOException {
         System.out.println("Enter \"?l\" to see the available commands. Exit to terminate the program");

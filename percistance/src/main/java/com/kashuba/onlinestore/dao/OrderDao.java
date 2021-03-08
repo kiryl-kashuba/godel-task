@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface OrderDao {
 
-    List<Order> createOrder(Order order);
+    List<Order> createOrder(Order order, int idCart);
 
     List<Order> deleteOrder(int idOrder);
 

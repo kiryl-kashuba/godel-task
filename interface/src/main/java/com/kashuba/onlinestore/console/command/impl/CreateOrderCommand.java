@@ -19,8 +19,8 @@ public class CreateOrderCommand {
         return instance;
     }
 
-    public List<Order> createCLient(Order order) {
-        return OrderServiceImpl.getInstance().createOrder(order);
+    public List<Order> createOrder(Order order, int idCart) {
+        return OrderServiceImpl.getInstance().createOrder(order, idCart);
     }
 
 }
