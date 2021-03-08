@@ -1,5 +1,10 @@
 package com.kashuba.onlinestore.console.command.impl;
 
+import com.kashuba.onlinestore.entity.Order;
+import com.kashuba.onlinestore.service.impl.OrderServiceImpl;
+
+import java.util.List;
+
 public class FindOrderCommand {
 
     private static FindOrderCommand instance;
@@ -13,4 +18,9 @@ public class FindOrderCommand {
         }
         return instance;
     }
+
+    public List<Order> findOrders() {
+        return OrderServiceImpl.getInstance().findOrders();
+    }
+
 }

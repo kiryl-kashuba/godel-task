@@ -1,6 +1,12 @@
 package com.kashuba.onlinestore.service.impl;
 
-public class OrderServiceImpl {
+import com.kashuba.onlinestore.dao.impl.OrderDaoImpl;
+import com.kashuba.onlinestore.entity.Order;
+import com.kashuba.onlinestore.service.OrderService;
+
+import java.util.List;
+
+public class OrderServiceImpl implements OrderService {
 
     private static OrderServiceImpl instance;
 
@@ -12,5 +18,20 @@ public class OrderServiceImpl {
             instance = new OrderServiceImpl();
         }
         return instance;
+    }
+
+    @Override
+    public List<Order> createOrder(Order order) {
+        return OrderDaoImpl.getInstance().createOrder(order);
+    }
+
+    @Override
+    public List<Order> deleteOrder(int idOrder) {
+        return OrderDaoImpl.getInstance().deleteOrder(idOrder);
+    }
+
+    @Override
+    public List<Order> findOrders() {
+        return OrderDaoImpl.getInstance().findOrders();
     }
 }

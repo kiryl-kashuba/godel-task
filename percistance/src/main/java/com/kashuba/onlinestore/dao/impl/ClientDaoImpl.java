@@ -24,7 +24,6 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public List<Client> createClient(Client client) {
-
         client.setId(IdGenerator.createID());
         FileInitialization.getInstance().getReadedClients().add(client);
         return FileInitialization.getInstance().getReadedClients();

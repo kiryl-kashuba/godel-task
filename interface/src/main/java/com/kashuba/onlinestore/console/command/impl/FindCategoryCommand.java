@@ -1,5 +1,10 @@
 package com.kashuba.onlinestore.console.command.impl;
 
+import com.kashuba.onlinestore.entity.Category;
+import com.kashuba.onlinestore.service.impl.CategoryServiceImpl;
+
+import java.util.List;
+
 public class FindCategoryCommand {
 
     private static FindCategoryCommand instance;
@@ -13,4 +18,9 @@ public class FindCategoryCommand {
         }
         return instance;
     }
+
+    public List<Category> findCategories() {
+        return CategoryServiceImpl.getInstance().findCategories();
+    }
+
 }

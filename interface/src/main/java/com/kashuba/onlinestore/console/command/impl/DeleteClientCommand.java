@@ -19,11 +19,7 @@ public class DeleteClientCommand {
         return instance;
     }
 
-
-    public List<Client> deleteCLient(int idClient, List<Client> readedClients) {
-        ClientServiceImpl.getInstance().deleteClient(idClient);
-        readedClients.removeIf(x -> x.getId() == idClient);
-        return readedClients;
-
+    public List<Client> deleteCLient(int idClient) {
+        return ClientServiceImpl.getInstance().deleteClient(idClient);
     }
 }

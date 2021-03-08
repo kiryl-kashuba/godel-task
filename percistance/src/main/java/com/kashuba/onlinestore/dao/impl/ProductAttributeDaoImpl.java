@@ -1,6 +1,13 @@
 package com.kashuba.onlinestore.dao.impl;
 
-public class ProductAttributeDaoImpl {
+import com.kashuba.onlinestore.IdGenerator;
+import com.kashuba.onlinestore.dao.ProductAttributeDao;
+import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
+import com.kashuba.onlinestore.entity.ProductAttribute;
+
+import java.util.List;
+
+public class ProductAttributeDaoImpl implements ProductAttributeDao {
 
     private static ProductAttributeDaoImpl instance;
 
@@ -12,5 +19,23 @@ public class ProductAttributeDaoImpl {
             instance = new ProductAttributeDaoImpl();
         }
         return instance;
+    }
+
+    @Override
+    public List<ProductAttribute> createProductAttribute(ProductAttribute productAttribute) {
+        productAttribute.setId(IdGenerator.createID());
+        FileInitialization.getInstance().getReadedPA().add(productAttribute);
+        return FileInitialization.getInstance().getReadedPA();
+    }
+
+    @Override
+    public List<ProductAttribute> deleteProductAttribute(int idAttribute) {
+        FileInitialization.getInstance().getReadedPA().removeIf(x -> x.getId() == idAttribute);
+        return FileInitialization.getInstance().getReadedPA();
+    }
+
+    @Override
+    public List<ProductAttribute> findProductAttributes() {
+        return FileInitialization.getInstance().getReadedPA();
     }
 }

@@ -1,22 +1,16 @@
 package com.kashuba.onlinestore.service;
 
-import com.kashuba.onlinestore.entity.Client;
-
+import com.kashuba.onlinestore.entity.Cart;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CartService {
 
-    Client add(Client client);
+    List<Cart> createCart(Cart cart);
 
-    Client updateClient(Client client);
+    List<Cart> deleteCart(int idCart);
 
-    Client removeClient(Client client);
+    List<Cart> findCarts();
 
-    Client findClients(Client client);
-
-    Client updateClientStatus(Client updatingClient, String statusData);
-
-    List<Client> findClientsById(String clientIdData);
+    Cart addInstanceToCart(int idCart, int idInstance, Integer amount);
 }

@@ -5,8 +5,6 @@ import com.kashuba.onlinestore.entity.InstanceProduct;
 import com.kashuba.onlinestore.service.InstanceProductService;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 public class InstanceProductServiceImpl implements InstanceProductService {
 
@@ -22,45 +20,24 @@ public class InstanceProductServiceImpl implements InstanceProductService {
         return instance;
     }
 
-    @Override
-    public InstanceProduct add(InstanceProduct instanceProduct) {
 
-        InstanceProductDaoImpl.getInstance().add(instanceProduct);
-        return null;
+    @Override
+    public List<InstanceProduct> createInstanceProduct(InstanceProduct instanceProduct) {
+        return InstanceProductDaoImpl.getInstance().createInstanceProduct(instanceProduct);
     }
 
     @Override
-    public InstanceProduct updateInstanceProduct(InstanceProduct InstanceProduct) {
-        return null;
+    public List<InstanceProduct> updateInstanceProduct(InstanceProduct instanceProduct, int idOfProduct) {
+        return InstanceProductDaoImpl.getInstance().updateInstanceProduct(idOfProduct, instanceProduct);
     }
 
     @Override
-    public InstanceProduct removeInstanceProduct(InstanceProduct InstanceProduct) {
-        return null;
+    public List<InstanceProduct> deleteInstanceProduct(int idInstanceProduct) {
+        return InstanceProductDaoImpl.getInstance().deleteInstanceProduct(idInstanceProduct);
     }
 
     @Override
-    public InstanceProduct findInstanceProducts(InstanceProduct InstanceProduct) {
-        return null;
-    }
-
-    @Override
-    public InstanceProduct updateInstanceProductStatus(InstanceProduct updatingInstanceProduct, String statusData) {
-        return null;
-    }
-
-    @Override
-    public List<InstanceProduct> findInstanceProductsById(String InstanceProductIdData) {
-        return null;
-    }
-
-    @Override
-    public Optional<InstanceProduct> findInstanceProductById(long instanceProductId) {
-        return Optional.empty();
-    }
-
-    @Override
-    public List<InstanceProduct> findInstanceProductsByParameters(Map<String, String> instanceProductParametersData){
-        return null;
+    public List<InstanceProduct> findInstanceProducts() {
+        return InstanceProductDaoImpl.getInstance().findInstanceProducts();
     }
 }

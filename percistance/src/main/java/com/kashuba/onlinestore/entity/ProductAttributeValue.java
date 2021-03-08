@@ -7,8 +7,7 @@ public class ProductAttributeValue extends BaseEntity{
     private String value;
     private ProductAttribute productAttribute;
 
-    public ProductAttributeValue(String value, ProductAttribute productAttribute, long id) {
-        super(id);
+    public ProductAttributeValue(String value, ProductAttribute productAttribute) {
         this.value = value;
         this.productAttribute = productAttribute;
     }

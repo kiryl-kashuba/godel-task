@@ -1,6 +1,9 @@
 package com.kashuba.onlinestore.dao.impl;
 
-public class ProductAttributeValueDaoImpl {
+import com.kashuba.onlinestore.dao.ProductAttributeDao;
+import com.kashuba.onlinestore.entity.ProductAttributeValue;
+
+public class ProductAttributeValueDaoImpl implements ProductAttributeDao {
 
     private static ProductAttributeValueDaoImpl instance;
 
@@ -12,5 +15,20 @@ public class ProductAttributeValueDaoImpl {
             instance = new ProductAttributeValueDaoImpl();
         }
         return instance;
+    }
+
+    @Override
+    public ProductAttributeValue createProductAttribute(String value) {
+        return null;
+    }
+
+    @Override
+    public ProductAttributeValue deleteProductAttribute(int idAttribute) {
+        return null;
+    }
+
+    @Override
+    public ProductAttributeValue findProductAttributes() {
+        return null;
     }
 }

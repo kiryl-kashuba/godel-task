@@ -1,5 +1,10 @@
 package com.kashuba.onlinestore.console.command.impl;
 
+import com.kashuba.onlinestore.entity.Category;
+import com.kashuba.onlinestore.service.impl.CategoryServiceImpl;
+
+import java.util.List;
+
 public class DeleteCategoryCommand {
 
     private static DeleteCategoryCommand instance;
@@ -12,5 +17,9 @@ public class DeleteCategoryCommand {
             instance = new DeleteCategoryCommand();
         }
         return instance;
+    }
+
+    public List<Category> deleteCategory(int idCategory) {
+        return CategoryServiceImpl.getInstance().deleteCategory(idCategory);
     }
 }

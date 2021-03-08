@@ -22,7 +22,6 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<Client> createClient(Client client) {
-
         return ClientDaoImpl.getInstance().createClient(client);
     }
 

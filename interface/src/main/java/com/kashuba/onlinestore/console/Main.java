@@ -2,56 +2,24 @@ package com.kashuba.onlinestore.console;
 
 import com.budhash.cliche.Command;
 import com.budhash.cliche.ShellFactory;
-import com.kashuba.onlinestore.console.command.impl.CreateClientCommand;
-import com.kashuba.onlinestore.console.command.impl.DeleteClientCommand;
-import com.kashuba.onlinestore.console.command.impl.FindClientCommand;
-import com.kashuba.onlinestore.console.command.impl.SaveInfoCommand;
+import com.kashuba.onlinestore.console.command.impl.*;
 import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
-import com.kashuba.onlinestore.entity.Client;
+import com.kashuba.onlinestore.entity.*;
 import com.kashuba.onlinestore.service.EnumService;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
     {
         FileInitialization.getInstance();
     }
-//    public static String CLIENTR = "Client.txt";
-//    public static String CARTR = "Cart.txt";
-//    public static String CATEGORYR = "Category.txt";
-//    public static String PRODUCTR = "InstanceProduct.txt";
-//    public static String ORDERR = "Order.txt";
-//    public static String PAR = "ProductAttribute.txt";
-//    public static String USERR = "User.txt";
-//    public static String IDR = "Id.txt";
-//
-//    List<Client> readedClients;
-//    List<Order> readedOrder;
-//    List<Cart> readedCart;
-//    List<InstanceProduct> readedProduct;
-//    List<Category> readedCategory;
-//    List<ProductAttribute> readedPA;
-//    List<User> readedUser;
-//
-//    {
-//        try {
-//            readedClients = (List<Client>) FileRepository.readObject(CLIENTR);
-//            readedOrder = (List<Order>) FileRepository.readObject(ORDERR);
-//            readedCart = (List<Cart>) FileRepository.readObject(CARTR);
-//            readedProduct = (List<InstanceProduct>) FileRepository.readObject(PRODUCTR);
-//            readedCategory = (List<Category>) FileRepository.readObject(CATEGORYR);
-//            readedPA = (List<ProductAttribute>) FileRepository.readObject(PAR);
-//            readedUser = (List<User>) FileRepository.readObject(USERR);
-//            IdGenerator.setIdCounter(FileRepository.readId(IDR));
-//
-//            System.out.println("Initialization successful");
-//        } catch (IOException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
+    @Command
+    public String saveinfo() {
+        return SaveInfoCommand.getInstance().saveInfo(FileInitialization.getInstance());
+    }
 
     @Command
     public List<Client> createCLient(String email, String pass, String fname, String sname, long number, String role, String status) {
@@ -69,173 +37,144 @@ public class Main {
 
     @Command
     public List<Client> deleteCLient(int idClient) {
-        return DeleteClientCommand.getInstance().deleteCLient(idClient, FileInitialization.getInstance().getReadedClients());
+        return DeleteClientCommand.getInstance().deleteCLient(idClient);
+    }
+
+
+    @Command
+    public List<ProductAttribute> createProductAttribute(String name, boolean mandatory, String type) {
+        ProductAttribute productAttribute = new ProductAttribute(name, mandatory, type);
+        return CreateProductAttributeCommand.getInstance().createProductAttribute(productAttribute);
+    }
+
+
+    @Command
+    public List<ProductAttribute> findProductAttributes() {
+        return FindProductAttributeCommand.getInstance().findProductAttributes();
+    }
+
+
+    @Command
+    public List<ProductAttribute> deleteProductAttribute(int idList) {
+        return DeleteProductAttributeCommand.getInstance().DeleteProductAttribute(idList);
     }
 
     @Command
-    public String saveinfo() {
-        return SaveInfoCommand.getInstance().saveInfo(FileInitialization.getInstance());
+    public List<Category> createCAtegory(String name, Integer... idValue) {
+        Category category = new Category(name);
+        return CreateCategoryCommand.getInstance().createCLient(category, idValue);
     }
-//
-//    @Command
-//    public List<ProductAttribute> createProductAttribute(String name, boolean mandatory, String type) {
-//        long id = IdGenerator.createID();
-//        ProductAttribute productAttribute = new ProductAttribute(name, mandatory, id, type);
-//        readedPA.add(productAttribute);
-//        return readedPA;
-//    }
-//
-//
-//    @Command
-//    public List<ProductAttribute> findProductAttributes() {
-//        return readedPA;
-//    }
-//
-//
-//    @Command
-//    public List<ProductAttribute> deleteProductAttribute(int idList) {
-//        readedPA.removeIf(x -> x.getId() == idList);
-//        return readedPA;
-//    }
-//
-//    @Command
-//    public List<Category> createCAtegory(String name, Integer... idValue) {
-//        long id = IdGenerator.createID();
-//        List<ProductAttribute> list = new ArrayList<>();
-//        for (int i = 0; i < idValue.length; i++) {
-//            for (ProductAttribute productAttribute : readedPA) {
-//                if (idValue[i] == productAttribute.getId()) {
-//                    list.add(productAttribute);
-//                }
-//            }
-//        }
-//        Category category = new Category(name, list, id);
-//        readedCategory.add(category);
-//        return readedCategory;
-//
-//    }
-//
-//    @Command
-//    public List<Category> findCAtegory() {
-//        return readedCategory;
-//    }
-//
-//    @Command
-//    public List<Category> deleteCAtegory(int idList) {
-//        readedPA.removeIf(x -> x.getId() == idList);
-//        return readedCategory;
-//    }
-//
-//    @Command
-//    public List<InstanceProduct> createINstance(String name, String articulation, int price, int idOfCategory) {
-//        long id = IdGenerator.createID();
-//        InstanceProduct instanceProduct = new InstanceProduct(id, name, articulation, price);
-//        for (Category category : readedCategory) {
-//            if (idOfCategory == category.getId()) {
-//                instanceProduct.setCategory(category);
-//            }
-//        }
-//
-//        List<ProductAttributeValue> list = new ArrayList<>();
-//
-//        for (Category category : readedCategory) {
-//            if (idOfCategory == category.getId()) {
-//                int size = (category.getProductAttribute()).size();
-//                for (int i = 0; i < size; i++) {
-//                    Scanner sc = new Scanner(System.in);
-//                    System.out.println("Enter value of " + ((category.getProductAttribute()).get(i)).getName());
-//                    String value = sc.nextLine();
-//                    list.add(createProductAttributeValue(value, (category.getProductAttribute()).get(i)));
-//                }
-//            }
-//        }
-//        instanceProduct.setProductAttributeValue(list);
-//        readedProduct.add(instanceProduct);
-//        return readedProduct;
-//    }
-//
-//    @Command
-//    public void updateINstance(int idOfProduct, String name, String articulation, int price, int idOfCategory) {
-//        List<ProductAttributeValue> list = new ArrayList<>();
-//        for (Category category : readedCategory) {
-//            if (idOfCategory == category.getId()) {
-//                int size = (category.getProductAttribute()).size();
-//                for (int i = 0; i < size; i++) {
-//                    Scanner sc = new Scanner(System.in);
-//                    System.out.println("Enter value of " + ((category.getProductAttribute()).get(i)).getName());
-//                    String value = sc.nextLine();
-//                    list.add(createProductAttributeValue(value, (category.getProductAttribute()).get(i)));
-//                }
-//            }
-//        }
-//        for (InstanceProduct instanceProduct : readedProduct) {
-//            if (idOfProduct == instanceProduct.getId()) {
-//                instanceProduct.setName(name);
-//                instanceProduct.setArticulation(articulation);
-//                instanceProduct.setPrice(price);
-//                instanceProduct.setProductAttributeValue(list);
-//            }
-//        }
-//    }
-//
-//    @Command
-//    public List<InstanceProduct> findINstance() {
-//        return readedProduct;
-//    }
-//
-//    @Command
-//    public List<InstanceProduct> deleteINstance(int idList) {
-//        readedProduct.removeIf(x -> x.getId() == idList);
-//        return readedProduct;
-//    }
-//
-//    @Command
-//    public ProductAttributeValue createProductAttributeValue(String value, ProductAttribute productAttribute) {
-//        long id = IdGenerator.createID();
-//        ProductAttributeValue productAttributeValue = new ProductAttributeValue(value, productAttribute, id);
-//        return productAttributeValue;
-//    }
-//
-//    @Command
-//    public List<Cart> createCArt(int idClient) {
-//        long id = IdGenerator.createID();
-//        List<InstanceProduct> list = new ArrayList<>();
-//        Map<InstanceProduct, Integer> number = new HashMap<>();
-//        Cart cart = new Cart(id, list, number);
-//        for (Client client : readedClients) {
-//            if (idClient == client.getId()) {
-//                cart.setClient(client);
-//            }
-//        }
-//        readedCart.add(cart);
-//        return readedCart;
-//
-//    }
-//
-//    @Command
-//    public List<Cart> findCART() {
-//        return readedCart;
-//    }
-//
-//    @Command
-//    public List<Cart> deleteCART(int idList) {
-//        readedCart.removeIf(x -> x.getId() == idList);
-//        return readedCart;
-//    }
-//
-//    @Command
-//    public void addInstanceToCart(int idCart, int idInstance, Integer amount) {
-//        for (Cart cart : readedCart) {
-//            if (idCart == cart.getId()) {
-//                for (InstanceProduct instanceProduct : readedProduct) {
-//                    if (idInstance == instanceProduct.getId()) {
-//                        cart.getNumber().put(instanceProduct,amount);
-//                        cart.addInstanceProduct(instanceProduct);
-//                    }
-//                }
-//            }
-//        }
-//    }
+
+    @Command
+    public List<Category> findCAtegory() {
+        return FindCategoryCommand.getInstance().findCategories();
+    }
+
+    @Command
+    public List<Category> deleteCAtegory(int idList) {
+        return DeleteCategoryCommand.getInstance().deleteCategory(idList);
+    }
+
+    @Command
+    public List<InstanceProduct> createINstance(String name, String articulation, int price, int idOfCategory) {
+        InstanceProduct instanceProduct = new InstanceProduct(name, articulation, price);
+
+        for (Category category : FindCategoryCommand.getInstance().findCategories()) {
+            if (idOfCategory == category.getId()) {
+                instanceProduct.setCategory(category);
+            }
+        }
+
+        List<ProductAttributeValue> list = new ArrayList<>();
+
+        for (Category category : FindCategoryCommand.getInstance().findCategories()) {
+            if (idOfCategory == category.getId()) {
+                int size = (category.getProductAttribute()).size();
+                for (int i = 0; i < size; i++) {
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("Enter value of " + ((category.getProductAttribute()).get(i)).getName());
+                    String value = sc.nextLine();
+                    list.add(createProductAttributeValue(value, (category.getProductAttribute()).get(i)));
+                }
+            }
+        }
+        instanceProduct.setProductAttributeValue(list);
+
+        return CreateInstanceCommand.getInstance().createInstance(instanceProduct, idOfCategory);
+    }
+
+    @Command
+    public List<InstanceProduct> updateINstance(int idOfProduct, String name, String articulation, int price, int idOfCategory) {
+        InstanceProduct instanceProduct = new InstanceProduct(name, articulation, price);
+
+        for (Category category : FindCategoryCommand.getInstance().findCategories()) {
+            if (idOfCategory == category.getId()) {
+                instanceProduct.setCategory(category);
+            }
+        }
+
+        List<ProductAttributeValue> list = new ArrayList<>();
+
+        for (Category category : FindCategoryCommand.getInstance().findCategories()) {
+            if (idOfCategory == category.getId()) {
+                int size = (category.getProductAttribute()).size();
+                for (int i = 0; i < size; i++) {
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("Enter value of " + ((category.getProductAttribute()).get(i)).getName());
+                    String value = sc.nextLine();
+                    list.add(createProductAttributeValue(value, (category.getProductAttribute()).get(i)));
+                }
+            }
+        }
+        instanceProduct.setProductAttributeValue(list);
+
+        return UpdateInstanceCommand.getInstance().updateInstance(instanceProduct, idOfProduct);
+    }
+
+    @Command
+    public List<InstanceProduct> findINstance() {
+        return FindInstanceCommand.getInstance().findInstances();
+    }
+
+    @Command
+    public List<InstanceProduct> deleteINstance(int idInstance) {
+        return DeleteInstanceCommand.getInstance().deleteCLient(idInstance);
+    }
+
+    @Command
+    public ProductAttributeValue createProductAttributeValue(String value, ProductAttribute productAttribute) {
+        ProductAttributeValue productAttributeValue = new ProductAttributeValue(value, productAttribute);
+        return productAttributeValue;
+    }
+
+    @Command
+    public List<Cart> createCArt(int idClient) {
+        List<InstanceProduct> list = new ArrayList<>();
+        Map<InstanceProduct, Integer> number = new HashMap<>();
+        Cart cart = new Cart(list, number);
+        for (Client client : FindClientCommand.getInstance().findCLients()) {
+            if (idClient == client.getId()) {
+                cart.setClient(client);
+            }
+        }
+        return CreateCartCommand.getInstance().createInstance(cart);
+    }
+
+    @Command
+    public List<Cart> findCART() {
+        return FindCartCommand.getInstance().findCarts();
+    }
+
+    @Command
+    public List<Cart> deleteCART(int idCart) {
+        return DeleteCartCommand.getInstance().deleteCart(idCart);
+    }
+
+    @Command
+    public Cart addInstanceToCart(int idCart, int idInstance, Integer amount) {
+        return AddInstanceToCartCommand.getInstance().addInstanceToCart(idCart, idInstance, amount);
+    }
+
 //
 //    @Command
 //    public List<Order> createORder(int idCart) {

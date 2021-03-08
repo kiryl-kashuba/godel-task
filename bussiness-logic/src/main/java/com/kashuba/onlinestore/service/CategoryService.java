@@ -1,22 +1,14 @@
 package com.kashuba.onlinestore.service;
 
-import com.kashuba.onlinestore.entity.Client;
-
+import com.kashuba.onlinestore.entity.Category;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CategoryService {
 
-    Client add(Client client);
+    List<Category> createCategory(Category category, Integer... idValue);
 
-    Client updateClient(Client client);
+    List<Category> deleteCategory(int idCategory);
 
-    Client removeClient(Client client);
-
-    Client findClients(Client client);
-
-    Client updateClientStatus(Client updatingClient, String statusData);
-
-    List<Client> findClientsById(String clientIdData);
+    List<Category> findCategories();
 }

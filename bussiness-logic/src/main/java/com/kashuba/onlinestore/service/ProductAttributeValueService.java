@@ -1,19 +1,14 @@
 package com.kashuba.onlinestore.service;
 
-import com.kashuba.onlinestore.entity.Client;
+import com.kashuba.onlinestore.entity.ProductAttributeValue;
 
 import java.util.List;
 
 public interface ProductAttributeValueService {
-    Client add(Client client);
 
-    Client updateClient(Client client);
+    ProductAttributeValue createProductAttributeValue(String value);
 
-    Client removeClient(Client client);
+    List<ProductAttributeValue> deleteProductAttributeValue(int idAttributeValue);
 
-    Client findClients(Client client);
-
-    Client updateClientStatus(Client updatingClient, String statusData);
-
-    List<Client> findClientsById(String clientIdData);
+    List<ProductAttributeValue> findProductAttributeValues();
 }

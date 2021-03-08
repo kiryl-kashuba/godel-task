@@ -8,6 +8,7 @@ public class ProductAttribute extends BaseEntity {
     private boolean mandatory;
     private String type;
 
+
     public String getType() { return type; }
 
     public void setType(String type) { this.type = type; }
@@ -28,8 +29,7 @@ public class ProductAttribute extends BaseEntity {
         this.mandatory = mandatory;
     }
 
-    public ProductAttribute(String name, boolean mandatory, long id, String type) {
-        super(id);
+    public ProductAttribute(String name, boolean mandatory, String type) {
         this.name = name;
         this.mandatory = mandatory;
         this.type = type;

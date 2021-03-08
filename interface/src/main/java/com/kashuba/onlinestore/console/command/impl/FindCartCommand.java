@@ -1,5 +1,10 @@
 package com.kashuba.onlinestore.console.command.impl;
 
+import com.kashuba.onlinestore.entity.Cart;
+import com.kashuba.onlinestore.service.impl.CartServiceImpl;
+
+import java.util.List;
+
 public class FindCartCommand {
 
     private static FindCartCommand instance;
@@ -13,4 +18,9 @@ public class FindCartCommand {
         }
         return instance;
     }
+
+    public List<Cart> findCarts() {
+        return CartServiceImpl.getInstance().findCarts();
+    }
+
 }
