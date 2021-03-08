@@ -4,6 +4,7 @@ import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.entity.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileInitialization {
@@ -29,13 +30,13 @@ public class FileInitialization {
     public static String USERR = "User.txt";
     public static String IDR = "Id.txt";
 
-    List<Client> readedClients;
-    List<Order> readedOrder;
-    List<Cart> readedCart;
-    List<InstanceProduct> readedProduct;
-    List<Category> readedCategory;
-    List<ProductAttribute> readedPA;
-    private List<User> readedUser;
+    List<Client> readedClients = new ArrayList<>();
+    List<Order> readedOrder = new ArrayList<>();
+    List<Cart> readedCart = new ArrayList<>();
+    List<InstanceProduct> readedProduct = new ArrayList<>();
+    List<Category> readedCategory = new ArrayList<>();
+    List<ProductAttribute> readedPA = new ArrayList<>();
+    private List<User> readedUser = new ArrayList<>();
 
     public List<Client> getReadedClients() {
         return readedClients;
@@ -67,6 +68,13 @@ public class FileInitialization {
 
     {
         try {
+            System.out.println(readedClients);
+            System.out.println(readedOrder);
+            System.out.println(readedCart);
+            System.out.println(readedProduct);
+            System.out.println(readedCategory);
+            System.out.println(readedPA);
+            System.out.println(readedUser);
             readedClients = (List<Client>) FileRepository.readObject(CLIENTR);
             readedOrder = (List<Order>) FileRepository.readObject(ORDERR);
             readedCart = (List<Cart>) FileRepository.readObject(CARTR);
@@ -74,6 +82,13 @@ public class FileInitialization {
             readedCategory = (List<Category>) FileRepository.readObject(CATEGORYR);
             readedPA = (List<ProductAttribute>) FileRepository.readObject(PAR);
             readedUser = (List<User>) FileRepository.readObject(USERR);
+            System.out.println(readedClients);
+            System.out.println(readedOrder);
+            System.out.println(readedCart);
+            System.out.println(readedProduct);
+            System.out.println(readedCategory);
+            System.out.println(readedPA);
+            System.out.println(readedUser);
             IdGenerator.setIdCounter(FileRepository.readId(IDR));
 
             System.out.println("Initialization successful");

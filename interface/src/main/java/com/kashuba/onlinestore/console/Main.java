@@ -100,7 +100,7 @@ public class Main {
         }
         instanceProduct.setProductAttributeValue(list);
 
-        return CreateInstanceCommand.getInstance().createInstance(instanceProduct, idOfCategory);
+        return CreateInstanceCommand.getInstance().createInstance(instanceProduct);
     }
 
     @Command

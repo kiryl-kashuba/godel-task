@@ -1,7 +1,9 @@
 package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.dao.ProductAttributeDao;
-import com.kashuba.onlinestore.entity.ProductAttributeValue;
+import com.kashuba.onlinestore.entity.ProductAttribute;
+
+import java.util.List;
 
 public class ProductAttributeValueDaoImpl implements ProductAttributeDao {
 
@@ -17,18 +19,19 @@ public class ProductAttributeValueDaoImpl implements ProductAttributeDao {
         return instance;
     }
 
+
     @Override
-    public ProductAttributeValue createProductAttribute(String value) {
+    public List<ProductAttribute> createProductAttribute(ProductAttribute productAttribute) {
         return null;
     }
 
     @Override
-    public ProductAttributeValue deleteProductAttribute(int idAttribute) {
+    public List<ProductAttribute> deleteProductAttribute(int idAttribute) {
         return null;
     }
 
     @Override
-    public ProductAttributeValue findProductAttributes() {
+    public List<ProductAttribute> findProductAttributes() {
         return null;
     }
 }

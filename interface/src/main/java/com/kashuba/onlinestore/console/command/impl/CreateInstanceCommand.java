@@ -19,7 +19,7 @@ public class CreateInstanceCommand {
         return instance;
     }
 
-    public List<InstanceProduct> createInstance(InstanceProduct instanceProduct, int idOfCategory) {
-        return InstanceProductServiceImpl.getInstance().createInstanceProduct(instanceProduct, idOfCategory);
+    public List<InstanceProduct> createInstance(InstanceProduct instanceProduct) {
+        return InstanceProductServiceImpl.getInstance().createInstanceProduct(instanceProduct);
     }
 }

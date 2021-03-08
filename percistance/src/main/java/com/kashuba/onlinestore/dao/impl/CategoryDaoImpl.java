@@ -47,6 +47,6 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public List<Category> findCategories() {
-        return null;
+        return FileInitialization.getInstance().getReadedCategory();
     }
 }
