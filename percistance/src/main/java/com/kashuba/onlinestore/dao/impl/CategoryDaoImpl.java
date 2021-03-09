@@ -2,16 +2,13 @@ package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.CategoryDao;
-import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
 import com.kashuba.onlinestore.entity.Category;
 import com.kashuba.onlinestore.entity.ProductAttribute;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDaoImpl implements CategoryDao {
-
-    private FileInitialization fileInitialization = FileInitialization.getInstance();
+public class CategoryDaoImpl extends FileInitializationHolder implements CategoryDao {
 
     private static CategoryDaoImpl instance;
 

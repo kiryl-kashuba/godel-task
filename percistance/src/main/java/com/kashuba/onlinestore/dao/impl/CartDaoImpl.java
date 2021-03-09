@@ -2,15 +2,12 @@ package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.CartDao;
-import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
 import com.kashuba.onlinestore.entity.Cart;
 import com.kashuba.onlinestore.entity.InstanceProduct;
 
 import java.util.List;
 
-public class CartDaoImpl implements CartDao {
-
-    private FileInitialization fileInitialization = FileInitialization.getInstance();
+public class CartDaoImpl extends FileInitializationHolder implements CartDao {
 
     private static CartDaoImpl instance;
 

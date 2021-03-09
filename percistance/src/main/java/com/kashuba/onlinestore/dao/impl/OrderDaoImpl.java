@@ -2,7 +2,6 @@ package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.OrderDao;
-import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
 import com.kashuba.onlinestore.entity.Cart;
 import com.kashuba.onlinestore.entity.InstanceProduct;
 import com.kashuba.onlinestore.entity.Order;
@@ -11,9 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-public class OrderDaoImpl implements OrderDao {
-
-    private FileInitialization fileInitialization = FileInitialization.getInstance();
+public class OrderDaoImpl extends FileInitializationHolder implements OrderDao {
 
     private static OrderDaoImpl instance;
 

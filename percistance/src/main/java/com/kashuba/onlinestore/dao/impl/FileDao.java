@@ -11,7 +11,7 @@ import java.util.List;
 import static com.kashuba.onlinestore.dao.fileservice.FileInitialization.*;
 
 public class FileDao {
-    public String saveInfo(FileInitialization fileInitialization) {
+    public void saveInfo(FileInitialization fileInitialization) {
         List<Object> lists = new ArrayList();
         lists.add(fileInitialization.getReadedClients());
         lists.add(fileInitialization.getReadedCart());
@@ -40,7 +40,5 @@ public class FileDao {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return "Data saved";
     }
 }

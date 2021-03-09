@@ -2,14 +2,11 @@ package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.ClientDao;
-import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
 import com.kashuba.onlinestore.entity.Client;
 
 import java.util.List;
 
-public class ClientDaoImpl implements ClientDao {
-
-    private FileInitialization fileInitialization = FileInitialization.getInstance();
+public class ClientDaoImpl extends FileInitializationHolder implements ClientDao {
 
     private static ClientDaoImpl instance;
 

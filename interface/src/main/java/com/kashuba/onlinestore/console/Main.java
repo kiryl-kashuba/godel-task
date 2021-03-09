@@ -42,8 +42,8 @@ public class Main {
 
 
     @Command
-    public String saveinfo() {
-        return saveInfoCommand.saveInfo(FileInitialization.getInstance());
+    public void saveinfo() {
+        saveInfoCommand.saveInfo(FileInitialization.getInstance());
     }
 
     @Command

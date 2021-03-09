@@ -2,14 +2,11 @@ package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.ProductAttributeValueDao;
-import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
 import com.kashuba.onlinestore.entity.ProductAttributeValue;
 
 import java.util.List;
 
-public class ProductAttributeValueDaoImpl implements ProductAttributeValueDao {
-
-    private FileInitialization fileInitialization = FileInitialization.getInstance();
+public class ProductAttributeValueDaoImpl extends FileInitializationHolder implements ProductAttributeValueDao {
 
     private static ProductAttributeValueDaoImpl instance;
 

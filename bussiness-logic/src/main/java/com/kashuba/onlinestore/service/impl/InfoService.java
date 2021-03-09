@@ -7,7 +7,7 @@ import com.kashuba.onlinestore.dao.impl.FileDao;
 public class InfoService {
     FileDao fileDao = new FileDao();
 
-    public String saveInfo(FileInitialization fileInitialization) {
-        return fileDao.saveInfo(fileInitialization);
+    public void saveInfo(FileInitialization fileInitialization) {
+        fileDao.saveInfo(fileInitialization);
     }
 }

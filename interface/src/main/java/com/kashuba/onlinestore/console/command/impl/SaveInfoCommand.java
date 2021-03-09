@@ -17,8 +17,8 @@ public class SaveInfoCommand {
         return instance;
     }
 
-    public String saveInfo(FileInitialization fileInitialization) {
+    public void saveInfo(FileInitialization fileInitialization) {
         InfoService infoService = new InfoService();
-        return infoService.saveInfo(fileInitialization);
+        infoService.saveInfo(fileInitialization);
     }
 }
