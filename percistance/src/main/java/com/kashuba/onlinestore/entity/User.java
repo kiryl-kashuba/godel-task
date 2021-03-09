@@ -30,6 +30,16 @@ public class User extends BaseEntity {
         public String getvalueOfRole() {
             return valueOfRole;
         }
+
+        public static User.Role findRole(String role) {
+            User.Role user = null;
+            for (User.Role env : User.Role.values()) {
+                if (role.equals(env.getvalueOfRole())) {
+                    user = env;
+                }
+            }
+            return user;
+        }
     }
 
 

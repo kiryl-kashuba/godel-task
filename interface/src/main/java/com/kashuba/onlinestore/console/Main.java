@@ -5,7 +5,6 @@ import com.budhash.cliche.ShellFactory;
 import com.kashuba.onlinestore.console.command.impl.*;
 import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
 import com.kashuba.onlinestore.entity.*;
-import com.kashuba.onlinestore.service.impl.EnumService;
 
 import java.io.IOException;
 import java.util.*;
@@ -51,8 +50,8 @@ public class Main {
     public List<Client> createCLient(String email, String pass, String fname, String sname,
                                      long number, String role, String status) {
         Client client = new Client(email, pass, fname, sname, number);
-        client.setRole(EnumService.findRole(role));
-        client.setStatus(EnumService.findStatus(status));
+        client.setRole(User.Role.findRole(role));
+        client.setStatus(Client.Status.findStatus(status));
 
         return createClientCommand.createCLient(client);
     }

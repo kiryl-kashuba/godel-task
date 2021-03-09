@@ -17,6 +17,16 @@ public class Client extends User {
         public String getValue() {
             return valueOfStatus;
         }
+
+        public static Client.Status findStatus(String status) {
+            Client.Status user = null;
+            for (Client.Status env : Client.Status.values()) {
+                if (status.equals(env.getValue())) {
+                    user = env;
+                }
+            }
+            return user;
+        }
     }
 
     private String firstName;
