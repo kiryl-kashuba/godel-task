@@ -20,18 +20,20 @@ public class ClientServiceImpl implements ClientService {
         return instance;
     }
 
+    ClientDaoImpl clientDao = ClientDaoImpl.getInstance();
+
     @Override
     public List<Client> createClient(Client client) {
-        return ClientDaoImpl.getInstance().createClient(client);
+        return clientDao.createClient(client);
     }
 
     @Override
     public List<Client> deleteClient(int idClient) {
-        return ClientDaoImpl.getInstance().deleteClient(idClient);
+        return clientDao.deleteClient(idClient);
     }
 
     @Override
     public List<Client> findClients() {
-        return ClientDaoImpl.getInstance().findClients();
+        return clientDao.findClients();
     }
 }

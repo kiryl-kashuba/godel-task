@@ -21,18 +21,20 @@ public class ProductAttributeServiceImpl implements ProductAttributeService {
         return instance;
     }
 
+    ProductAttributeDaoImpl productAttributeDao = ProductAttributeDaoImpl.getInstance();
+
     @Override
     public List<ProductAttribute> createProductAttribute(ProductAttribute productAttribute) {
-        return ProductAttributeDaoImpl.getInstance().createProductAttribute(productAttribute);
+        return productAttributeDao.createProductAttribute(productAttribute);
     }
 
     @Override
     public List<ProductAttribute> deleteProductAttribute(int idAttribute) {
-        return ProductAttributeDaoImpl.getInstance().deleteProductAttribute(idAttribute);
+        return productAttributeDao.deleteProductAttribute(idAttribute);
     }
 
     @Override
     public List<ProductAttribute> findProductAttributes() {
-        return ProductAttributeDaoImpl.getInstance().findProductAttributes();
+        return productAttributeDao.findProductAttributes();
     }
 }

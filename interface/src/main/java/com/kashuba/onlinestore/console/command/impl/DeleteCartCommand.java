@@ -19,7 +19,9 @@ public class DeleteCartCommand {
         return instance;
     }
 
+    CartServiceImpl cartService = CartServiceImpl.getInstance();
+
     public List<Cart> deleteCart(int idCart) {
-        return CartServiceImpl.getInstance().deleteCart(idCart);
+        return cartService.deleteCart(idCart);
     }
 }

@@ -19,7 +19,9 @@ public class DeleteInstanceCommand {
         return instance;
     }
 
+    InstanceProductServiceImpl instanceProductService = InstanceProductServiceImpl.getInstance();
+
     public List<InstanceProduct> deleteCLient(int idInstanceProduct) {
-        return InstanceProductServiceImpl.getInstance().deleteInstanceProduct(idInstanceProduct);
+        return instanceProductService.deleteInstanceProduct(idInstanceProduct);
     }
 }

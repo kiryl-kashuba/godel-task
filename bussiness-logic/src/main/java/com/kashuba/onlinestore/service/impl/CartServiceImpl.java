@@ -20,24 +20,26 @@ public class CartServiceImpl implements CartService {
         return instance;
     }
 
+    CartDaoImpl cartDao = CartDaoImpl.getInstance();
+
     @Override
     public List<Cart> createCart(Cart cart) {
-        return CartDaoImpl.getInstance().createCart(cart);
+        return cartDao.createCart(cart);
     }
 
     @Override
     public List<Cart> deleteCart(int idCart) {
-        return CartDaoImpl.getInstance().deleteCart(idCart);
+        return cartDao.deleteCart(idCart);
     }
 
     @Override
     public List<Cart> findCarts() {
-        return CartDaoImpl.getInstance().findCarts();
+        return cartDao.findCarts();
     }
 
     @Override
     public Cart addInstanceToCart(int idCart, int idInstance, Integer amount) {
-        return CartDaoImpl.getInstance().addInstanceToCart(idCart, idInstance, amount);
+        return cartDao.addInstanceToCart(idCart, idInstance, amount);
     }
 
 

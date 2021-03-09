@@ -19,7 +19,9 @@ public class DeleteOrderCommand {
         return instance;
     }
 
+    OrderServiceImpl orderService = OrderServiceImpl.getInstance();
+
     public List<Order> deleteOrder(int idOrder) {
-        return OrderServiceImpl.getInstance().deleteOrder(idOrder);
+        return orderService.deleteOrder(idOrder);
     }
 }

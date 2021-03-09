@@ -19,8 +19,10 @@ public class FindCartCommand {
         return instance;
     }
 
+    CartServiceImpl cartService = CartServiceImpl.getInstance();
+
     public List<Cart> findCarts() {
-        return CartServiceImpl.getInstance().findCarts();
+        return cartService.findCarts();
     }
 
 }

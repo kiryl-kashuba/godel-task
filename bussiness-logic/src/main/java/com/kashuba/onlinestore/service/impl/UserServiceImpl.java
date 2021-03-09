@@ -20,6 +20,7 @@ public class UserServiceImpl implements UserService {
         return instance;
     }
 
+
     @Override
     public List<User> createUser(User user) {
         return UserDaoImpl.getInstance().createUser(user);

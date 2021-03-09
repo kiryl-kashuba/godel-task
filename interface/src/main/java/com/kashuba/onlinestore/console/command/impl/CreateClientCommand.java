@@ -19,9 +19,10 @@ public class CreateClientCommand {
         return instance;
     }
 
+    ClientServiceImpl clientService = ClientServiceImpl.getInstance();
 
     public List<Client> createCLient(Client client) {
-        return ClientServiceImpl.getInstance().createClient(client);
+        return clientService.createClient(client);
     }
 
 

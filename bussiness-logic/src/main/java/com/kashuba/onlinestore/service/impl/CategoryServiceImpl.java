@@ -20,18 +20,20 @@ public class CategoryServiceImpl implements CategoryService {
         return instance;
     }
 
+    CategoryDaoImpl categoryDao = CategoryDaoImpl.getInstance();
+
     @Override
     public List<Category> createCategory(Category category, Integer... idValue) {
-        return CategoryDaoImpl.getInstance().createCategory(category, idValue);
+        return categoryDao.createCategory(category, idValue);
     }
 
     @Override
     public List<Category> deleteCategory(int idCategory) {
-        return CategoryDaoImpl.getInstance().deleteCategory(idCategory);
+        return categoryDao.deleteCategory(idCategory);
     }
 
     @Override
     public List<Category> findCategories() {
-        return CategoryDaoImpl.getInstance().findCategories();
+        return categoryDao.findCategories();
     }
 }

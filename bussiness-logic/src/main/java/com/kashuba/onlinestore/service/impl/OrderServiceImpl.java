@@ -20,18 +20,20 @@ public class OrderServiceImpl implements OrderService {
         return instance;
     }
 
+    OrderDaoImpl orderDao = OrderDaoImpl.getInstance();
+
     @Override
     public List<Order> createOrder(Order order, int idCart) {
-        return OrderDaoImpl.getInstance().createOrder(order, idCart);
+        return orderDao.createOrder(order, idCart);
     }
 
     @Override
     public List<Order> deleteOrder(int idOrder) {
-        return OrderDaoImpl.getInstance().deleteOrder(idOrder);
+        return orderDao.deleteOrder(idOrder);
     }
 
     @Override
     public List<Order> findOrders() {
-        return OrderDaoImpl.getInstance().findOrders();
+        return orderDao.findOrders();
     }
 }

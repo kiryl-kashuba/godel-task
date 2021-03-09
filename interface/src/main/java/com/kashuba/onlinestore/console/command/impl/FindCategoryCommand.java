@@ -19,8 +19,10 @@ public class FindCategoryCommand {
         return instance;
     }
 
+    CategoryServiceImpl categoryService = CategoryServiceImpl.getInstance();
+
     public List<Category> findCategories() {
-        return CategoryServiceImpl.getInstance().findCategories();
+        return categoryService.findCategories();
     }
 
 }

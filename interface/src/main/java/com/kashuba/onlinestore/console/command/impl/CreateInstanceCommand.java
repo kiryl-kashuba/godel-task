@@ -19,7 +19,9 @@ public class CreateInstanceCommand {
         return instance;
     }
 
+    InstanceProductServiceImpl instanceProductService = InstanceProductServiceImpl.getInstance();
+
     public List<InstanceProduct> createInstance(InstanceProduct instanceProduct) {
-        return InstanceProductServiceImpl.getInstance().createInstanceProduct(instanceProduct);
+        return instanceProductService.createInstanceProduct(instanceProduct);
     }
 }

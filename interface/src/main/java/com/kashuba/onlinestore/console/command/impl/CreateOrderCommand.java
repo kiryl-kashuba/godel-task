@@ -19,8 +19,10 @@ public class CreateOrderCommand {
         return instance;
     }
 
+    OrderServiceImpl orderService = OrderServiceImpl.getInstance();
+
     public List<Order> createOrder(Order order, int idCart) {
-        return OrderServiceImpl.getInstance().createOrder(order, idCart);
+        return orderService.createOrder(order, idCart);
     }
 
 }

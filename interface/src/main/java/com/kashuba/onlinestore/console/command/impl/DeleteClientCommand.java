@@ -19,7 +19,9 @@ public class DeleteClientCommand {
         return instance;
     }
 
+    ClientServiceImpl clientService = ClientServiceImpl.getInstance();
+
     public List<Client> deleteCLient(int idClient) {
-        return ClientServiceImpl.getInstance().deleteClient(idClient);
+        return clientService.deleteClient(idClient);
     }
 }

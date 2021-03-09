@@ -19,8 +19,10 @@ public class FindInstanceCommand {
         return instance;
     }
 
+    InstanceProductServiceImpl instanceProductService = InstanceProductServiceImpl.getInstance();
+
     public List<InstanceProduct> findInstances() {
-        return InstanceProductServiceImpl.getInstance().findInstanceProducts();
+        return instanceProductService.findInstanceProducts();
     }
 
 }

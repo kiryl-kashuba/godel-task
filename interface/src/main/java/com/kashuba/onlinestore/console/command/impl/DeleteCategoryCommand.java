@@ -19,7 +19,9 @@ public class DeleteCategoryCommand {
         return instance;
     }
 
+    CategoryServiceImpl categoryService = CategoryServiceImpl.getInstance();
+
     public List<Category> deleteCategory(int idCategory) {
-        return CategoryServiceImpl.getInstance().deleteCategory(idCategory);
+        return categoryService.deleteCategory(idCategory);
     }
 }

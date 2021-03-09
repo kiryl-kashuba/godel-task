@@ -19,8 +19,10 @@ public class FindClientCommand {
         return instance;
     }
 
+    ClientServiceImpl clientService = ClientServiceImpl.getInstance();
+
     public List<Client> findCLients() {
-        return ClientServiceImpl.getInstance().findClients();
+        return clientService.findClients();
     }
 
 }

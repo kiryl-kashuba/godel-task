@@ -19,9 +19,9 @@ public class CreateProductAttributeCommand {
         return instance;
     }
 
-    ProductAttributeServiceImpl productAttributeService = new ProductAttributeServiceImpl();
+    ProductAttributeServiceImpl productAttributeService = ProductAttributeServiceImpl.getInstance();
 
     public List<ProductAttribute> createProductAttribute(ProductAttribute productAttribute) {
-        return ProductAttributeServiceImpl.getInstance().createProductAttribute(productAttribute);
+        return productAttributeService.createProductAttribute(productAttribute);
     }
 }

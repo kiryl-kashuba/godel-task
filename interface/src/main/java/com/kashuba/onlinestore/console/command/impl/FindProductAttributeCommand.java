@@ -19,8 +19,10 @@ public class FindProductAttributeCommand {
         return instance;
     }
 
+    ProductAttributeServiceImpl productAttributeService = ProductAttributeServiceImpl.getInstance();
+
     public List<ProductAttribute> findProductAttributes() {
-        return ProductAttributeServiceImpl.getInstance().findProductAttributes();
+        return productAttributeService.findProductAttributes();
     }
 
 }

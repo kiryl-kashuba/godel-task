@@ -19,7 +19,9 @@ public class DeleteProductAttributeCommand {
         return instance;
     }
 
+    ProductAttributeServiceImpl productAttributeService = ProductAttributeServiceImpl.getInstance();
+
     public List<ProductAttribute> DeleteProductAttribute(int idProductAttribute) {
-        return ProductAttributeServiceImpl.getInstance().deleteProductAttribute(idProductAttribute);
+        return productAttributeService.deleteProductAttribute(idProductAttribute);
     }
 }

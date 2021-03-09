@@ -19,7 +19,9 @@ public class CreateCartCommand {
         return instance;
     }
 
+    CartServiceImpl cartService = CartServiceImpl.getInstance();
+
     public List<Cart> createInstance(Cart cart) {
-        return CartServiceImpl.getInstance().createCart(cart);
+        return cartService.createCart(cart);
     }
 }

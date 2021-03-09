@@ -19,7 +19,9 @@ public class CreateCategoryCommand {
         return instance;
     }
 
+    CategoryServiceImpl categoryService = CategoryServiceImpl.getInstance();
+
     public List<Category> createCLient(Category category, Integer... idValue) {
-        return CategoryServiceImpl.getInstance().createCategory(category, idValue);
+        return categoryService.createCategory(category, idValue);
     }
 }

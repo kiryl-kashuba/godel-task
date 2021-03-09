@@ -19,8 +19,10 @@ public class FindOrderCommand {
         return instance;
     }
 
+    OrderServiceImpl orderService = OrderServiceImpl.getInstance();
+
     public List<Order> findOrders() {
-        return OrderServiceImpl.getInstance().findOrders();
+        return orderService.findOrders();
     }
 
 }

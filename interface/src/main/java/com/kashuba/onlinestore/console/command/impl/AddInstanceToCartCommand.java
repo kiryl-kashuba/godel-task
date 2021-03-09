@@ -17,8 +17,10 @@ public class AddInstanceToCartCommand {
         return instance;
     }
 
+    CartServiceImpl cartService = CartServiceImpl.getInstance();
+
     public Cart addInstanceToCart(int idCart, int idInstance, Integer amount) {
-        return CartServiceImpl.getInstance().addInstanceToCart(idCart, idInstance, amount);
+        return cartService.addInstanceToCart(idCart, idInstance, amount);
     }
 
 }

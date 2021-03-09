@@ -20,24 +20,25 @@ public class InstanceProductServiceImpl implements InstanceProductService {
         return instance;
     }
 
+    InstanceProductDaoImpl instanceProductDao = InstanceProductDaoImpl.getInstance();
 
     @Override
     public List<InstanceProduct> createInstanceProduct(InstanceProduct instanceProduct) {
-        return InstanceProductDaoImpl.getInstance().createInstanceProduct(instanceProduct);
+        return instanceProductDao.createInstanceProduct(instanceProduct);
     }
 
     @Override
     public List<InstanceProduct> updateInstanceProduct(InstanceProduct instanceProduct, int idOfProduct) {
-        return InstanceProductDaoImpl.getInstance().updateInstanceProduct(idOfProduct, instanceProduct);
+        return instanceProductDao.updateInstanceProduct(idOfProduct, instanceProduct);
     }
 
     @Override
     public List<InstanceProduct> deleteInstanceProduct(int idInstanceProduct) {
-        return InstanceProductDaoImpl.getInstance().deleteInstanceProduct(idInstanceProduct);
+        return instanceProductDao.deleteInstanceProduct(idInstanceProduct);
     }
 
     @Override
     public List<InstanceProduct> findInstanceProducts() {
-        return InstanceProductDaoImpl.getInstance().findInstanceProducts();
+        return instanceProductDao.findInstanceProducts();
     }
 }
