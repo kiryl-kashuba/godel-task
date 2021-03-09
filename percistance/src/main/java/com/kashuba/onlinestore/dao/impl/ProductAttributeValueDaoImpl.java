@@ -25,6 +25,7 @@ public class ProductAttributeValueDaoImpl implements ProductAttributeValueDao {
     public ProductAttributeValue createProductAttributeValue(ProductAttributeValue productAttributeValue) {
         productAttributeValue.setId(IdGenerator.createID());
         FileInitialization.getInstance().getReadedPAV().add(productAttributeValue);
+        System.out.println("Hi");
         return productAttributeValue;
     }
 

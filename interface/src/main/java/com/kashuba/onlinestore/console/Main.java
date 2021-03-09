@@ -172,7 +172,7 @@ public class Main {
     @Command
     public ProductAttributeValue createProductAttributeValue(String value, ProductAttribute productAttribute) {
         ProductAttributeValue productAttributeValue = new ProductAttributeValue(value, productAttribute);
-        return productAttributeValue;
+        return createProductAttributeValueCommand.createProductAttribute(productAttributeValue);
     }
 
     @Command

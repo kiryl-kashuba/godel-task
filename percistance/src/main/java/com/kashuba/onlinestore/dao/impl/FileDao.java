@@ -20,6 +20,7 @@ public class FileDao {
         lists.add(fileInitialization.getReadedProduct());
         lists.add(fileInitialization.getReadedPA());
         lists.add(fileInitialization.getReadedUser());
+        lists.add(fileInitialization.getReadedPAV());
 
         List<Object> listsOfFile = new ArrayList();
         listsOfFile.add(CLIENTR);
@@ -29,6 +30,7 @@ public class FileDao {
         listsOfFile.add(PRODUCTR);
         listsOfFile.add(PAR);
         listsOfFile.add(USERR);
+        listsOfFile.add(PAVR);
 
         try {
         for (int x = 0; x < lists.size(); x++) {

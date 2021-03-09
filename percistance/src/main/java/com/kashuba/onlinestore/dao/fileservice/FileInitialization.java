@@ -38,7 +38,7 @@ public class FileInitialization {
     List<Category> readedCategory = new ArrayList<>();
     List<ProductAttribute> readedPA = new ArrayList<>();
     List<ProductAttributeValue> readedPAV = new ArrayList<>();
-    private List<User> readedUser = new ArrayList<>();
+    List<User> readedUser = new ArrayList<>();
 
     public List<Client> getReadedClients() {
         return readedClients;
@@ -74,13 +74,6 @@ public class FileInitialization {
 
     {
         try {
-            System.out.println(readedClients);
-            System.out.println(readedOrder);
-            System.out.println(readedCart);
-            System.out.println(readedProduct);
-            System.out.println(readedCategory);
-            System.out.println(readedPA);
-            System.out.println(readedUser);
             readedClients = (List<Client>) FileRepository.readObject(CLIENTR);
             readedOrder = (List<Order>) FileRepository.readObject(ORDERR);
             readedCart = (List<Cart>) FileRepository.readObject(CARTR);
@@ -89,14 +82,6 @@ public class FileInitialization {
             readedPA = (List<ProductAttribute>) FileRepository.readObject(PAR);
             readedUser = (List<User>) FileRepository.readObject(USERR);
             readedPAV = (List<ProductAttributeValue>) FileRepository.readObject(PAVR);
-            System.out.println(readedClients);
-            System.out.println(readedOrder);
-            System.out.println(readedCart);
-            System.out.println(readedProduct);
-            System.out.println(readedCategory);
-            System.out.println(readedPA);
-            System.out.println(readedUser);
-            System.out.println(readedPAV);
             IdGenerator.setIdCounter(FileRepository.readId(IDR));
 
             System.out.println("Initialization successful");

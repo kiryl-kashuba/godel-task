@@ -18,7 +18,7 @@ public class FileRepository {
         try {
             objectInputStream = new ObjectInputStream(inputStream);
             } catch (EOFException e) {
-            System.out.println(fileName + "is empty. " + e);
+            System.out.println(fileName + " is empty. " + e);
                 return new ArrayList<>();
             }
 
