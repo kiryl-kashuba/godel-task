@@ -8,6 +8,7 @@ import java.util.List;
 public class DeleteProductAttributeValueCommand {
 
     private static DeleteProductAttributeValueCommand instance;
+    private ProductAttributeValueServiceImpl productAttributeValueService = ProductAttributeValueServiceImpl.getInstance();
 
     private DeleteProductAttributeValueCommand() {
     }
@@ -19,7 +20,6 @@ public class DeleteProductAttributeValueCommand {
         return instance;
     }
 
-    ProductAttributeValueServiceImpl productAttributeValueService = ProductAttributeValueServiceImpl.getInstance();
 
     public List<ProductAttributeValue> deleteProductAttributeValue(int idProductAttributeValue) {
         return productAttributeValueService.deleteProductAttributeValue(idProductAttributeValue);

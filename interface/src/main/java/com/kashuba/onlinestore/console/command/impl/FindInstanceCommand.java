@@ -8,6 +8,7 @@ import java.util.List;
 public class FindInstanceCommand {
 
     private static FindInstanceCommand instance;
+    private InstanceProductServiceImpl instanceProductService = InstanceProductServiceImpl.getInstance();
 
     private FindInstanceCommand() {
     }
@@ -19,7 +20,6 @@ public class FindInstanceCommand {
         return instance;
     }
 
-    InstanceProductServiceImpl instanceProductService = InstanceProductServiceImpl.getInstance();
 
     public List<InstanceProduct> findInstances() {
         return instanceProductService.findInstanceProducts();

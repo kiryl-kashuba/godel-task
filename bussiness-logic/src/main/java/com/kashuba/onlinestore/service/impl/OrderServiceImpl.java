@@ -8,6 +8,8 @@ import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
 
+    private OrderDaoImpl orderDao = OrderDaoImpl.getInstance();
+
     private static OrderServiceImpl instance;
 
     private OrderServiceImpl() {
@@ -20,20 +22,18 @@ public class OrderServiceImpl implements OrderService {
         return instance;
     }
 
-    OrderDaoImpl orderDao = OrderDaoImpl.getInstance();
-
     @Override
     public List<Order> createOrder(Order order, int idCart) {
-        return orderDao.createOrder(order, idCart);
+        return orderDao.create(order, idCart);
     }
 
     @Override
-    public List<Order> deleteOrder(int idOrder) {
-        return orderDao.deleteOrder(idOrder);
+    public List<Order> deleteOrder(int id) {
+        return orderDao.delete(id);
     }
 
     @Override
     public List<Order> findOrders() {
-        return orderDao.findOrders();
+        return orderDao.find();
     }
 }

@@ -9,6 +9,8 @@ import java.util.List;
 
 public class InstanceProductDaoImpl implements InstanceProductDao {
 
+    private FileInitialization fileInitialization = FileInitialization.getInstance();
+
     private static InstanceProductDaoImpl instance;
 
     private InstanceProductDaoImpl() {
@@ -22,33 +24,33 @@ public class InstanceProductDaoImpl implements InstanceProductDao {
     }
 
     @Override
-    public List<InstanceProduct> createInstanceProduct(InstanceProduct instanceProduct) {
+    public List<InstanceProduct> create(InstanceProduct instanceProduct) {
         instanceProduct.setId(IdGenerator.createID());
-        FileInitialization.getInstance().getReadedProduct().add(instanceProduct);
-        return FileInitialization.getInstance().getReadedProduct();
+        fileInitialization.getReadedProduct().add(instanceProduct);
+        return fileInitialization.getReadedProduct();
     }
 
     @Override
-    public List<InstanceProduct> findInstanceProducts() {
-        return FileInitialization.getInstance().getReadedProduct();
+    public List<InstanceProduct> find() {
+        return fileInitialization.getReadedProduct();
     }
 
     @Override
-    public List<InstanceProduct> updateInstanceProduct(int idInstanceProduct, InstanceProduct instanceProduct) {
-        for (InstanceProduct OldInstanceProduct : FileInitialization.getInstance().getReadedProduct())
-            if (idInstanceProduct == OldInstanceProduct.getId()) {
-                OldInstanceProduct.setPrice(instanceProduct.getPrice());
-                OldInstanceProduct.setArticulation(instanceProduct.getArticulation());
-                OldInstanceProduct.setName(instanceProduct.getName());
-                OldInstanceProduct.setProductAttributeValue(instanceProduct.getProductAttributeValue());
-                OldInstanceProduct.setCategory(instanceProduct.getCategory());
+    public List<InstanceProduct> update(int id, InstanceProduct instanceProduct) {
+        for (InstanceProduct oldInstanceProduct : fileInitialization.getReadedProduct())
+            if (id == oldInstanceProduct.getId()) {
+                oldInstanceProduct.setPrice(instanceProduct.getPrice());
+                oldInstanceProduct.setArticulation(instanceProduct.getArticulation());
+                oldInstanceProduct.setName(instanceProduct.getName());
+                oldInstanceProduct.setProductAttributeValue(instanceProduct.getProductAttributeValue());
+                oldInstanceProduct.setCategory(instanceProduct.getCategory());
             }
-        return FileInitialization.getInstance().getReadedProduct();
+        return fileInitialization.getReadedProduct();
     }
 
     @Override
-    public List<InstanceProduct> deleteInstanceProduct(int idInstanceProduct) {
-        FileInitialization.getInstance().getReadedProduct().removeIf(x -> x.getId() == idInstanceProduct);
-        return FileInitialization.getInstance().getReadedProduct();
+    public List<InstanceProduct> delete(int idInstanceProduct) {
+        fileInitialization.getReadedProduct().removeIf(x -> x.getId() == idInstanceProduct);
+        return fileInitialization.getReadedProduct();
     }
 }

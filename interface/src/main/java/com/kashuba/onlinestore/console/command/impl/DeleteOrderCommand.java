@@ -8,6 +8,7 @@ import java.util.List;
 public class DeleteOrderCommand {
 
     private static DeleteOrderCommand instance;
+    private OrderServiceImpl orderService = OrderServiceImpl.getInstance();
 
     private DeleteOrderCommand() {
     }
@@ -19,7 +20,6 @@ public class DeleteOrderCommand {
         return instance;
     }
 
-    OrderServiceImpl orderService = OrderServiceImpl.getInstance();
 
     public List<Order> deleteOrder(int idOrder) {
         return orderService.deleteOrder(idOrder);

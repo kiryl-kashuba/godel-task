@@ -8,6 +8,8 @@ import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
 
+    private ClientDaoImpl clientDao = ClientDaoImpl.getInstance();
+
     private static ClientServiceImpl instance;
 
     private ClientServiceImpl() {
@@ -20,20 +22,18 @@ public class ClientServiceImpl implements ClientService {
         return instance;
     }
 
-    ClientDaoImpl clientDao = ClientDaoImpl.getInstance();
-
     @Override
     public List<Client> createClient(Client client) {
-        return clientDao.createClient(client);
+        return clientDao.create(client);
     }
 
     @Override
-    public List<Client> deleteClient(int idClient) {
-        return clientDao.deleteClient(idClient);
+    public List<Client> deleteClient(int id) {
+        return clientDao.delete(id);
     }
 
     @Override
     public List<Client> findClients() {
-        return clientDao.findClients();
+        return clientDao.find();
     }
 }

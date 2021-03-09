@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface InstanceProductDao {
 
-    List<InstanceProduct> createInstanceProduct(InstanceProduct instanceProduct);
+    List<InstanceProduct> create(InstanceProduct instanceProduct);
 
-    List<InstanceProduct> findInstanceProducts();
+    List<InstanceProduct> find();
 
-    List<InstanceProduct> updateInstanceProduct(int idInstanceProduct, InstanceProduct instanceProduct);
+    List<InstanceProduct> update(int id, InstanceProduct instanceProduct);
 
-    List<InstanceProduct> deleteInstanceProduct(int idInstanceProduct);
+    List<InstanceProduct> delete(int idInstanceProduct);
 }

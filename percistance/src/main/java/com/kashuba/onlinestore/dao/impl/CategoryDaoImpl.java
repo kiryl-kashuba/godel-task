@@ -11,6 +11,8 @@ import java.util.List;
 
 public class CategoryDaoImpl implements CategoryDao {
 
+    private FileInitialization fileInitialization = FileInitialization.getInstance();
+
     private static CategoryDaoImpl instance;
 
     private CategoryDaoImpl() {
@@ -24,10 +26,10 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public List<Category> createCategory(Category category, Integer... idValue) {
+    public List<Category> create(Category category, Integer... idValue) {
         List<ProductAttribute> list = new ArrayList<>();
         for (int i = 0; i < idValue.length; i++) {
-            for (ProductAttribute productAttribute : FileInitialization.getInstance().getReadedPA()) {
+            for (ProductAttribute productAttribute : fileInitialization.getReadedPA()) {
                 if (idValue[i] == productAttribute.getId()) {
                     list.add(productAttribute);
                 }
@@ -35,18 +37,18 @@ public class CategoryDaoImpl implements CategoryDao {
         }
         category.setProductAttribute(list);
         category.setId(IdGenerator.createID());
-        FileInitialization.getInstance().getReadedCategory().add(category);
-        return FileInitialization.getInstance().getReadedCategory();
+        fileInitialization.getReadedCategory().add(category);
+        return fileInitialization.getReadedCategory();
     }
 
     @Override
-    public List<Category> deleteCategory(int idCategory) {
-        FileInitialization.getInstance().getReadedCategory().removeIf(x -> x.getId() == idCategory);
-        return FileInitialization.getInstance().getReadedCategory();
+    public List<Category> delete(int id) {
+        fileInitialization.getReadedCategory().removeIf(x -> x.getId() == id);
+        return fileInitialization.getReadedCategory();
     }
 
     @Override
-    public List<Category> findCategories() {
-        return FileInitialization.getInstance().getReadedCategory();
+    public List<Category> find() {
+        return fileInitialization.getReadedCategory();
     }
 }

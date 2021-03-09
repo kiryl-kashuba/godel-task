@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface CategoryDao {
 
-    List<Category> createCategory(Category category, Integer... idValue);
+    List<Category> create(Category category, Integer... idValue);
 
-    List<Category> deleteCategory(int idCategory);
+    List<Category> delete(int id);
 
-    List<Category> findCategories();
+    List<Category> find();
 }

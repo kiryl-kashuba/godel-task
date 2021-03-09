@@ -8,6 +8,8 @@ import java.util.List;
 
 public class CartServiceImpl implements CartService {
 
+    private CartDaoImpl cartDao = CartDaoImpl.getInstance();
+
     private static CartServiceImpl instance;
 
     private CartServiceImpl() {
@@ -20,21 +22,20 @@ public class CartServiceImpl implements CartService {
         return instance;
     }
 
-    CartDaoImpl cartDao = CartDaoImpl.getInstance();
 
     @Override
     public List<Cart> createCart(Cart cart) {
-        return cartDao.createCart(cart);
+        return cartDao.create(cart);
     }
 
     @Override
-    public List<Cart> deleteCart(int idCart) {
-        return cartDao.deleteCart(idCart);
+    public List<Cart> deleteCart(int id) {
+        return cartDao.delete(id);
     }
 
     @Override
     public List<Cart> findCarts() {
-        return cartDao.findCarts();
+        return cartDao.find();
     }
 
     @Override

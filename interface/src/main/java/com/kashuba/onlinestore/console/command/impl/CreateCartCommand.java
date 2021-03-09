@@ -7,6 +7,7 @@ import java.util.List;
 
 public class CreateCartCommand {
 
+    private CartServiceImpl cartService = CartServiceImpl.getInstance();
     private static CreateCartCommand instance;
 
     private CreateCartCommand() {
@@ -18,8 +19,6 @@ public class CreateCartCommand {
         }
         return instance;
     }
-
-    CartServiceImpl cartService = CartServiceImpl.getInstance();
 
     public List<Cart> createInstance(Cart cart) {
         return cartService.createCart(cart);

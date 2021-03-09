@@ -13,6 +13,8 @@ import java.util.Map;
 
 public class OrderDaoImpl implements OrderDao {
 
+    private FileInitialization fileInitialization = FileInitialization.getInstance();
+
     private static OrderDaoImpl instance;
 
     private OrderDaoImpl() {
@@ -26,11 +28,11 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Order> createOrder(Order order, int idCart) {
+    public List<Order> create(Order order, int idCart) {
         order.setId(IdGenerator.createID());
         order.setDateOrder(LocalDate.now());
 
-        for (Cart cart : FileInitialization.getInstance().getReadedCart()) {
+        for (Cart cart : fileInitialization.getReadedCart()) {
             if (idCart == cart.getId()) {
                 order.setCart(cart);
             }
@@ -38,7 +40,7 @@ public class OrderDaoImpl implements OrderDao {
 
         int amount = 0;
 
-        for (Cart cart : FileInitialization.getInstance().getReadedCart()) {
+        for (Cart cart : fileInitialization.getReadedCart()) {
             if (idCart == cart.getId()) {
                 order.setCart(cart);
                 for (Map.Entry<InstanceProduct, Integer> entry : cart.getNumber().entrySet()) {
@@ -50,18 +52,18 @@ public class OrderDaoImpl implements OrderDao {
         }
         order.setAmount(amount);
 
-        FileInitialization.getInstance().getReadedOrder().add(order);
-        return FileInitialization.getInstance().getReadedOrder();
+        fileInitialization.getReadedOrder().add(order);
+        return fileInitialization.getReadedOrder();
     }
 
     @Override
-    public List<Order> deleteOrder(int idOrder) {
-        FileInitialization.getInstance().getReadedOrder().removeIf(x -> x.getId() == idOrder);
-        return FileInitialization.getInstance().getReadedOrder();
+    public List<Order> delete(int id) {
+        fileInitialization.getReadedOrder().removeIf(x -> x.getId() == id);
+        return fileInitialization.getReadedOrder();
     }
 
     @Override
-    public List<Order> findOrders() {
-        return FileInitialization.getInstance().getReadedOrder();
+    public List<Order> find() {
+        return fileInitialization.getReadedOrder();
     }
 }

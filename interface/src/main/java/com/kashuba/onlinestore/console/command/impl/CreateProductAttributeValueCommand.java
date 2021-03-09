@@ -6,6 +6,7 @@ import com.kashuba.onlinestore.service.impl.ProductAttributeValueServiceImpl;
 public class CreateProductAttributeValueCommand {
 
     private static CreateProductAttributeValueCommand instance;
+    private ProductAttributeValueServiceImpl productAttributeValueService = ProductAttributeValueServiceImpl.getInstance();
 
     private CreateProductAttributeValueCommand() {
     }
@@ -17,7 +18,6 @@ public class CreateProductAttributeValueCommand {
         return instance;
     }
 
-    ProductAttributeValueServiceImpl productAttributeValueService = ProductAttributeValueServiceImpl.getInstance();
 
     public ProductAttributeValue createProductAttribute(ProductAttributeValue productAttributeValue) {
         return productAttributeValueService.createProductAttributeValue(productAttributeValue);

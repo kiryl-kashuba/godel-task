@@ -8,6 +8,7 @@ import java.util.List;
 public class FindCategoryCommand {
 
     private static FindCategoryCommand instance;
+    private CategoryServiceImpl categoryService = CategoryServiceImpl.getInstance();
 
     private FindCategoryCommand() {
     }
@@ -19,7 +20,6 @@ public class FindCategoryCommand {
         return instance;
     }
 
-    CategoryServiceImpl categoryService = CategoryServiceImpl.getInstance();
 
     public List<Category> findCategories() {
         return categoryService.findCategories();

@@ -8,6 +8,8 @@ import java.util.List;
 
 public class ProductAttributeValueServiceImpl implements ProductAttributeValueService {
 
+    private ProductAttributeValueDaoImpl productAttributeValueDao = ProductAttributeValueDaoImpl.getInstance();
+
     private static ProductAttributeValueServiceImpl instance;
 
     private ProductAttributeValueServiceImpl() {
@@ -20,20 +22,18 @@ public class ProductAttributeValueServiceImpl implements ProductAttributeValueSe
         return instance;
     }
 
-    ProductAttributeValueDaoImpl productAttributeValueDao = ProductAttributeValueDaoImpl.getInstance();
-
     @Override
     public ProductAttributeValue createProductAttributeValue(ProductAttributeValue productAttributeValue) {
-        return productAttributeValueDao.createProductAttributeValue(productAttributeValue);
+        return productAttributeValueDao.create(productAttributeValue);
     }
 
     @Override
-    public List<ProductAttributeValue> deleteProductAttributeValue(int idAttributeValue) {
-        return productAttributeValueDao.findProductAttributeValues();
+    public List<ProductAttributeValue> deleteProductAttributeValue(int id) {
+        return productAttributeValueDao.delete(id);
     }
 
     @Override
     public List<ProductAttributeValue> findProductAttributeValues() {
-        return productAttributeValueDao.findProductAttributeValues();
+        return productAttributeValueDao.find();
     }
 }

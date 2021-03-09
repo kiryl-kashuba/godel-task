@@ -8,6 +8,7 @@ import java.util.List;
 public class FindCartCommand {
 
     private static FindCartCommand instance;
+    private CartServiceImpl cartService = CartServiceImpl.getInstance();
 
     private FindCartCommand() {
     }
@@ -19,7 +20,6 @@ public class FindCartCommand {
         return instance;
     }
 
-    CartServiceImpl cartService = CartServiceImpl.getInstance();
 
     public List<Cart> findCarts() {
         return cartService.findCarts();

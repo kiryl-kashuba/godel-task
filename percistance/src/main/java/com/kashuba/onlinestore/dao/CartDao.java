@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface CartDao {
 
-    List<Cart> createCart(Cart cart);
+    List<Cart> create(Cart cart);
 
-    List<Cart> deleteCart(int idCart);
+    List<Cart> delete(int id);
 
-    List<Cart> findCarts();
+    List<Cart> find();
 
-    Cart addInstanceToCart(int idCart, int idInstance, Integer amount);
+    Cart addInstanceToCart(int idOfCart, int idInstance, Integer amount);
 }

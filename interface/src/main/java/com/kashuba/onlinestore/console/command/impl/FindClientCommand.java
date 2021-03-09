@@ -8,6 +8,7 @@ import java.util.List;
 public class FindClientCommand {
 
     private static FindClientCommand instance;
+    private ClientServiceImpl clientService = ClientServiceImpl.getInstance();
 
     private FindClientCommand() {
     }
@@ -19,7 +20,6 @@ public class FindClientCommand {
         return instance;
     }
 
-    ClientServiceImpl clientService = ClientServiceImpl.getInstance();
 
     public List<Client> findCLients() {
         return clientService.findClients();

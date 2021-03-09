@@ -8,6 +8,8 @@ import java.util.List;
 
 public class InstanceProductServiceImpl implements InstanceProductService {
 
+    private InstanceProductDaoImpl instanceProductDao = InstanceProductDaoImpl.getInstance();
+
     private static InstanceProductServiceImpl instance;
 
     private InstanceProductServiceImpl() {
@@ -20,25 +22,23 @@ public class InstanceProductServiceImpl implements InstanceProductService {
         return instance;
     }
 
-    InstanceProductDaoImpl instanceProductDao = InstanceProductDaoImpl.getInstance();
-
     @Override
     public List<InstanceProduct> createInstanceProduct(InstanceProduct instanceProduct) {
-        return instanceProductDao.createInstanceProduct(instanceProduct);
+        return instanceProductDao.create(instanceProduct);
     }
 
     @Override
     public List<InstanceProduct> updateInstanceProduct(InstanceProduct instanceProduct, int idOfProduct) {
-        return instanceProductDao.updateInstanceProduct(idOfProduct, instanceProduct);
+        return instanceProductDao.update(idOfProduct, instanceProduct);
     }
 
     @Override
-    public List<InstanceProduct> deleteInstanceProduct(int idInstanceProduct) {
-        return instanceProductDao.deleteInstanceProduct(idInstanceProduct);
+    public List<InstanceProduct> deleteInstanceProduct(int id) {
+        return instanceProductDao.delete(id);
     }
 
     @Override
     public List<InstanceProduct> findInstanceProducts() {
-        return instanceProductDao.findInstanceProducts();
+        return instanceProductDao.find();
     }
 }

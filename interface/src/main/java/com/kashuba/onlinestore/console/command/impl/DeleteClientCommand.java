@@ -8,6 +8,7 @@ import java.util.List;
 public class DeleteClientCommand {
 
     private static DeleteClientCommand instance;
+    private ClientServiceImpl clientService = ClientServiceImpl.getInstance();
 
     private DeleteClientCommand() {
     }
@@ -19,7 +20,6 @@ public class DeleteClientCommand {
         return instance;
     }
 
-    ClientServiceImpl clientService = ClientServiceImpl.getInstance();
 
     public List<Client> deleteCLient(int idClient) {
         return clientService.deleteClient(idClient);

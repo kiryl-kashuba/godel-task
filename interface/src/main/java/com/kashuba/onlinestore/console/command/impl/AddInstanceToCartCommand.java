@@ -5,6 +5,8 @@ import com.kashuba.onlinestore.service.impl.CartServiceImpl;
 
 public class AddInstanceToCartCommand {
 
+    private CartServiceImpl cartService = CartServiceImpl.getInstance();
+
     private static AddInstanceToCartCommand instance;
 
     private AddInstanceToCartCommand() {
@@ -16,8 +18,6 @@ public class AddInstanceToCartCommand {
         }
         return instance;
     }
-
-    CartServiceImpl cartService = CartServiceImpl.getInstance();
 
     public Cart addInstanceToCart(int idCart, int idInstance, Integer amount) {
         return cartService.addInstanceToCart(idCart, idInstance, amount);

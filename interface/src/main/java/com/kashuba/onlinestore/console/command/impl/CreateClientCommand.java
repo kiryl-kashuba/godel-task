@@ -8,6 +8,7 @@ import java.util.List;
 public class CreateClientCommand {
 
     private static CreateClientCommand instance;
+    private ClientServiceImpl clientService = ClientServiceImpl.getInstance();
 
     private CreateClientCommand() {
     }
@@ -19,7 +20,6 @@ public class CreateClientCommand {
         return instance;
     }
 
-    ClientServiceImpl clientService = ClientServiceImpl.getInstance();
 
     public List<Client> createCLient(Client client) {
         return clientService.createClient(client);

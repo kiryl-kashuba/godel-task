@@ -8,6 +8,8 @@ import java.util.List;
 
 public class CategoryServiceImpl implements CategoryService {
 
+    private CategoryDaoImpl categoryDao = CategoryDaoImpl.getInstance();
+
     private static CategoryServiceImpl instance;
 
     private CategoryServiceImpl() {
@@ -20,20 +22,18 @@ public class CategoryServiceImpl implements CategoryService {
         return instance;
     }
 
-    CategoryDaoImpl categoryDao = CategoryDaoImpl.getInstance();
-
     @Override
     public List<Category> createCategory(Category category, Integer... idValue) {
-        return categoryDao.createCategory(category, idValue);
+        return categoryDao.create(category, idValue);
     }
 
     @Override
-    public List<Category> deleteCategory(int idCategory) {
-        return categoryDao.deleteCategory(idCategory);
+    public List<Category> deleteCategory(int id) {
+        return categoryDao.delete(id);
     }
 
     @Override
     public List<Category> findCategories() {
-        return categoryDao.findCategories();
+        return categoryDao.find();
     }
 }

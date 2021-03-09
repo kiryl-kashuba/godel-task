@@ -9,6 +9,8 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
+    private FileInitialization fileInitialization = FileInitialization.getInstance();
+
     private static UserDaoImpl instance;
 
     private UserDaoImpl() {
@@ -22,20 +24,20 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> createUser(User user) {
+    public List<User> create(User user) {
         user.setId(IdGenerator.createID());
-        FileInitialization.getInstance().getReadedUser().add(user);
-        return FileInitialization.getInstance().getReadedUser();
+        fileInitialization.getReadedUser().add(user);
+        return fileInitialization.getReadedUser();
     }
 
     @Override
-    public List<User> deleteUser(int idUser) {
-        FileInitialization.getInstance().getReadedUser().removeIf(x -> x.getId() == idUser);
-        return FileInitialization.getInstance().getReadedUser();
+    public List<User> delete(int id) {
+        fileInitialization.getReadedUser().removeIf(x -> x.getId() == id);
+        return fileInitialization.getReadedUser();
     }
 
     @Override
-    public List<User> findUsers() {
-        return FileInitialization.getInstance().getReadedUser();
+    public List<User> find() {
+        return fileInitialization.getReadedUser();
     }
 }

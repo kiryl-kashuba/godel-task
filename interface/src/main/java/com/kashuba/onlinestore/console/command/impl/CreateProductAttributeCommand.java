@@ -8,6 +8,7 @@ import java.util.List;
 public class CreateProductAttributeCommand {
 
     private static CreateProductAttributeCommand instance;
+    private ProductAttributeServiceImpl productAttributeService = ProductAttributeServiceImpl.getInstance();
 
     private CreateProductAttributeCommand() {
     }
@@ -19,7 +20,6 @@ public class CreateProductAttributeCommand {
         return instance;
     }
 
-    ProductAttributeServiceImpl productAttributeService = ProductAttributeServiceImpl.getInstance();
 
     public List<ProductAttribute> createProductAttribute(ProductAttribute productAttribute) {
         return productAttributeService.createProductAttribute(productAttribute);

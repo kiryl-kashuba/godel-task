@@ -10,6 +10,8 @@ import java.util.List;
 
 public class CartDaoImpl implements CartDao {
 
+    private FileInitialization fileInitialization = FileInitialization.getInstance();
+
     private static CartDaoImpl instance;
 
     private CartDaoImpl() {
@@ -23,30 +25,30 @@ public class CartDaoImpl implements CartDao {
     }
 
     @Override
-    public List<Cart> createCart(Cart cart) {
+    public List<Cart> create(Cart cart) {
         cart.setId(IdGenerator.createID());
-        FileInitialization.getInstance().getReadedCart().add(cart);
-        return FileInitialization.getInstance().getReadedCart();
+        fileInitialization.getReadedCart().add(cart);
+        return fileInitialization.getReadedCart();
     }
 
     @Override
-    public List<Cart> deleteCart(int idCart) {
-        FileInitialization.getInstance().getReadedCart().removeIf(x -> x.getId() == idCart);
-        return FileInitialization.getInstance().getReadedCart();
+    public List<Cart> delete(int id) {
+        fileInitialization.getReadedCart().removeIf(x -> x.getId() == id);
+        return fileInitialization.getReadedCart();
     }
 
     @Override
-    public List<Cart> findCarts() {
-        return FileInitialization.getInstance().getReadedCart();
+    public List<Cart> find() {
+        return fileInitialization.getReadedCart();
     }
 
     @Override
     public Cart addInstanceToCart(int idCart, int idInstance, Integer amount) {
         Cart returnCart = null;
-        for (Cart cart : FileInitialization.getInstance().getReadedCart()) {
+        for (Cart cart : fileInitialization.getReadedCart()) {
             if (idCart == cart.getId()) {
                 returnCart = cart;
-                for (InstanceProduct instanceProduct : FileInitialization.getInstance().getReadedProduct()) {
+                for (InstanceProduct instanceProduct : fileInitialization.getReadedProduct()) {
                     if (idInstance == instanceProduct.getId()) {
                         cart.getNumber().put(instanceProduct, amount);
                         cart.addInstanceProduct(instanceProduct);

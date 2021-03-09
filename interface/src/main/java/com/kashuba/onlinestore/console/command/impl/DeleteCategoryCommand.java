@@ -8,6 +8,7 @@ import java.util.List;
 public class DeleteCategoryCommand {
 
     private static DeleteCategoryCommand instance;
+    private CategoryServiceImpl categoryService = CategoryServiceImpl.getInstance();
 
     private DeleteCategoryCommand() {
     }
@@ -19,7 +20,6 @@ public class DeleteCategoryCommand {
         return instance;
     }
 
-    CategoryServiceImpl categoryService = CategoryServiceImpl.getInstance();
 
     public List<Category> deleteCategory(int idCategory) {
         return categoryService.deleteCategory(idCategory);

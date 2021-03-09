@@ -8,6 +8,7 @@ import java.util.List;
 public class UpdateInstanceCommand {
 
     private static UpdateInstanceCommand instance;
+    private InstanceProductServiceImpl instanceProductService = InstanceProductServiceImpl.getInstance();
 
     private UpdateInstanceCommand() {
     }
@@ -19,7 +20,6 @@ public class UpdateInstanceCommand {
         return instance;
     }
 
-    InstanceProductServiceImpl instanceProductService = InstanceProductServiceImpl.getInstance();
 
     public List<InstanceProduct> updateInstance(InstanceProduct instanceProduct, int idOfProduct) {
         return instanceProductService.updateInstanceProduct(instanceProduct, idOfProduct);

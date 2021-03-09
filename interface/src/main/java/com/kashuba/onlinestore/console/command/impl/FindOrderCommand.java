@@ -8,6 +8,7 @@ import java.util.List;
 public class FindOrderCommand {
 
     private static FindOrderCommand instance;
+    private OrderServiceImpl orderService = OrderServiceImpl.getInstance();
 
     private FindOrderCommand() {
     }
@@ -19,7 +20,6 @@ public class FindOrderCommand {
         return instance;
     }
 
-    OrderServiceImpl orderService = OrderServiceImpl.getInstance();
 
     public List<Order> findOrders() {
         return orderService.findOrders();

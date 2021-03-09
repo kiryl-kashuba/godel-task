@@ -8,6 +8,7 @@ import java.util.List;
 public class FindProductAttributeCommand {
 
     private static FindProductAttributeCommand instance;
+    private ProductAttributeServiceImpl productAttributeService = ProductAttributeServiceImpl.getInstance();
 
     private FindProductAttributeCommand() {
     }
@@ -19,7 +20,6 @@ public class FindProductAttributeCommand {
         return instance;
     }
 
-    ProductAttributeServiceImpl productAttributeService = ProductAttributeServiceImpl.getInstance();
 
     public List<ProductAttribute> findProductAttributes() {
         return productAttributeService.findProductAttributes();

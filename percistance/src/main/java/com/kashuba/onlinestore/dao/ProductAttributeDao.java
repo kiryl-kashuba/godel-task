@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface ProductAttributeDao {
 
-    List<ProductAttribute> createProductAttribute(ProductAttribute ProductAttribute);
+    List<ProductAttribute> create(ProductAttribute ProductAttribute);
 
-    List<ProductAttribute> deleteProductAttribute(int idAttributeValue);
+    List<ProductAttribute> delete(int id);
 
-    List<ProductAttribute> findProductAttributes();
+    List<ProductAttribute> find();
 }

@@ -9,6 +9,8 @@ import java.util.List;
 
 public class ClientDaoImpl implements ClientDao {
 
+    private FileInitialization fileInitialization = FileInitialization.getInstance();
+
     private static ClientDaoImpl instance;
 
     private ClientDaoImpl() {
@@ -23,21 +25,21 @@ public class ClientDaoImpl implements ClientDao {
 
 
     @Override
-    public List<Client> createClient(Client client) {
+    public List<Client> create(Client client) {
         client.setId(IdGenerator.createID());
-        FileInitialization.getInstance().getReadedClients().add(client);
-        return FileInitialization.getInstance().getReadedClients();
+        fileInitialization.getReadedClients().add(client);
+        return fileInitialization.getReadedClients();
     }
 
     @Override
-    public List<Client> deleteClient(int idClient) {
-        FileInitialization.getInstance().getReadedClients().removeIf(x -> x.getId() == idClient);
-        return FileInitialization.getInstance().getReadedClients();
+    public List<Client> delete(int id) {
+        fileInitialization.getReadedClients().removeIf(x -> x.getId() == id);
+        return fileInitialization.getReadedClients();
     }
 
     @Override
-    public List<Client> findClients() {
-        return FileInitialization.getInstance().getReadedClients();
+    public List<Client> find() {
+        return fileInitialization.getReadedClients();
     }
 
 }

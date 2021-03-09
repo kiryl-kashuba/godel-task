@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface OrderDao {
 
-    List<Order> createOrder(Order order, int idCart);
+    List<Order> create(Order order, int idCart);
 
-    List<Order> deleteOrder(int idOrder);
+    List<Order> delete(int id);
 
-    List<Order> findOrders();
+    List<Order> find();
 }

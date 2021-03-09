@@ -9,6 +9,8 @@ import java.util.List;
 
 public class ProductAttributeDaoImpl implements ProductAttributeDao {
 
+    private FileInitialization fileInitialization = FileInitialization.getInstance();
+
     private static ProductAttributeDaoImpl instance;
 
     private ProductAttributeDaoImpl() {
@@ -22,20 +24,20 @@ public class ProductAttributeDaoImpl implements ProductAttributeDao {
     }
 
     @Override
-    public List<ProductAttribute> createProductAttribute(ProductAttribute productAttribute) {
+    public List<ProductAttribute> create(ProductAttribute productAttribute) {
         productAttribute.setId(IdGenerator.createID());
-        FileInitialization.getInstance().getReadedPA().add(productAttribute);
-        return FileInitialization.getInstance().getReadedPA();
+        fileInitialization.getReadedPA().add(productAttribute);
+        return fileInitialization.getReadedPA();
     }
 
     @Override
-    public List<ProductAttribute> deleteProductAttribute(int idAttribute) {
-        FileInitialization.getInstance().getReadedPA().removeIf(x -> x.getId() == idAttribute);
-        return FileInitialization.getInstance().getReadedPA();
+    public List<ProductAttribute> delete(int id) {
+        fileInitialization.getReadedPA().removeIf(x -> x.getId() == id);
+        return fileInitialization.getReadedPA();
     }
 
     @Override
-    public List<ProductAttribute> findProductAttributes() {
-        return FileInitialization.getInstance().getReadedPA();
+    public List<ProductAttribute> find() {
+        return fileInitialization.getReadedPA();
     }
 }

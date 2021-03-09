@@ -8,6 +8,7 @@ import java.util.List;
 public class CreateCategoryCommand {
 
     private static CreateCategoryCommand instance;
+    private CategoryServiceImpl categoryService = CategoryServiceImpl.getInstance();
 
     private CreateCategoryCommand() {
     }
@@ -19,7 +20,6 @@ public class CreateCategoryCommand {
         return instance;
     }
 
-    CategoryServiceImpl categoryService = CategoryServiceImpl.getInstance();
 
     public List<Category> createCLient(Category category, Integer... idValue) {
         return categoryService.createCategory(category, idValue);
