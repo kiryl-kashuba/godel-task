@@ -23,17 +23,17 @@ public class ProductAttributeValueServiceImpl implements ProductAttributeValueSe
     ProductAttributeValueDaoImpl productAttributeValueDao = ProductAttributeValueDaoImpl.getInstance();
 
     @Override
-    public ProductAttributeValue createProductAttributeValue(String value) {
-        return productAttributeValueDao.createProductAttribute();
+    public ProductAttributeValue createProductAttributeValue(ProductAttributeValue productAttributeValue) {
+        return productAttributeValueDao.createProductAttributeValue(productAttributeValue);
     }
 
     @Override
     public List<ProductAttributeValue> deleteProductAttributeValue(int idAttributeValue) {
-        return productAttributeValueDao.findProductAttributes();
+        return productAttributeValueDao.findProductAttributeValues();
     }
 
     @Override
     public List<ProductAttributeValue> findProductAttributeValues() {
-        return productAttributeValueDao.findProductAttributes();
+        return productAttributeValueDao.findProductAttributeValues();
     }
 }

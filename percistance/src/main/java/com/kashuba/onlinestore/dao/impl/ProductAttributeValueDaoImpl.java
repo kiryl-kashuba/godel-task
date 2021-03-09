@@ -1,11 +1,13 @@
 package com.kashuba.onlinestore.dao.impl;
 
-import com.kashuba.onlinestore.dao.ProductAttributeDao;
-import com.kashuba.onlinestore.entity.ProductAttribute;
+import com.kashuba.onlinestore.IdGenerator;
+import com.kashuba.onlinestore.dao.ProductAttributeValueDao;
+import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
+import com.kashuba.onlinestore.entity.ProductAttributeValue;
 
 import java.util.List;
 
-public class ProductAttributeValueDaoImpl implements ProductAttributeDao {
+public class ProductAttributeValueDaoImpl implements ProductAttributeValueDao {
 
     private static ProductAttributeValueDaoImpl instance;
 
@@ -19,19 +21,21 @@ public class ProductAttributeValueDaoImpl implements ProductAttributeDao {
         return instance;
     }
 
-
     @Override
-    public List<ProductAttribute> createProductAttribute(ProductAttribute productAttribute) {
-        return null;
+    public ProductAttributeValue createProductAttributeValue(ProductAttributeValue productAttributeValue) {
+        productAttributeValue.setId(IdGenerator.createID());
+        FileInitialization.getInstance().getReadedPAV().add(productAttributeValue);
+        return productAttributeValue;
     }
 
     @Override
-    public List<ProductAttribute> deleteProductAttribute(int idAttribute) {
-        return null;
+    public List<ProductAttributeValue> deleteProductAttributeValue(int idAttribute) {
+        FileInitialization.getInstance().getReadedPAV().removeIf(x -> x.getId() == idAttribute);
+        return FileInitialization.getInstance().getReadedPAV();
     }
 
     @Override
-    public List<ProductAttribute> findProductAttributes() {
-        return null;
+    public List<ProductAttributeValue> findProductAttributeValues() {
+        return FileInitialization.getInstance().getReadedPAV();
     }
 }

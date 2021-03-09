@@ -23,18 +23,21 @@ public class Main {
     CreateCategoryCommand createCategoryCommand = CreateCategoryCommand.getInstance();
     CreateInstanceCommand createInstanceCommand = CreateInstanceCommand.getInstance();
     CreateProductAttributeCommand createProductAttributeCommand = CreateProductAttributeCommand.getInstance();
+    CreateProductAttributeValueCommand createProductAttributeValueCommand = CreateProductAttributeValueCommand.getInstance();
     DeleteCartCommand deleteCartCommand = DeleteCartCommand.getInstance();
     DeleteCategoryCommand deleteCategoryCommand = DeleteCategoryCommand.getInstance();
     DeleteClientCommand deleteClientCommand = DeleteClientCommand.getInstance();
     DeleteInstanceCommand deleteInstanceCommand = DeleteInstanceCommand.getInstance();
     DeleteOrderCommand deleteOrderCommand = DeleteOrderCommand.getInstance();
     DeleteProductAttributeCommand deleteProductAttributeCommand = DeleteProductAttributeCommand.getInstance();
+    DeleteProductAttributeValueCommand deleteProductAttributeValueCommand = DeleteProductAttributeValueCommand.getInstance();
     FindCartCommand findCartCommand = FindCartCommand.getInstance();
     FindCategoryCommand findCategoryCommand = FindCategoryCommand.getInstance();
     FindClientCommand findClientCommand = FindClientCommand.getInstance();
     FindInstanceCommand findInstanceCommand = FindInstanceCommand.getInstance();
     FindOrderCommand findOrderCommand = FindOrderCommand.getInstance();
     FindProductAttributeCommand findProductAttributeCommand = FindProductAttributeCommand.getInstance();
+    FindProductAttributeValueCommand findProductAttributeValueCommand = FindProductAttributeValueCommand.getInstance();
     SaveInfoCommand saveInfoCommand = SaveInfoCommand.getInstance();
     UpdateInstanceCommand updateInstanceCommand = UpdateInstanceCommand.getInstance();
 
@@ -173,6 +176,17 @@ public class Main {
     }
 
     @Command
+    public List<ProductAttributeValue> findProductAttributeValue() {
+        return findProductAttributeValueCommand.findProductAttributeValue();
+    }
+
+    @Command
+    public List<ProductAttributeValue> deleteProductAttributeValue(int idInstance) {
+        return deleteProductAttributeValueCommand.deleteProductAttributeValue(idInstance);
+    }
+
+
+    @Command
     public List<Cart> createCArt(int idClient) {
         List<InstanceProduct> list = new ArrayList<>();
         Map<InstanceProduct, Integer> number = new HashMap<>();
@@ -200,14 +214,12 @@ public class Main {
         return addInstanceToCartCommand.addInstanceToCart(idCart, idInstance, amount);
     }
 
-
     @Command
     public List<Order> createORder(int idCart) {
         Order order = new Order();
 
         return createOrderCommand.createOrder(order, idCart);
     }
-
 
     @Command
     public List<Order> findORder() {

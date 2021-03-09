@@ -29,6 +29,7 @@ public class FileInitialization {
     public static String PAR = "ProductAttribute.txt";
     public static String USERR = "User.txt";
     public static String IDR = "Id.txt";
+    public static String PAVR = "ProductAttributeValue.txt";
 
     List<Client> readedClients = new ArrayList<>();
     List<Order> readedOrder = new ArrayList<>();
@@ -36,6 +37,7 @@ public class FileInitialization {
     List<InstanceProduct> readedProduct = new ArrayList<>();
     List<Category> readedCategory = new ArrayList<>();
     List<ProductAttribute> readedPA = new ArrayList<>();
+    List<ProductAttributeValue> readedPAV = new ArrayList<>();
     private List<User> readedUser = new ArrayList<>();
 
     public List<Client> getReadedClients() {
@@ -66,6 +68,10 @@ public class FileInitialization {
         return readedUser;
     }
 
+    public List<ProductAttributeValue> getReadedPAV() {
+        return readedPAV;
+    }
+
     {
         try {
             System.out.println(readedClients);
@@ -82,6 +88,7 @@ public class FileInitialization {
             readedCategory = (List<Category>) FileRepository.readObject(CATEGORYR);
             readedPA = (List<ProductAttribute>) FileRepository.readObject(PAR);
             readedUser = (List<User>) FileRepository.readObject(USERR);
+            readedPAV = (List<ProductAttributeValue>) FileRepository.readObject(PAVR);
             System.out.println(readedClients);
             System.out.println(readedOrder);
             System.out.println(readedCart);
@@ -89,6 +96,7 @@ public class FileInitialization {
             System.out.println(readedCategory);
             System.out.println(readedPA);
             System.out.println(readedUser);
+            System.out.println(readedPAV);
             IdGenerator.setIdCounter(FileRepository.readId(IDR));
 
             System.out.println("Initialization successful");

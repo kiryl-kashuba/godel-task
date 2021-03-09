@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProductAttributeValueService {
 
-    ProductAttributeValue createProductAttributeValue(String value);
+    ProductAttributeValue createProductAttributeValue(ProductAttributeValue productAttributeValue);
 
     List<ProductAttributeValue> deleteProductAttributeValue(int idAttributeValue);
 
