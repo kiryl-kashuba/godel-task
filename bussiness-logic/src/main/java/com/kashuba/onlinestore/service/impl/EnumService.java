@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore.service;
+package com.kashuba.onlinestore.service.impl;
 
 import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.entity.User;

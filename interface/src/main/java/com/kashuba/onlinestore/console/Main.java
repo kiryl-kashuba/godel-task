@@ -5,7 +5,7 @@ import com.budhash.cliche.ShellFactory;
 import com.kashuba.onlinestore.console.command.impl.*;
 import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
 import com.kashuba.onlinestore.entity.*;
-import com.kashuba.onlinestore.service.EnumService;
+import com.kashuba.onlinestore.service.impl.EnumService;
 
 import java.io.IOException;
 import java.util.*;
