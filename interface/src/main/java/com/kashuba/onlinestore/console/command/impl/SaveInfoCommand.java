@@ -1,7 +1,7 @@
 package com.kashuba.onlinestore.console.command.impl;
 
 import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
-import com.kashuba.onlinestore.service.InfoService;
+import com.kashuba.onlinestore.service.impl.InfoService;
 
 public class SaveInfoCommand {
 
