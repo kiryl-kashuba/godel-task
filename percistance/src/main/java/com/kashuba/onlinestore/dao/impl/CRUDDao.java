@@ -5,7 +5,7 @@ import com.kashuba.onlinestore.entity.BaseEntity;
 
 import java.util.List;
 
-public abstract class FileInitializationHolder<T extends BaseEntity> {
+public abstract class CRUDDao<T extends BaseEntity> {
 
     public FileInitialization fileInitialization = FileInitialization.getInstance();
 

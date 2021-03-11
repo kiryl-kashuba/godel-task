@@ -6,7 +6,7 @@ import com.kashuba.onlinestore.entity.Client;
 
 import java.util.List;
 
-public class ClientDaoImpl extends FileInitializationHolder {
+public class ClientDaoImpl extends CRUDDao {
 
     private static ClientDaoImpl instance;
 

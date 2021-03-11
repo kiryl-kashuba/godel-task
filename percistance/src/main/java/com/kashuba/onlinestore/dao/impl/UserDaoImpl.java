@@ -6,7 +6,7 @@ import com.kashuba.onlinestore.entity.User;
 
 import java.util.List;
 
-public class UserDaoImpl extends FileInitializationHolder {
+public class UserDaoImpl extends CRUDDao {
 
     private static UserDaoImpl instance;
 

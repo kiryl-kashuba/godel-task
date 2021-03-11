@@ -6,7 +6,7 @@ import com.kashuba.onlinestore.entity.ProductAttribute;
 
 import java.util.List;
 
-public class ProductAttributeDaoImpl extends FileInitializationHolder {
+public class ProductAttributeDaoImpl extends CRUDDao {
 
     private static ProductAttributeDaoImpl instance;
 
