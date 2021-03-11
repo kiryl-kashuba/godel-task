@@ -5,13 +5,13 @@ import com.kashuba.onlinestore.entity.BaseEntity;
 
 import java.util.List;
 
-public abstract class FileInitializationHolder {
+public abstract class FileInitializationHolder<T extends BaseEntity> {
 
     public FileInitialization fileInitialization = FileInitialization.getInstance();
 
-    public abstract List<?> create(BaseEntity baseEntity);
+    public abstract List<T> create(T object);
 
-    public abstract List<?> delete(int id);
+    public abstract List<T> delete(int id);
 
-    public abstract List<?> find();
+    public abstract List<T> find();
 }

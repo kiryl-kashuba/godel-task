@@ -1,12 +1,12 @@
 package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
-import com.kashuba.onlinestore.dao.UserDao;
+import com.kashuba.onlinestore.entity.BaseEntity;
 import com.kashuba.onlinestore.entity.User;
 
 import java.util.List;
 
-public class UserDaoImpl extends FileInitializationHolder implements UserDao {
+public class UserDaoImpl extends FileInitializationHolder {
 
     private static UserDaoImpl instance;
 
@@ -21,9 +21,9 @@ public class UserDaoImpl extends FileInitializationHolder implements UserDao {
     }
 
     @Override
-    public List<User> create(User user) {
-        user.setId(IdGenerator.createID());
-        fileInitialization.getReadedUser().add(user);
+    public List<User> create(BaseEntity object) {
+        object.setId(IdGenerator.createID());
+        fileInitialization.getReadedUser().add((User) object);
         return fileInitialization.getReadedUser();
     }
 

@@ -1,12 +1,12 @@
 package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
-import com.kashuba.onlinestore.dao.InstanceProductDao;
+import com.kashuba.onlinestore.entity.BaseEntity;
 import com.kashuba.onlinestore.entity.InstanceProduct;
 
 import java.util.List;
 
-public class InstanceProductDaoImpl extends FileInitializationHolder implements InstanceProductDao {
+public class InstanceProductDaoImpl extends FileInitializationHolder {
 
     private static InstanceProductDaoImpl instance;
 
@@ -21,9 +21,9 @@ public class InstanceProductDaoImpl extends FileInitializationHolder implements 
     }
 
     @Override
-    public List<InstanceProduct> create(InstanceProduct instanceProduct) {
-        instanceProduct.setId(IdGenerator.createID());
-        fileInitialization.getReadedProduct().add(instanceProduct);
+    public List<InstanceProduct> create(BaseEntity object) {
+        object.setId(IdGenerator.createID());
+        fileInitialization.getReadedProduct().add((InstanceProduct) object);
         return fileInitialization.getReadedProduct();
     }
 
@@ -32,7 +32,6 @@ public class InstanceProductDaoImpl extends FileInitializationHolder implements 
         return fileInitialization.getReadedProduct();
     }
 
-    @Override
     public List<InstanceProduct> update(int id, InstanceProduct instanceProduct) {
         for (InstanceProduct oldInstanceProduct : fileInitialization.getReadedProduct())
             if (id == oldInstanceProduct.getId()) {
