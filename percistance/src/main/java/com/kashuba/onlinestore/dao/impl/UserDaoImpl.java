@@ -1,12 +1,13 @@
 package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
+import com.kashuba.onlinestore.dao.UserDao;
 import com.kashuba.onlinestore.entity.BaseEntity;
 import com.kashuba.onlinestore.entity.User;
 
 import java.util.List;
 
-public class UserDaoImpl extends CRUDDao {
+public class UserDaoImpl extends CRUDDao implements UserDao {
 
     private static UserDaoImpl instance;
 
@@ -21,10 +22,10 @@ public class UserDaoImpl extends CRUDDao {
     }
 
     @Override
-    public List<User> create(BaseEntity object) {
+    public User create(BaseEntity object) {
         object.setId(IdGenerator.createID());
         fileInitialization.getReadedUser().add((User) object);
-        return fileInitialization.getReadedUser();
+        return (User) object;
     }
 
     @Override

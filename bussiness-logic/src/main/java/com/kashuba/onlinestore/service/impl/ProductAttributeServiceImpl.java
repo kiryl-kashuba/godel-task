@@ -23,7 +23,7 @@ public class ProductAttributeServiceImpl implements ProductAttributeService {
     }
 
     @Override
-    public List<ProductAttribute> createProductAttribute(ProductAttribute productAttribute) {
+    public ProductAttribute createProductAttribute(ProductAttribute productAttribute) {
         return productAttributeDao.create(productAttribute);
     }
 

@@ -9,7 +9,7 @@ public abstract class CRUDDao<T extends BaseEntity> {
 
     public FileInitialization fileInitialization = FileInitialization.getInstance();
 
-    public abstract List<T> create(T object);
+    public abstract T create(T object);
 
     public abstract List<T> delete(int id);
 

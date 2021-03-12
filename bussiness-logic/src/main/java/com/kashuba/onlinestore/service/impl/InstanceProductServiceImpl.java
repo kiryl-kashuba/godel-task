@@ -23,7 +23,7 @@ public class InstanceProductServiceImpl implements InstanceProductService {
     }
 
     @Override
-    public List<InstanceProduct> createInstanceProduct(InstanceProduct instanceProduct) {
+    public InstanceProduct createInstanceProduct(InstanceProduct instanceProduct) {
         return instanceProductDao.create(instanceProduct);
     }
 

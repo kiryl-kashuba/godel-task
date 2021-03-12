@@ -1,7 +1,5 @@
 package com.kashuba.onlinestore.entity;
 
-import com.opencsv.bean.CsvBindByPosition;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -44,4 +42,5 @@ public abstract class BaseEntity implements Serializable {
                 "id=" + id +
                 '}';
     }
+
 }

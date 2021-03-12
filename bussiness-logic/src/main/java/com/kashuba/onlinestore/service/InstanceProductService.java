@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface InstanceProductService {
 
-    List<InstanceProduct> createInstanceProduct(InstanceProduct instanceProduct);
+    InstanceProduct createInstanceProduct(InstanceProduct instanceProduct);
 
     List<InstanceProduct> updateInstanceProduct(InstanceProduct instanceProduct, int idOfProduct);
 

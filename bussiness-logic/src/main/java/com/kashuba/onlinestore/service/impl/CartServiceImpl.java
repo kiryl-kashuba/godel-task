@@ -24,7 +24,7 @@ public class CartServiceImpl implements CartService {
 
 
     @Override
-    public List<Cart> createCart(Cart cart) {
+    public Cart createCart(Cart cart) {
         return cartDao.create(cart);
     }
 

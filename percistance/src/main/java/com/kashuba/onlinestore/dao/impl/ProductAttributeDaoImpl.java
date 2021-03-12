@@ -1,12 +1,13 @@
 package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
+import com.kashuba.onlinestore.dao.ProductAttributeValueDao;
 import com.kashuba.onlinestore.entity.BaseEntity;
 import com.kashuba.onlinestore.entity.ProductAttribute;
 
 import java.util.List;
 
-public class ProductAttributeDaoImpl extends CRUDDao {
+public class ProductAttributeDaoImpl extends CRUDDao implements ProductAttributeValueDao {
 
     private static ProductAttributeDaoImpl instance;
 
@@ -21,10 +22,10 @@ public class ProductAttributeDaoImpl extends CRUDDao {
     }
 
     @Override
-    public List create(BaseEntity object) {
+    public ProductAttribute create(BaseEntity object) {
         object.setId(IdGenerator.createID());
         fileInitialization.getReadedPA().add((ProductAttribute) object);
-        return fileInitialization.getReadedPA();
+        return (ProductAttribute) object;
     }
 
     @Override

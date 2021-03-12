@@ -2,17 +2,14 @@ package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.CategoryDao;
-import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
+import com.kashuba.onlinestore.entity.BaseEntity;
 import com.kashuba.onlinestore.entity.Category;
-import com.kashuba.onlinestore.entity.ProductAttribute;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDaoImpl implements CategoryDao {
+public class CategoryDaoImpl extends CRUDDao implements CategoryDao {
 
     private static CategoryDaoImpl instance;
-    public FileInitialization fileInitialization = FileInitialization.getInstance();
 
     private CategoryDaoImpl() {
     }
@@ -25,19 +22,10 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public List<Category> create(Category category, Integer... idValue) {
-        List<ProductAttribute> list = new ArrayList<>();
-        for (int i = 0; i < idValue.length; i++) {
-            for (ProductAttribute productAttribute : fileInitialization.getReadedPA()) {
-                if (idValue[i] == productAttribute.getId()) {
-                    list.add(productAttribute);
-                }
-            }
-        }
-        category.setProductAttribute(list);
-        category.setId(IdGenerator.createID());
-        fileInitialization.getReadedCategory().add(category);
-        return fileInitialization.getReadedCategory();
+    public Category create(BaseEntity object) {
+        object.setId(IdGenerator.createID());
+        fileInitialization.getReadedCategory().add((Category) object);
+        return (Category) object;
     }
 
     @Override

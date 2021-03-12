@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CategoryService {
 
-    List<Category> createCategory(Category category, Integer... idValue);
+    Category createCategory(Category category, Integer... idValue);
 
     List<Category> deleteCategory(int idCategory);
 

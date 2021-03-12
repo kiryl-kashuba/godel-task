@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProductAttributeService {
 
-    List<ProductAttribute> createProductAttribute(ProductAttribute productAttribute);
+    ProductAttribute createProductAttribute(ProductAttribute productAttribute);
 
     List<ProductAttribute> deleteProductAttribute(int idAttribute);
 

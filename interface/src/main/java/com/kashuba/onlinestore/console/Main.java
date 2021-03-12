@@ -7,6 +7,7 @@ import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
 import com.kashuba.onlinestore.entity.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
 
 public class Main {
@@ -41,14 +42,15 @@ public class Main {
     UpdateInstanceCommand updateInstanceCommand = UpdateInstanceCommand.getInstance();
 
 
-    @Command
-    public void saveinfo() {
+    @Command(name = "Save Info", abbrev = "si")
+    public void saveInfo() {
         saveInfoCommand.saveInfo(FileInitialization.getInstance());
     }
 
-    @Command
-    public List<Client> createCLient(String email, String pass, String fname, String sname,
-                                     long number, String role, String status) {
+    @Command(name = "Create Client - String email, String pass, String fname, String sname,long number, " +
+            "String role, String status", abbrev = "ccl", header = "Strin role, String status")
+    public Client createClient(String email, String pass, String fname, String sname,
+                               long number, String role, String status) {
         Client client = new Client(email, pass, fname, sname, number);
         client.setRole(User.Role.findRole(role));
         client.setStatus(Client.Status.findStatus(status));
@@ -56,53 +58,53 @@ public class Main {
         return createClientCommand.createCLient(client);
     }
 
-    @Command
-    public List<Client> findCLients() {
+    @Command(name = "Find Clients", abbrev = "fcl")
+    public List<Client> findClients() {
         return findClientCommand.findCLients();
     }
 
-    @Command
-    public List<Client> deleteCLient(int idClient) {
+    @Command(name = "Delete Client - int idClient", abbrev = "dcl")
+    public List<Client> deleteClient(int idClient) {
         return deleteClientCommand.deleteCLient(idClient);
     }
 
 
-    @Command
-    public List<ProductAttribute> createProductAttribute(String name, boolean mandatory, String type) {
+    @Command(name = "Create Product Attribute - String name, boolean mandatory, String type", abbrev = "cpa")
+    public ProductAttribute createProductAttribute(String name, boolean mandatory, String type) {
         ProductAttribute productAttribute = new ProductAttribute(name, mandatory, type);
         return createProductAttributeCommand.createProductAttribute(productAttribute);
     }
 
 
-    @Command
+    @Command(name = "Find Product Attributes", abbrev = "fpa")
     public List<ProductAttribute> findProductAttributes() {
         return findProductAttributeCommand.findProductAttributes();
     }
 
 
-    @Command
+    @Command(name = "Delete Product Attribute - int idList", abbrev = "dpa")
     public List<ProductAttribute> deleteProductAttribute(int idList) {
         return deleteProductAttributeCommand.DeleteProductAttribute(idList);
     }
 
-    @Command
-    public List<Category> createCAtegory(String name, Integer... idValue) {
+    @Command(name = "Create Category - String name, Integer... idValue", abbrev = "cca")
+    public Category createCategory(String name, Integer... idValue) {
         Category category = new Category(name);
         return createCategoryCommand.createCLient(category, idValue);
     }
 
-    @Command
-    public List<Category> findCAtegory() {
+    @Command(name = "Find Category", abbrev = "fca")
+    public List<Category> findCategory() {
         return findCategoryCommand.findCategories();
     }
 
-    @Command
-    public List<Category> deleteCAtegory(int idList) {
+    @Command(name = "Delete Category - int idList", abbrev = "dca")
+    public List<Category> deleteCategory(int idList) {
         return deleteCategoryCommand.deleteCategory(idList);
     }
 
-    @Command
-    public List<InstanceProduct> createINstance(String name, String articulation, int price, int idOfCategory) {
+    @Command(name = "Create Instance - String name, String articulation, int price, int idOfCategory", abbrev = "ci")
+    public InstanceProduct createInstance(String name, String articulation, int price, int idOfCategory) {
         InstanceProduct instanceProduct = new InstanceProduct(name, articulation, price);
 
         for (Category category : findCategoryCommand.findCategories()) {
@@ -129,8 +131,8 @@ public class Main {
         return createInstanceCommand.createInstance(instanceProduct);
     }
 
-    @Command
-    public List<InstanceProduct> updateINstance(int idOfProduct, String name, String articulation,
+    @Command(name = "Update Instance - int idOfProduct, String name, String articulation, int price, int idOfCategory", abbrev = "ui")
+    public List<InstanceProduct> updateInstance(int idOfProduct, String name, String articulation,
                                                 int price, int idOfCategory) {
         InstanceProduct instanceProduct = new InstanceProduct(name, articulation, price);
 
@@ -158,35 +160,35 @@ public class Main {
         return updateInstanceCommand.updateInstance(instanceProduct, idOfProduct);
     }
 
-    @Command
-    public List<InstanceProduct> findINstance() {
+    @Command(name = "FindInstance", abbrev = "fi")
+    public List<InstanceProduct> findInstance() {
         return findInstanceCommand.findInstances();
     }
 
-    @Command
-    public List<InstanceProduct> deleteINstance(int idInstance) {
+    @Command(name = "Delete Instance - int idInstance", abbrev = "di")
+    public List<InstanceProduct> deleteInstance(int idInstance) {
         return deleteInstanceCommand.deleteCLient(idInstance);
     }
 
-    @Command
+    @Command(name = "Create Product Attribute Value - String value, ProductAttribute productAttribute", abbrev = "cpav")
     public ProductAttributeValue createProductAttributeValue(String value, ProductAttribute productAttribute) {
         ProductAttributeValue productAttributeValue = new ProductAttributeValue(value, productAttribute);
         return createProductAttributeValueCommand.createProductAttribute(productAttributeValue);
     }
 
-    @Command
+    @Command(name = "Find Product Attribute Value", abbrev = "fpav")
     public List<ProductAttributeValue> findProductAttributeValue() {
         return findProductAttributeValueCommand.findProductAttributeValue();
     }
 
-    @Command
+    @Command(name = "Delete Product Attribute Value - int idInstance", abbrev = "dpav")
     public List<ProductAttributeValue> deleteProductAttributeValue(int idInstance) {
         return deleteProductAttributeValueCommand.deleteProductAttributeValue(idInstance);
     }
 
 
-    @Command
-    public List<Cart> createCArt(int idClient) {
+    @Command(name = "Create Cart - int idClient", abbrev = "cc")
+    public Cart createCArt(int idClient) {
         List<InstanceProduct> list = new ArrayList<>();
         Map<InstanceProduct, Integer> number = new HashMap<>();
         Cart cart = new Cart(list, number);
@@ -198,35 +200,36 @@ public class Main {
         return createCartCommand.createInstance(cart);
     }
 
-    @Command
-    public List<Cart> findCART() {
+    @Command(name = "Find Cart", abbrev = "fc")
+    public List<Cart> findCart() {
         return findCartCommand.findCarts();
     }
 
-    @Command
-    public List<Cart> deleteCART(int idCart) {
+    @Command(name = "Delete Cart - int idCart", abbrev = "dc")
+    public List<Cart> deleteCart(int idCart) {
         return deleteCartCommand.deleteCart(idCart);
     }
 
-    @Command
+    @Command(name = "Add Instance To Cart - int idCart, int idInstance, Integer amount", abbrev = "ac")
     public Cart addInstanceToCart(int idCart, int idInstance, Integer amount) {
         return addInstanceToCartCommand.addInstanceToCart(idCart, idInstance, amount);
     }
 
-    @Command
-    public List<Order> createORder(int idCart) {
+    @Command(name = "Create Order - int idCart", abbrev = "co")
+    public Order createOrder(int idCart) {
         Order order = new Order();
+        order.setDateOrder(LocalDate.now());
 
         return createOrderCommand.createOrder(order, idCart);
     }
 
-    @Command
-    public List<Order> findORder() {
+    @Command(name = "Find Order", abbrev = "fo")
+    public List<Order> findOrder() {
         return findOrderCommand.findOrders();
     }
 
-    @Command
-    public List<Order> deleteORder(int idOrder) {
+    @Command(name = "Delete Order - int idOrder", abbrev = "do")
+    public List<Order> deleteOrder(int idOrder) {
         return deleteOrderCommand.deleteOrder(idOrder);
     }
 

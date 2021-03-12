@@ -3,8 +3,6 @@ package com.kashuba.onlinestore.console.command.impl;
 import com.kashuba.onlinestore.entity.Cart;
 import com.kashuba.onlinestore.service.impl.CartServiceImpl;
 
-import java.util.List;
-
 public class CreateCartCommand {
 
     private CartServiceImpl cartService = CartServiceImpl.getInstance();
@@ -20,7 +18,7 @@ public class CreateCartCommand {
         return instance;
     }
 
-    public List<Cart> createInstance(Cart cart) {
+    public Cart createInstance(Cart cart) {
         return cartService.createCart(cart);
     }
 }

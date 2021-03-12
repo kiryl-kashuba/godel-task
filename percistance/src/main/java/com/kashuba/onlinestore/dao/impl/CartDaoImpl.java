@@ -1,13 +1,14 @@
 package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
+import com.kashuba.onlinestore.dao.CartDao;
 import com.kashuba.onlinestore.entity.BaseEntity;
 import com.kashuba.onlinestore.entity.Cart;
 import com.kashuba.onlinestore.entity.InstanceProduct;
 
 import java.util.List;
 
-public class CartDaoImpl extends CRUDDao {
+public class CartDaoImpl extends CRUDDao implements CartDao {
 
     private static CartDaoImpl instance;
 
@@ -22,10 +23,10 @@ public class CartDaoImpl extends CRUDDao {
     }
 
     @Override
-    public List<Cart> create(BaseEntity object) {
+    public Cart create(BaseEntity object) {
         object.setId(IdGenerator.createID());
         fileInitialization.getReadedCart().add((Cart) object);
-        return fileInitialization.getReadedCart();
+        return (Cart) object;
     }
 
     @Override
@@ -40,6 +41,7 @@ public class CartDaoImpl extends CRUDDao {
     }
 
 
+    @Override
     public Cart addInstanceToCart(int idCart, int idInstance, Integer amount) {
         Cart returnCart = null;
         for (Cart cart : fileInitialization.getReadedCart()) {
