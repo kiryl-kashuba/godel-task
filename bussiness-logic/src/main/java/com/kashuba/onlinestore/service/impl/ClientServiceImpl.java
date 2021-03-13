@@ -35,6 +35,6 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<Client> findClients() {
-        return clientDao.
+        return clientDao.find();
     }
 }
