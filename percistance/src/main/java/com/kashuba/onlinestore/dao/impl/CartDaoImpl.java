@@ -4,6 +4,7 @@ import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.CartDao;
 import com.kashuba.onlinestore.entity.Cart;
 import com.kashuba.onlinestore.entity.InstanceProduct;
+import com.kashuba.onlinestore.entity.NumberContainer;
 
 import java.util.List;
 
@@ -49,7 +50,8 @@ public class CartDaoImpl extends AbstractCRUDDao<Cart> implements CartDao {
                 returnCart = cart;
                 for (InstanceProduct instanceProduct : fileInitialization.getReadedProduct()) {
                     if (idInstance == instanceProduct.getId()) {
-                        cart.getNumber().put(instanceProduct, amount);
+                        NumberContainer numberContainer = new NumberContainer(instanceProduct, amount);
+                        cart.getNumber().add(numberContainer);
                         cart.addInstanceProduct(instanceProduct);
                     }
                 }

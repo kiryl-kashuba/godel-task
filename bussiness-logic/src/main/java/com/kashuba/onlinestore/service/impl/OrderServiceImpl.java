@@ -3,12 +3,11 @@ package com.kashuba.onlinestore.service.impl;
 import com.kashuba.onlinestore.dao.impl.CartDaoImpl;
 import com.kashuba.onlinestore.dao.impl.OrderDaoImpl;
 import com.kashuba.onlinestore.entity.Cart;
-import com.kashuba.onlinestore.entity.InstanceProduct;
+import com.kashuba.onlinestore.entity.NumberContainer;
 import com.kashuba.onlinestore.entity.Order;
 import com.kashuba.onlinestore.service.OrderService;
 
 import java.util.List;
-import java.util.Map;
 
 public class OrderServiceImpl implements OrderService {
 
@@ -42,10 +41,8 @@ public class OrderServiceImpl implements OrderService {
         for (Cart cart : cartDao.find()) {
             if (idCart == cart.getId()) {
                 order.setCart(cart);
-                for (Map.Entry<InstanceProduct, Integer> entry : cart.getNumber().entrySet()) {
-                    InstanceProduct product = entry.getKey();
-                    Integer number = entry.getValue();
-                    amount += product.getPrice() * number;
+                for (NumberContainer numberContainer : cart.getNumber()) {
+                    amount += numberContainer.getInstanceProduct().getPrice() * numberContainer.getNumber();
                 }
             }
         }

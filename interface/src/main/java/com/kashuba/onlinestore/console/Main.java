@@ -8,7 +8,9 @@ import com.kashuba.onlinestore.entity.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
@@ -44,6 +46,7 @@ public class Main {
 
     @Command(name = "Save Info", abbrev = "si")
     public void saveInfo() {
+        System.out.println("Info saved");
         saveInfoCommand.saveInfo(FileInitialization.getInstance());
     }
 
@@ -190,7 +193,7 @@ public class Main {
     @Command(name = "Create Cart - int idClient", abbrev = "cc")
     public Cart createCArt(int idClient) {
         List<InstanceProduct> list = new ArrayList<>();
-        Map<InstanceProduct, Integer> number = new HashMap<>();
+        List<NumberContainer> number = new ArrayList<>();
         Cart cart = new Cart(list, number);
         for (Client client : findClientCommand.findCLients()) {
             if (idClient == client.getId()) {

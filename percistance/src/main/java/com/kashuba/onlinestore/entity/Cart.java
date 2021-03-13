@@ -1,14 +1,13 @@
 package com.kashuba.onlinestore.entity;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class Cart extends BaseEntity{
 
     private Client client;
     private List<InstanceProduct> instanceProduct;
-    private Map<InstanceProduct, Integer> number;
+    private List<NumberContainer> number;
 
     public Cart(long id, Client client, List<InstanceProduct> instanceProduct) {
         super(id);
@@ -16,7 +15,7 @@ public class Cart extends BaseEntity{
         this.instanceProduct = instanceProduct;
     }
 
-    public Cart(List<InstanceProduct> instanceProduct, Map<InstanceProduct, Integer> number) {
+    public Cart(List<InstanceProduct> instanceProduct, List<NumberContainer> number) {
         this.instanceProduct = instanceProduct;
         this.number = number;
     }
@@ -58,11 +57,11 @@ public class Cart extends BaseEntity{
         this.instanceProduct = instanceProduct;
     }
 
-    public Map<InstanceProduct, Integer> getNumber() {
+    public List<NumberContainer> getNumber() {
         return number;
     }
 
-    public void setNumber(Map<InstanceProduct, Integer> number) {
+    public void setNumber(List<NumberContainer> number) {
         this.number = number;
     }
 
