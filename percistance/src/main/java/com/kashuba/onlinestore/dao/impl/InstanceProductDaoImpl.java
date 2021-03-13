@@ -2,7 +2,6 @@ package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.InstanceProductDao;
-import com.kashuba.onlinestore.entity.BaseEntity;
 import com.kashuba.onlinestore.entity.InstanceProduct;
 
 import java.util.List;
@@ -22,10 +21,10 @@ public class InstanceProductDaoImpl extends AbstractCRUDDao implements InstanceP
     }
 
     @Override
-    public InstanceProduct create(BaseEntity object) {
-        object.setId(IdGenerator.createID());
-        fileInitialization.getReadedProduct().add((InstanceProduct) object);
-        return (InstanceProduct) object;
+    public InstanceProduct create(InstanceProduct instanceProduct) {
+        instanceProduct.setId(IdGenerator.createID());
+        fileInitialization.getReadedProduct().add(instanceProduct);
+        return instanceProduct;
     }
 
     @Override

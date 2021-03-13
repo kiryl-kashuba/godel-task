@@ -2,7 +2,6 @@ package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.ProductAttributeValueDao;
-import com.kashuba.onlinestore.entity.BaseEntity;
 import com.kashuba.onlinestore.entity.ProductAttribute;
 
 import java.util.List;
@@ -22,10 +21,10 @@ public class ProductAttributeDaoImpl extends AbstractCRUDDao implements ProductA
     }
 
     @Override
-    public ProductAttribute create(BaseEntity object) {
-        object.setId(IdGenerator.createID());
-        fileInitialization.getReadedPA().add((ProductAttribute) object);
-        return (ProductAttribute) object;
+    public ProductAttribute create(ProductAttribute productAttribute) {
+        productAttribute.setId(IdGenerator.createID());
+        fileInitialization.getReadedPA().add(productAttribute);
+        return productAttribute;
     }
 
     @Override

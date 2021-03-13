@@ -2,7 +2,6 @@ package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.UserDao;
-import com.kashuba.onlinestore.entity.BaseEntity;
 import com.kashuba.onlinestore.entity.User;
 
 import java.util.List;
@@ -22,10 +21,10 @@ public class UserDaoImpl extends AbstractCRUDDao implements UserDao {
     }
 
     @Override
-    public User create(BaseEntity object) {
-        object.setId(IdGenerator.createID());
-        fileInitialization.getReadedUser().add((User) object);
-        return (User) object;
+    public User create(User user) {
+        user.setId(IdGenerator.createID());
+        fileInitialization.getReadedUser().add(user);
+        return user;
     }
 
     @Override

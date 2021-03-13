@@ -2,7 +2,6 @@ package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.OrderDao;
-import com.kashuba.onlinestore.entity.BaseEntity;
 import com.kashuba.onlinestore.entity.Order;
 
 import java.util.List;
@@ -22,11 +21,11 @@ public class OrderDaoImpl extends AbstractCRUDDao implements OrderDao {
     }
 
     @Override
-    public Order create(BaseEntity object) {
-        object.setId(IdGenerator.createID());
-        fileInitialization.getReadedOrder().add((Order) object);
+    public Order create(Order order) {
+        order.setId(IdGenerator.createID());
+        fileInitialization.getReadedOrder().add(order);
 
-        return (Order) object;
+        return order;
     }
 
     @Override

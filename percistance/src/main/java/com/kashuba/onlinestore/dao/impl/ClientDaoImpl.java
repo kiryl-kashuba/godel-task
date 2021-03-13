@@ -2,12 +2,11 @@ package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.ClientDao;
-import com.kashuba.onlinestore.entity.BaseEntity;
 import com.kashuba.onlinestore.entity.Client;
 
 import java.util.List;
 
-public class ClientDaoImpl implements ClientDao {
+public class ClientDaoImpl extends AbstractCRUDDao implements ClientDao {
 
     private static ClientDaoImpl instance;
 
@@ -22,10 +21,10 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     @Override
-    public Client create(BaseEntity object) {
-        object.setId(IdGenerator.createID());
-        fileInitialization.getReadedClients().add((Client) object);
-        return (Client) object;
+    public Client create(Client client) {
+        client.setId(IdGenerator.createID());
+        fileInitialization.getReadedClients().add(client);
+        return client;
     }
 
     @Override

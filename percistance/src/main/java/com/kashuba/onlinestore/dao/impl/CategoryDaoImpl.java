@@ -2,7 +2,6 @@ package com.kashuba.onlinestore.dao.impl;
 
 import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.CategoryDao;
-import com.kashuba.onlinestore.entity.BaseEntity;
 import com.kashuba.onlinestore.entity.Category;
 
 import java.util.List;
@@ -22,10 +21,10 @@ public class CategoryDaoImpl extends AbstractCRUDDao implements CategoryDao {
     }
 
     @Override
-    public Category create(BaseEntity object) {
-        object.setId(IdGenerator.createID());
-        fileInitialization.getReadedCategory().add((Category) object);
-        return (Category) object;
+    public Category create(Category category) {
+        category.setId(IdGenerator.createID());
+        fileInitialization.getReadedCategory().add(category);
+        return category;
     }
 
     @Override
