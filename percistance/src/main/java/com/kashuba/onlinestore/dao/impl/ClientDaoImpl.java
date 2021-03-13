@@ -6,7 +6,7 @@ import com.kashuba.onlinestore.entity.Client;
 
 import java.util.List;
 
-public class ClientDaoImpl extends AbstractCRUDDao implements ClientDao {
+public class ClientDaoImpl extends AbstractCRUDDao<Client> implements ClientDao {
 
     private static ClientDaoImpl instance;
 

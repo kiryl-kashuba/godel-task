@@ -6,7 +6,7 @@ import com.kashuba.onlinestore.entity.User;
 
 import java.util.List;
 
-public class UserDaoImpl extends AbstractCRUDDao implements UserDao {
+public class UserDaoImpl extends AbstractCRUDDao<User> implements UserDao {
 
     private static UserDaoImpl instance;
 

@@ -6,7 +6,7 @@ import com.kashuba.onlinestore.entity.Category;
 
 import java.util.List;
 
-public class CategoryDaoImpl extends AbstractCRUDDao implements CategoryDao {
+public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements CategoryDao {
 
     private static CategoryDaoImpl instance;
 

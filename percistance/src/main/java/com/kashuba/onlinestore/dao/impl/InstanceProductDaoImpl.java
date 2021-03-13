@@ -6,7 +6,7 @@ import com.kashuba.onlinestore.entity.InstanceProduct;
 
 import java.util.List;
 
-public class InstanceProductDaoImpl extends AbstractCRUDDao implements InstanceProductDao {
+public class InstanceProductDaoImpl extends AbstractCRUDDao<InstanceProduct> implements InstanceProductDao {
 
     private static InstanceProductDaoImpl instance;
 
