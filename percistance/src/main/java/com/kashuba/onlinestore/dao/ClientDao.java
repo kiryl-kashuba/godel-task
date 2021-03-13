@@ -1,5 +1,7 @@
 package com.kashuba.onlinestore.dao;
 
-public interface ClientDao {
+import com.kashuba.onlinestore.entity.Client;
+
+public interface ClientDao extends CRUDDao<Client> {
 
 }

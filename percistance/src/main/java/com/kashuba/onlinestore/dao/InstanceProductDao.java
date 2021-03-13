@@ -4,7 +4,7 @@ import com.kashuba.onlinestore.entity.InstanceProduct;
 
 import java.util.List;
 
-public interface InstanceProductDao {
+public interface InstanceProductDao extends CRUDDao<InstanceProduct> {
 
     List<InstanceProduct> update(int id, InstanceProduct instanceProduct);
 

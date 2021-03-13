@@ -7,7 +7,7 @@ import com.kashuba.onlinestore.entity.ProductAttribute;
 
 import java.util.List;
 
-public class ProductAttributeDaoImpl extends CRUDDao implements ProductAttributeValueDao {
+public class ProductAttributeDaoImpl extends AbstractCRUDDao implements ProductAttributeValueDao {
 
     private static ProductAttributeDaoImpl instance;
 

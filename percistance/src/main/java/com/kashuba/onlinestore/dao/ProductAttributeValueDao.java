@@ -1,5 +1,7 @@
 package com.kashuba.onlinestore.dao;
 
-public interface ProductAttributeValueDao {
+import com.kashuba.onlinestore.entity.ProductAttributeValue;
+
+public interface ProductAttributeValueDao extends CRUDDao<ProductAttributeValue> {
 
 }

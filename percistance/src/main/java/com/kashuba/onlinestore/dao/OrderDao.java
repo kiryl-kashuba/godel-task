@@ -1,4 +1,6 @@
 package com.kashuba.onlinestore.dao;
 
-public interface OrderDao {
+import com.kashuba.onlinestore.entity.Order;
+
+public interface OrderDao extends CRUDDao<Order> {
 }

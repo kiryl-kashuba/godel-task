@@ -1,5 +1,6 @@
 package com.kashuba.onlinestore.service.impl;
 
+import com.kashuba.onlinestore.dao.ClientDao;
 import com.kashuba.onlinestore.dao.impl.ClientDaoImpl;
 import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.service.ClientService;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
 
-    private ClientDaoImpl clientDao = ClientDaoImpl.getInstance();
+    private ClientDao clientDao = ClientDaoImpl.getInstance();
 
     private static ClientServiceImpl instance;
 
@@ -34,6 +35,6 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<Client> findClients() {
-        return clientDao.find();
+        return clientDao.
     }
 }

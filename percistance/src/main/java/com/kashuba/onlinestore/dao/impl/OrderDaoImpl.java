@@ -7,7 +7,7 @@ import com.kashuba.onlinestore.entity.Order;
 
 import java.util.List;
 
-public class OrderDaoImpl extends CRUDDao implements OrderDao {
+public class OrderDaoImpl extends AbstractCRUDDao implements OrderDao {
 
     private static OrderDaoImpl instance;
 

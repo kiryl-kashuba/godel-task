@@ -1,5 +1,7 @@
 package com.kashuba.onlinestore.dao;
 
-public interface CategoryDao {
+import com.kashuba.onlinestore.entity.Category;
+
+public interface CategoryDao extends CRUDDao<Category> {
 
 }
