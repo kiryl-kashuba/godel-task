@@ -48,7 +48,7 @@ public class Main {
     }
 
     @Command(name = "Create Client - String email, String pass, String fname, String sname,long number, " +
-            "String role, String status", abbrev = "ccl", header = "Strin role, String status")
+            "String role, String status", abbrev = "ccl")
     public Client createClient(String email, String pass, String fname, String sname,
                                long number, String role, String status) {
         Client client = new Client(email, pass, fname, sname, number);
