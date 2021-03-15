@@ -1,6 +1,5 @@
 package com.kashuba.onlinestore.dao.impl;
 
-import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.ClientDao;
 import com.kashuba.onlinestore.entity.Client;
 
@@ -9,7 +8,7 @@ import java.util.List;
 public class ClientDaoImpl extends AbstractCRUDDao<Client> implements ClientDao {
 
     private static ClientDaoImpl instance;
-
+//    private static final запросы
     private ClientDaoImpl() {
     }
 
@@ -22,8 +21,7 @@ public class ClientDaoImpl extends AbstractCRUDDao<Client> implements ClientDao 
 
     @Override
     public Client create(Client client) {
-        client.setId(IdGenerator.createID());
-        fileInitialization.getReadedClients().add(client);
+
         return client;
     }
 

@@ -1,6 +1,5 @@
 package com.kashuba.onlinestore.dao.impl;
 
-import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.ProductAttributeDao;
 import com.kashuba.onlinestore.entity.ProductAttribute;
 
@@ -22,8 +21,6 @@ public class ProductAttributeDaoImpl extends AbstractCRUDDao<ProductAttribute> i
 
     @Override
     public ProductAttribute create(ProductAttribute productAttribute) {
-        productAttribute.setId(IdGenerator.createID());
-        fileInitialization.getReadedPA().add(productAttribute);
 
         return productAttribute;
     }

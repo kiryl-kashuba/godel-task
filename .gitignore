@@ -24,3 +24,10 @@
 /interface/interface.iml
 /bussiness-logic/bussiness-logic.iml
 /ProductAttributeValue.txt
+/config/database.properties
+/src/resources/config/database.properties
+/percistance/src/resources/config/database.properties
+.DS_Store
+bussiness-logic/target/
+interface/target/
+percistance/target/
