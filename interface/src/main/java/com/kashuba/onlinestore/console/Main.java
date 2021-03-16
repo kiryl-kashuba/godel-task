@@ -180,7 +180,7 @@ public class Main {
     @Command(name = "Create Cart - int idClient", abbrev = "cc")
     public Cart createCArt(int idClient) {
         List<InstanceProduct> list = new ArrayList<>();
-        List<NumberContainer> number = new ArrayList<>();
+        List<InstanceProductContainer> number = new ArrayList<>();
         Cart cart = new Cart(list, number);
         for (Client client : findClientCommand.findCLients()) {
             if (idClient == client.getId()) {

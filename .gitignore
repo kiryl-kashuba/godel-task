@@ -35,3 +35,5 @@ logs/app.log
 percistance/src/main/java/com/kashuba/onlinestore/dao/fileservice/
 !/logs/
 !/logs/app.log
+/logs/app.log
+*.iml

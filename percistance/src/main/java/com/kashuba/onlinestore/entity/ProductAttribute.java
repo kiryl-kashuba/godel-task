@@ -35,6 +35,9 @@ public class ProductAttribute extends BaseEntity {
         this.type = type;
     }
 
+    public ProductAttribute() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

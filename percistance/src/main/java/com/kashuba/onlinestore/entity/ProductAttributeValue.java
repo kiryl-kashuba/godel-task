@@ -2,7 +2,7 @@ package com.kashuba.onlinestore.entity;
 
 import java.util.Objects;
 
-public class ProductAttributeValue extends BaseEntity{
+public class ProductAttributeValue extends BaseEntity {
 
     private String value;
     private ProductAttribute productAttribute;
@@ -10,6 +10,9 @@ public class ProductAttributeValue extends BaseEntity{
     public ProductAttributeValue(String value, ProductAttribute productAttribute) {
         this.value = value;
         this.productAttribute = productAttribute;
+    }
+
+    public ProductAttributeValue() {
     }
 
     public String getValue() {

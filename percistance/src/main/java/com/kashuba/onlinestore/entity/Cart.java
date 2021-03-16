@@ -7,7 +7,7 @@ public class Cart extends BaseEntity{
 
     private Client client;
     private List<InstanceProduct> instanceProduct;
-    private List<NumberContainer> number;
+    private List<InstanceProductContainer> number;
 
     public Cart(long id, Client client, List<InstanceProduct> instanceProduct) {
         super(id);
@@ -15,7 +15,7 @@ public class Cart extends BaseEntity{
         this.instanceProduct = instanceProduct;
     }
 
-    public Cart(List<InstanceProduct> instanceProduct, List<NumberContainer> number) {
+    public Cart(List<InstanceProduct> instanceProduct, List<InstanceProductContainer> number) {
         this.instanceProduct = instanceProduct;
         this.number = number;
     }
@@ -34,9 +34,11 @@ public class Cart extends BaseEntity{
         super(id);
     }
 
+    public Cart() {
+    }
 
 
-    public List<InstanceProduct> addInstanceProduct (InstanceProduct instanceProduct){
+    public List<InstanceProduct> addInstanceProduct(InstanceProduct instanceProduct) {
         this.instanceProduct.add(instanceProduct);
         return this.instanceProduct;
     }
@@ -57,11 +59,11 @@ public class Cart extends BaseEntity{
         this.instanceProduct = instanceProduct;
     }
 
-    public List<NumberContainer> getNumber() {
+    public List<InstanceProductContainer> getNumber() {
         return number;
     }
 
-    public void setNumber(List<NumberContainer> number) {
+    public void setNumber(List<InstanceProductContainer> number) {
         this.number = number;
     }
 

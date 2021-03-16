@@ -27,6 +27,9 @@ public class InstanceProduct extends BaseEntity {
         this.price = price;
     }
 
+    public InstanceProduct() {
+    }
+
     public String getName() {
         return name;
     }

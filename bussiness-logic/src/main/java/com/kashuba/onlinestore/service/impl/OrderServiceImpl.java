@@ -3,7 +3,7 @@ package com.kashuba.onlinestore.service.impl;
 import com.kashuba.onlinestore.dao.impl.CartDaoImpl;
 import com.kashuba.onlinestore.dao.impl.OrderDaoImpl;
 import com.kashuba.onlinestore.entity.Cart;
-import com.kashuba.onlinestore.entity.NumberContainer;
+import com.kashuba.onlinestore.entity.InstanceProductContainer;
 import com.kashuba.onlinestore.entity.Order;
 import com.kashuba.onlinestore.service.OrderService;
 
@@ -41,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
         for (Cart cart : cartDao.find()) {
             if (idCart == cart.getId()) {
                 order.setCart(cart);
-                for (NumberContainer numberContainer : cart.getNumber()) {
+                for (InstanceProductContainer numberContainer : cart.getNumber()) {
                     amount += numberContainer.getInstanceProduct().getPrice() * numberContainer.getNumber();
                 }
             }

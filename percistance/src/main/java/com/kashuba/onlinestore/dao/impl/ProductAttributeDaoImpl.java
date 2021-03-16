@@ -8,6 +8,11 @@ import java.util.List;
 public class ProductAttributeDaoImpl extends AbstractCRUDDao<ProductAttribute> implements ProductAttributeDao {
 
     private static ProductAttributeDaoImpl instance;
+    private static final String ADD_CATEGORY = "INSERT INTO categories(name)VALUES (?)";
+    private static final String REMOVE_CART = "DELETE FROM carts WHERE id = ?";
+    private static final String FIND_ALL = "SELECT id, email, password, role, first_name, second_name, " +
+            "phone_number, status FROM clients";
+    private static final String FIND_ALL_CLIENTS = FIND_ALL + " WHERE role = 1";
 
     private ProductAttributeDaoImpl() {
     }

@@ -2,13 +2,16 @@ package com.kashuba.onlinestore.entity;
 
 import java.util.Objects;
 
-public class NumberContainer extends BaseEntity {
+public class InstanceProductContainer extends BaseEntity {
     private InstanceProduct instanceProduct;
-    private Integer number;
+    private Integer count;
 
-    public NumberContainer(InstanceProduct instanceProduct, Integer number) {
+    public InstanceProductContainer(InstanceProduct instanceProduct, Integer count) {
         this.instanceProduct = instanceProduct;
-        this.number = number;
+        this.count = count;
+    }
+
+    public InstanceProductContainer() {
     }
 
     public InstanceProduct getInstanceProduct() {
@@ -19,12 +22,16 @@ public class NumberContainer extends BaseEntity {
         this.instanceProduct = instanceProduct;
     }
 
-    public Integer getNumber() {
-        return number;
+    public Integer getCount() {
+        return count;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public void setСount(Integer count) {
+        this.count = count;
     }
 
     @Override
@@ -32,21 +39,21 @@ public class NumberContainer extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        NumberContainer that = (NumberContainer) o;
+        InstanceProductContainer that = (InstanceProductContainer) o;
         return Objects.equals(instanceProduct, that.instanceProduct) &&
-                Objects.equals(number, that.number);
+                Objects.equals(count, that.count);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), instanceProduct, number);
+        return Objects.hash(super.hashCode(), instanceProduct, count);
     }
 
     @Override
     public String toString() {
-        return "NumberContainer{" +
+        return "InstanceProductContainer{" +
                 "instanceProduct=" + instanceProduct +
-                ", number=" + number +
+                ", count=" + count +
                 '}';
     }
 }
