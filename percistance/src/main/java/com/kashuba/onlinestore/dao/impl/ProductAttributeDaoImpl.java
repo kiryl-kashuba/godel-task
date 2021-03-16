@@ -27,12 +27,11 @@ public class ProductAttributeDaoImpl extends AbstractCRUDDao<ProductAttribute> i
 
     @Override
     public List<ProductAttribute> delete(int id) {
-        fileInitialization.getReadedPA().removeIf(x -> x.getId() == id);
-        return fileInitialization.getReadedPA();
+        return null;
     }
 
     @Override
     public List<ProductAttribute> find() {
-        return fileInitialization.getReadedPA();
+        return null;
     }
 }

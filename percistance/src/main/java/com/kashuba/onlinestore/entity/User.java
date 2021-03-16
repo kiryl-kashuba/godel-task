@@ -1,5 +1,6 @@
 package com.kashuba.onlinestore.entity;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class User extends BaseEntity {
@@ -16,6 +17,10 @@ public class User extends BaseEntity {
         this.email = email;
     }
 
+    public User() {
+
+    }
+
     public enum Role {
         GUEST("guest"),
         CLIENT("client"),
@@ -29,6 +34,10 @@ public class User extends BaseEntity {
 
         public String getvalueOfRole() {
             return valueOfRole;
+        }
+
+        public static Role getUserRole(int index) {
+            return Arrays.stream(Role.values()).filter(r -> r.ordinal() == index).findFirst().get();
         }
 
         public static User.Role findRole(String role) {

@@ -23,19 +23,17 @@ public class OrderDaoImpl extends AbstractCRUDDao<Order> implements OrderDao {
     @Override
     public Order create(Order order) {
         order.setId(IdGenerator.createID());
-        fileInitialization.getReadedOrder().add(order);
 
         return order;
     }
 
     @Override
     public List<Order> delete(int id) {
-        fileInitialization.getReadedOrder().removeIf(x -> x.getId() == id);
-        return fileInitialization.getReadedOrder();
+        return null;
     }
 
     @Override
     public List<Order> find() {
-        return fileInitialization.getReadedOrder();
+        return null;
     }
 }

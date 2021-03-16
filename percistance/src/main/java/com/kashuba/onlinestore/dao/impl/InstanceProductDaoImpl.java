@@ -23,30 +23,21 @@ public class InstanceProductDaoImpl extends AbstractCRUDDao<InstanceProduct> imp
     @Override
     public InstanceProduct create(InstanceProduct instanceProduct) {
         instanceProduct.setId(IdGenerator.createID());
-        fileInitialization.getReadedProduct().add(instanceProduct);
         return instanceProduct;
     }
 
     @Override
     public List<InstanceProduct> find() {
-        return fileInitialization.getReadedProduct();
+        return null;
     }
 
     public List<InstanceProduct> update(int id, InstanceProduct instanceProduct) {
-        for (InstanceProduct oldInstanceProduct : fileInitialization.getReadedProduct())
-            if (id == oldInstanceProduct.getId()) {
-                oldInstanceProduct.setPrice(instanceProduct.getPrice());
-                oldInstanceProduct.setArticulation(instanceProduct.getArticulation());
-                oldInstanceProduct.setName(instanceProduct.getName());
-                oldInstanceProduct.setProductAttributeValue(instanceProduct.getProductAttributeValue());
-                oldInstanceProduct.setCategory(instanceProduct.getCategory());
-            }
-        return fileInitialization.getReadedProduct();
+
+        return null;
     }
 
     @Override
     public List<InstanceProduct> delete(int idInstanceProduct) {
-        fileInitialization.getReadedProduct().removeIf(x -> x.getId() == idInstanceProduct);
-        return fileInitialization.getReadedProduct();
+        return null;
     }
 }

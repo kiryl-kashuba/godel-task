@@ -1,5 +1,6 @@
 package com.kashuba.onlinestore.entity;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Client extends User {
@@ -18,6 +19,10 @@ public class Client extends User {
             return valueOfStatus;
         }
 
+        public static Status getClientStatus(int index) {
+            return Arrays.stream(Status.values()).filter(s -> s.ordinal() == index).findFirst().get();
+        }
+
         public static Client.Status findStatus(String status) {
             Client.Status user = null;
             for (Client.Status env : Client.Status.values()) {
@@ -34,6 +39,7 @@ public class Client extends User {
     private long phoneNumber;
     private Status status;
 
+
     public Client(String email, Role role, String password, String firstName,
                   String secondName, long phoneNumber, Status status) {
         super(email, role, password);
@@ -48,6 +54,10 @@ public class Client extends User {
         this.firstName = firstName;
         this.secondName = secondName;
         this.phoneNumber = phoneNumber;
+    }
+
+    public Client() {
+
     }
 
     public String getFirstName() {

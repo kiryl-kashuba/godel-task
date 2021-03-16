@@ -3,7 +3,6 @@ package com.kashuba.onlinestore.console;
 import com.budhash.cliche.Command;
 import com.budhash.cliche.ShellFactory;
 import com.kashuba.onlinestore.console.command.impl.*;
-import com.kashuba.onlinestore.dao.fileservice.FileInitialization;
 import com.kashuba.onlinestore.entity.*;
 
 import java.io.IOException;
@@ -13,10 +12,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-
-    {
-        FileInitialization.getInstance();
-    }
 
     AddInstanceToCartCommand addInstanceToCartCommand = AddInstanceToCartCommand.getInstance();
     CreateClientCommand createClientCommand = CreateClientCommand.getInstance();
@@ -40,15 +35,7 @@ public class Main {
     FindOrderCommand findOrderCommand = FindOrderCommand.getInstance();
     FindProductAttributeCommand findProductAttributeCommand = FindProductAttributeCommand.getInstance();
     FindProductAttributeValueCommand findProductAttributeValueCommand = FindProductAttributeValueCommand.getInstance();
-    SaveInfoCommand saveInfoCommand = SaveInfoCommand.getInstance();
     UpdateInstanceCommand updateInstanceCommand = UpdateInstanceCommand.getInstance();
-
-
-    @Command(name = "Save Info", abbrev = "si")
-    public void saveInfo() {
-        System.out.println("Info saved");
-        saveInfoCommand.saveInfo(FileInitialization.getInstance());
-    }
 
     @Command(name = "Create Client - String email, String pass, String fname, String sname,long number, " +
             "String role, String status", abbrev = "ccl")

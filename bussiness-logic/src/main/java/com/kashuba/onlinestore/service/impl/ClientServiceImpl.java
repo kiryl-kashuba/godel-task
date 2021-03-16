@@ -25,7 +25,13 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client createClient(Client client) {
-        return clientDao.create(client);
+        Client returnClient = null;
+        try {
+            returnClient = clientDao.create(client);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return returnClient;
     }
 
     @Override
@@ -35,6 +41,12 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<Client> findClients() {
-        return clientDao.find();
+        List<Client> clientList = null;
+        try {
+            clientList = clientDao.find();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return clientList;
     }
 }

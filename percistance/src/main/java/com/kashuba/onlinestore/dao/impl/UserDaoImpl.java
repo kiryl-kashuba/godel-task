@@ -23,18 +23,18 @@ public class UserDaoImpl extends AbstractCRUDDao<User> implements UserDao {
     @Override
     public User create(User user) {
         user.setId(IdGenerator.createID());
-        fileInitialization.getReadedUser().add(user);
+//        fileInitialization.getReadedUser().add(user);
         return user;
     }
 
     @Override
     public List<User> delete(int id) {
-        fileInitialization.getReadedUser().removeIf(x -> x.getId() == id);
-        return fileInitialization.getReadedUser();
+//        fileInitialization.getReadedUser().removeIf(x -> x.getId() == id);
+        return null;
     }
 
     @Override
     public List<User> find() {
-        return fileInitialization.getReadedUser();
+        return null;
     }
 }

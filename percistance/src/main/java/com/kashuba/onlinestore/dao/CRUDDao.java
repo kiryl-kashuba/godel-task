@@ -13,11 +13,11 @@ public interface CRUDDao<T extends BaseEntity> {
 
     Logger logger = LogManager.getLogger();
 
-    T create(T object);
+    T create(T object) throws Exception;
 
     List<T> delete(int id);
 
-    List<T> find();
+    List<T> find() throws Exception;
 
     default void autocommit(Connection connection, boolean type) {
         if (connection != null) {

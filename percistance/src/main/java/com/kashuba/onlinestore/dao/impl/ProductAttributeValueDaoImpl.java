@@ -23,18 +23,16 @@ public class ProductAttributeValueDaoImpl extends AbstractCRUDDao<ProductAttribu
     @Override
     public ProductAttributeValue create(ProductAttributeValue productAttributeValue) {
         productAttributeValue.setId(IdGenerator.createID());
-        fileInitialization.getReadedPAV().add(productAttributeValue);
         return productAttributeValue;
     }
 
     @Override
     public List<ProductAttributeValue> delete(int id) {
-        fileInitialization.getReadedPAV().removeIf(x -> x.getId() == id);
-        return fileInitialization.getReadedPAV();
+        return null;
     }
 
     @Override
     public List<ProductAttributeValue> find() {
-        return fileInitialization.getReadedPAV();
+        return null;
     }
 }

@@ -23,18 +23,16 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
     @Override
     public Category create(Category category) {
         category.setId(IdGenerator.createID());
-        fileInitialization.getReadedCategory().add(category);
         return category;
     }
 
     @Override
     public List<Category> delete(int id) {
-        fileInitialization.getReadedCategory().removeIf(x -> x.getId() == id);
-        return fileInitialization.getReadedCategory();
+        return null;
     }
 
     @Override
     public List<Category> find() {
-        return fileInitialization.getReadedCategory();
+        return null;
     }
 }
