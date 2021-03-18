@@ -20,6 +20,7 @@ public class ClientDaoImpl extends AbstractCRUDDao<Client> implements ClientDao 
     private static ClientDaoImpl instance;
     private static final String ADD_CLIENT = "INSERT INTO clients(email, password, role, first_name, " +
             "second_name, phone_number, status)VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String ADD_CART = "INSERT INTO carts(id) VALUES (LAST_INSERT_ID())";
     private static final String REMOVE_CLIENT = "DELETE FROM clients WHERE id = ?";
     private static final String FIND_ALL = "SELECT id, email, password, role, first_name, second_name, " +
             "phone_number, status FROM clients";
@@ -41,7 +42,8 @@ public class ClientDaoImpl extends AbstractCRUDDao<Client> implements ClientDao 
         ConnectionPool connectionPool = ConnectionPool.getInstance();
 
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement statement = connection.prepareStatement(ADD_CLIENT)) {
+             PreparedStatement statement = connection.prepareStatement(ADD_CLIENT);
+             PreparedStatement cartStatement = connection.prepareStatement(ADD_CART)) {
             statement.setString(1, client.getEmail());
             statement.setString(2, client.getPassword());
             statement.setInt(3, client.getRole().ordinal());
@@ -51,6 +53,7 @@ public class ClientDaoImpl extends AbstractCRUDDao<Client> implements ClientDao 
             statement.setInt(7, client.getStatus().ordinal());
 
             statement.executeUpdate();
+            cartStatement.executeUpdate();
         } catch (SQLException e) {
             try {
                 throw new Exception("Error when executing a query to add a client", e);

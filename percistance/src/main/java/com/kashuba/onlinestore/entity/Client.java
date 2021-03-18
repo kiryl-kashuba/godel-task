@@ -38,6 +38,7 @@ public class Client extends User {
     private String secondName;
     private long phoneNumber;
     private Status status;
+    private Cart cart;
 
 
     public Client(String email, Role role, String password, String firstName,
@@ -58,6 +59,14 @@ public class Client extends User {
 
     public Client() {
 
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public String getFirstName() {
@@ -96,16 +105,18 @@ public class Client extends User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Client client = (Client) o;
         return phoneNumber == client.phoneNumber &&
                 Objects.equals(firstName, client.firstName) &&
                 Objects.equals(secondName, client.secondName) &&
-                status == client.status;
+                status == client.status &&
+                Objects.equals(cart, client.cart);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, secondName, phoneNumber, status);
+        return Objects.hash(super.hashCode(), firstName, secondName, phoneNumber, status, cart);
     }
 
     @Override

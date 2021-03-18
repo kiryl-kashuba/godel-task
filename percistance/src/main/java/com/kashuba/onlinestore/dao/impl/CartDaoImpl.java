@@ -1,6 +1,5 @@
 package com.kashuba.onlinestore.dao.impl;
 
-import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.CartDao;
 import com.kashuba.onlinestore.entity.Cart;
 
@@ -28,8 +27,7 @@ public class CartDaoImpl extends AbstractCRUDDao<Cart> implements CartDao {
 
     @Override
     public Cart create(Cart cart) {
-        cart.setId(IdGenerator.createID());
-        return cart;
+        return null;
     }
 
     @Override

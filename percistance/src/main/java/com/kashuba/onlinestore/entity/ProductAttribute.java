@@ -8,7 +8,15 @@ public class ProductAttribute extends BaseEntity {
     private boolean mandatory;
     private String type;
     private Category category;
+    private int number;
 
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
 
     public String getType() {
         return type;
@@ -59,13 +67,15 @@ public class ProductAttribute extends BaseEntity {
         if (!super.equals(o)) return false;
         ProductAttribute that = (ProductAttribute) o;
         return mandatory == that.mandatory &&
+                number == that.number &&
                 Objects.equals(name, that.name) &&
-                Objects.equals(type, that.type);
+                Objects.equals(type, that.type) &&
+                Objects.equals(category, that.category);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), name, mandatory, type);
+        return Objects.hash(super.hashCode(), name, mandatory, type, category, number);
     }
 
     @Override
@@ -75,6 +85,8 @@ public class ProductAttribute extends BaseEntity {
                 "name='" + name + '\'' +
                 ", mandatory=" + mandatory +
                 ", type='" + type + '\'' +
+                ", category=" + category +
+                ", number=" + number +
                 '}';
     }
 }
