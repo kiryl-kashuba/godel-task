@@ -91,7 +91,7 @@ public class ClientDaoImpl extends AbstractCRUDDao<Client> implements ClientDao 
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                targetClients.add((Client) createClient(resultSet));
+                targetClients.add(createClient(resultSet));
             }
 
         } catch (SQLException e) {

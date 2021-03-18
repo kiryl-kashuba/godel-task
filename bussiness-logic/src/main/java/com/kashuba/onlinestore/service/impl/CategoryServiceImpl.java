@@ -3,10 +3,8 @@ package com.kashuba.onlinestore.service.impl;
 import com.kashuba.onlinestore.dao.impl.CategoryDaoImpl;
 import com.kashuba.onlinestore.dao.impl.ProductAttributeDaoImpl;
 import com.kashuba.onlinestore.entity.Category;
-import com.kashuba.onlinestore.entity.ProductAttribute;
 import com.kashuba.onlinestore.service.CategoryService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryServiceImpl implements CategoryService {
@@ -27,17 +25,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category createCategory(Category category, Integer... idValue) {
-
-        List<ProductAttribute> list = new ArrayList<>();
-        for (int i = 0; i < idValue.length; i++) {
-            for (ProductAttribute productAttribute : productAttributeDao.find()) {
-                if (idValue[i] == productAttribute.getId()) {
-                    list.add(productAttribute);
-                }
-            }
-        }
-        category.setProductAttribute(list);
+    public Category createCategory(Category category) {
 
         return categoryDao.create(category);
     }
@@ -49,6 +37,24 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> findCategories() {
-        return categoryDao.find();
+        List<Category> clientCategory = null;
+
+        try {
+            clientCategory = categoryDao.find();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return clientCategory;
+    }
+
+    @Override
+    public Category findCategoryById(int idCategory) {
+        Category category = null;
+        try {
+            category = categoryDao.findById(idCategory);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return category;
     }
 }

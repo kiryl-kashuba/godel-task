@@ -34,6 +34,12 @@ public class ProductAttributeServiceImpl implements ProductAttributeService {
 
     @Override
     public List<ProductAttribute> findProductAttributes() {
-        return productAttributeDao.find();
+        List<ProductAttribute> paList = null;
+        try {
+            paList = productAttributeDao.find();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return paList;
     }
 }

@@ -1,9 +1,8 @@
 package com.kashuba.onlinestore.dao.impl;
 
-import com.kashuba.onlinestore.builder.ClientBuilder;
+import com.kashuba.onlinestore.builder.CategoryBuilder;
 import com.kashuba.onlinestore.dao.CategoryDao;
 import com.kashuba.onlinestore.entity.Category;
-import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.pool.ConnectionPool;
 
 import java.sql.Connection;
@@ -20,8 +19,8 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
     private static CategoryDaoImpl instance;
     private static final String ADD_CATEGORY = "INSERT INTO categories(name)VALUES (?)";
     private static final String REMOVE_CATEGORY = "DELETE FROM categories WHERE id = ?";
-    private static final String FIND_ALL = "SELECT name FROM categories";
-    private static final String FIND_ALL_CATEGORIES = FIND_ALL + " WHERE role = 1";
+    private static final String FIND_ALL = "SELECT id, name FROM categories";
+    private static final String FIND_CATEGORY_BY_ID = FIND_ALL + " WHERE id = ?";
 
     private CategoryDaoImpl() {
     }
@@ -44,7 +43,7 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
             statement.executeUpdate();
         } catch (SQLException e) {
             try {
-                throw new Exception("Error when executing a query to add a client", e);
+                throw new Exception("Error when executing a query to add a category", e);
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
@@ -54,21 +53,34 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
 
     @Override
     public List<Category> delete(int id) {
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement statement = connection.prepareStatement(REMOVE_CATEGORY)) {
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            try {
+                throw new Exception("Error ", e);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
+
         return null;
     }
 
-    @Override
-    public List<Category> find() throws Exception {
+
+    public Category findById(int id) throws Exception {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
-        List<Client> targetClients = new ArrayList<>();
+        Category category = null;
 
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_ALL_CLIENTS)) {
-
+             PreparedStatement statement = connection.prepareStatement(FIND_CATEGORY_BY_ID)) {
+            statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-
             while (resultSet.next()) {
-                targetClients.add((Client) createClient(resultSet));
+                category = (createCategory(resultSet));
             }
 
         } catch (SQLException e) {
@@ -77,15 +89,38 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
             exception.printStackTrace();
         }
 
-        return null;
+        return category;
     }
 
-    private Client createCategory(ResultSet resultSet) throws SQLException {
-        Map<String, Object> userParameters = new HashMap<>();
-        userParameters.put("id", resultSet.getLong("id"));
-        userParameters.put("name", resultSet.getString("name"));
+    @Override
+    public List<Category> find() throws Exception {
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        List<Category> targetCategories = new ArrayList<>();
 
-        return ClientBuilder.buildClient(userParameters);
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL)) {
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                targetCategories.add(createCategory(resultSet));
+            }
+
+        } catch (SQLException e) {
+            throw new Exception(e);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+
+        return targetCategories;
     }
 
+
+    private Category createCategory(ResultSet resultSet) throws SQLException {
+        Map<String, Object> categoryParameters = new HashMap<>();
+        categoryParameters.put("id", resultSet.getLong("id"));
+        categoryParameters.put("name", resultSet.getString("name"));
+
+        return CategoryBuilder.buildCategory(categoryParameters);
+    }
 }

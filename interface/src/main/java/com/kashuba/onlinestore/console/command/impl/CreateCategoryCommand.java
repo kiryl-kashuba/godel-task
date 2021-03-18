@@ -19,7 +19,7 @@ public class CreateCategoryCommand {
     }
 
 
-    public Category createCLient(Category category, Integer... idValue) {
-        return categoryService.createCategory(category, idValue);
+    public Category createCategory(Category category) {
+        return categoryService.createCategory(category);
     }
 }

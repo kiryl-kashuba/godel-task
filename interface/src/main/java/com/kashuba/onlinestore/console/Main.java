@@ -31,6 +31,7 @@ public class Main {
     FindCartCommand findCartCommand = FindCartCommand.getInstance();
     FindCategoryCommand findCategoryCommand = FindCategoryCommand.getInstance();
     FindClientCommand findClientCommand = FindClientCommand.getInstance();
+    FindCategoryByIdCommand findCategoryByIdCommand = FindCategoryByIdCommand.getInstance();
     FindInstanceCommand findInstanceCommand = FindInstanceCommand.getInstance();
     FindOrderCommand findOrderCommand = FindOrderCommand.getInstance();
     FindProductAttributeCommand findProductAttributeCommand = FindProductAttributeCommand.getInstance();
@@ -59,9 +60,10 @@ public class Main {
     }
 
 
-    @Command(name = "Create Product Attribute - String name, boolean mandatory, String type", abbrev = "cpa")
-    public ProductAttribute createProductAttribute(String name, boolean mandatory, String type) {
-        ProductAttribute productAttribute = new ProductAttribute(name, mandatory, type);
+    @Command(name = "Create Product Attribute - String name, boolean mandatory, String type, int idOfCategory", abbrev = "cpa")
+    public ProductAttribute createProductAttribute(String name, boolean mandatory, String type, int idOfCategory) {
+        Category category = findCategoryByIdCommand.findCategories(idOfCategory);
+        ProductAttribute productAttribute = new ProductAttribute(name, mandatory, type, category);
         return createProductAttributeCommand.createProductAttribute(productAttribute);
     }
 
@@ -78,15 +80,21 @@ public class Main {
     }
 
     @Command(name = "Create Category - String name, Integer... idValue", abbrev = "cca")
-    public Category createCategory(String name, Integer... idValue) {
+    public Category createCategory(String name) {
         Category category = new Category(name);
-        return createCategoryCommand.createCLient(category, idValue);
+        return createCategoryCommand.createCategory(category);
     }
 
     @Command(name = "Find Category", abbrev = "fca")
     public List<Category> findCategory() {
         return findCategoryCommand.findCategories();
     }
+
+    @Command(name = "Find Category By Id", abbrev = "fcabi")
+    public Category findCategoryById(int id) {
+        return findCategoryByIdCommand.findCategories(id);
+    }
+
 
     @Command(name = "Delete Category - int idList", abbrev = "dca")
     public List<Category> deleteCategory(int idList) {
