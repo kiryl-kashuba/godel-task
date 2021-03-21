@@ -1,19 +1,23 @@
 package com.kashuba.onlinestore.dao.impl;
 
-import com.kashuba.onlinestore.IdGenerator;
 import com.kashuba.onlinestore.dao.InstanceProductDao;
 import com.kashuba.onlinestore.entity.InstanceProduct;
+import com.kashuba.onlinestore.pool.ConnectionPool;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 public class InstanceProductDaoImpl extends AbstractCRUDDao<InstanceProduct> implements InstanceProductDao {
 
     private static InstanceProductDaoImpl instance;
-    private static final String ADD_CATEGORY = "INSERT INTO categories(name)VALUES (?)";
-    private static final String REMOVE_CART = "DELETE FROM carts WHERE id = ?";
+    private static final String ADD_PRODUCT = "INSERT INTO instance_products(name, articulation, price, " +
+            "category_id)VALUES (?, ?, ?, ?)";
+    private static final String REMOVE_PRODUCT = "DELETE FROM carts WHERE id = ?";
     private static final String FIND_ALL = "SELECT id, email, password, role, first_name, second_name, " +
             "phone_number, status FROM clients";
-    private static final String FIND_ALL_CLIENTS = FIND_ALL + " WHERE role = 1";
+    private static final String FIND_ALL_PRODUCT = FIND_ALL + "  WHERE id = ?";
 
     private InstanceProductDaoImpl() {
     }
@@ -27,7 +31,24 @@ public class InstanceProductDaoImpl extends AbstractCRUDDao<InstanceProduct> imp
 
     @Override
     public InstanceProduct create(InstanceProduct instanceProduct) {
-        instanceProduct.setId(IdGenerator.createID());
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement statement = connection.prepareStatement(ADD_PRODUCT)) {
+
+            statement.setString(1, instanceProduct.getName());
+            statement.setString(2, instanceProduct.getArticulation());
+            statement.setInt(3, instanceProduct.getPrice());
+            statement.setInt(4, (int) instanceProduct.getCategory().getId());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            try {
+                throw new Exception("Error when executing a query to add a category", e);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
         return instanceProduct;
     }
 

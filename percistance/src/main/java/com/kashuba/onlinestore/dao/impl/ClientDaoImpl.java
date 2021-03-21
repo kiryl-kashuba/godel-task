@@ -42,17 +42,17 @@ public class ClientDaoImpl extends AbstractCRUDDao<Client> implements ClientDao 
         ConnectionPool connectionPool = ConnectionPool.getInstance();
 
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement statement = connection.prepareStatement(ADD_CLIENT);
+             PreparedStatement clientStatement = connection.prepareStatement(ADD_CLIENT);
              PreparedStatement cartStatement = connection.prepareStatement(ADD_CART)) {
-            statement.setString(1, client.getEmail());
-            statement.setString(2, client.getPassword());
-            statement.setInt(3, client.getRole().ordinal());
-            statement.setString(4, client.getFirstName());
-            statement.setString(5, client.getSecondName());
-            statement.setLong(6, client.getPhoneNumber());
-            statement.setInt(7, client.getStatus().ordinal());
+            clientStatement.setString(1, client.getEmail());
+            clientStatement.setString(2, client.getPassword());
+            clientStatement.setInt(3, client.getRole().ordinal());
+            clientStatement.setString(4, client.getFirstName());
+            clientStatement.setString(5, client.getSecondName());
+            clientStatement.setLong(6, client.getPhoneNumber());
+            clientStatement.setInt(7, client.getStatus().ordinal());
 
-            statement.executeUpdate();
+            clientStatement.executeUpdate();
             cartStatement.executeUpdate();
         } catch (SQLException e) {
             try {

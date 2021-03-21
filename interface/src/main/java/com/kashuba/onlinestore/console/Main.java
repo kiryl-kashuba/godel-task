@@ -46,7 +46,7 @@ public class Main {
         client.setRole(User.Role.findRole(role));
         client.setStatus(Client.Status.findStatus(status));
 
-        return createClientCommand.createCLient(client);
+        return createClientCommand.createClient(client);
     }
 
     @Command(name = "Find Clients", abbrev = "fcl")
@@ -79,7 +79,7 @@ public class Main {
         return deleteProductAttributeCommand.DeleteProductAttribute(idList);
     }
 
-    @Command(name = "Create Category - String name, Integer... idValue", abbrev = "cca")
+    @Command(name = "Create Category - String name", abbrev = "cca")
     public Category createCategory(String name) {
         Category category = new Category(name);
         return createCategoryCommand.createCategory(category);

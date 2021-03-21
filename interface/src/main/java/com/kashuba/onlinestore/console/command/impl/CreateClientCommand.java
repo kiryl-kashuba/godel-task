@@ -19,7 +19,7 @@ public class CreateClientCommand {
     }
 
 
-    public Client createCLient(Client client) {
+    public Client createClient(Client client) {
         return clientService.createClient(client);
     }
 

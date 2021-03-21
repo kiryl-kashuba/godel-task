@@ -41,7 +41,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<Client> findClients() {
-            List<Client> clientList = null;
+        List<Client> clientList = null;
         try {
             clientList = clientDao.find();
         } catch (Exception e) {

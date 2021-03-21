@@ -9,7 +9,9 @@ public class InstanceProduct extends BaseEntity {
     private String articulation;
     private int price;
     private Category category;
+    private int number;
     private List<ProductAttributeValue> productAttributeValue;
+    private Cart cart;
 
 
     public InstanceProduct(long id, String name, String articulation, int price, Category category, List<ProductAttributeValue> productAttributeValue) {
@@ -28,6 +30,22 @@ public class InstanceProduct extends BaseEntity {
     }
 
     public InstanceProduct() {
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public String getName() {
@@ -78,7 +96,9 @@ public class InstanceProduct extends BaseEntity {
                 ", articulation='" + articulation + '\'' +
                 ", price=" + price +
                 ", category=" + category +
+                ", number=" + number +
                 ", productAttributeValue=" + productAttributeValue +
+                ", cart=" + cart +
                 '}';
     }
 
@@ -89,14 +109,16 @@ public class InstanceProduct extends BaseEntity {
         if (!super.equals(o)) return false;
         InstanceProduct that = (InstanceProduct) o;
         return price == that.price &&
+                number == that.number &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(articulation, that.articulation) &&
                 Objects.equals(category, that.category) &&
-                Objects.equals(productAttributeValue, that.productAttributeValue);
+                Objects.equals(productAttributeValue, that.productAttributeValue) &&
+                Objects.equals(cart, that.cart);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), name, articulation, price, category, productAttributeValue);
+        return Objects.hash(super.hashCode(), name, articulation, price, category, number, productAttributeValue, cart);
     }
 }
