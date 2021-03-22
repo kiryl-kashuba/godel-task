@@ -39,6 +39,6 @@ public class InstanceProductServiceImpl implements InstanceProductService {
 
     @Override
     public List<InstanceProduct> findInstanceProducts() {
-        return instanceProductDao.find();
+        return instanceProductDao.findAll();
     }
 }

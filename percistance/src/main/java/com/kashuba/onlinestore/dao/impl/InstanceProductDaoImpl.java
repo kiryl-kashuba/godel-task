@@ -53,7 +53,7 @@ public class InstanceProductDaoImpl extends AbstractCRUDDao<InstanceProduct> imp
     }
 
     @Override
-    public List<InstanceProduct> find() {
+    public List<InstanceProduct> findAll() {
         return null;
     }
 

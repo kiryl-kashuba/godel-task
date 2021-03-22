@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order createOrder(Order order, int idCart) {
 
-        for (Cart cart : cartDao.find()) {
+        for (Cart cart : cartDao.findAll()) {
             if (idCart == cart.getId()) {
                 order.setCart(cart);
             }
@@ -57,6 +57,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> findOrders() {
-        return orderDao.find();
+        return orderDao.findAll();
     }
 }

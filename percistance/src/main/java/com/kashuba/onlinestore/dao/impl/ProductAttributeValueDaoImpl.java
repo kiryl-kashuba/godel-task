@@ -35,7 +35,7 @@ public class ProductAttributeValueDaoImpl extends AbstractCRUDDao<ProductAttribu
     }
 
     @Override
-    public List<ProductAttributeValue> find() {
+    public List<ProductAttributeValue> findAll() {
         return null;
     }
 }

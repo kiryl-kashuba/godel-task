@@ -35,7 +35,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<Cart> findCarts() {
-        return cartDao.find();
+        return cartDao.findAll();
     }
 
     @Override

@@ -15,6 +15,10 @@ public class Category extends BaseEntity {
     public Category() {
     }
 
+    public Category(long id) {
+        super(id);
+    }
+
     public String getName() {
         return name;
     }

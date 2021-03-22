@@ -36,7 +36,7 @@ public class ProductAttributeServiceImpl implements ProductAttributeService {
     public List<ProductAttribute> findProductAttributes() {
         List<ProductAttribute> paList = null;
         try {
-            paList = productAttributeDao.find();
+            paList = productAttributeDao.findAll();
         } catch (Exception e) {
             e.printStackTrace();
         }

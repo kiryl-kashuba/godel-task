@@ -37,7 +37,7 @@ public class UserDaoImpl extends AbstractCRUDDao<User> implements UserDao {
     }
 
     @Override
-    public List<User> find() {
+    public List<User> findAll() {
         return null;
     }
 }

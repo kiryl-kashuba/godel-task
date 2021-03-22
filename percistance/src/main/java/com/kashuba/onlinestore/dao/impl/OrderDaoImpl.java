@@ -36,7 +36,7 @@ public class OrderDaoImpl extends AbstractCRUDDao<Order> implements OrderDao {
     }
 
     @Override
-    public List<Order> find() {
+    public List<Order> findAll() {
         return null;
     }
 }

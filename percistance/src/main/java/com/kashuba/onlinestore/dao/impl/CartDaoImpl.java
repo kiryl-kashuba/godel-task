@@ -36,7 +36,7 @@ public class CartDaoImpl extends AbstractCRUDDao<Cart> implements CartDao {
     }
 
     @Override
-    public List<Cart> find() {
+    public List<Cart> findAll() {
         return null;
     }
 

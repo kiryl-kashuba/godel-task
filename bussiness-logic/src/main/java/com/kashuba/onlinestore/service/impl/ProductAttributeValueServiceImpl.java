@@ -34,6 +34,6 @@ public class ProductAttributeValueServiceImpl implements ProductAttributeValueSe
 
     @Override
     public List<ProductAttributeValue> findProductAttributeValues() {
-        return productAttributeValueDao.find();
+        return productAttributeValueDao.findAll();
     }
 }

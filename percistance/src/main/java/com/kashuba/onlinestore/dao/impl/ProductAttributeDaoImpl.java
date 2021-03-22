@@ -80,7 +80,7 @@ public class ProductAttributeDaoImpl extends AbstractCRUDDao<ProductAttribute> i
     }
 
     @Override
-    public List<ProductAttribute> find() throws Exception {
+    public List<ProductAttribute> findAll() throws Exception {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         List<ProductAttribute> targetCategories = new ArrayList<>();
 

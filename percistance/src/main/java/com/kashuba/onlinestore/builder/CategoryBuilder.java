@@ -35,6 +35,9 @@ public class CategoryBuilder {
         buildingPA.setName((String) categoryParameters.get("product_attributes.name"));
         buildingPA.setMandatory(booleanCheck((int) categoryParameters.get("product_attributes.mandatory")));
         buildingPA.setType((String) categoryParameters.get("product_attributes.type"));
+        buildingPA.setId(((int) categoryParameters.get("product_attributes.id")));
+        Category category = new Category(((int) categoryParameters.get("product_attributes.category_id")));
+        buildingPA.setCategory(category);
 
         listOfPA.add(buildingPA);
 

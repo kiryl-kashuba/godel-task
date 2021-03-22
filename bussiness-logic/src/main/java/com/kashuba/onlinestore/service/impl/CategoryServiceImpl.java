@@ -40,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
         List<Category> clientCategory = null;
 
         try {
-            clientCategory = categoryDao.find();
+            clientCategory = categoryDao.findAll();
         } catch (Exception e) {
             e.printStackTrace();
         }

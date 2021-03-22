@@ -33,6 +33,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findUsers() {
-        return UserDaoImpl.getInstance().find();
+        return UserDaoImpl.getInstance().findAll();
     }
 }

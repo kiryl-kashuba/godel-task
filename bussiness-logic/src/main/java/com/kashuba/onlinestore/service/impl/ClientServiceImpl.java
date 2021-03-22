@@ -43,7 +43,7 @@ public class ClientServiceImpl implements ClientService {
     public List<Client> findClients() {
         List<Client> clientList = null;
         try {
-            clientList = clientDao.find();
+            clientList = clientDao.findAll();
         } catch (Exception e) {
             e.printStackTrace();
         }

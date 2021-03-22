@@ -20,7 +20,8 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
     private static final String ADD_CATEGORY = "INSERT INTO categories(name)VALUES (?)";
     private static final String REMOVE_CATEGORY = "DELETE FROM categories WHERE id = ?";
     private static final String FIND_ALL = "SELECT categories.id, categories.name, product_attributes.name, " +
-            "product_attributes.mandatory, product_attributes.type FROM categories LEFT OUTER JOIN " +
+            "product_attributes.mandatory, product_attributes.type, product_attributes.category_id, " +
+            "product_attributes.id FROM categories LEFT OUTER JOIN " +
             "product_attributes ON categories.id = product_attributes.category_id";
     private static final String FIND_CATEGORY_BY_ID = FIND_ALL + " WHERE categories.id = ?";
 
@@ -95,19 +96,32 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
 //    }
 
     @Override
-    public List<Category> find() throws Exception {
+    public List<Category> findAll() throws Exception {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         List<Category> targetCategories = new ArrayList<>();
+        List<Category> individualCategories = new ArrayList<>();
 
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ALL)) {
 
             ResultSet resultSet = statement.executeQuery();
-
             while (resultSet.next()) {
-                targetCategories.add(createCategory(resultSet));
+                individualCategories.add(createCategory(resultSet));
             }
 
+            Map<Long, List<Category>> categoriesById = new HashMap<>();
+            for (Category category : individualCategories) {
+                categoriesById.computeIfAbsent(category.getId(), k -> new ArrayList<>()).add(category);
+            }
+            for (List<Category> categories : categoriesById.values()) {
+                List<ProductAttribute> productAttributes = new ArrayList<>();
+                for (Category category : categories) {
+                    productAttributes.addAll(category.getProductAttribute());
+                }
+                Category DbCategory = categories.get(0);
+                DbCategory.setProductAttribute(productAttributes);
+                targetCategories.add(DbCategory);
+            }
         } catch (SQLException e) {
             throw new Exception(e);
         } catch (Exception exception) {
@@ -119,8 +133,7 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
 
     public Category findById(int id) throws Exception {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
-        List<Category> targetCategories = new ArrayList<>();
-        Category category2 = null;
+        Category DbCategory = null;
 
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_CATEGORY_BY_ID)) {
@@ -132,7 +145,6 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
                 individualCategories.add(createCategory(resultSet));
             }
 
-            // Начни от сюда
             Map<Long, List<Category>> categoriesById = new HashMap<>();
             for (Category category : individualCategories) {
                 categoriesById.computeIfAbsent(category.getId(), k -> new ArrayList<>()).add(category);
@@ -142,11 +154,8 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
                 for (Category category : categories) {
                     productAttributes.addAll(category.getProductAttribute());
                 }
-//                Category category = categories.get(0);
-                category2 = categories.get(0);
-                category2.setProductAttribute(productAttributes);
-
-//                targetCategories.add(category);
+                DbCategory = categories.get(0);
+                DbCategory.setProductAttribute(productAttributes);
             }
 
 
@@ -169,7 +178,7 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
             exception.printStackTrace();
         }
 
-        return category2;
+        return DbCategory;
     }
 
 
@@ -180,6 +189,9 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
         categoryParameters.put("product_attributes.name", resultSet.getString("product_attributes.name"));
         categoryParameters.put("product_attributes.mandatory", resultSet.getInt("product_attributes.mandatory"));
         categoryParameters.put("product_attributes.type", resultSet.getString("product_attributes.type"));
+        categoryParameters.put("product_attributes.category_id", resultSet.getInt("product_attributes.category_id"));
+        categoryParameters.put("product_attributes.id", resultSet.getInt("product_attributes.id"));
+
         // Сделать в билдере билдер для атрибута
         return CategoryBuilder.buildCategory(categoryParameters);
     }
