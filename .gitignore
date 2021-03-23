@@ -10,16 +10,6 @@
 /online-store.iml
 /.idea/
 /online-store.iml
-/Client.txt
-/Cart.txt
-/Category.txt
-/InstanceProduct.txt
-/Order.txt
-/ProductAttribute.txt
-/ProductValueAttribute.txt
-/ProductValueAttributeValue.txt
-/User.txt
-/Id.txt
 /percistance/percistance.iml
 /interface/interface.iml
 /bussiness-logic/bussiness-logic.iml
