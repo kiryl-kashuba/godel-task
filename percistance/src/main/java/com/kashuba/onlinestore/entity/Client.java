@@ -1,12 +1,19 @@
 package com.kashuba.onlinestore.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Arrays;
 import java.util.Objects;
 
+@Entity
+@Table(name = "clients")
 public class Client extends User {
 
     public enum Status {
+        @Column(name = "role") // Как обозначить Enum в таблице?
         ACTIVE("active"),
+        @Column(name = "role") // Как обозначить Enum в таблице?
         BLOCKED("blocked");
 
         private final String valueOfStatus;
@@ -34,9 +41,13 @@ public class Client extends User {
         }
     }
 
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "second_name")
     private String secondName;
+    @Column(name = "phone_number")
     private long phoneNumber;
+    @Column(name = "status")
     private Status status;
     private Cart cart;
 
