@@ -80,7 +80,7 @@ public class ProductAttributeDaoImpl extends AbstractCRUDDao<ProductAttribute> i
     }
 
     @Override
-    public List<ProductAttribute> findAll() throws Exception {
+    public List<ProductAttribute> findAll() {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         List<ProductAttribute> targetCategories = new ArrayList<>();
 
@@ -92,11 +92,8 @@ public class ProductAttributeDaoImpl extends AbstractCRUDDao<ProductAttribute> i
             while (resultSet.next()) {
                 targetCategories.add(createPA(resultSet));
             }
-
         } catch (SQLException e) {
-            throw new Exception(e);
-        } catch (Exception exception) {
-            exception.printStackTrace();
+            throw new RuntimeException("Error ", e);
         }
 
         return targetCategories;

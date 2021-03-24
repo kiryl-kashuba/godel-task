@@ -55,8 +55,8 @@ public class Main {
     }
 
     @Command(name = "Delete Client - int idClient", abbrev = "dcl")
-    public List<Client> deleteClient(int idClient) {
-        return deleteClientCommand.deleteCLient(idClient);
+    public void deleteClient(long idClient) {
+        deleteClientCommand.deleteCLient(idClient);
     }
 
 

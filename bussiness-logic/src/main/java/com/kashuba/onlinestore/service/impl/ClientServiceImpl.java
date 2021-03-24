@@ -30,19 +30,19 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client createClient(Client client) {
-        Client returnClient = clientDao.create(client);
-        return returnClient;
+        Client savedClient = clientRepository.saveAndFlush(client);
+        return savedClient;
     }
 
     @Override
-    public List<Client> deleteClient(int id) {
-        return clientDao.delete(id);
+    public void deleteClient(long id) {
+        clientRepository.delete(id);
     }
 
     @Override
     public List<Client> findClients() {
-        List<Client> clientList = clientDao.findAll();
-
-        return clientList;
+        return clientRepository.findAll();
     }
+
+
 }

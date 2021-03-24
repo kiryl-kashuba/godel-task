@@ -20,7 +20,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan("com.kashuba.onlinestore")
 @PropertySource("classpath:app.properties")
-@EnableJpaRepositories("com.devcolibri.dataexam.repository") //?
+@EnableJpaRepositories("com.kashuba.onlinestore.dao")
 public class DataConfig {
 
     private static final String PROP_DATABASE_DRIVER = "db.driver";
@@ -75,3 +75,4 @@ public class DataConfig {
 
         return properties;
     }
+}

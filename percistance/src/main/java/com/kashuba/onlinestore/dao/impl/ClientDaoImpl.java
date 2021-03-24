@@ -73,11 +73,7 @@ public class ClientDaoImpl extends AbstractCRUDDao<Client> implements ClientDao 
             statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            try {
-                throw new Exception("Error ", e);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
+                throw new RuntimeException("Error ", e);
         }
 
         return null;

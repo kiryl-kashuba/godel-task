@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "clients") // Как по нормальному сделать, чтобы этот класс относился ко всем таблицам?
+@Table(name = "clients") // Как по нормальному сделать, чтобы этот класс User относился ко всем таблицам?
 public abstract class BaseEntity implements Serializable {
 
     @Id
