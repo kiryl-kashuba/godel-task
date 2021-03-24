@@ -17,7 +17,7 @@ public interface CRUDDao<T extends BaseEntity> {
 
     List<T> delete(int id);
 
-    List<T> findAll() throws Exception;
+    List<T> findAll();
 
     default void autocommit(Connection connection, boolean type) {
         if (connection != null) {

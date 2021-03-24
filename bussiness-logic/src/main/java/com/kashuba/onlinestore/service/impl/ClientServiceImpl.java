@@ -1,13 +1,18 @@
 package com.kashuba.onlinestore.service.impl;
 
 import com.kashuba.onlinestore.dao.ClientDao;
+import com.kashuba.onlinestore.dao.ClientRepository;
 import com.kashuba.onlinestore.dao.impl.ClientDaoImpl;
 import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.service.ClientService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
+
+    @Autowired
+    private ClientRepository clientRepository;
 
     private ClientDao clientDao = ClientDaoImpl.getInstance();
 
@@ -25,12 +30,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client createClient(Client client) {
-        Client returnClient = null;
-        try {
-            returnClient = clientDao.create(client);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Client returnClient = clientDao.create(client);
         return returnClient;
     }
 
@@ -41,12 +41,8 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<Client> findClients() {
-        List<Client> clientList = null;
-        try {
-            clientList = clientDao.findAll();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        List<Client> clientList = clientDao.findAll();
+
         return clientList;
     }
 }

@@ -45,11 +45,7 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            try {
-                throw new Exception("Error when executing a query to add a category", e);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
+            throw new RuntimeException(e);
         }
         return category;
     }
@@ -63,13 +59,8 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
             statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            try {
-                throw new Exception("Error ", e);
-            } catch (Exception exception) {
-                exception.printStackTrace();
+            throw new RuntimeException("Error ", e);
             }
-        }
-
         return null;
     }
 
@@ -96,7 +87,7 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
 //    }
 
     @Override
-    public List<Category> findAll() throws Exception {
+    public List<Category> findAll() {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         List<Category> targetCategories = new ArrayList<>();
         List<Category> individualCategories = new ArrayList<>();
@@ -123,15 +114,12 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
                 targetCategories.add(DbCategory);
             }
         } catch (SQLException e) {
-            throw new Exception(e);
-        } catch (Exception exception) {
-            exception.printStackTrace();
+            throw new RuntimeException("Error ", e);
         }
-
         return targetCategories;
     }
 
-    public Category findById(int id) throws Exception {
+    public Category findById(int id) {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         Category DbCategory = null;
 
@@ -173,11 +161,8 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
 
 
         } catch (SQLException e) {
-            throw new Exception(e);
-        } catch (Exception exception) {
-            exception.printStackTrace();
+            throw new RuntimeException("Error ", e);
         }
-
         return DbCategory;
     }
 

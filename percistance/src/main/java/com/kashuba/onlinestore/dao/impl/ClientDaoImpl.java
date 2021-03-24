@@ -84,7 +84,7 @@ public class ClientDaoImpl extends AbstractCRUDDao<Client> implements ClientDao 
     }
 
     @Override
-    public List<Client> findAll() throws Exception {
+    public List<Client> findAll() {
         ConnectionPool connectionPool = ConnectionPool.getInstance();
         List<Client> targetClients = new ArrayList<>();
 
@@ -96,14 +96,9 @@ public class ClientDaoImpl extends AbstractCRUDDao<Client> implements ClientDao 
             while (resultSet.next()) {
                 targetClients.add(createClient(resultSet));
             }
-
         } catch (SQLException e) {
-            throw new Exception(e);
-        } catch (Exception exception) {
-            exception.printStackTrace();
+            throw new RuntimeException("Error ", e);
         }
-
-
         return targetClients;
     }
 
