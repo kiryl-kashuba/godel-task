@@ -19,7 +19,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("com.kashuba.onlinestore")
-@PropertySource("classpath:app.properties")
+@PropertySource("classpath:database.properties")
 @EnableJpaRepositories("com.kashuba.onlinestore.dao")
 public class DataConfig {
 
