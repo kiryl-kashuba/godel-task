@@ -1,37 +1,29 @@
 package com.kashuba.onlinestore.service.impl;
 
-import com.kashuba.onlinestore.dao.ClientDao;
 import com.kashuba.onlinestore.dao.ClientRepository;
-import com.kashuba.onlinestore.dao.impl.ClientDaoImpl;
 import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.service.ClientService;
+import com.kashuba.onlinestore.service.converter.ClientConverter;
+import com.kashuba.onlinestore.service.dto.ClientDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Component
+@Service
 public class ClientServiceImpl implements ClientService {
 
+    ClientConverter clientConverter = new ClientConverter();
     @Autowired
     private ClientRepository clientRepository;
 
-    private ClientDao clientDao = ClientDaoImpl.getInstance();
-
-    private static ClientServiceImpl instance;
-
-    private ClientServiceImpl() {
-    }
-
-    public static ClientServiceImpl getInstance() {
-        if (instance == null) {
-            instance = new ClientServiceImpl();
-        }
-        return instance;
-    }
-
     @Override
-    public Client createClient(Client client) {
-        Client savedClient = clientRepository.saveAndFlush(client);
-        return savedClient;
+    public Client createClient(ClientDto clientDto) {
+        Client client = clientConverter.toModel(clientDto);
+
+        return clientRepository.saveAndFlush(client);
     }
 
     @Override
@@ -43,6 +35,4 @@ public class ClientServiceImpl implements ClientService {
     public List<Client> findClients() {
         return clientRepository.findAll();
     }
-
-
 }
