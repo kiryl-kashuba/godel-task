@@ -8,13 +8,12 @@ import org.springframework.stereotype.Component;
 public class ClientConverter {
 
     public Client toModel(ClientDto clientDto) {
-        Client client = new Client(clientDto.getEmail(), clientDto.getPassword()); // допишу
-
-        return null;
+        return new Client(clientDto.getEmail(), clientDto.getPassword(),
+                clientDto.getFirstName(), clientDto.getSecondName(), clientDto.getPhoneNumber());
     }
 
     public ClientDto toDto(Client client) {
-
-        return null;
+        return new ClientDto(client.getEmail(), client.getPassword(), client.getFirstName(),
+                client.getSecondName(), client.getPhoneNumber());
     }
 }

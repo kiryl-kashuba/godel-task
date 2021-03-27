@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 public class ServiceConfig {
     @Bean
     public TransactionManager transactionManager(DataSource dataSource) {
-        return new DataSourceTransactionManager(dataSource); //ошибка из-за импорта
+        return new DataSourceTransactionManager(dataSource);
     }
 
     @Bean
