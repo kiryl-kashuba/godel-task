@@ -3,6 +3,7 @@ package com.kashuba.onlinestore.dao.impl;
 import com.kashuba.onlinestore.builder.CategoryBuilder;
 import com.kashuba.onlinestore.dao.CategoryDao;
 import com.kashuba.onlinestore.entity.Category;
+import com.kashuba.onlinestore.entity.ProductAttribute;
 import com.kashuba.onlinestore.pool.ConnectionPool;
 
 import java.sql.Connection;
@@ -99,7 +100,6 @@ public class CategoryDaoImpl extends AbstractCRUDDao<Category> implements Catego
             while (resultSet.next()) {
                 individualCategories.add(createCategory(resultSet));
             }
-
             Map<Long, List<Category>> categoriesById = new HashMap<>();
             for (Category category : individualCategories) {
                 categoriesById.computeIfAbsent(category.getId(), k -> new ArrayList<>()).add(category);
