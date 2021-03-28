@@ -19,7 +19,6 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     Client createClient(@RequestBody ClientDto clientDto) {
@@ -30,7 +29,6 @@ public class ClientController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void delete(@PathVariable("id") Client client) {
         clientService.deleteClient(client);
-
     }
 
     @GetMapping
