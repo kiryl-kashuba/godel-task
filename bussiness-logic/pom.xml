@@ -17,7 +17,7 @@
         <spring.data>2.4.3</spring.data>
         <javax.servlet>3.0.1</javax.servlet>
         <mysql.version>5.1.29</mysql.version>
-        <hb.manager>4.2.5.Final</hb.manager>
+        <hb.manager>5.4.30.Final</hb.manager>
         <spring.test>${spring.version}</spring.test>
         <junit.version>4.11</junit.version>
     </properties>
@@ -46,10 +46,11 @@
             <version>${spring.version}</version>
         </dependency>
         <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>javax.persistence-api</artifactId>
-            <version>2.2</version>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>1.0.0.Final</version>
         </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -67,7 +68,11 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hb.manager}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hb.manager}</version>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
@@ -79,7 +84,11 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>4.0.3</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
