@@ -49,6 +49,7 @@ public class Client extends User {
     private long phoneNumber;
     @Column(name = "status")
     private Status status;
+//    @Column(name = "cart") //
     private Cart cart;
 
 

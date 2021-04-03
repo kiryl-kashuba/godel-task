@@ -1,6 +1,7 @@
 package com.kashuba.onlinestore.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.kashuba.onlinestore.entity.Cart;
 
 import java.util.Objects;
 
