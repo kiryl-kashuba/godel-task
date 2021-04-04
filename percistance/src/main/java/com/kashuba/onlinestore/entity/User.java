@@ -1,8 +1,13 @@
 package com.kashuba.onlinestore.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Arrays;
 import java.util.Objects;
 
+@Entity
+@Table(name = "clients")
 public class User extends BaseEntity {
 
     public User(String email, Role role, String password) {
@@ -50,9 +55,11 @@ public class User extends BaseEntity {
         }
     }
 
-
+    @Column(name = "email")
     private String email;
+    @Column(name = "role")
     private Role role;
+    @Column(name = "password")
     private String password;
 
 
