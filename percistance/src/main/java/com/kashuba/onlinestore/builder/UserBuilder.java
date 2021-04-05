@@ -15,10 +15,10 @@ public class UserBuilder {
         }
         buildingClient.setEmail((String) userParameters.get("email"));
         buildingClient.setRole(role);
-        buildingClient.setFirstName((String) userParameters.get("first_name"));
-        buildingClient.setSecondName((String) userParameters.get("second_name"));
-        buildingClient.setPhoneNumber((long) userParameters.get("phone_number"));
-        buildingClient.setStatus((Client.Status) userParameters.get("status"));
+//        buildingClient.setFirstName((String) userParameters.get("first_name"));
+//        buildingClient.setSecondName((String) userParameters.get("second_name"));
+//        buildingClient.setPhoneNumber((long) userParameters.get("phone_number"));
+//        buildingClient.setStatus((Client.Status) userParameters.get("status"));
 
         return buildingClient;
     }

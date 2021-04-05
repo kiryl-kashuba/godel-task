@@ -33,6 +33,10 @@ public class ClientDto {
         this.phoneNumber = phoneNumber;
     }
 
+    public ClientDto(){
+
+    }
+
     public long getId() {
         return id;
     }

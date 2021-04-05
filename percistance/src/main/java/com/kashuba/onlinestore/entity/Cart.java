@@ -1,9 +1,18 @@
 package com.kashuba.onlinestore.entity;
 
+import lombok.*;
+
 import java.util.List;
 import java.util.Objects;
 
-public class Cart extends BaseEntity{
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+public class Cart extends BaseEntity {
 
     private Client client;
     private List<InstanceProduct> instanceProduct;
@@ -34,9 +43,6 @@ public class Cart extends BaseEntity{
         super(id);
     }
 
-    public Cart() {
-    }
-
 
     public List<InstanceProduct> addInstanceProduct(InstanceProduct instanceProduct) {
         this.instanceProduct.add(instanceProduct);
@@ -65,32 +71,5 @@ public class Cart extends BaseEntity{
 
     public void setNumber(List<InstanceProductContainer> number) {
         this.number = number;
-    }
-
-    @Override
-    public String toString() {
-        return "Cart{" +
-                "Id='" + super.getId() + '\'' +
-                "client=" + client +
-                ", instanceProduct=" + instanceProduct +
-                ", number=" + number +
-                '}';
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Cart cart = (Cart) o;
-        return Objects.equals(client, cart.client) &&
-                Objects.equals(instanceProduct, cart.instanceProduct) &&
-                Objects.equals(number, cart.number);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), client, instanceProduct, number);
     }
 }

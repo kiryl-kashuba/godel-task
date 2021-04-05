@@ -1,7 +1,14 @@
 package com.kashuba.onlinestore.entity;
 
-import java.util.Objects;
+import lombok.*;
 
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class ProductAttribute extends BaseEntity {
 
     private String name;
@@ -10,83 +17,10 @@ public class ProductAttribute extends BaseEntity {
     private Category category;
     private int number;
 
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public boolean isMandatory() {
-        return mandatory;
-    }
-
-    public void setMandatory(boolean mandatory) {
-        this.mandatory = mandatory;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
     public ProductAttribute(String name, boolean mandatory, String type, Category category) {
         this.name = name;
         this.mandatory = mandatory;
         this.type = type;
         this.category = category;
-    }
-
-    public ProductAttribute() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        ProductAttribute that = (ProductAttribute) o;
-        return mandatory == that.mandatory &&
-                number == that.number &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(type, that.type) &&
-                Objects.equals(category, that.category);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), name, mandatory, type, category, number);
-    }
-
-    @Override
-    public String toString() {
-        return "ProductAttribute{" +
-                "Id='" + super.getId() + '\'' +
-                "name='" + name + '\'' +
-                ", mandatory=" + mandatory +
-                ", type='" + type + '\'' +
-                ", category=" + category +
-                ", number=" + number +
-                '}';
     }
 }
