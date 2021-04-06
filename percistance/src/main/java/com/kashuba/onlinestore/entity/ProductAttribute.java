@@ -1,6 +1,8 @@
 package com.kashuba.onlinestore.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -9,10 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "product_attributes")
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -25,11 +24,4 @@ public class ProductAttribute extends BaseEntity {
     @JoinColumn(name = "category_id")
     private Category category;
     private int number;
-
-    public ProductAttribute(String name, boolean mandatory, String type, Category category) {
-        this.name = name;
-        this.mandatory = mandatory;
-        this.type = type;
-        this.category = category;
-    }
 }

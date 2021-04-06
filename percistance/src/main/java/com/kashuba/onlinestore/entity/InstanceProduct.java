@@ -1,16 +1,15 @@
 package com.kashuba.onlinestore.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "instance_products")
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class InstanceProduct extends BaseEntity {
@@ -28,19 +27,4 @@ public class InstanceProduct extends BaseEntity {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-
-    public InstanceProduct(long id, String name, String articulation, int price, Category category, List<ProductAttributeValue> productAttributeValue) {
-        super(id);
-        this.name = name;
-        this.articulation = articulation;
-        this.price = price;
-        this.category = category;
-        this.productAttributeValue = productAttributeValue;
-    }
-
-    public InstanceProduct(String name, String articulation, int price) {
-        this.name = name;
-        this.articulation = articulation;
-        this.price = price;
-    }
 }

@@ -1,15 +1,16 @@
 package com.kashuba.onlinestore.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Arrays;
 
 @Entity
 @Table(name = "clients")
-@Getter
-@Setter
-@ToString
+@Data
 @EqualsAndHashCode //(callSuper = true, exclude = {"schedules", "ways", "comments", "tags", "accesses"}) need to add
 @NoArgsConstructor
 @AllArgsConstructor
@@ -58,19 +59,4 @@ public class Client extends User {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    public Client(String email, Role role, String password, String firstName,
-                  String secondName, long phoneNumber, Status status) {
-        super(email, role, password);
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.phoneNumber = phoneNumber;
-        this.status = status;
-    }
-
-    public Client(String email, String password, String firstName, String secondName, long phoneNumber) {
-        super(email, password);
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.phoneNumber = phoneNumber;
-    }
 }

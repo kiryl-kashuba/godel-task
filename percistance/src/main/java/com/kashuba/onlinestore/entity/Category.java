@@ -1,6 +1,8 @@
 package com.kashuba.onlinestore.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -9,10 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "categories")
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Category extends BaseEntity {
@@ -22,12 +21,4 @@ public class Category extends BaseEntity {
     private List<ProductAttribute> productAttribute;
     @OneToMany(mappedBy = "category")
     private List<InstanceProduct> instanceProducts;
-
-    public Category(String name) {
-        this.name = name;
-    }
-
-    public Category(long id) {
-        super(id);
-    }
 }

@@ -1,7 +1,6 @@
 package com.kashuba.onlinestore.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.kashuba.onlinestore.entity.Cart;
 
 import java.util.Objects;
 
@@ -16,7 +15,7 @@ public class ClientDto {
 //    private Client.Status status;
 //    private Cart cart;
 
-    public ClientDto(long id, String firstName, String secondName, long phoneNumber, String email, String password) {
+    public ClientDto(String firstName, String secondName, long phoneNumber, String email, String password) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
