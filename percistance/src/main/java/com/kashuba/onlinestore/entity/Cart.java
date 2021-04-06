@@ -2,21 +2,30 @@ package com.kashuba.onlinestore.entity;
 
 import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.List;
-import java.util.Objects;
 
+@Entity
+@Table(name = "carts")
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Cart extends BaseEntity {
 
-    private Client client;
+    @OneToMany(mappedBy = "cart")
     private List<InstanceProduct> instanceProduct;
-    private List<InstanceProductContainer> number;
+    //Что тут делать?
+//    private List<InstanceProductContainer> number;
+    @OneToOne(optional = false, mappedBy = "cart")
+    private Client client;
+    @OneToOne(optional = false, mappedBy = "cart")
+    private Order order;
 
     public Cart(long id, Client client, List<InstanceProduct> instanceProduct) {
         super(id);
@@ -24,9 +33,8 @@ public class Cart extends BaseEntity {
         this.instanceProduct = instanceProduct;
     }
 
-    public Cart(List<InstanceProduct> instanceProduct, List<InstanceProductContainer> number) {
+    public Cart(List<InstanceProduct> instanceProduct) {
         this.instanceProduct = instanceProduct;
-        this.number = number;
     }
 
     public Cart(long id, Client client) {
@@ -47,29 +55,5 @@ public class Cart extends BaseEntity {
     public List<InstanceProduct> addInstanceProduct(InstanceProduct instanceProduct) {
         this.instanceProduct.add(instanceProduct);
         return this.instanceProduct;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public List<InstanceProduct> getInstanceProduct() {
-        return instanceProduct;
-    }
-
-    public void setInstanceProduct(List<InstanceProduct> instanceProduct) {
-        this.instanceProduct = instanceProduct;
-    }
-
-    public List<InstanceProductContainer> getNumber() {
-        return number;
-    }
-
-    public void setNumber(List<InstanceProductContainer> number) {
-        this.number = number;
     }
 }

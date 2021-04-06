@@ -2,21 +2,17 @@ package com.kashuba.onlinestore.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Arrays;
-import java.util.Objects;
 
 @Entity
 @Table(name = "clients")
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode //(callSuper = true, exclude = {"schedules", "ways", "comments", "tags", "accesses"}) need to add
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Client extends User {
 
     public enum Status {
@@ -58,7 +54,8 @@ public class Client extends User {
     private long phoneNumber;
     @Column(name = "status")
     private Status status;
-//    @Column(name = "cart")
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
     public Client(String email, Role role, String password, String firstName,

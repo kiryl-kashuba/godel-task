@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Arrays;
-import java.util.Objects;
 
 @Entity
 @Table(name = "clients")
@@ -16,7 +15,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @EqualsAndHashCode
-@RequiredArgsConstructor
+
 public class User extends BaseEntity {
 
     public User(String email, String password) {

@@ -2,20 +2,26 @@ package com.kashuba.onlinestore.entity;
 
 import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.time.LocalDate;
-import java.util.Objects;
 
+@Entity
+@Table(name = "orders")
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Order extends BaseEntity {
 
     private LocalDate dateOrder;
     private int amount;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
     public Order(long id, LocalDate dateOrder) {

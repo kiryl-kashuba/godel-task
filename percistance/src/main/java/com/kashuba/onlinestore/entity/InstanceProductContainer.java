@@ -2,16 +2,16 @@ package com.kashuba.onlinestore.entity;
 
 import lombok.*;
 
-import java.util.Objects;
-
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
-public class InstanceProductContainer extends BaseEntity {
+public class InstanceProductContainer extends BaseEntity { //как быть с этим классом контейнером?
     private InstanceProduct instanceProduct;
     private Integer count;
+    //    @ManyToOne(optional=false)
+//    @JoinColumn(name = "id")
+    private Cart cart;
 }

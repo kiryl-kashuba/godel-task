@@ -2,17 +2,26 @@ package com.kashuba.onlinestore.entity;
 
 import lombok.*;
 
-import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "product_attribute_values")
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class ProductAttributeValue extends BaseEntity {
 
     private String value;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "instanceProduct_id")
+    private InstanceProduct instanceProduct;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "productAttribute_id")
     private ProductAttribute productAttribute;
 }

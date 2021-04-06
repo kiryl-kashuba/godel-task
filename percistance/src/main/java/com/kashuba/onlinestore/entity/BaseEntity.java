@@ -5,7 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "clients") // Как по нормальному сделать, чтобы этот класс User относился ко всем таблицам?
@@ -15,7 +14,7 @@ import java.util.Objects;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
+
 public abstract class BaseEntity implements Serializable {
 
     @Id

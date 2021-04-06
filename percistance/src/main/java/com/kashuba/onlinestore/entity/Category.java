@@ -2,20 +2,26 @@ package com.kashuba.onlinestore.entity;
 
 import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
-import java.util.Objects;
 
+@Entity
+@Table(name = "categories")
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Category extends BaseEntity {
 
     private String name;
+    @OneToMany(mappedBy = "category")
     private List<ProductAttribute> productAttribute;
+    @OneToMany(mappedBy = "category")
+    private List<InstanceProduct> instanceProducts;
 
     public Category(String name) {
         this.name = name;

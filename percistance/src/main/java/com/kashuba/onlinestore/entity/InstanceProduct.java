@@ -2,24 +2,30 @@ package com.kashuba.onlinestore.entity;
 
 import lombok.*;
 
+import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
+@Entity
+@Table(name = "instance_products")
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class InstanceProduct extends BaseEntity {
 
     private String name;
     private String articulation;
     private int price;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "category_id")
     private Category category;
     private int number;
+    @OneToMany(mappedBy = "instanceProduct")
     private List<ProductAttributeValue> productAttributeValue;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
 
