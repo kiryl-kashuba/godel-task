@@ -1,14 +1,15 @@
 package com.kashuba.onlinestore.service;
 
 import com.kashuba.onlinestore.entity.ProductAttribute;
+import com.kashuba.onlinestore.service.dto.ProductAttributeDto;
 
 import java.util.List;
 
 public interface ProductAttributeService {
 
-    ProductAttribute createProductAttribute(ProductAttribute productAttribute);
+    ProductAttribute createProductAttribute(ProductAttributeDto productAttributeDto);
 
-    List<ProductAttribute> deleteProductAttribute(int idAttribute);
+    void deleteProductAttribute(int idAttribute);
 
     List<ProductAttribute> findProductAttributes();
 }

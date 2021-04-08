@@ -21,7 +21,6 @@ public class ProductAttribute extends BaseEntity {
     private boolean mandatory;
     private String type;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
-    private int number;
 }

@@ -9,12 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ClientDto extends BaseEntityDto {
-    private String firstName;
-    private String secondName;
-    private long phoneNumber;
-    private String email;
-    private String password;
-//    private Client.Status status;
-//    private Cart cart;
+public class CartDto extends BaseEntityDto {
+    public int number;
+
 }

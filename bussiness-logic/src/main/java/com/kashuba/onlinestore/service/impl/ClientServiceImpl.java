@@ -1,6 +1,8 @@
 package com.kashuba.onlinestore.service.impl;
 
+import com.kashuba.onlinestore.dao.CartRepository;
 import com.kashuba.onlinestore.dao.ClientRepository;
+import com.kashuba.onlinestore.entity.Cart;
 import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.service.ClientService;
 import com.kashuba.onlinestore.service.converter.ClientConverter;
@@ -18,11 +20,14 @@ public class ClientServiceImpl implements ClientService {
     ClientConverter clientConverter = new ClientConverter();
     @Autowired
     private ClientRepository clientRepository;
+    @Autowired
+    private CartRepository cartRepository;
 
     @Override
     public Client createClient(ClientDto clientDto) {
         Client client = clientConverter.toModel(clientDto);
-
+        Cart cart = new Cart();
+        cartRepository.saveAndFlush(cart);
         return clientRepository.saveAndFlush(client);
     }
 

@@ -5,16 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ClientDto extends BaseEntityDto {
-    private String firstName;
-    private String secondName;
-    private long phoneNumber;
-    private String email;
-    private String password;
-//    private Client.Status status;
-//    private Cart cart;
+public class OrderDto extends BaseEntityDto {
+    private LocalDate dateOrder;
+    private int amount;
 }

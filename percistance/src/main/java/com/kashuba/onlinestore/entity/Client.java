@@ -55,8 +55,8 @@ public class Client extends User {
     private long phoneNumber;
     @Column(name = "status")
     private Status status;
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "cart_id")
+    @OneToOne(optional = false, cascade = CascadeType.ALL) //false
+    @JoinColumn(name = "id", nullable = true) //false
     private Cart cart;
 
 }

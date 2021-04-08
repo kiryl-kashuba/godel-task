@@ -1,16 +1,17 @@
 package com.kashuba.onlinestore.service;
 
 import com.kashuba.onlinestore.entity.Category;
+import com.kashuba.onlinestore.service.dto.CategoryDto;
 
 import java.util.List;
 
 public interface CategoryService {
 
-    Category createCategory(Category category);
+    Category createCategory(CategoryDto categoryDto);
 
-    List<Category> deleteCategory(int idCategory);
+    void deleteCategory(Category category);
 
     List<Category> findCategories();
 
-    Category findCategoryById(int idCategory);
+//    Category findCategoryById(int idCategory);
 }

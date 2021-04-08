@@ -18,9 +18,9 @@ public class ProductAttributeValue extends BaseEntity {
 
     private String value;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "instanceProduct_id")
+    @JoinColumn(name = "instanceProduct_id", nullable = false)
     private InstanceProduct instanceProduct;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "productAttribute_id")
+    @JoinColumn(name = "productAttribute_id", nullable = false)
     private ProductAttribute productAttribute;
 }

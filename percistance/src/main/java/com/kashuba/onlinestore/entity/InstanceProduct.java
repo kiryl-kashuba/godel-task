@@ -18,13 +18,13 @@ public class InstanceProduct extends BaseEntity {
     private String articulation;
     private int price;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
     private int number;
     @OneToMany(mappedBy = "instanceProduct")
     private List<ProductAttributeValue> productAttributeValue;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "cart_id")
+    @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
 }
