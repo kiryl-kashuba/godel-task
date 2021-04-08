@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface OrderService {
 
-    Order createOrder(OrderDto orderDto, int idCart);
+    Order createOrder(OrderDto orderDto);
 
-    void deleteOrder(int idOrder);
+    void deleteOrder(Order order);
 
     List<Order> findOrders();
 }

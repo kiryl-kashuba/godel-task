@@ -1,8 +1,8 @@
 package com.kashuba.onlinestore.service.controller;
 
-import com.kashuba.onlinestore.entity.Client;
-import com.kashuba.onlinestore.service.ClientService;
-import com.kashuba.onlinestore.service.dto.ClientDto;
+import com.kashuba.onlinestore.entity.Order;
+import com.kashuba.onlinestore.service.OrderService;
+import com.kashuba.onlinestore.service.dto.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,28 +12,28 @@ import java.util.List;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
-    private final ClientService clientService;
+    private final OrderService orderService;
 
     @Autowired
-    public OrderController(ClientService clientService) {
-        this.clientService = clientService;
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Client createClient(@RequestBody ClientDto clientDto) {
-        return clientService.createClient(clientDto);
+    Order createClient(@RequestBody OrderDto orderDto) {
+        return orderService.createOrder(orderDto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable("id") Client client) {
-        clientService.deleteClient(client);
+    void delete(@PathVariable("id") Order order) {
+        orderService.deleteOrder(order);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    List<Client> findAllClients() {
-        return clientService.findClients();
+    List<Order> findAllClients() {
+        return orderService.findOrders();
     }
 }

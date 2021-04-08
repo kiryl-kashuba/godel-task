@@ -1,8 +1,8 @@
 package com.kashuba.onlinestore.service.controller;
 
-import com.kashuba.onlinestore.entity.Client;
-import com.kashuba.onlinestore.service.ClientService;
-import com.kashuba.onlinestore.service.dto.ClientDto;
+import com.kashuba.onlinestore.entity.ProductAttributeValue;
+import com.kashuba.onlinestore.service.ProductAttributeValueService;
+import com.kashuba.onlinestore.service.dto.ProductAttributeValueDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,30 +10,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/PAV")
 public class ProductAttributeValueController {
-    private final ClientService clientService;
+    private final ProductAttributeValueService productAttributeValueService;
 
     @Autowired
-    public ProductAttributeValueController(ClientService clientService) {
-        this.clientService = clientService;
+    public ProductAttributeValueController(ProductAttributeValueService productAttributeValueService) {
+        this.productAttributeValueService = productAttributeValueService;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Client createClient(@RequestBody ClientDto clientDto) {
-        return clientService.createClient(clientDto);
+    ProductAttributeValue createProductAttributeValue(@RequestBody ProductAttributeValueDto productAttributeValueDto) {
+        return productAttributeValueService.createProductAttributeValue(productAttributeValueDto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable("id") Client client) {
-        clientService.deleteClient(client);
+    void delete(@PathVariable("id") ProductAttributeValue productAttributeValue) {
+        productAttributeValueService.deleteProductAttributeValue(productAttributeValue);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    List<Client> findAllClients() {
-        return clientService.findClients();
+    List<ProductAttributeValue> findAllProductAttributeValues() {
+        return productAttributeValueService.findProductAttributeValues();
     }
 }

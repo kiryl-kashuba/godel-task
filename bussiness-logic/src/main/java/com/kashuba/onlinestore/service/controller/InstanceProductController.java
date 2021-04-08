@@ -1,8 +1,8 @@
 package com.kashuba.onlinestore.service.controller;
 
-import com.kashuba.onlinestore.entity.Client;
-import com.kashuba.onlinestore.service.ClientService;
-import com.kashuba.onlinestore.service.dto.ClientDto;
+import com.kashuba.onlinestore.entity.InstanceProduct;
+import com.kashuba.onlinestore.service.InstanceProductService;
+import com.kashuba.onlinestore.service.dto.InstanceProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,30 +10,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/IP")
 public class InstanceProductController {
-    private final ClientService clientService;
+    private final InstanceProductService instanceProductService;
 
     @Autowired
-    public InstanceProductController(ClientService clientService) {
-        this.clientService = clientService;
+    public InstanceProductController(InstanceProductService instanceProductService) {
+        this.instanceProductService = instanceProductService;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Client createClient(@RequestBody ClientDto clientDto) {
-        return clientService.createClient(clientDto);
+    InstanceProduct createInstanceProduct(@RequestBody InstanceProductDto instanceProductDto) {
+        return instanceProductService.createInstanceProduct(instanceProductDto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable("id") Client client) {
-        clientService.deleteClient(client);
+    void delete(@PathVariable("id") InstanceProduct instanceProduct) {
+        instanceProductService.deleteInstanceProduct(instanceProduct);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    List<Client> findAllClients() {
-        return clientService.findClients();
+    List<InstanceProduct> findAllInstanceProducts() {
+        return instanceProductService.findInstanceProducts();
     }
 }

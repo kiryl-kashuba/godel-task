@@ -1,45 +1,36 @@
-//package com.kashuba.onlinestore.service.impl;
-//
-//import com.kashuba.onlinestore.dao.impl.ProductAttributeDaoImpl;
-//import com.kashuba.onlinestore.entity.ProductAttribute;
-//import com.kashuba.onlinestore.service.ProductAttributeService;
-//
-//import java.util.List;
-//
-//public class ProductAttributeServiceImpl implements ProductAttributeService {
-//
-//    private ProductAttributeDaoImpl productAttributeDao = ProductAttributeDaoImpl.getInstance();
-//
-//    private static ProductAttributeServiceImpl instance;
-//
-//    private ProductAttributeServiceImpl() {
-//    }
-//
-//    public static ProductAttributeServiceImpl getInstance() {
-//        if (instance == null) {
-//            instance = new ProductAttributeServiceImpl();
-//        }
-//        return instance;
-//    }
-//
-//    @Override
-//    public ProductAttribute createProductAttribute(ProductAttribute productAttribute) {
-//        return productAttributeDao.create(productAttribute);
-//    }
-//
-//    @Override
-//    public List<ProductAttribute> deleteProductAttribute(int idAttribute) {
-//        return productAttributeDao.delete(idAttribute);
-//    }
-//
-//    @Override
-//    public List<ProductAttribute> findProductAttributes() {
-//        List<ProductAttribute> paList = null;
-//        try {
-//            paList = productAttributeDao.findAll();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return paList;
-//    }
-//}
+package com.kashuba.onlinestore.service.impl;
+
+import com.kashuba.onlinestore.dao.ProductAttributeRepository;
+import com.kashuba.onlinestore.entity.ProductAttribute;
+import com.kashuba.onlinestore.service.ProductAttributeService;
+import com.kashuba.onlinestore.service.converter.ProductAttributeConverter;
+import com.kashuba.onlinestore.service.dto.ProductAttributeDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Component
+@Service
+public class ProductAttributeServiceImpl implements ProductAttributeService {
+    ProductAttributeConverter productAttributeConverter = new ProductAttributeConverter();
+    @Autowired
+    private ProductAttributeRepository productAttributeRepository;
+
+    @Override
+    public ProductAttribute createProductAttribute(ProductAttributeDto productAttributeDto) {
+        ProductAttribute productAttribute = productAttributeConverter.toModel(productAttributeDto);
+        return productAttributeRepository.saveAndFlush(productAttribute);
+    }
+
+    @Override
+    public void deleteProductAttribute(ProductAttribute productAttribute) {
+        productAttributeRepository.delete(productAttribute);
+    }
+
+    @Override
+    public List<ProductAttribute> findProductAttributes() {
+        return productAttributeRepository.findAll();
+    }
+}

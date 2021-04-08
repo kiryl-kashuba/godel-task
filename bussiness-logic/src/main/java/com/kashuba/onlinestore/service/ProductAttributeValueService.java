@@ -9,7 +9,7 @@ public interface ProductAttributeValueService {
 
     ProductAttributeValue createProductAttributeValue(ProductAttributeValueDto productAttributeValueDto);
 
-    void deleteProductAttributeValue(int idAttributeValue);
+    void deleteProductAttributeValue(ProductAttributeValue productAttributeValue);
 
     List<ProductAttributeValue> findProductAttributeValues();
 }

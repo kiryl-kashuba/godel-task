@@ -1,8 +1,8 @@
 package com.kashuba.onlinestore.service.controller;
 
-import com.kashuba.onlinestore.entity.Client;
-import com.kashuba.onlinestore.service.ClientService;
-import com.kashuba.onlinestore.service.dto.ClientDto;
+import com.kashuba.onlinestore.entity.ProductAttribute;
+import com.kashuba.onlinestore.service.ProductAttributeService;
+import com.kashuba.onlinestore.service.dto.ProductAttributeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,30 +10,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/PA")
 public class ProductAttributeController {
-    private final ClientService clientService;
+    private final ProductAttributeService productAttributeService;
 
     @Autowired
-    public ProductAttributeController(ClientService clientService) {
-        this.clientService = clientService;
+    public ProductAttributeController(ProductAttributeService productAttributeService) {
+        this.productAttributeService = productAttributeService;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Client createClient(@RequestBody ClientDto clientDto) {
-        return clientService.createClient(clientDto);
+    ProductAttribute createProductAttribute(@RequestBody ProductAttributeDto productAttributeDto) {
+        return productAttributeService.createProductAttribute(productAttributeDto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable("id") Client client) {
-        clientService.deleteClient(client);
+    void delete(@PathVariable("id") ProductAttribute productAttribute) {
+        productAttributeService.deleteProductAttribute(productAttribute);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    List<Client> findAllClients() {
-        return clientService.findClients();
+    List<ProductAttribute> findAllProductAttributes() {
+        return productAttributeService.findProductAttributes();
     }
 }

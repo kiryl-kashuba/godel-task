@@ -6,14 +6,12 @@ import com.kashuba.onlinestore.service.dto.InstanceProductDto;
 import java.util.List;
 
 public interface InstanceProductService {
+//    InstanceProduct updateInstanceProduct(InstanceProductDto instanceProductDto, int idOfProduct);
 
     InstanceProduct createInstanceProduct(InstanceProductDto instanceProductDto);
 
-    InstanceProduct updateInstanceProduct(InstanceProductDto instanceProductDto, int idOfProduct);
-
-    void deleteInstanceProduct(int idInstanceProduct);
+    void deleteInstanceProduct(InstanceProduct instanceProduct);
 
     List<InstanceProduct> findInstanceProducts();
-
 
 }
