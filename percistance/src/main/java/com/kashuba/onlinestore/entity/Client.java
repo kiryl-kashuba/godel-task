@@ -1,20 +1,22 @@
 package com.kashuba.onlinestore.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Arrays;
 
 @Entity
 @Table(name = "clients")
+@ToString(callSuper = true)
 @Data
-@EqualsAndHashCode //(callSuper = true, exclude = {"schedules", "ways", "comments", "tags", "accesses"}) need to add
+@EqualsAndHashCode(callSuper = true)
+//(callSuper = true, exclude = {"schedules", "ways", "comments", "tags", "accesses"}) need to add
 @NoArgsConstructor
 @AllArgsConstructor
 public class Client extends User {
+
+    @Column(name = "phone_number")
+    private Long phoneNumber;
 
     public enum Status {
         @Column(name = "role") // Как обозначить Enum в таблице?
@@ -51,12 +53,19 @@ public class Client extends User {
     private String firstName;
     @Column(name = "second_name")
     private String secondName;
-    @Column(name = "phone_number")
-    private long phoneNumber;
+    @OneToOne(optional = true, cascade = CascadeType.ALL) //false
+    @JoinColumn(name = "cart_id", nullable = false) //false
+    private Cart cart;
     @Column(name = "status")
     private Status status;
-    @OneToOne(optional = false, cascade = CascadeType.ALL) //false
-    @JoinColumn(name = "id", nullable = true) //false
-    private Cart cart;
+
+    public Client(String firstName, String secondName, Long phoneNumber, Cart cart, String email, String password, Role role, Status status) {
+        super(email, role, password);
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.phoneNumber = phoneNumber;
+        this.cart = cart;
+        this.status = status;
+    }
 
 }

@@ -1,10 +1,11 @@
 package com.kashuba.onlinestore.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.kashuba.onlinestore.entity.Cart;
+import lombok.*;
 
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,9 +13,12 @@ import lombok.NoArgsConstructor;
 public class ClientDto extends BaseEntityDto {
     private String firstName;
     private String secondName;
-    private long phoneNumber;
+    private Long phoneNumber;
     private String email;
     private String password;
+    private String status;
+    private Cart cart;
+    private String role;
 //    private Client.Status status;
 //    private Cart cart;
 }

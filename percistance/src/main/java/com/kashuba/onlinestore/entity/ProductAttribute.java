@@ -1,8 +1,6 @@
 package com.kashuba.onlinestore.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -11,6 +9,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "product_attributes")
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

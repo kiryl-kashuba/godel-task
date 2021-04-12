@@ -1,10 +1,10 @@
 package com.kashuba.onlinestore.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@ToString(callSuper = true)
 @Data
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class InstanceProductContainer extends BaseEntity { //как быть с этим классом контейнером?

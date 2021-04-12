@@ -6,12 +6,10 @@ import com.kashuba.onlinestore.service.InstanceProductService;
 import com.kashuba.onlinestore.service.converter.InstanceProductConverter;
 import com.kashuba.onlinestore.service.dto.InstanceProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
 @Service
 public class InstanceProductServiceImpl implements InstanceProductService {
     InstanceProductConverter instanceProductConverter = new InstanceProductConverter();

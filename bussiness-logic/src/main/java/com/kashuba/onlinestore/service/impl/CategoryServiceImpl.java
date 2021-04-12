@@ -6,12 +6,10 @@ import com.kashuba.onlinestore.service.CategoryService;
 import com.kashuba.onlinestore.service.converter.CategoryConverter;
 import com.kashuba.onlinestore.service.dto.CategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
 @Service
 public class CategoryServiceImpl implements CategoryService {
 

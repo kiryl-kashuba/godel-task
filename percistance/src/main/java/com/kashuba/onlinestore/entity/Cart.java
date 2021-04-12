@@ -1,8 +1,6 @@
 package com.kashuba.onlinestore.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -12,6 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "carts")
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,8 +21,8 @@ public class Cart extends BaseEntity {
     private List<InstanceProduct> instanceProduct;
     //Что тут делать?
 //    private List<InstanceProductContainer> number;
-    @OneToOne(optional = false, mappedBy = "cart")
+    @OneToOne(optional = true, mappedBy = "cart")
     private Client client;
-    @OneToOne(optional = false, mappedBy = "cart")
+    @OneToOne(optional = true, mappedBy = "cart")
     private Order order;
 }

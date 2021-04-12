@@ -1,9 +1,6 @@
 package com.kashuba.onlinestore.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -12,8 +9,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "categories")
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @Data
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class Category extends BaseEntity {

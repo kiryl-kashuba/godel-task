@@ -1,12 +1,12 @@
 package com.kashuba.onlinestore.service.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@EqualsAndHashCode
+@ToString(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class BaseEntityDto {
-    private long id;
+    private Long id;
 }

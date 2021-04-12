@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/IP")
+@RequestMapping("/instanceproducts")
 public class InstanceProductController {
     private final InstanceProductService instanceProductService;
 

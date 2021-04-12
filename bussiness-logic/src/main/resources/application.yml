@@ -5,6 +5,7 @@
 ##db.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 ##db.hibernate.show_sql=true
 ##db.hibernate.hbm2ddl.auto=create
+#       ddl-auto: validate
 spring:
   jpa:
     show-sql: false
@@ -19,6 +20,10 @@ spring:
 logging:
   level:
     root: info
+    org:
+      springframework:
+        jdbc:
+          core: trace
   file:
     path: logs
 #  pattern:

@@ -10,13 +10,13 @@ public class DateConverter {
     private DateConverter() {
     }
 
-    public static long convertToLong(LocalDate date) {
+    public static Long convertToLong(LocalDate date) {
         ZonedDateTime zonedDateTime = date.atStartOfDay().atZone(ZoneId.systemDefault());
 
         return zonedDateTime.toInstant().toEpochMilli();
     }
 
-    public static LocalDate convertToDate(long milliseconds) {
+    public static LocalDate convertToDate(Long milliseconds) {
         return Instant.ofEpochMilli(milliseconds).atZone(ZoneId.systemDefault()).toLocalDate();
     }
 }

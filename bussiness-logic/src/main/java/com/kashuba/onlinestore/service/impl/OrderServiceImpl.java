@@ -6,12 +6,10 @@ import com.kashuba.onlinestore.service.OrderService;
 import com.kashuba.onlinestore.service.converter.OrderConverter;
 import com.kashuba.onlinestore.service.dto.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
 @Service
 public class OrderServiceImpl implements OrderService {
     OrderConverter orderConverter = new OrderConverter();

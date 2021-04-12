@@ -6,12 +6,10 @@ import com.kashuba.onlinestore.service.ProductAttributeValueService;
 import com.kashuba.onlinestore.service.converter.ProductAttributeValueConverter;
 import com.kashuba.onlinestore.service.dto.ProductAttributeValueDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
 @Service
 public class ProductAttributeValueServiceImpl implements ProductAttributeValueService {
     ProductAttributeValueConverter productAttributeValueConverter = new ProductAttributeValueConverter();
