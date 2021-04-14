@@ -3,19 +3,19 @@ package com.kashuba.onlinestore.entity;
 import lombok.*;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import java.util.Arrays;
 
-@Entity
 @Table(name = "clients")
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+//@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
+@MappedSuperclass
 @Data
 
-public class User extends BaseEntity {
+public class User {
 
     public User(String email, String password) {
         this.password = password;

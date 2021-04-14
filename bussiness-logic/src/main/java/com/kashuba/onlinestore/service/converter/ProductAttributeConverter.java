@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductAttributeConverter {
 
-    public ProductAttribute toModel(ProductAttributeDto ProductAttributeDto) {
-        return new ProductAttribute();
+    public ProductAttribute toModel(ProductAttributeDto productAttributeDto) {
+        return new ProductAttribute(productAttributeDto.getName(), productAttributeDto.isMandatory(), productAttributeDto.getType());
     }
 
-    public ProductAttributeDto toDto(ProductAttribute ProductAttribute) {
+    public ProductAttributeDto toDto(ProductAttribute productAttribute) {
         return new ProductAttributeDto();
     }
 }

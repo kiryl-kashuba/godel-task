@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderConverter {
 
-    public Order toModel(OrderDto OrderDto) {
-        return new Order();
+    public Order toModel(OrderDto orderDto) {
+        return new Order(orderDto.getDateOrder(), orderDto.getAmount());
     }
 
-    public OrderDto toDto(Order Order) {
+    public OrderDto toDto(Order order) {
         return new OrderDto();
     }
 }

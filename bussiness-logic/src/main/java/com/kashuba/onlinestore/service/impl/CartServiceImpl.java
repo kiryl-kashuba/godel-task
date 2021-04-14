@@ -26,8 +26,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void deleteCart(Cart cart) {
-        cartRepository.deleteById(cart.getId());
-//        cartRepository.flush();
+        cartRepository.delete(cart);  //cartRepository.deleteById(client.getId());
     }
 
     @Override

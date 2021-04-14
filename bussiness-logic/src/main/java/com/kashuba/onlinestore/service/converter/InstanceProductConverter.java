@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 public class InstanceProductConverter {
 
     public InstanceProduct toModel(InstanceProductDto instanceProductDto) {
-        return new InstanceProduct();
+        return new InstanceProduct(instanceProductDto.getName(), instanceProductDto.getArticulation(),
+                instanceProductDto.getPrice());
     }
 
     public InstanceProductDto toDto(InstanceProduct InstanceProduct) {

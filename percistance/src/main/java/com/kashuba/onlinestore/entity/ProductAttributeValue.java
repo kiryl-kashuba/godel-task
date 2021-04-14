@@ -16,11 +16,18 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class ProductAttributeValue extends BaseEntity {
 
-    private String value;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "instanceProduct_id", nullable = false)
+    //    @JsonBackReference
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "id", nullable = true, insertable = false, updatable = false) //productAttribute_id
     private InstanceProduct instanceProduct;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "productAttribute_id", nullable = false)
+
+    private String value;
+    //    @JsonBackReference
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "id", nullable = true, insertable = false, updatable = false) //productAttribute_id
     private ProductAttribute productAttribute;
+
+    public ProductAttributeValue(String value) {
+        this.value = value;
+    }
 }

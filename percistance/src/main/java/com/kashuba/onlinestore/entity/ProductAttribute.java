@@ -16,11 +16,18 @@ import javax.persistence.Table;
 @AllArgsConstructor
 
 public class ProductAttribute extends BaseEntity {
+    //    @JsonBackReference
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "id", nullable = true, insertable = false, updatable = false) //category_id
+    private Category category;
 
     private String name;
     private boolean mandatory;
     private String type;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+
+    public ProductAttribute(String name, boolean mandatory, String type) {
+        this.name = name;
+        this.mandatory = mandatory;
+        this.type = type;
+    }
 }

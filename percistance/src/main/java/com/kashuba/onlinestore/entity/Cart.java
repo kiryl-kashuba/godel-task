@@ -2,10 +2,7 @@ package com.kashuba.onlinestore.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -17,12 +14,14 @@ import java.util.List;
 @AllArgsConstructor
 public class Cart extends BaseEntity {
 
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", orphanRemoval = true)
     private List<InstanceProduct> instanceProduct;
     //Что тут делать?
 //    private List<InstanceProductContainer> number;
-    @OneToOne(optional = true, mappedBy = "cart")
+//    @JsonBackReference
+    @OneToOne(optional = true, mappedBy = "cart", orphanRemoval = true, fetch = FetchType.LAZY)
     private Client client;
-    @OneToOne(optional = true, mappedBy = "cart")
+    //    @JsonBackReference
+    @OneToOne(optional = false, mappedBy = "cart")
     private Order order;
 }

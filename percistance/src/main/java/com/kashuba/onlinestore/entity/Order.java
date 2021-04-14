@@ -2,10 +2,7 @@ package com.kashuba.onlinestore.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -15,11 +12,25 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property  = "id",
+//        scope     = Long.class)
 public class Order extends BaseEntity {
+
+    @OneToOne(optional = false)
+    @JoinColumn(name = "id", nullable = false, insertable = false, updatable = false) //cart_id
+    private Cart cart;
 
     private LocalDate dateOrder;
     private int amount;
-    @OneToOne(optional = false)
-    @JoinColumn(name = "cart_id", nullable = false)
-    private Cart cart;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id", nullable = false, insertable = false, updatable = false) //client_id
+//    @JsonBackReference
+//    @JsonIgnore
+    private Client client;
+
+    public Order(LocalDate dateOrder, int amount) {
+        this.dateOrder = dateOrder;
+        this.amount = amount;
+    }
 }

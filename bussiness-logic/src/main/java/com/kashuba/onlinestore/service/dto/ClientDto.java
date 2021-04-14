@@ -1,7 +1,6 @@
 package com.kashuba.onlinestore.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.kashuba.onlinestore.entity.Cart;
 import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
@@ -17,7 +16,6 @@ public class ClientDto extends BaseEntityDto {
     private String email;
     private String password;
     private String status;
-    private Cart cart;
     private String role;
 //    private Client.Status status;
 //    private Cart cart;

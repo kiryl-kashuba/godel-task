@@ -9,7 +9,7 @@ public interface ClientService {
 
     Client createClient(ClientDto clientDto);
 
-    void deleteClient(Client client);
+    void deleteById(Long id);
 
     List<Client> findClients();
 }

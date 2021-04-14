@@ -14,17 +14,27 @@ import java.util.List;
 @AllArgsConstructor
 public class InstanceProduct extends BaseEntity {
 
+    //    @JsonBackReference
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "id", nullable = true, insertable = false, updatable = false) //category_id
+    private Category category;
+
     private String name;
     private String articulation;
     private int price;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
-    private int number;
-    @OneToMany(mappedBy = "instanceProduct")
+    //    @JsonManagedReference
+    @OneToMany(mappedBy = "instanceProduct", orphanRemoval = true)
     private List<ProductAttributeValue> productAttributeValue;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "cart_id", nullable = false)
+    private int number;
+    //    @JsonBackReference
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "id", nullable = true, insertable = false, updatable = false) //cart_id
     private Cart cart;
+
+    public InstanceProduct(String name, String articulation, int price) {
+        this.name = name;
+        this.articulation = articulation;
+        this.price = price;
+    }
 
 }

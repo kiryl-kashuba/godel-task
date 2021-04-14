@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class CategoryConverter {
 
     public Category toModel(CategoryDto categoryDto) {
-        return new Category();
+        return new Category(categoryDto.getName());
     }
 
     public CategoryDto toDto(Category category) {

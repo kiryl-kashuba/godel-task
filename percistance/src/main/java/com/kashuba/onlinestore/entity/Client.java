@@ -1,9 +1,11 @@
 package com.kashuba.onlinestore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Arrays;
+import java.util.List;
 
 @Entity
 @Table(name = "clients")
@@ -13,7 +15,10 @@ import java.util.Arrays;
 //(callSuper = true, exclude = {"schedules", "ways", "comments", "tags", "accesses"}) need to add
 @NoArgsConstructor
 @AllArgsConstructor
-public class Client extends User {
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property  = "id",
+//        scope     = Long.class)
+public class Client extends BaseEntity {
 
     @Column(name = "phone_number")
     private Long phoneNumber;
@@ -49,23 +54,71 @@ public class Client extends User {
         }
     }
 
+    //    @Column(name = "dtype")
+//    private String dtype;
+//    @JsonManagedReference
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", nullable = true) //cart_id
+    private Cart cart;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "second_name")
     private String secondName;
-    @OneToOne(optional = true, cascade = CascadeType.ALL) //false
-    @JoinColumn(name = "cart_id", nullable = false) //false
-    private Cart cart;
+    @Column(name = "email")
+    @NonNull
+    private String email;
     @Column(name = "status")
     private Status status;
+    @Column(name = "role")
+    @NonNull
+    private Role role;
+    @Column(name = "password")
+    @NonNull
+    private String password;
+    //    @JsonManagedReference
+    @OneToMany(mappedBy = "client", orphanRemoval = true) //, orphanRemoval = true, fetch = FetchType.LAZY
+    @JsonIgnore
+    private List<Order> orders;
 
-    public Client(String firstName, String secondName, Long phoneNumber, Cart cart, String email, String password, Role role, Status status) {
-        super(email, role, password);
+    public Client(String firstName, String secondName, Long phoneNumber,
+                  String email, String password, Role role, Status status) {
+        this.email = email;
+        this.role = role;
+        this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
         this.phoneNumber = phoneNumber;
-        this.cart = cart;
+//        this.cart = cart;
         this.status = status;
     }
 
+    public enum Role {
+        GUEST("guest"),
+        CLIENT("client"),
+        ADMIN("admin");
+
+        private final String valueOfRole;
+
+        Role(String valueOfRole) {
+            this.valueOfRole = valueOfRole;
+        }
+
+        public static Role getUserRole(int index) {
+            return Arrays.stream(Role.values()).filter(r -> r.ordinal() == index).findFirst().get();
+        }
+
+        public static Role findRole(String role) {
+            Role user = null;
+            for (Role env : Role.values()) {
+                if (role.equals(env.getvalueOfRole())) {
+                    user = env;
+                }
+            }
+            return user;
+        }
+
+        public String getvalueOfRole() {
+            return valueOfRole;
+        }
+    }
 }
