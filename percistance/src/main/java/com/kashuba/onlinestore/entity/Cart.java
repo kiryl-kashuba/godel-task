@@ -19,7 +19,8 @@ public class Cart extends BaseEntity {
     //Что тут делать?
 //    private List<InstanceProductContainer> number;
 //    @JsonBackReference
-    @OneToOne(optional = true, mappedBy = "cart", orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", nullable = true)
     private Client client;
     //    @JsonBackReference
     @OneToOne(optional = false, mappedBy = "cart")

@@ -57,8 +57,7 @@ public class Client extends BaseEntity {
     //    @Column(name = "dtype")
 //    private String dtype;
 //    @JsonManagedReference
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", nullable = true) //cart_id
+    @OneToOne(optional = true, mappedBy = "client", orphanRemoval = true, fetch = FetchType.LAZY)
     private Cart cart;
     @Column(name = "first_name")
     private String firstName;
