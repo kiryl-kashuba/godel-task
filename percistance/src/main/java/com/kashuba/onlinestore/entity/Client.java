@@ -12,7 +12,6 @@ import java.util.List;
 @ToString(callSuper = true)
 @Data
 @EqualsAndHashCode(callSuper = true)
-//(callSuper = true, exclude = {"schedules", "ways", "comments", "tags", "accesses"}) need to add
 @NoArgsConstructor
 @AllArgsConstructor
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
