@@ -53,6 +53,36 @@ public class Client extends BaseEntity {
         }
     }
 
+    public enum Role {
+        GUEST("guest"),
+        CLIENT("client"),
+        ADMIN("admin");
+
+        private final String valueOfRole;
+
+        Role(String valueOfRole) {
+            this.valueOfRole = valueOfRole;
+        }
+
+        public static Role getUserRole(int index) {
+            return Arrays.stream(Role.values()).filter(r -> r.ordinal() == index).findFirst().get();
+        }
+
+        public static Role findRole(String role) {
+            Role user = null;
+            for (Role env : Role.values()) {
+                if (role.equals(env.getvalueOfRole())) {
+                    user = env;
+                }
+            }
+            return user;
+        }
+
+        public String getvalueOfRole() {
+            return valueOfRole;
+        }
+    }
+
     //    @Column(name = "dtype")
 //    private String dtype;
 //    @JsonManagedReference
@@ -90,33 +120,5 @@ public class Client extends BaseEntity {
         this.status = status;
     }
 
-    public enum Role {
-        GUEST("guest"),
-        CLIENT("client"),
-        ADMIN("admin");
 
-        private final String valueOfRole;
-
-        Role(String valueOfRole) {
-            this.valueOfRole = valueOfRole;
-        }
-
-        public static Role getUserRole(int index) {
-            return Arrays.stream(Role.values()).filter(r -> r.ordinal() == index).findFirst().get();
-        }
-
-        public static Role findRole(String role) {
-            Role user = null;
-            for (Role env : Role.values()) {
-                if (role.equals(env.getvalueOfRole())) {
-                    user = env;
-                }
-            }
-            return user;
-        }
-
-        public String getvalueOfRole() {
-            return valueOfRole;
-        }
-    }
 }

@@ -36,4 +36,10 @@ public class InstanceProductController {
     List<InstanceProduct> findAllInstanceProducts() {
         return instanceProductService.findInstanceProducts();
     }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    InstanceProduct addInstanceProductToCart(@RequestBody InstanceProductDto instanceProductDto) {
+        return instanceProductService.createInstanceProduct(instanceProductDto);
+    }
 }
