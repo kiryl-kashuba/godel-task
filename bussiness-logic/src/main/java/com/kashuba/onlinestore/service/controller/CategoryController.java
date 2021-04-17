@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/categories")
@@ -27,13 +28,19 @@ public class CategoryController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable("id") Category category) {
-        categoryService.deleteCategory(category);
+    void delete(@PathVariable("id") Long id) {
+        categoryService.deleteCategory(id);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<Category> findAllCategories() {
         return categoryService.findCategories();
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    Optional<Category> findById(@PathVariable("id") Long id) {
+        return categoryService.findById(id);
     }
 }

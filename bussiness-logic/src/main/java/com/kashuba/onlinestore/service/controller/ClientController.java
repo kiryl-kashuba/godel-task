@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/clients")
@@ -22,7 +23,7 @@ public class ClientController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     Client createClient(@RequestBody ClientDto clientDto) {
-        return clientService.createClient(clientDto);
+        return clientService.create(clientDto);
     }
 
     @DeleteMapping("/{id}")
@@ -36,6 +37,14 @@ public class ClientController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<Client> findAllClients() {
-        return clientService.findClients();
+        return clientService.findAll();
     }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    Optional<Client> findById(@PathVariable("id") Long id) {
+        return clientService.findById(id);
+    }
+
+
 }

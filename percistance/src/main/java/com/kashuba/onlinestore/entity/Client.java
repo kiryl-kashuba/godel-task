@@ -95,8 +95,10 @@ public class Client extends BaseEntity {
     @Column(name = "email")
     @NonNull
     private String email;
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
     @NonNull
     private Role role;
@@ -109,16 +111,11 @@ public class Client extends BaseEntity {
     private List<Order> orders;
 
     public Client(String firstName, String secondName, Long phoneNumber,
-                  String email, String password, Role role, Status status) {
+                  String email, String password) {
         this.email = email;
-        this.role = role;
         this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
         this.phoneNumber = phoneNumber;
-//        this.cart = cart;
-        this.status = status;
     }
-
-
 }

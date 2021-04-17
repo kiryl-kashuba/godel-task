@@ -9,8 +9,7 @@ public class ClientConverter {
 
     public Client toModel(ClientDto clientDto) {
         return new Client(clientDto.getFirstName(), clientDto.getSecondName(), clientDto.getPhoneNumber(),
-                clientDto.getEmail(), clientDto.getPassword(),
-                Client.Role.findRole(clientDto.getRole()), Client.Status.findStatus(clientDto.getStatus()));
+                clientDto.getEmail(), clientDto.getPassword());
     }
 
     public ClientDto toDto(Client client) {

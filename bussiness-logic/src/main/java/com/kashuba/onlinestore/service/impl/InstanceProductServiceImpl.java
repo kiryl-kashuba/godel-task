@@ -5,12 +5,15 @@ import com.kashuba.onlinestore.entity.InstanceProduct;
 import com.kashuba.onlinestore.service.InstanceProductService;
 import com.kashuba.onlinestore.service.converter.InstanceProductConverter;
 import com.kashuba.onlinestore.service.dto.InstanceProductDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Slf4j
 public class InstanceProductServiceImpl implements InstanceProductService {
     InstanceProductConverter instanceProductConverter = new InstanceProductConverter();
     @Autowired
@@ -23,12 +26,17 @@ public class InstanceProductServiceImpl implements InstanceProductService {
     }
 
     @Override
-    public void deleteInstanceProduct(InstanceProduct instanceProduct) {
-        instanceProductRepository.delete(instanceProduct);
+    public void deleteById(Long id) {
+        instanceProductRepository.deleteById(id);
     }
 
     @Override
     public List<InstanceProduct> findInstanceProducts() {
         return instanceProductRepository.findAll();
     }
+
+    public Optional<InstanceProduct> findById(Long id) {
+        return instanceProductRepository.findById(id);
+    }
+
 }

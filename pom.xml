@@ -29,6 +29,7 @@
     </dependencyManagement>
 
     <modules>
+<!--         TODO добавить модуль controller-->
         <module>bussiness-logic</module>
         <module>percistance</module>
     </modules>

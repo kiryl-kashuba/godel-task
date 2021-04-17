@@ -1,6 +1,7 @@
 package com.kashuba.onlinestore.entity;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,6 +22,7 @@ public class Order extends BaseEntity {
     @JoinColumn(name = "id", nullable = false, insertable = false, updatable = false) //cart_id
     private Cart cart;
 
+    @CreatedDate
     private LocalDate dateOrder;
     private int amount;
     @ManyToOne(optional = false)

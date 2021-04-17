@@ -6,26 +6,29 @@ import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.service.ClientService;
 import com.kashuba.onlinestore.service.converter.ClientConverter;
 import com.kashuba.onlinestore.service.dto.ClientDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Slf4j
 public class ClientServiceImpl implements ClientService {
-
+    // TODO сделать бинами
     ClientConverter clientConverter = new ClientConverter();
     @Autowired
     private ClientRepository clientRepository;
     @Autowired
     private CartRepository cartRepository;
 
+    //Запились passwordEncoder
     @Override
-    public Client createClient(ClientDto clientDto) {
+    public Client create(ClientDto clientDto) {
         Client client = clientConverter.toModel(clientDto);
-//        Cart cart = new Cart();
-//        Cart returnedCart = cartRepository.saveAndFlush(cart);
-//        client.setCart(returnedCart);
+        client.setRole(Client.Role.findRole("client"));
+        client.setStatus(Client.Status.findStatus("active"));
         return clientRepository.saveAndFlush(client);
     }
 
@@ -38,7 +41,17 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<Client> findClients() {
+    public List<Client> findAll() {
         return clientRepository.findAll();
+    }
+
+    @Override
+    public Optional<Client> findById(Long id) {
+        return clientRepository.findById(id);
+    }
+
+    @Override
+    public Client findByEmail(String email) {
+        return clientRepository.findByEmail(email);
     }
 }

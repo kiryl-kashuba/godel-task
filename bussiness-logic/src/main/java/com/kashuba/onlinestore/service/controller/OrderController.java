@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/orders")
@@ -27,13 +28,19 @@ public class OrderController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable("id") Order order) {
-        orderService.deleteOrder(order);
+    void delete(@PathVariable("id") Long id) {
+        orderService.deleteOrder(id);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<Order> findAllClients() {
         return orderService.findOrders();
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    Optional<Order> findById(@PathVariable("id") Long id) {
+        return orderService.findById(id);
     }
 }

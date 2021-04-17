@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class ProductAttribute extends BaseEntity {
     //    @JsonBackReference
     @ManyToOne(optional = true)
-    @JoinColumn(name = "id", nullable = true, insertable = false, updatable = false) //category_id
+    @JoinColumn(name = "category_id", nullable = true, insertable = false, updatable = false) //category_id
     private Category category;
 
     private String name;

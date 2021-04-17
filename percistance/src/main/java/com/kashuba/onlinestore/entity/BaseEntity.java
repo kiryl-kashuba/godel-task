@@ -21,7 +21,7 @@ public abstract class BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "id", nullable = false)
+    @GenericGenerator(name = "increment", strategy = "increment") //strategy = GenerationType.IDENTITY ?
+    @Column(name = "id", nullable = true)
     private Long id; //Если ставлю здесь тип UUID - вылетит ошибка
 }

@@ -13,4 +13,5 @@ public class ProductAttributeDto extends BaseEntityDto {
     private String name;
     private boolean mandatory;
     private String type;
+    private Long idOfCategory;
 }

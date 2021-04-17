@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/product_attributes")
@@ -27,13 +28,19 @@ public class ProductAttributeController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable("id") ProductAttribute productAttribute) {
-        productAttributeService.deleteProductAttribute(productAttribute);
+    void delete(@PathVariable("id") Long id) {
+        productAttributeService.deleteProductAttribute(id);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<ProductAttribute> findAllProductAttributes() {
         return productAttributeService.findProductAttributes();
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    Optional<ProductAttribute> findById(@PathVariable("id") Long id) {
+        return productAttributeService.findById(id);
     }
 }

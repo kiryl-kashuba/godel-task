@@ -5,12 +5,15 @@ import com.kashuba.onlinestore.entity.Cart;
 import com.kashuba.onlinestore.service.CartService;
 import com.kashuba.onlinestore.service.converter.CartConverter;
 import com.kashuba.onlinestore.service.dto.CartDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@Slf4j
 public class CartServiceImpl implements CartService {
 
     CartConverter cartConverter = new CartConverter();
@@ -25,12 +28,17 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void deleteCart(Cart cart) {
-        cartRepository.delete(cart);  //cartRepository.deleteById(client.getId());
+    public void deleteCart(Long id) {
+        cartRepository.deleteById(id);  //cartRepository.deleteById(client.getId());
     }
 
     @Override
     public List<Cart> findCarts() {
         return cartRepository.findAll();
     }
+
+    public Optional<Cart> findById(Long id) {
+        return cartRepository.findById(id);
+    }
+
 }
