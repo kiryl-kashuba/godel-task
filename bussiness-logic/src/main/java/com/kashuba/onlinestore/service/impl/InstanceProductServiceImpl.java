@@ -18,6 +18,8 @@ public class InstanceProductServiceImpl implements InstanceProductService {
     InstanceProductConverter instanceProductConverter = new InstanceProductConverter();
     @Autowired
     private InstanceProductRepository instanceProductRepository;
+//    @Autowired
+//    private CategoryRepository categoryRepository;
 
     @Override
     public InstanceProduct createInstanceProduct(InstanceProductDto instanceProductDto) {

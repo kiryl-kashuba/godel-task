@@ -13,4 +13,5 @@ public class InstanceProductDto extends BaseEntityDto {
     private String name;
     private String articulation;
     private int price;
+    private Long idOfCategory;
 }

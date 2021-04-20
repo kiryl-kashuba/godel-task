@@ -1,6 +1,5 @@
 package com.kashuba.onlinestore.service.impl;
 
-import com.kashuba.onlinestore.dao.CategoryRepository;
 import com.kashuba.onlinestore.dao.ProductAttributeRepository;
 import com.kashuba.onlinestore.entity.ProductAttribute;
 import com.kashuba.onlinestore.service.ProductAttributeService;
@@ -16,16 +15,15 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class ProductAttributeServiceImpl implements ProductAttributeService {
-    ProductAttributeConverter productAttributeConverter = new ProductAttributeConverter();
+    @Autowired
+    private ProductAttributeConverter productAttributeConverter;
+
     @Autowired
     private ProductAttributeRepository productAttributeRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
 
     @Override
     public ProductAttribute createProductAttribute(ProductAttributeDto productAttributeDto) {
         ProductAttribute productAttribute = productAttributeConverter.toModel(productAttributeDto);
-        productAttribute.setCategory(categoryRepository.findById(productAttributeDto.getIdOfCategory()).get());
         return productAttributeRepository.saveAndFlush(productAttribute);
     }
 

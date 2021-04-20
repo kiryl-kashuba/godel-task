@@ -97,6 +97,7 @@ public class Client extends BaseEntity {
     private String email;
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
+    @NonNull
     private Status status;
     @Enumerated(EnumType.STRING)
     @Column(name = "role")

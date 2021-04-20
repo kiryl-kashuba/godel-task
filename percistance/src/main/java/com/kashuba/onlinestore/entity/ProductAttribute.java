@@ -1,5 +1,6 @@
 package com.kashuba.onlinestore.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -16,9 +17,10 @@ import javax.persistence.Table;
 @AllArgsConstructor
 
 public class ProductAttribute extends BaseEntity {
-    //    @JsonBackReference
+
+    @JsonBackReference
     @ManyToOne(optional = true)
-    @JoinColumn(name = "category_id", nullable = true, insertable = false, updatable = false) //category_id
+    @JoinColumn(name = "id", nullable = true, insertable = false, updatable = false)
     private Category category;
 
     private String name;
