@@ -1,9 +1,9 @@
 package com.kashuba.onlinestore.entity;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -13,8 +13,8 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 @EqualsAndHashCode
-@ToString(callSuper = true)
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {

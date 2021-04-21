@@ -8,11 +8,11 @@ import java.util.Optional;
 
 public interface ProductAttributeValueService {
 
-    ProductAttributeValue createProductAttributeValue(ProductAttributeValueDto productAttributeValueDto);
+    ProductAttributeValue create(ProductAttributeValueDto productAttributeValueDto);
 
-    void deleteProductAttributeValue(Long id);
+    void delete(Long id);
 
-    List<ProductAttributeValue> findProductAttributeValues();
+    List<ProductAttributeValue> findAll();
 
     Optional<ProductAttributeValue> findById(Long id);
 }

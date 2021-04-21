@@ -1,6 +1,7 @@
 package com.kashuba.onlinestore.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,14 +10,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "clients")
-@ToString(callSuper = true)
-@Data
 @EqualsAndHashCode(callSuper = true)
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-//        property  = "id",
-//        scope     = Long.class)
 public class Client extends BaseEntity {
 
     @Column(name = "phone_number")
@@ -85,7 +83,7 @@ public class Client extends BaseEntity {
 
     //    @Column(name = "dtype")
 //    private String dtype;
-//    @JsonManagedReference
+    @JsonManagedReference
     @OneToOne(optional = true, mappedBy = "client", orphanRemoval = true, fetch = FetchType.LAZY)
     private Cart cart;
     @Column(name = "first_name")
@@ -106,7 +104,7 @@ public class Client extends BaseEntity {
     @Column(name = "password")
     @NonNull
     private String password;
-    //    @JsonManagedReference
+    @JsonManagedReference
     @OneToMany(mappedBy = "client", orphanRemoval = true) //, orphanRemoval = true, fetch = FetchType.LAZY
     @JsonIgnore
     private List<Order> orders;

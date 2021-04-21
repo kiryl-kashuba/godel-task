@@ -15,23 +15,25 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class ProductAttributeValueServiceImpl implements ProductAttributeValueService {
+
     ProductAttributeValueConverter productAttributeValueConverter = new ProductAttributeValueConverter();
+
     @Autowired
     private ProductAttributeValueRepository productAttributeValueRepository;
 
     @Override
-    public ProductAttributeValue createProductAttributeValue(ProductAttributeValueDto productAttributeValueDto) {
+    public ProductAttributeValue create(ProductAttributeValueDto productAttributeValueDto) {
         ProductAttributeValue productAttributeValue = productAttributeValueConverter.toModel(productAttributeValueDto);
         return productAttributeValueRepository.saveAndFlush(productAttributeValue);
     }
 
     @Override
-    public void deleteProductAttributeValue(Long id) {
+    public void delete(Long id) {
         productAttributeValueRepository.deleteById(id);
     }
 
     @Override
-    public List<ProductAttributeValue> findProductAttributeValues() {
+    public List<ProductAttributeValue> findAll() {
         return productAttributeValueRepository.findAll();
     }
 

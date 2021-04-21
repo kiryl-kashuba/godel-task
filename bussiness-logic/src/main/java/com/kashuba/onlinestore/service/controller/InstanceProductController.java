@@ -5,6 +5,8 @@ import com.kashuba.onlinestore.service.InstanceProductService;
 import com.kashuba.onlinestore.service.dto.InstanceProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,8 +25,16 @@ public class InstanceProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    InstanceProduct createInstanceProduct(@RequestBody InstanceProductDto instanceProductDto) {
+    InstanceProduct create(@RequestBody InstanceProductDto instanceProductDto) {
         return instanceProductService.createInstanceProduct(instanceProductDto);
+    }
+
+    @PostMapping("/addtocart")
+    @ResponseStatus(HttpStatus.CREATED)
+    InstanceProduct addToCart(@RequestBody InstanceProductDto instanceProductDto) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        instanceProductDto.setEmailOfClient(authentication.getName());
+        return instanceProductService.addToCart(instanceProductDto);
     }
 
     @DeleteMapping("/{id}")
@@ -35,7 +45,7 @@ public class InstanceProductController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    List<InstanceProduct> findAllInstanceProducts() {
+    List<InstanceProduct> findAll() {
         return instanceProductService.findInstanceProducts();
     }
 
@@ -44,11 +54,5 @@ public class InstanceProductController {
         // TODO перепроверить этот метод
     Optional<InstanceProduct> findById(@PathVariable("id") Long id) {
         return instanceProductService.findById(id);
-    }
-
-    @PutMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    InstanceProduct addInstanceProductToCart(@RequestBody InstanceProductDto instanceProductDto) {
-        return instanceProductService.createInstanceProduct(instanceProductDto);
     }
 }

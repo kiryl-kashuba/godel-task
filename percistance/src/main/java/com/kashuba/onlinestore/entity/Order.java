@@ -1,5 +1,6 @@
 package com.kashuba.onlinestore.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -19,15 +20,15 @@ import java.time.LocalDate;
 public class Order extends BaseEntity {
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "id", nullable = false, insertable = false, updatable = false) //cart_id
+    @JoinColumn(name = "id", nullable = false) //cart_id
     private Cart cart;
 
     @CreatedDate
     private LocalDate dateOrder;
     private int amount;
     @ManyToOne(optional = false)
-    @JoinColumn(name = "id", nullable = false, insertable = false, updatable = false) //client_id
-//    @JsonBackReference
+    @JoinColumn(name = "client_id", nullable = false, insertable = false, updatable = false) //client_id
+    @JsonBackReference
 //    @JsonIgnore
     private Client client;
 

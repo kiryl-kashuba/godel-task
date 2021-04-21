@@ -20,7 +20,7 @@ public class ProductAttribute extends BaseEntity {
 
     @JsonBackReference
     @ManyToOne(optional = true)
-    @JoinColumn(name = "id", nullable = true, insertable = false, updatable = false)
+    @JoinColumn(name = "category_id", nullable = true)
     private Category category;
 
     private String name;

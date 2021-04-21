@@ -23,19 +23,19 @@ public class ProductAttributeValueController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     ProductAttributeValue createProductAttributeValue(@RequestBody ProductAttributeValueDto productAttributeValueDto) {
-        return productAttributeValueService.createProductAttributeValue(productAttributeValueDto);
+        return productAttributeValueService.create(productAttributeValueDto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void delete(@PathVariable("id") Long id) {
-        productAttributeValueService.deleteProductAttributeValue(id);
+        productAttributeValueService.delete(id);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     List<ProductAttributeValue> findAllProductAttributeValues() {
-        return productAttributeValueService.findProductAttributeValues();
+        return productAttributeValueService.findAll();
     }
 
     @GetMapping("/{id}")

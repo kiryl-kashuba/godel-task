@@ -11,6 +11,8 @@ public interface InstanceProductService {
 
     InstanceProduct createInstanceProduct(InstanceProductDto instanceProductDto);
 
+    InstanceProduct addToCart(InstanceProductDto instanceProductDto);
+
     void deleteById(Long id);
 
     List<InstanceProduct> findInstanceProducts();

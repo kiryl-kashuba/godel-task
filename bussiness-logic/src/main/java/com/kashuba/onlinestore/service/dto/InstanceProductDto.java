@@ -14,4 +14,8 @@ public class InstanceProductDto extends BaseEntityDto {
     private String articulation;
     private int price;
     private Long idOfCategory;
+    private Long idOfInstanceProduct;
+    private int number;
+    private String emailOfClient;
+    private String[] values;
 }

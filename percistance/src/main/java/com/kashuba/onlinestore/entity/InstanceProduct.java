@@ -1,6 +1,7 @@
 package com.kashuba.onlinestore.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,8 +9,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "instance_products")
-@ToString(callSuper = true)
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,19 +18,19 @@ public class InstanceProduct extends BaseEntity {
 
     @JsonBackReference
     @ManyToOne(optional = true)
-    @JoinColumn(name = "id", nullable = true, insertable = false, updatable = false)
+    @JoinColumn(name = "category_id", nullable = true)
     private Category category;
 
     private String name;
     private String articulation;
     private int price;
-    //    @JsonManagedReference
+    @JsonManagedReference
     @OneToMany(mappedBy = "instanceProduct", orphanRemoval = true)
     private List<ProductAttributeValue> productAttributeValue;
     private int number;
-    //    @JsonBackReference
+    @JsonBackReference
     @ManyToOne(optional = true)
-    @JoinColumn(name = "id", nullable = true, insertable = false, updatable = false) //cart_id
+    @JoinColumn(name = "cart_id", nullable = true) //cart_id
     private Cart cart;
 
     public InstanceProduct(String name, String articulation, int price) {
