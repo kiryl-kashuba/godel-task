@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore.service.controller;
+package com.kashuba.onlinestore.controller;
 
 import com.kashuba.onlinestore.entity.ProductAttributeValue;
 import com.kashuba.onlinestore.service.ProductAttributeValueService;

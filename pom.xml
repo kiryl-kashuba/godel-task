@@ -30,8 +30,10 @@
 
     <modules>
 <!--         TODO добавить модуль controller-->
+        <module>controller</module>
         <module>bussiness-logic</module>
         <module>percistance</module>
+        <module>controller</module>
     </modules>
 
 </project>

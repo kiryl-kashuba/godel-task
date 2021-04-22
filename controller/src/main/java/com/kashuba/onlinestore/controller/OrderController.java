@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore.service.controller;
+package com.kashuba.onlinestore.controller;
 
 import com.kashuba.onlinestore.entity.Order;
 import com.kashuba.onlinestore.service.OrderService;

@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore.service.controller;
+package com.kashuba.onlinestore.controller;
 
 import com.kashuba.onlinestore.entity.Cart;
 import com.kashuba.onlinestore.service.CartService;
@@ -13,6 +13,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/carts")
 // TODO модификаторы доступа
+// Не понял где я могу изменить\добавить модификаторы доступа
 public class CartController {
     private final CartService cartService;
 
@@ -23,8 +24,7 @@ public class CartController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-        // TODO нэймингнг cart - излишен
-    Cart createCart(@RequestBody CartDto cartDto) {
+    Cart create(@RequestBody CartDto cartDto) {
         return cartService.createCart(cartDto);
     }
 
@@ -36,7 +36,7 @@ public class CartController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    List<Cart> findAllCarts() {
+    List<Cart> findAll() {
         return cartService.findCarts();
     }
 

@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore.service.controller;
+package com.kashuba.onlinestore.controller;
 
 import com.kashuba.onlinestore.entity.InstanceProduct;
 import com.kashuba.onlinestore.service.InstanceProductService;
@@ -13,8 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-// TODO разделить слова
-@RequestMapping("/instanceproducts")
+@RequestMapping("/instance_products")
 public class InstanceProductController {
     private final InstanceProductService instanceProductService;
 
@@ -29,7 +28,7 @@ public class InstanceProductController {
         return instanceProductService.createInstanceProduct(instanceProductDto);
     }
 
-    @PostMapping("/addtocart")
+    @PostMapping("/add_to_cart")
     @ResponseStatus(HttpStatus.CREATED)
     InstanceProduct addToCart(@RequestBody InstanceProductDto instanceProductDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -51,7 +50,6 @@ public class InstanceProductController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-        // TODO перепроверить этот метод
     Optional<InstanceProduct> findById(@PathVariable("id") Long id) {
         return instanceProductService.findById(id);
     }

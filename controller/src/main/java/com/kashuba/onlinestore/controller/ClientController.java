@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore.service.controller;
+package com.kashuba.onlinestore.controller;
 
 import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.service.ClientService;
@@ -28,9 +28,7 @@ public class ClientController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable("id") Long id) {  //String clientId
-//        Client client = new Client();
-//        client.setId(Long.parseLong(clientId));
+    void delete(@PathVariable("id") Long id) {
         clientService.deleteById(id);
     }
 

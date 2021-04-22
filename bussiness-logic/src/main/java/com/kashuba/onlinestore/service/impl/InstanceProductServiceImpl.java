@@ -16,7 +16,8 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class InstanceProductServiceImpl implements InstanceProductService {
-    InstanceProductConverter instanceProductConverter = new InstanceProductConverter();
+    @Autowired
+    private InstanceProductConverter instanceProductConverter;
     @Autowired
     private InstanceProductRepository instanceProductRepository;
     @Autowired
@@ -27,8 +28,6 @@ public class InstanceProductServiceImpl implements InstanceProductService {
     private ProductAttributeRepository productAttributeRepository;
     @Autowired
     private ProductAttributeValueRepository productAttributeValueRepository;
-//    @Autowired
-//    private CategoryRepository categoryRepository;
 
     @Override
     public InstanceProduct createInstanceProduct(InstanceProductDto instanceProductDto) {
@@ -61,7 +60,6 @@ public class InstanceProductServiceImpl implements InstanceProductService {
             productAttributeValueRepository.saveAndFlush(pav);
             cycleStage++;
         }
-
         return instanceProductRepository.saveAndFlush(instanceProduct);
     }
 
@@ -75,8 +73,8 @@ public class InstanceProductServiceImpl implements InstanceProductService {
         return instanceProductRepository.findAll();
     }
 
+    @Override
     public Optional<InstanceProduct> findById(Long id) {
         return instanceProductRepository.findById(id);
     }
-
 }

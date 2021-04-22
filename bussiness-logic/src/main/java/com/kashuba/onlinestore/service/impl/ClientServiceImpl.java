@@ -16,20 +16,13 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class ClientServiceImpl implements ClientService {
-    // TODO сделать бинами
-    ClientConverter clientConverter = new ClientConverter();
+    @Autowired
+    private ClientConverter clientConverter;
     @Autowired
     private ClientRepository clientRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-
-
-    //Запились passwordEncoder
     @Override
     public Client create(ClientDto clientDto) {
         Client client = clientConverter.toModel(clientDto);
@@ -39,11 +32,8 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.saveAndFlush(client);
     }
 
-    //        cartRepository.saveAndFlush(cart);
-//        clientRepository.saveAndFlush(client);
     @Override
     public void deleteById(Long id) {
-//        clientRepository.delete(client);
         clientRepository.deleteById(id);
     }
 
@@ -53,12 +43,12 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Optional<Client> findById(Long id) {
-        return clientRepository.findById(id);
+    public Client findByEmail(String email) {
+        return clientRepository.findByEmail(email);
     }
 
     @Override
-    public Client findByEmail(String email) {
-        return clientRepository.findByEmail(email);
+    public Optional<Client> findById(Long id) {
+        return clientRepository.findById(id);
     }
 }
