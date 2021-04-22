@@ -5,6 +5,8 @@ import com.kashuba.onlinestore.service.OrderService;
 import com.kashuba.onlinestore.service.dto.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +24,9 @@ public class OrderController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Order createClient(@RequestBody OrderDto orderDto) {
+    Order create(@RequestBody OrderDto orderDto) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        orderDto.setEmailOfClient(authentication.getName());
         return orderService.createOrder(orderDto);
     }
 
@@ -34,7 +38,7 @@ public class OrderController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    List<Order> findAllClients() {
+    List<Order> findAll() {
         return orderService.findOrders();
     }
 

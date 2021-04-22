@@ -11,24 +11,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "product_attribute_values")
 @EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductAttributeValue extends BaseEntity {
 
     @JsonBackReference
     @ManyToOne(optional = true)
-    @JoinColumn(name = "instance_product_id", nullable = true, insertable = false, updatable = false)
-    //productAttribute_id
+    @JoinColumn(name = "instance_product_id", nullable = true)
     private InstanceProduct instanceProduct;
 
-    private String value;
     @JsonBackReference
     @ManyToOne(optional = true)
-    @JoinColumn(name = "product_attribute_id", nullable = true, insertable = false, updatable = false)
-    //productAttribute_id
+    @JoinColumn(name = "product_attribute_id", nullable = true)
     private ProductAttribute productAttribute;
+
+    private String value;
 
     public ProductAttributeValue(String value) {
         this.value = value;

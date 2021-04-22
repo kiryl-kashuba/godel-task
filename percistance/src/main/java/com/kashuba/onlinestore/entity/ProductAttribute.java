@@ -11,8 +11,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "product_attributes")
 @EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 

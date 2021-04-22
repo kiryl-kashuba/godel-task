@@ -1,12 +1,7 @@
 package com.kashuba.onlinestore.service.impl;
 
-import com.kashuba.onlinestore.dao.CartRepository;
-import com.kashuba.onlinestore.dao.ClientRepository;
-import com.kashuba.onlinestore.dao.InstanceProductRepository;
-import com.kashuba.onlinestore.dao.ProductAttributeRepository;
-import com.kashuba.onlinestore.entity.Cart;
-import com.kashuba.onlinestore.entity.Client;
-import com.kashuba.onlinestore.entity.InstanceProduct;
+import com.kashuba.onlinestore.dao.*;
+import com.kashuba.onlinestore.entity.*;
 import com.kashuba.onlinestore.service.InstanceProductService;
 import com.kashuba.onlinestore.service.converter.InstanceProductConverter;
 import com.kashuba.onlinestore.service.dto.InstanceProductDto;
@@ -30,6 +25,8 @@ public class InstanceProductServiceImpl implements InstanceProductService {
     private CartRepository cartRepository;
     @Autowired
     private ProductAttributeRepository productAttributeRepository;
+    @Autowired
+    private ProductAttributeValueRepository productAttributeValueRepository;
 //    @Autowired
 //    private CategoryRepository categoryRepository;
 
@@ -41,6 +38,7 @@ public class InstanceProductServiceImpl implements InstanceProductService {
 
     @Override
     public InstanceProduct addToCart(InstanceProductDto instanceProductDto) {
+        String[] values = instanceProductDto.getValues();
         InstanceProduct instanceProduct = instanceProductRepository.findById(instanceProductDto.getIdOfInstanceProduct()).get();
         Client client = clientRepository.findByEmail(instanceProductDto.getEmailOfClient());
         try {
@@ -53,8 +51,16 @@ public class InstanceProductServiceImpl implements InstanceProductService {
         instanceProduct.setCart(cartRepository.findById(client.getId()).get());
         instanceProduct.setNumber(instanceProductDto.getNumber());
 
-        productAttributeRepository.findByCategory_Id(instanceProductDto.getIdOfCategory());
-
+        List<ProductAttribute> productAttributeList = productAttributeRepository.findByCategory_Id(instanceProductDto.getIdOfCategory());
+        int cycleStage = 0;
+        for (ProductAttribute productAttribute : productAttributeList) {
+            ProductAttributeValue pav = new ProductAttributeValue();
+            pav.setValue(values[cycleStage]);
+            pav.setProductAttribute(productAttribute);
+            pav.setInstanceProduct(instanceProduct);
+            productAttributeValueRepository.saveAndFlush(pav);
+            cycleStage++;
+        }
 
         return instanceProductRepository.saveAndFlush(instanceProduct);
     }

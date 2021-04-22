@@ -2,8 +2,8 @@ package com.kashuba.onlinestore.entity;
 
 import lombok.*;
 
-@ToString(callSuper = true)
-@Data
+@Setter
+@Getter
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor

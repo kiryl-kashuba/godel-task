@@ -14,11 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cart extends BaseEntity {
-
     @OneToMany(mappedBy = "cart", orphanRemoval = true)
     private List<InstanceProduct> instanceProduct;
-    //Что тут делать?
-//    private List<InstanceProductContainer> number;
     @JsonBackReference
     @OneToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "id", nullable = true)
