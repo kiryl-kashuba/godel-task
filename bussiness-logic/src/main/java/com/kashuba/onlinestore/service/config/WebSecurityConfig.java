@@ -30,33 +30,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
 //        web.ignoring().antMatchers("/**");
-        web.ignoring().antMatchers(HttpMethod.POST, "/api/users");
+//        web.ignoring().antMatchers(HttpMethod.POST, "/api/users");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(HttpMethod.PUT, "/api/users/**").hasAnyAuthority((Client.Role.ADMIN.name()),
-                (Client.Role.ADMIN.name()), (Client.Role.CLIENT.name()))
-                .antMatchers(HttpMethod.GET, "/api/users").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
-                .antMatchers(HttpMethod.GET, "/api/users/profile").permitAll()
-                .antMatchers("/api/users/{\\\\d+}/price").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
+//                .antMatchers(HttpMethod.PUT, "/api/users/**").hasAnyAuthority((Client.Role.ADMIN.name()),
+//                (Client.Role.ADMIN.name()), (Client.Role.CLIENT.name()))
+//                .antMatchers(HttpMethod.GET, "/api/users").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
+//                .antMatchers(HttpMethod.GET, "/api/users/profile").permitAll()
+//                .antMatchers("/api/users/{\\\\d+}/price").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
+//
+//                .antMatchers(HttpMethod.POST, "/api/requests/vacation").hasAnyAuthority((Client.Role.ADMIN.name()),
+//                (Client.Role.ADMIN.name()))
+//                .antMatchers(HttpMethod.GET, "/api/requests").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
+//                .antMatchers(HttpMethod.PUT, "/api/requests/**").permitAll()
+//                .antMatchers(HttpMethod.POST, "/api/requests/**").permitAll()
+//                .antMatchers(HttpMethod.GET, "/api/requests/profile").permitAll()
+//
+//                .antMatchers(HttpMethod.GET, "/api/records").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
+//                .antMatchers(HttpMethod.PUT, "/api/records/**").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
+//                .antMatchers(HttpMethod.POST, "/api/records/**").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
+//                .antMatchers(HttpMethod.GET, "/api/records/profile").permitAll()
+//
+//                .antMatchers(HttpMethod.GET, "/api/appointments/**").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/api/requests/vacation").hasAnyAuthority((Client.Role.ADMIN.name()),
-                (Client.Role.ADMIN.name()))
-                .antMatchers(HttpMethod.GET, "/api/requests").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
-                .antMatchers(HttpMethod.PUT, "/api/requests/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/requests/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/requests/profile").permitAll()
-
-                .antMatchers(HttpMethod.GET, "/api/records").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
-                .antMatchers(HttpMethod.PUT, "/api/records/**").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
-                .antMatchers(HttpMethod.POST, "/api/records/**").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
-                .antMatchers(HttpMethod.GET, "/api/records/profile").permitAll()
-
-                .antMatchers(HttpMethod.GET, "/api/appointments/**").permitAll()
-
-                .antMatchers(HttpMethod.DELETE).hasAuthority((Client.Role.ADMIN.name()))
+                .antMatchers(HttpMethod.GET, "/instanceproducts").hasAnyAuthority((Client.Role.CLIENT.name()), (Client.Role.CLIENT.name()))
+                .antMatchers(HttpMethod.POST, "/instanceproducts/addtocart").hasAnyAuthority((Client.Role.CLIENT.name()), (Client.Role.CLIENT.name()))
+                .antMatchers(HttpMethod.POST, "/orders").hasAnyAuthority((Client.Role.CLIENT.name()), (Client.Role.CLIENT.name()))
+                .antMatchers("/").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
 
                 .anyRequest().authenticated()
                 .and()
@@ -70,38 +73,3 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 }
-//\\\\\\\
-
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .anyRequest().authenticated()
-//                .and()
-//                .httpBasic();
-//    }
-//
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth)
-//            throws Exception
-//    {
-//        auth.inMemoryAuthentication()
-//                .withUser("user")
-//                .password("{noop}password")
-//                .roles("USER");
-//    }
-
-
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("user")
-//                        .password("password")
-//                        .roles("CLIENT")
-//                        .build();
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }

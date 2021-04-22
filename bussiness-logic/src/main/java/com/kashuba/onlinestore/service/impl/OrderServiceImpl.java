@@ -39,11 +39,13 @@ public class OrderServiceImpl implements OrderService {
         List<InstanceProduct> instanceProductList = instanceProductRepository.findByCart_Id(client.getId());
         for (InstanceProduct instanceProduct : instanceProductList) {
             amount += instanceProduct.getPrice() * instanceProduct.getNumber();
+//            instanceProductRepository.deleteById(instanceProduct.getId());
         }
         order.setDateOrder(LocalDate.now());
         order.setAmount(amount);
         order.setClient(client);
         order.setCart(cartRepository.findById(client.getId()).get());
+
 
         return orderRepository.saveAndFlush(order);
     }

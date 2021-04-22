@@ -28,7 +28,6 @@ public class InstanceProduct extends BaseEntity {
     @OneToMany(mappedBy = "instanceProduct", orphanRemoval = true)
     private List<ProductAttributeValue> productAttributeValue;
     private int number;
-    @JsonBackReference
     @ManyToOne(optional = true)
     @JoinColumn(name = "cart_id", nullable = true) //cart_id
     private Cart cart;
