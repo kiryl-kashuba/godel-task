@@ -18,7 +18,7 @@
 bussiness-logic/target/
 interface/target/
 percistance/target/
-logs/app.log
+/logs/
 percistance/src/main/java/com/kashuba/onlinestore/dao/fileservice/
 !/logs/
 !/logs/app.log
