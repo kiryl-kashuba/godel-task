@@ -4,6 +4,7 @@ import com.kashuba.onlinestore.service.OrderService;
 import com.kashuba.onlinestore.service.dto.OrderDto;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -17,6 +18,7 @@ import java.util.Optional;
 @RequestMapping("/orders")
 @Api(tags = "Controller of orders")
 @Validated
+@Slf4j
 public class OrderController {
     private final OrderService orderService;
 
@@ -31,6 +33,7 @@ public class OrderController {
     public OrderDto create(@RequestBody OrderDto orderDto) {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         orderDto.setEmailOfClient("qweqwe");
+        log.info("Creating {} order", orderDto.getEmailOfClient());
         return orderService.create(orderDto);
     }
 
@@ -38,6 +41,7 @@ public class OrderController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@Valid @PathVariable("id") Long id) {
+        log.info("Deleting order {}", id);
         orderService.deleteById(id);
     }
 
@@ -45,6 +49,7 @@ public class OrderController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<OrderDto> findAll() {
+        log.info("Finding all orders");
         return orderService.findAll();
     }
 
@@ -52,6 +57,7 @@ public class OrderController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<OrderDto> findById(@Valid @PathVariable("id") Long id) {
+        log.info("Finding order {}", id);
         return orderService.findById(id);
     }
 }

@@ -4,6 +4,7 @@ import com.kashuba.onlinestore.service.CartService;
 import com.kashuba.onlinestore.service.dto.CartDto;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -17,6 +18,7 @@ import java.util.Optional;
 @RequestMapping("/carts")
 @Api(tags = "Controller of carts")
 @Validated
+@Slf4j
 public class CartController {
     private final CartService cartService;
 
@@ -29,6 +31,7 @@ public class CartController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CartDto create(@Valid @RequestBody CartDto cartDto) {
+        log.info("Creating cart");
         return cartService.create(cartDto);
     }
 
@@ -36,6 +39,7 @@ public class CartController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CartDto> findAll() {
+        log.info("Finding all carts ");
         return cartService.findAll();
     }
 
@@ -43,6 +47,7 @@ public class CartController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<CartDto> findById(@Valid @PathVariable("id") Long id) {
+        log.info("Finding cart {}", id);
         return cartService.findById(id);
     }
 }

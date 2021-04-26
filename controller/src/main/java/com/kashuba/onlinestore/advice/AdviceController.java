@@ -9,6 +9,8 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.util.NoSuchElementException;
+
 @Slf4j
 @ControllerAdvice
 public class AdviceController {
@@ -33,4 +35,12 @@ public class AdviceController {
         log.error(e.getClass() + " : " + exception.getMessage());
         return new ResponseEntity<>(exception, exception.getStatus());
     }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<ExceptionDto> handleException(NoSuchElementException e) {
+        ExceptionDto exception = new ExceptionDto(HttpStatus.NOT_FOUND, e.getMessage());
+        log.error(e.getClass() + " : " + exception.getMessage());
+        return new ResponseEntity<>(exception, exception.getStatus());
+    }
+
 }

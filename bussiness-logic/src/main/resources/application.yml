@@ -19,12 +19,8 @@ spring:
 ---
 logging:
   level:
-    root: info
-    org:
-      springframework:
-        jdbc:
-          core: trace
-  file:
-    path: logs
-#  pattern:
-#    console:
+    org.springframework.web: ERROR
+    com.kashuba: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
