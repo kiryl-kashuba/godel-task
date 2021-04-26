@@ -16,8 +16,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Order extends BaseEntity {
 
-    @OneToOne(optional = true)
-    @JoinColumn(name = "id", nullable = true)
+    @OneToOne(optional = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", nullable = true)
     private Cart cart;
 
     @CreatedDate
@@ -26,6 +26,5 @@ public class Order extends BaseEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "client_id", nullable = false)
     @JsonBackReference
-//    @JsonIgnore
     private Client client;
 }

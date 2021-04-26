@@ -22,23 +22,22 @@ public class ProductAttributeValueServiceImpl implements ProductAttributeValueSe
     private ProductAttributeValueRepository productAttributeValueRepository;
 
     @Override
-    public ProductAttributeValue create(ProductAttributeValueDto productAttributeValueDto) {
+    public ProductAttributeValueDto create(ProductAttributeValueDto productAttributeValueDto) {
         ProductAttributeValue productAttributeValue = productAttributeValueConverter.toModel(productAttributeValueDto);
-        return productAttributeValueRepository.saveAndFlush(productAttributeValue);
+        return productAttributeValueConverter.toDto(productAttributeValueRepository.saveAndFlush(productAttributeValue));
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         productAttributeValueRepository.deleteById(id);
     }
 
     @Override
-    public List<ProductAttributeValue> findAll() {
-        return productAttributeValueRepository.findAll();
+    public List<ProductAttributeValueDto> findAll() {
+        return productAttributeValueConverter.toListDto(productAttributeValueRepository.findAll());
     }
 
-    public Optional<ProductAttributeValue> findById(Long id) {
-        return productAttributeValueRepository.findById(id);
+    public Optional<ProductAttributeValueDto> findById(Long id) {
+        return productAttributeValueConverter.toOptionalDto(productAttributeValueRepository.findById(id));
     }
-
 }

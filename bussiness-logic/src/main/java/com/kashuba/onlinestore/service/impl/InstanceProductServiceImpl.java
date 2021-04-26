@@ -30,13 +30,13 @@ public class InstanceProductServiceImpl implements InstanceProductService {
     private ProductAttributeValueRepository productAttributeValueRepository;
 
     @Override
-    public InstanceProduct createInstanceProduct(InstanceProductDto instanceProductDto) {
+    public InstanceProductDto create(InstanceProductDto instanceProductDto) {
         InstanceProduct instanceProduct = instanceProductConverter.toModel(instanceProductDto);
-        return instanceProductRepository.saveAndFlush(instanceProduct);
+        return instanceProductConverter.toDto(instanceProductRepository.saveAndFlush(instanceProduct));
     }
 
     @Override
-    public InstanceProduct addToCart(InstanceProductDto instanceProductDto) {
+    public InstanceProductDto addToCart(InstanceProductDto instanceProductDto) {
         String[] values = instanceProductDto.getValues();
         InstanceProduct instanceProduct = instanceProductRepository.findById(instanceProductDto.getIdOfInstanceProduct()).get();
         Client client = clientRepository.findByEmail(instanceProductDto.getEmailOfClient());
@@ -60,7 +60,7 @@ public class InstanceProductServiceImpl implements InstanceProductService {
             productAttributeValueRepository.saveAndFlush(pav);
             cycleStage++;
         }
-        return instanceProductRepository.saveAndFlush(instanceProduct);
+        return instanceProductConverter.toDto(instanceProductRepository.saveAndFlush(instanceProduct));
     }
 
     @Override
@@ -69,12 +69,12 @@ public class InstanceProductServiceImpl implements InstanceProductService {
     }
 
     @Override
-    public List<InstanceProduct> findInstanceProducts() {
-        return instanceProductRepository.findAll();
+    public List<InstanceProductDto> findAll() {
+        return instanceProductConverter.toListDto(instanceProductRepository.findAll());
     }
 
     @Override
-    public Optional<InstanceProduct> findById(Long id) {
-        return instanceProductRepository.findById(id);
+    public Optional<InstanceProductDto> findById(Long id) {
+        return instanceProductConverter.toOptionalDto(instanceProductRepository.findById(id));
     }
 }

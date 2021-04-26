@@ -22,23 +22,23 @@ public class CartServiceImpl implements CartService {
     private CartRepository cartRepository;
 
     @Override
-    public Cart createCart(CartDto categoryDto) {
-        Cart cart = cartConverter.toModel(categoryDto);
-        return cartRepository.saveAndFlush(cart);
+    public CartDto create(CartDto categoryDto) {
+        Cart cart = cartConverter.toModel();
+        return cartConverter.toDto(cartRepository.saveAndFlush(cart));
     }
 
     @Override
-    public void deleteCart(Long id) {
+    public void deleteById(Long id) {
         cartRepository.deleteById(id);  //cartRepository.deleteById(client.getId());
     }
 
     @Override
-    public List<Cart> findCarts() {
-        return cartRepository.findAll();
+    public List<CartDto> findAll() {
+        return cartConverter.toListDto(cartRepository.findAll());
     }
 
-    public Optional<Cart> findById(Long id) {
-        return cartRepository.findById(id);
+    public Optional<CartDto> findById(Long id) {
+        return cartConverter.toOptionalDto(cartRepository.findById(id));
     }
 
 }

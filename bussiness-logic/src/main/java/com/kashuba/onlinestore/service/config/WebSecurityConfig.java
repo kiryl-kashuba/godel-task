@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-//        web.ignoring().antMatchers("/**");
+        web.ignoring().antMatchers("/**");
 //        web.ignoring().antMatchers(HttpMethod.POST, "/api/users");
     }
 
@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers(HttpMethod.POST, "/api/records/**").hasAnyAuthority((Client.Role.ADMIN.name()), (Client.Role.ADMIN.name()))
 //                .antMatchers(HttpMethod.GET, "/api/records/profile").permitAll()
 //
-//                .antMatchers(HttpMethod.GET, "/api/appointments/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/clients").permitAll()
 
                 .antMatchers(HttpMethod.GET, "/instanceproducts").hasAnyAuthority((Client.Role.CLIENT.name()), (Client.Role.CLIENT.name()))
                 .antMatchers(HttpMethod.POST, "/instanceproducts/addtocart").hasAnyAuthority((Client.Role.CLIENT.name()), (Client.Role.CLIENT.name()))

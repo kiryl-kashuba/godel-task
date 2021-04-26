@@ -17,7 +17,6 @@ import javax.persistence.Table;
 @AllArgsConstructor
 public class ProductAttributeValue extends BaseEntity {
 
-    @JsonBackReference
     @ManyToOne(optional = true)
     @JoinColumn(name = "instance_product_id", nullable = true)
     private InstanceProduct instanceProduct;

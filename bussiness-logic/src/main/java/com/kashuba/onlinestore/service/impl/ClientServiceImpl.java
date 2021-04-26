@@ -24,12 +24,12 @@ public class ClientServiceImpl implements ClientService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public Client create(ClientDto clientDto) {
+    public ClientDto create(ClientDto clientDto) {
         Client client = clientConverter.toModel(clientDto);
         client.setRole(Client.Role.findRole("client"));
         client.setStatus(Client.Status.findStatus("active"));
         client.setPassword(passwordEncoder.encode(clientDto.getPassword()));
-        return clientRepository.saveAndFlush(client);
+        return clientConverter.toDto(clientRepository.saveAndFlush(client));
     }
 
     @Override
@@ -38,17 +38,12 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<Client> findAll() {
-        return clientRepository.findAll();
+    public List<ClientDto> findAll() {
+        return clientConverter.toListDto(clientRepository.findAll());
     }
 
     @Override
-    public Client findByEmail(String email) {
-        return clientRepository.findByEmail(email);
-    }
-
-    @Override
-    public Optional<Client> findById(Long id) {
-        return clientRepository.findById(id);
+    public Optional<ClientDto> findById(Long id) {
+        return clientConverter.toOptionalDto(clientRepository.findById(id));
     }
 }

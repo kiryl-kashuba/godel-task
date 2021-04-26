@@ -21,23 +21,23 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryRepository categoryRepository;
 
     @Override
-    public Category createCategory(CategoryDto categoryDto) {
+    public CategoryDto create(CategoryDto categoryDto) {
         Category category = categoryConverter.toModel(categoryDto);
-        return categoryRepository.saveAndFlush(category);
+        return categoryConverter.toDto(categoryRepository.saveAndFlush(category));
     }
 
     @Override
-    public void deleteCategory(Long id) {
+    public void deleteById(Long id) {
         categoryRepository.deleteById(id);
     }
 
     @Override
-    public List<Category> findCategories() {
-        return categoryRepository.findAll();
+    public List<CategoryDto> findAll() {
+        return categoryConverter.toListDto(categoryRepository.findAll());
     }
 
-    public Optional<Category> findById(Long id) {
-        return categoryRepository.findById(id);
+    public Optional<CategoryDto> findById(Long id) {
+        return categoryConverter.toOptionalDto(categoryRepository.findById(id));
     }
 
 

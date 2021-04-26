@@ -1,6 +1,7 @@
 package com.kashuba.onlinestore.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cart extends BaseEntity {
+    @JsonIgnore
     @OneToMany(mappedBy = "cart", orphanRemoval = true)
     private List<InstanceProduct> instanceProduct;
     @JsonBackReference

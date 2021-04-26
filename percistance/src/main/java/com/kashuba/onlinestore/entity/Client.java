@@ -1,6 +1,7 @@
 package com.kashuba.onlinestore.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -15,10 +16,8 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Client extends BaseEntity {
-
-    @Column(name = "phone_number")
-    private Long phoneNumber;
 
     public enum Status {
         @Column(name = "role") // Как обозначить Enum в таблице?
@@ -81,8 +80,6 @@ public class Client extends BaseEntity {
         }
     }
 
-    //    @Column(name = "dtype")
-//    private String dtype;
     @JsonManagedReference
     @OneToOne(optional = true, mappedBy = "client", orphanRemoval = true, fetch = FetchType.LAZY)
     private Cart cart;
@@ -90,6 +87,8 @@ public class Client extends BaseEntity {
     private String firstName;
     @Column(name = "second_name")
     private String secondName;
+    @Column(name = "phone_number")
+    private Long phoneNumber;
     @Column(name = "email")
     @NonNull
     private String email;
@@ -105,7 +104,7 @@ public class Client extends BaseEntity {
     @NonNull
     private String password;
     @JsonManagedReference
-    @OneToMany(mappedBy = "client", orphanRemoval = true) //, orphanRemoval = true, fetch = FetchType.LAZY
+    @OneToMany(mappedBy = "client", orphanRemoval = true)
     @JsonIgnore
     private List<Order> orders;
 

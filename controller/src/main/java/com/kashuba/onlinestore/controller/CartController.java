@@ -1,19 +1,22 @@
 package com.kashuba.onlinestore.controller;
 
-import com.kashuba.onlinestore.entity.Cart;
 import com.kashuba.onlinestore.service.CartService;
 import com.kashuba.onlinestore.service.dto.CartDto;
+import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/carts")
-// TODO модификаторы доступа
-// Не понял где я могу изменить\добавить модификаторы доступа
+@Api(tags = "Controller of carts")
+@Validated
 public class CartController {
     private final CartService cartService;
 
@@ -22,27 +25,24 @@ public class CartController {
         this.cartService = cartService;
     }
 
+    @Operation(summary = "Create cart")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Cart create(@RequestBody CartDto cartDto) {
-        return cartService.createCart(cartDto);
+    public CartDto create(@Valid @RequestBody CartDto cartDto) {
+        return cartService.create(cartDto);
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable("id") Long id) {
-        cartService.deleteCart(id);
-    }
-
+    @Operation(summary = "Find all carts")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    List<Cart> findAll() {
-        return cartService.findCarts();
+    public List<CartDto> findAll() {
+        return cartService.findAll();
     }
 
+    @Operation(summary = "Find cart by its id")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    Optional<Cart> findById(@PathVariable("id") Long id) {
+    public Optional<CartDto> findById(@Valid @PathVariable("id") Long id) {
         return cartService.findById(id);
     }
 }

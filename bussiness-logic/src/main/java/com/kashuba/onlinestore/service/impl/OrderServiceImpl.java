@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
     private CartRepository cartRepository;
 
     @Override
-    public Order createOrder(OrderDto orderDto) {
+    public OrderDto create(OrderDto orderDto) {
         Client client = clientRepository.findByEmail(orderDto.getEmailOfClient());
         Order order = orderConverter.toModel(orderDto);
         int amount = 0;
@@ -46,22 +46,21 @@ public class OrderServiceImpl implements OrderService {
         order.setClient(client);
         order.setCart(cartRepository.findById(client.getId()).get());
 
-
-        return orderRepository.saveAndFlush(order);
+        return orderConverter.toDto(orderRepository.saveAndFlush(order));
     }
 
     @Override
-    public void deleteOrder(Long id) {
+    public void deleteById(Long id) {
         orderRepository.deleteById(id);
     }
 
     @Override
-    public List<Order> findOrders() {
-        return orderRepository.findAll();
+    public List<OrderDto> findAll() {
+        return orderConverter.toListDto(orderRepository.findAll());
     }
 
-    public Optional<Order> findById(Long id) {
-        return orderRepository.findById(id);
+    public Optional<OrderDto> findById(Long id) {
+        return orderConverter.toOptionalDto(orderRepository.findById(id));
     }
 
 }

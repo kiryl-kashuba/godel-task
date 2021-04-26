@@ -1,10 +1,12 @@
 package com.kashuba.onlinestore.controller;
 
-import com.kashuba.onlinestore.entity.ProductAttributeValue;
 import com.kashuba.onlinestore.service.ProductAttributeValueService;
 import com.kashuba.onlinestore.service.dto.ProductAttributeValueDto;
+import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/product_attribute_values")
+@Api(tags = "Controller of product attribute values")
+@Validated
 public class ProductAttributeValueController {
     private final ProductAttributeValueService productAttributeValueService;
 
@@ -20,27 +24,31 @@ public class ProductAttributeValueController {
         this.productAttributeValueService = productAttributeValueService;
     }
 
+    @Operation(summary = "Create Find product attribute value")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    ProductAttributeValue createProductAttributeValue(@RequestBody ProductAttributeValueDto productAttributeValueDto) {
+    public ProductAttributeValueDto createProductAttributeValue(@RequestBody ProductAttributeValueDto productAttributeValueDto) {
         return productAttributeValueService.create(productAttributeValueDto);
     }
 
+    @Operation(summary = "Delete Find product attribute value by its id")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable("id") Long id) {
-        productAttributeValueService.delete(id);
+    public void delete(@PathVariable("id") Long id) {
+        productAttributeValueService.deleteById(id);
     }
 
+    @Operation(summary = "Find all Find product attribute values")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    List<ProductAttributeValue> findAllProductAttributeValues() {
+    public List<ProductAttributeValueDto> findAllProductAttributeValues() {
         return productAttributeValueService.findAll();
     }
 
+    @Operation(summary = "Find product attribute value by its id")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    Optional<ProductAttributeValue> findById(@PathVariable("id") Long id) {
+    public Optional<ProductAttributeValueDto> findById(@PathVariable("id") Long id) {
         return productAttributeValueService.findById(id);
     }
 }

@@ -4,6 +4,10 @@ import com.kashuba.onlinestore.entity.Category;
 import com.kashuba.onlinestore.service.dto.CategoryDto;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Component
 public class CategoryConverter {
 
@@ -12,6 +16,19 @@ public class CategoryConverter {
     }
 
     public CategoryDto toDto(Category category) {
-        return new CategoryDto();
+        return new CategoryDto(category.getName(), category.getProductAttribute());
+    }
+
+    public Optional<CategoryDto> toOptionalDto(Optional<Category> category) {
+        CategoryDto categoryDto = new CategoryDto(category.get().getName(), category.get().getProductAttribute());
+        return Optional.of(categoryDto);
+    }
+
+    public List<CategoryDto> toListDto(List<Category> categoryList) {
+        List<CategoryDto> categoryDtoList = new ArrayList<>();
+        for (Category category : categoryList) {
+            categoryDtoList.add(new CategoryDto(category.getName(), category.getProductAttribute()));
+        }
+        return categoryDtoList;
     }
 }
