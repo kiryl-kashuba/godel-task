@@ -1,9 +1,9 @@
-package com.kashuba.onlinestore.service.converter;
+package com.kashuba.onlinestore.converter;
 
 import com.kashuba.onlinestore.dao.CategoryRepository;
+import com.kashuba.onlinestore.dto.ProductAttributeDto;
 import com.kashuba.onlinestore.entity.Category;
 import com.kashuba.onlinestore.entity.ProductAttribute;
-import com.kashuba.onlinestore.service.dto.ProductAttributeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

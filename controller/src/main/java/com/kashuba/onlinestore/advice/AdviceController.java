@@ -1,7 +1,7 @@
 package com.kashuba.onlinestore.advice;
 
+import com.kashuba.onlinestore.dto.ExceptionDto;
 import com.kashuba.onlinestore.exceptions.HttpException;
-import com.kashuba.onlinestore.service.dto.ExceptionDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,5 +42,4 @@ public class AdviceController {
         log.error(e.getClass() + " : " + exception.getMessage());
         return new ResponseEntity<>(exception, exception.getStatus());
     }
-
 }

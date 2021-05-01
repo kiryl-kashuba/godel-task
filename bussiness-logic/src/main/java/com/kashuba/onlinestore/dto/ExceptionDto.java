@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore.service.dto;
+package com.kashuba.onlinestore.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

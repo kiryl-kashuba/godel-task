@@ -1,7 +1,7 @@
 package com.kashuba.onlinestore.controller;
 
+import com.kashuba.onlinestore.dto.CategoryDto;
 import com.kashuba.onlinestore.service.CategoryService;
-import com.kashuba.onlinestore.service.dto.CategoryDto;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;

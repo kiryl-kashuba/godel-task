@@ -1,12 +1,14 @@
 package com.kashuba.onlinestore.controller;
 
+import com.kashuba.onlinestore.dto.OrderDto;
 import com.kashuba.onlinestore.service.OrderService;
-import com.kashuba.onlinestore.service.dto.OrderDto;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +33,8 @@ public class OrderController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public OrderDto create(@RequestBody OrderDto orderDto) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        orderDto.setEmailOfClient("qweqwe");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        orderDto.setEmailOfClient(authentication.getName());
         log.info("Creating {} order", orderDto.getEmailOfClient());
         return orderService.create(orderDto);
     }

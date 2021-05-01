@@ -19,8 +19,7 @@ public class Cart extends BaseEntity {
     @OneToMany(mappedBy = "cart", orphanRemoval = true)
     private List<InstanceProduct> instanceProduct;
     @JsonBackReference
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", nullable = true)
+    @OneToOne(optional = true, mappedBy = "cart", orphanRemoval = true, fetch = FetchType.LAZY)
     private Client client;
     @JsonBackReference
     @OneToOne(optional = true, mappedBy = "cart")

@@ -19,11 +19,20 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Client extends BaseEntity {
 
+    @JsonManagedReference
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", nullable = true)
+    private Cart cart;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "client", orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<Order> orders;
+
     public enum Status {
-        @Column(name = "role") // Как обозначить Enum в таблице?
-        ACTIVE("active"),
-        @Column(name = "role") // Как обозначить Enum в таблице?
-        BLOCKED("blocked");
+        //        @Column(name = "role")
+        ACTIVE("ACTIVE"),
+        //        @Column(name = "role")
+        BLOCKED("BLOCKED");
 
         private final String valueOfStatus;
 
@@ -49,11 +58,31 @@ public class Client extends BaseEntity {
             return user;
         }
     }
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "second_name")
+    private String secondName;
+    @Column(name = "phone_number")
+    private Long phoneNumber;
+    @Column(name = "email")
+    @NonNull
+    private String email;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    @NonNull
+    private Status status;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    @NonNull
+    private Role role;
+    @Column(name = "password")
+    @NonNull
+    private String password;
 
     public enum Role {
-        GUEST("guest"),
-        CLIENT("client"),
-        ADMIN("admin");
+        GUEST("GUEST"),
+        CLIENT("CLIENT"),
+        ADMIN("ADMIN");
 
         private final String valueOfRole;
 
@@ -79,34 +108,6 @@ public class Client extends BaseEntity {
             return valueOfRole;
         }
     }
-
-    @JsonManagedReference
-    @OneToOne(optional = true, mappedBy = "client", orphanRemoval = true, fetch = FetchType.LAZY)
-    private Cart cart;
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "second_name")
-    private String secondName;
-    @Column(name = "phone_number")
-    private Long phoneNumber;
-    @Column(name = "email")
-    @NonNull
-    private String email;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    @NonNull
-    private Status status;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    @NonNull
-    private Role role;
-    @Column(name = "password")
-    @NonNull
-    private String password;
-    @JsonManagedReference
-    @OneToMany(mappedBy = "client", orphanRemoval = true)
-    @JsonIgnore
-    private List<Order> orders;
 
     public Client(String firstName, String secondName, Long phoneNumber,
                   String email, String password) {

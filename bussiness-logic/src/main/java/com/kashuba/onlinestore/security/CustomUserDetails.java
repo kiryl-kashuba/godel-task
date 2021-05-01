@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore.service.config;
+package com.kashuba.onlinestore.security;
 
 import com.kashuba.onlinestore.entity.Client;
 import org.springframework.security.core.GrantedAuthority;

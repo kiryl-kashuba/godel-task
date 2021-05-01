@@ -1,10 +1,10 @@
 package com.kashuba.onlinestore.service.impl;
 
+import com.kashuba.onlinestore.converter.CategoryConverter;
 import com.kashuba.onlinestore.dao.CategoryRepository;
+import com.kashuba.onlinestore.dto.CategoryDto;
 import com.kashuba.onlinestore.entity.Category;
 import com.kashuba.onlinestore.service.CategoryService;
-import com.kashuba.onlinestore.service.converter.CategoryConverter;
-import com.kashuba.onlinestore.service.dto.CategoryDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

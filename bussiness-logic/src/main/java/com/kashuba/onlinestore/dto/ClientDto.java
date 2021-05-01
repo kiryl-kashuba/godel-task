@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore.service.dto;
+package com.kashuba.onlinestore.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.kashuba.onlinestore.entity.Client;
@@ -18,7 +18,6 @@ public class ClientDto extends BaseEntityDto {
     private String firstName;
     @NotBlank(message = "secondName is mandatory")
     private String secondName;
-    @NotBlank(message = "phoneNumber is mandatory")
     private Long phoneNumber;
     @NotBlank(message = "email is mandatory")
     private String email;

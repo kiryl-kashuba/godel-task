@@ -1,19 +1,11 @@
-#server.port=8081
-#spring.main.allow-bean-definition-overriding=true
-#spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-#spring.jpa.hibernate.ddl-auto=create-drop
-##db.hibernate.dialect=org.hibernate.dialect.MySQLDialect
-##db.hibernate.show_sql=true
-##db.hibernate.hbm2ddl.auto=create
-#       ddl-auto: validate
 spring:
   jpa:
     show-sql: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     database-platform: org.hibernate.dialect.MySQL5Dialect
   datasource:
-    url: jdbc:mysql://localhost:3306/oonline_store?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/ooonline_store?serverTimezone=UTC
     username: root
     password: Java1234
 ---
@@ -21,6 +13,4 @@ logging:
   level:
     org.springframework.web: ERROR
     com.kashuba: DEBUG
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level - %msg%n"
-    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+

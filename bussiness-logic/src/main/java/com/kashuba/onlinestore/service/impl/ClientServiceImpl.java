@@ -1,10 +1,12 @@
 package com.kashuba.onlinestore.service.impl;
 
+import com.kashuba.onlinestore.converter.ClientConverter;
+import com.kashuba.onlinestore.dao.CartRepository;
 import com.kashuba.onlinestore.dao.ClientRepository;
+import com.kashuba.onlinestore.dto.ClientDto;
+import com.kashuba.onlinestore.entity.Cart;
 import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.service.ClientService;
-import com.kashuba.onlinestore.service.converter.ClientConverter;
-import com.kashuba.onlinestore.service.dto.ClientDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,13 +24,18 @@ public class ClientServiceImpl implements ClientService {
     private ClientRepository clientRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private CartRepository cartRepository;
 
     @Override
     public ClientDto create(ClientDto clientDto) {
+        Cart cart = new Cart();
+        cartRepository.saveAndFlush(cart);
         Client client = clientConverter.toModel(clientDto);
-        client.setRole(Client.Role.findRole("client"));
-        client.setStatus(Client.Status.findStatus("active"));
+        client.setRole(Client.Role.findRole("CLIENT"));
+        client.setStatus(Client.Status.findStatus("ACTIVE"));
         client.setPassword(passwordEncoder.encode(clientDto.getPassword()));
+        client.setCart(cart);
         return clientConverter.toDto(clientRepository.saveAndFlush(client));
     }
 

@@ -1,10 +1,10 @@
 package com.kashuba.onlinestore.service.impl;
 
+import com.kashuba.onlinestore.converter.ProductAttributeValueConverter;
 import com.kashuba.onlinestore.dao.ProductAttributeValueRepository;
+import com.kashuba.onlinestore.dto.ProductAttributeValueDto;
 import com.kashuba.onlinestore.entity.ProductAttributeValue;
 import com.kashuba.onlinestore.service.ProductAttributeValueService;
-import com.kashuba.onlinestore.service.converter.ProductAttributeValueConverter;
-import com.kashuba.onlinestore.service.dto.ProductAttributeValueDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

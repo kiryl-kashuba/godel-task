@@ -1,7 +1,7 @@
 package com.kashuba.onlinestore.controller;
 
+import com.kashuba.onlinestore.dto.ProductAttributeValueDto;
 import com.kashuba.onlinestore.service.ProductAttributeValueService;
-import com.kashuba.onlinestore.service.dto.ProductAttributeValueDto;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/product_attribute_values")
+@RequestMapping("/product-attribute-values")
 @Api(tags = "Controller of product attribute values")
 @Validated
 public class ProductAttributeValueController {

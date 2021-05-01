@@ -1,8 +1,8 @@
-package com.kashuba.onlinestore.service.converter;
+package com.kashuba.onlinestore.converter;
 
+import com.kashuba.onlinestore.dto.InstanceProductDto;
 import com.kashuba.onlinestore.entity.Category;
 import com.kashuba.onlinestore.entity.InstanceProduct;
-import com.kashuba.onlinestore.service.dto.InstanceProductDto;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

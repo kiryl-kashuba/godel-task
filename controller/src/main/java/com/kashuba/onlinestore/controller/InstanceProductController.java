@@ -1,12 +1,14 @@
 package com.kashuba.onlinestore.controller;
 
+import com.kashuba.onlinestore.dto.InstanceProductDto;
 import com.kashuba.onlinestore.service.InstanceProductService;
-import com.kashuba.onlinestore.service.dto.InstanceProductDto;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/instance_products")
+@RequestMapping("/instance-products")
 @Api(tags = "Controller of instance products")
 @Validated
 @Slf4j
@@ -36,11 +38,11 @@ public class InstanceProductController {
     }
 
     @Operation(summary = "Add instance product to cart")
-    @PostMapping("/add_to_cart")
+    @PostMapping("/to-cart")
     @ResponseStatus(HttpStatus.CREATED)
     public InstanceProductDto addToCart(@Valid @RequestBody InstanceProductDto instanceProductDto) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        instanceProductDto.setEmailOfClient("qweqwe");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        instanceProductDto.setEmailOfClient(authentication.getName());
         log.info("Adding instance product {} {} to {} cart", instanceProductDto.getName(),
                 instanceProductDto.getArticulation(), instanceProductDto.getEmailOfClient());
         return instanceProductService.addToCart(instanceProductDto);

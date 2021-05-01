@@ -1,10 +1,10 @@
 package com.kashuba.onlinestore.service.impl;
 
+import com.kashuba.onlinestore.converter.CartConverter;
 import com.kashuba.onlinestore.dao.CartRepository;
+import com.kashuba.onlinestore.dto.CartDto;
 import com.kashuba.onlinestore.entity.Cart;
 import com.kashuba.onlinestore.service.CartService;
-import com.kashuba.onlinestore.service.converter.CartConverter;
-import com.kashuba.onlinestore.service.dto.CartDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

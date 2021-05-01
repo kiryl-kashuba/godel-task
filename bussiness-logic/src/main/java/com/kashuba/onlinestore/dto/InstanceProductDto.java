@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore.service.dto;
+package com.kashuba.onlinestore.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -16,9 +16,7 @@ public class InstanceProductDto extends BaseEntityDto {
     private String name;
     @NotBlank(message = "articulation is mandatory")
     private String articulation;
-    @NotBlank(message = "price is mandatory")
-    private int price;
-    @NotBlank(message = "id of category is mandatory")
+    private Integer price;
     private Long idOfCategory;
     private Long idOfInstanceProduct;
     private int number;

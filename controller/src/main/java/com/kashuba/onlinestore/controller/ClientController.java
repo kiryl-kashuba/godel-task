@@ -1,8 +1,10 @@
 package com.kashuba.onlinestore.controller;
 
+import com.kashuba.onlinestore.dto.ClientDto;
 import com.kashuba.onlinestore.service.ClientService;
-import com.kashuba.onlinestore.service.dto.ClientDto;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,14 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/clients")
+@ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Successfully retrieved list"),
+        @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+        @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+        @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+        @ApiResponse(code = 409, message = "The request could not be completed due to a conflict with the current state of the target resource."),
+        @ApiResponse(code = 500, message = "Server ERROR. Something go wrong")
+})
 @Api(tags = "Controller of clients")
 @Validated
 @Slf4j

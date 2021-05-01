@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore.service.dto;
+package com.kashuba.onlinestore.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

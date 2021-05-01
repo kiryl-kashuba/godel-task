@@ -1,15 +1,15 @@
 package com.kashuba.onlinestore.service.impl;
 
+import com.kashuba.onlinestore.converter.OrderConverter;
 import com.kashuba.onlinestore.dao.CartRepository;
 import com.kashuba.onlinestore.dao.ClientRepository;
 import com.kashuba.onlinestore.dao.InstanceProductRepository;
 import com.kashuba.onlinestore.dao.OrderRepository;
+import com.kashuba.onlinestore.dto.OrderDto;
 import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.entity.InstanceProduct;
 import com.kashuba.onlinestore.entity.Order;
 import com.kashuba.onlinestore.service.OrderService;
-import com.kashuba.onlinestore.service.converter.OrderConverter;
-import com.kashuba.onlinestore.service.dto.OrderDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

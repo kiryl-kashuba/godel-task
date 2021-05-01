@@ -1,7 +1,7 @@
 package com.kashuba.onlinestore.controller;
 
+import com.kashuba.onlinestore.dto.CartDto;
 import com.kashuba.onlinestore.service.CartService;
-import com.kashuba.onlinestore.service.dto.CartDto;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
@@ -27,13 +27,13 @@ public class CartController {
         this.cartService = cartService;
     }
 
-    @Operation(summary = "Create cart")
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public CartDto create(@Valid @RequestBody CartDto cartDto) {
-        log.info("Creating cart");
-        return cartService.create(cartDto);
-    }
+//    @Operation(summary = "Create cart")
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public CartDto create(@Valid @RequestBody CartDto cartDto) {
+//        log.info("Creating cart");
+//        return cartService.create(cartDto);
+//    }
 
     @Operation(summary = "Find all carts")
     @GetMapping

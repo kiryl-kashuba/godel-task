@@ -1,4 +1,4 @@
-package com.kashuba.onlinestore.service.dto;
+package com.kashuba.onlinestore.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -17,6 +17,7 @@ import java.util.List;
 public class CartDto extends BaseEntityDto {
     @JsonIgnore
     private List<InstanceProduct> instanceProductList;
+    //    @JsonIgnore
     private Client client;
 
 

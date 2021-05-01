@@ -1,7 +1,8 @@
-package com.kashuba.onlinestore.service.config;
+package com.kashuba.onlinestore.security.impl;
 
 import com.kashuba.onlinestore.dao.ClientRepository;
 import com.kashuba.onlinestore.entity.Client;
+import com.kashuba.onlinestore.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CustomUserDetailsServiceImpl implements UserDetailsService {
+
     private final ClientRepository clientRepository;
 
     @Autowired
@@ -24,6 +26,9 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("No user present with email: " + email);
         }
         return new CustomUserDetails(client);
+//        return new org.springframework.security.core.userdetails.User(
+//                client.getEmail(), client.getPassword(),
+//                AuthorityUtils.createAuthorityList(client.getRole().name()));
     }
 
 }

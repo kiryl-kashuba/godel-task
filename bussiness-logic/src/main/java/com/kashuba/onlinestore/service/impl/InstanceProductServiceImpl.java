@@ -1,16 +1,15 @@
 package com.kashuba.onlinestore.service.impl;
 
+import com.kashuba.onlinestore.converter.InstanceProductConverter;
 import com.kashuba.onlinestore.dao.*;
+import com.kashuba.onlinestore.dto.InstanceProductDto;
 import com.kashuba.onlinestore.entity.*;
 import com.kashuba.onlinestore.service.InstanceProductService;
-import com.kashuba.onlinestore.service.converter.InstanceProductConverter;
-import com.kashuba.onlinestore.service.dto.InstanceProductDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -35,19 +34,24 @@ public class InstanceProductServiceImpl implements InstanceProductService {
         return instanceProductConverter.toDto(instanceProductRepository.saveAndFlush(instanceProduct));
     }
 
-    @Override
     public InstanceProductDto addToCart(InstanceProductDto instanceProductDto) {
         String[] values = instanceProductDto.getValues();
         InstanceProduct instanceProduct = instanceProductRepository.findById(instanceProductDto.getIdOfInstanceProduct()).get();
         Client client = clientRepository.findByEmail(instanceProductDto.getEmailOfClient());
-        try {
-            cartRepository.findById(client.getId()).get();
-        } catch (NoSuchElementException e) {
-            Cart cart = new Cart();
-            cart.setId(client.getId());
-            cartRepository.saveAndFlush(cart);
-        }
-        instanceProduct.setCart(cartRepository.findById(client.getId()).get());
+
+//        Cart cart;
+        Optional<Cart> existingCart = cartRepository.findById(client.getId());
+//
+//        if (existingCart.isPresent()){
+//            cart = existingCart.get();
+//        }
+//        else{
+//            cart = new Cart();
+//            cart.setId(client.getId());
+//            cart = cartRepository.saveAndFlush(cart);
+//        }
+
+        instanceProduct.setCart(existingCart.get());
         instanceProduct.setNumber(instanceProductDto.getNumber());
 
         List<ProductAttribute> productAttributeList = productAttributeRepository.findByCategory_Id(instanceProductDto.getIdOfCategory());

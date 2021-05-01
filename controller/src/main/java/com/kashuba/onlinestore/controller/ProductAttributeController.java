@@ -1,7 +1,7 @@
 package com.kashuba.onlinestore.controller;
 
+import com.kashuba.onlinestore.dto.ProductAttributeDto;
 import com.kashuba.onlinestore.service.ProductAttributeService;
-import com.kashuba.onlinestore.service.dto.ProductAttributeDto;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/product_attributes")
+@RequestMapping("/product-attributes")
 @Api(tags = "Controller of product attributes")
 @Validated
 @Slf4j
