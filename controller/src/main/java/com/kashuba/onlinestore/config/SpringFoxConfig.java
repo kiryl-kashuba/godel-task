@@ -19,6 +19,11 @@ public class SpringFoxConfig {
                 .paths(PathSelectors.any())
                 .build();
     }
+}
+
+
+//This comment at the bottom is still useful to me, sorry.
+
 //@Configuration
 //public class SpringFoxConfig {
 //    @Bean
@@ -40,4 +45,3 @@ public class SpringFoxConfig {
 //                .build();
 //    }
 //}
-}

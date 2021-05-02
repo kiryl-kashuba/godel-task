@@ -16,7 +16,8 @@ import java.util.Optional;
 @Slf4j
 public class CartServiceImpl implements CartService {
 
-    CartConverter cartConverter = new CartConverter();
+    @Autowired
+    private CartConverter cartConverter;
 
     @Autowired
     private CartRepository cartRepository;

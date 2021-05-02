@@ -1,6 +1,5 @@
 package com.kashuba.onlinestore.config;
 
-
 import com.kashuba.onlinestore.entity.Client;
 import com.kashuba.onlinestore.security.impl.CustomUserDetailsServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Slf4j
 @Configuration
-//@EnableAutoConfiguration //TODO What are all these annotations doing? And why this annotation conflict with CustomUserDetailsServiceImpl?
 @EnableWebSecurity
 @ComponentScan("com.kashuba.onlinestore.security")
 @EnableGlobalMethodSecurity(securedEnabled = true)
@@ -39,13 +37,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
 //        web.ignoring().antMatchers("/**");
-//        web.ignoring().antMatchers(HttpMethod.POST, "/api/users");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-//                .antMatchers(HttpMethod.POST, "/clients").permitAll()
                 .antMatchers(HttpMethod.GET, "/clients/**").hasAnyAuthority(Client.Role.ADMIN.name())
                 .antMatchers(HttpMethod.DELETE, "/clients/**").hasAnyAuthority(Client.Role.ADMIN.name())
                 .antMatchers(HttpMethod.POST, "/clients/**").permitAll()

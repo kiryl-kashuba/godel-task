@@ -22,7 +22,6 @@ public class User {
         this.email = email;
     }
 
-
     public enum Role {
         GUEST("guest"),
         CLIENT("client"),

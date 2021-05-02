@@ -16,7 +16,8 @@ import java.util.Optional;
 @Slf4j
 public class ProductAttributeValueServiceImpl implements ProductAttributeValueService {
 
-    ProductAttributeValueConverter productAttributeValueConverter = new ProductAttributeValueConverter();
+    @Autowired
+    private ProductAttributeValueConverter productAttributeValueConverter;
 
     @Autowired
     private ProductAttributeValueRepository productAttributeValueRepository;

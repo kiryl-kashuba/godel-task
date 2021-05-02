@@ -17,7 +17,6 @@ public class ProductAttributeDto extends BaseEntityDto {
     private boolean mandatory;
     @NotBlank(message = "type is mandatory")
     private String type;
-    //    private Category category;
     private Long idOfCategory;
 
     public ProductAttributeDto(String name, String type, boolean mandatory) {

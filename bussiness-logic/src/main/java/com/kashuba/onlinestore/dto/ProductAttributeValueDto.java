@@ -15,6 +15,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductAttributeValueDto extends BaseEntityDto {
+
     @NotBlank(message = "value is mandatory")
     private String value;
     @JsonIgnore

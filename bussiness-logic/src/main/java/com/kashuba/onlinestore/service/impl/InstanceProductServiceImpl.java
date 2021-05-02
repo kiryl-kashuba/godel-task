@@ -38,31 +38,17 @@ public class InstanceProductServiceImpl implements InstanceProductService {
         String[] values = instanceProductDto.getValues();
         InstanceProduct instanceProduct = instanceProductRepository.findById(instanceProductDto.getIdOfInstanceProduct()).get();
         Client client = clientRepository.findByEmail(instanceProductDto.getEmailOfClient());
-
-//        Cart cart;
         Optional<Cart> existingCart = cartRepository.findById(client.getId());
-//
-//        if (existingCart.isPresent()){
-//            cart = existingCart.get();
-//        }
-//        else{
-//            cart = new Cart();
-//            cart.setId(client.getId());
-//            cart = cartRepository.saveAndFlush(cart);
-//        }
-
         instanceProduct.setCart(existingCart.get());
         instanceProduct.setNumber(instanceProductDto.getNumber());
 
         List<ProductAttribute> productAttributeList = productAttributeRepository.findByCategory_Id(instanceProductDto.getIdOfCategory());
-        int cycleStage = 0;
         for (ProductAttribute productAttribute : productAttributeList) {
             ProductAttributeValue pav = new ProductAttributeValue();
-            pav.setValue(values[cycleStage]);
+            pav.setValue(values[productAttributeList.size()]);
             pav.setProductAttribute(productAttribute);
             pav.setInstanceProduct(instanceProduct);
             productAttributeValueRepository.saveAndFlush(pav);
-            cycleStage++;
         }
         return instanceProductConverter.toDto(instanceProductRepository.saveAndFlush(instanceProduct)); // TODO что произойдет, если у меня на return'е упадет приложение?
     }

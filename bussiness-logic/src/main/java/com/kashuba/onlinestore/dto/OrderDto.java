@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDto extends BaseEntityDto {
+
     private String emailOfClient;
     private LocalDate dateOrder;
     private int amount;

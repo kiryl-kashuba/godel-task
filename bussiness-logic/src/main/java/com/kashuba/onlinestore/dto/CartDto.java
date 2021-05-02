@@ -17,7 +17,6 @@ import java.util.List;
 public class CartDto extends BaseEntityDto {
     @JsonIgnore
     private List<InstanceProduct> instanceProductList;
-    //    @JsonIgnore
     private Client client;
 
 

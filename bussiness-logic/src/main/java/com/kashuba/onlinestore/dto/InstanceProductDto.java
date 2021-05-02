@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class InstanceProductDto extends BaseEntityDto {
+
     @NotBlank(message = "name is mandatory")
     private String name;
     @NotBlank(message = "articulation is mandatory")

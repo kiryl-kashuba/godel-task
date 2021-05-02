@@ -30,7 +30,7 @@ public class InstanceProduct extends BaseEntity {
     private int number;
     @JsonIgnore
     @ManyToOne(optional = true)
-    @JoinColumn(name = "cart_id", nullable = true) //cart_id
+    @JoinColumn(name = "cart_id", nullable = true)
     private Cart cart;
 
     public InstanceProduct(String name, String articulation, int price) {

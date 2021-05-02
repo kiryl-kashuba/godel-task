@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -29,9 +28,7 @@ public class Client extends BaseEntity {
     private List<Order> orders;
 
     public enum Status {
-        //        @Column(name = "role")
         ACTIVE("ACTIVE"),
-        //        @Column(name = "role")
         BLOCKED("BLOCKED");
 
         private final String valueOfStatus;
@@ -44,10 +41,6 @@ public class Client extends BaseEntity {
             return valueOfStatus;
         }
 
-        public static Status getClientStatus(int index) {
-            return Arrays.stream(Status.values()).filter(s -> s.ordinal() == index).findFirst().get();
-        }
-
         public static Client.Status findStatus(String status) {
             Client.Status user = null;
             for (Client.Status env : Client.Status.values()) {
@@ -58,6 +51,33 @@ public class Client extends BaseEntity {
             return user;
         }
     }
+
+    public enum Role {
+        GUEST("GUEST"),
+        CLIENT("CLIENT"),
+        ADMIN("ADMIN");
+
+        private final String valueOfRole;
+
+        Role(String valueOfRole) {
+            this.valueOfRole = valueOfRole;
+        }
+
+        public static Role findRole(String role) {
+            Role user = null;
+            for (Role env : Role.values()) {
+                if (role.equals(env.getvalueOfRole())) {
+                    user = env;
+                }
+            }
+            return user;
+        }
+
+        public String getvalueOfRole() {
+            return valueOfRole;
+        }
+    }
+
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "second_name")
@@ -78,36 +98,6 @@ public class Client extends BaseEntity {
     @Column(name = "password")
     @NonNull
     private String password;
-
-    public enum Role {
-        GUEST("GUEST"),
-        CLIENT("CLIENT"),
-        ADMIN("ADMIN");
-
-        private final String valueOfRole;
-
-        Role(String valueOfRole) {
-            this.valueOfRole = valueOfRole;
-        }
-
-        public static Role getUserRole(int index) {
-            return Arrays.stream(Role.values()).filter(r -> r.ordinal() == index).findFirst().get();
-        }
-
-        public static Role findRole(String role) {
-            Role user = null;
-            for (Role env : Role.values()) {
-                if (role.equals(env.getvalueOfRole())) {
-                    user = env;
-                }
-            }
-            return user;
-        }
-
-        public String getvalueOfRole() {
-            return valueOfRole;
-        }
-    }
 
     public Client(String firstName, String secondName, Long phoneNumber,
                   String email, String password) {

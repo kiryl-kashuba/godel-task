@@ -21,7 +21,8 @@ import java.util.Optional;
 @Service
 @Slf4j
 public class OrderServiceImpl implements OrderService {
-    OrderConverter orderConverter = new OrderConverter();
+    @Autowired
+    private OrderConverter orderConverter;
     @Autowired
     private OrderRepository orderRepository;
     @Autowired
@@ -34,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDto create(OrderDto orderDto) {
         Client client = clientRepository.findByEmail(orderDto.getEmailOfClient());
-        Order order = orderConverter.toModel(orderDto);
+        Order order = orderConverter.toModel();
         int amount = 0;
         List<InstanceProduct> instanceProductList = instanceProductRepository.findByCart_Id(client.getId());
         for (InstanceProduct instanceProduct : instanceProductList) {

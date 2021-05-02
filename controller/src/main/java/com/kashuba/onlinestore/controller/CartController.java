@@ -27,6 +27,8 @@ public class CartController {
         this.cartService = cartService;
     }
 
+    //This comment at the bottom is still useful to me, sorry.
+
 //    //@Operation(summary = "Create cart")
 //    @PostMapping
 //    @ResponseStatus(HttpStatus.CREATED)

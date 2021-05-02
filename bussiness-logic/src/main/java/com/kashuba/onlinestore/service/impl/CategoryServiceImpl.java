@@ -16,7 +16,9 @@ import java.util.Optional;
 @Slf4j
 public class CategoryServiceImpl implements CategoryService {
 
-    CategoryConverter categoryConverter = new CategoryConverter();
+    @Autowired
+    private CategoryConverter categoryConverter;
+
     @Autowired
     private CategoryRepository categoryRepository;
 
