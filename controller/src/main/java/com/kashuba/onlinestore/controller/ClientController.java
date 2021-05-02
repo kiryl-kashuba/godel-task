@@ -5,7 +5,6 @@ import com.kashuba.onlinestore.service.ClientService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,7 +36,7 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @Operation(summary = "Create client")
+//    //@Operation(summary = "Create client")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ClientDto createClient(@Valid @RequestBody ClientDto clientDto) {
@@ -45,7 +44,7 @@ public class ClientController {
         return clientService.create(clientDto);
     }
 
-    @Operation(summary = "Delete client by its id")
+    //    //@Operation(summary = "Delete client by its id")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@Valid @PathVariable("id") Long id) {
@@ -53,7 +52,7 @@ public class ClientController {
         clientService.deleteById(id);
     }
 
-    @Operation(summary = "Find all clients")
+    //    //@Operation(summary = "Find all clients")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ClientDto> findAllClients() {
@@ -61,7 +60,7 @@ public class ClientController {
         return clientService.findAll();
     }
 
-    @Operation(summary = "Find client by its id")
+    //    //@Operation(summary = "Find client by its id")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<ClientDto> findById(@Valid @PathVariable("id") Long id) {

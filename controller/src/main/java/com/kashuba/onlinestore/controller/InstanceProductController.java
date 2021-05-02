@@ -3,7 +3,6 @@ package com.kashuba.onlinestore.controller;
 import com.kashuba.onlinestore.dto.InstanceProductDto;
 import com.kashuba.onlinestore.service.InstanceProductService;
 import io.swagger.annotations.Api;
-import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,11 +24,11 @@ public class InstanceProductController {
     private final InstanceProductService instanceProductService;
 
     @Autowired
-    public InstanceProductController(InstanceProductService instanceProductService) {
+    public InstanceProductController(InstanceProductService instanceProductService) {  //TODO что я тут, блять, делаю?
         this.instanceProductService = instanceProductService;
     }
 
-    @Operation(summary = "Create instance product")
+    //@Operation(summary = "Create instance product")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public InstanceProductDto create(@Valid @RequestBody InstanceProductDto instanceProductDto) {
@@ -37,7 +36,7 @@ public class InstanceProductController {
         return instanceProductService.create(instanceProductDto);
     }
 
-    @Operation(summary = "Add instance product to cart")
+    //@Operation(summary = "Add instance product to cart")
     @PostMapping("/to-cart")
     @ResponseStatus(HttpStatus.CREATED)
     public InstanceProductDto addToCart(@Valid @RequestBody InstanceProductDto instanceProductDto) {
@@ -48,7 +47,7 @@ public class InstanceProductController {
         return instanceProductService.addToCart(instanceProductDto);
     }
 
-    @Operation(summary = "Delete instance product by its id")
+    //@Operation(summary = "Delete instance product by its id")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@Valid @PathVariable("id") Long id) {
@@ -56,7 +55,7 @@ public class InstanceProductController {
         instanceProductService.deleteById(id);
     }
 
-    @Operation(summary = "Find all instance products")
+    //@Operation(summary = "Find all instance products")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<InstanceProductDto> findAll() {
@@ -64,7 +63,7 @@ public class InstanceProductController {
         return instanceProductService.findAll();
     }
 
-    @Operation(summary = "Find instance product by its id")
+    //@Operation(summary = "Find instance product by its id")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<InstanceProductDto> findById(@Valid @PathVariable("id") Long id) {

@@ -64,7 +64,7 @@ public class InstanceProductServiceImpl implements InstanceProductService {
             productAttributeValueRepository.saveAndFlush(pav);
             cycleStage++;
         }
-        return instanceProductConverter.toDto(instanceProductRepository.saveAndFlush(instanceProduct));
+        return instanceProductConverter.toDto(instanceProductRepository.saveAndFlush(instanceProduct)); // TODO что произойдет, если у меня на return'е упадет приложение?
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.kashuba.onlinestore.controller;
 import com.kashuba.onlinestore.dto.CategoryDto;
 import com.kashuba.onlinestore.service.CategoryService;
 import io.swagger.annotations.Api;
-import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @Operation(summary = "Create category")
+    //@Operation(summary = "Create category")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CategoryDto createCategory(@Valid @RequestBody CategoryDto categoryDto) {
@@ -35,7 +34,7 @@ public class CategoryController {
         return categoryService.create(categoryDto);
     }
 
-    @Operation(summary = "Delete category by its id")
+    //@Operation(summary = "Delete category by its id")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@Valid @PathVariable("id") Long id) {
@@ -43,7 +42,7 @@ public class CategoryController {
         categoryService.deleteById(id);
     }
 
-    @Operation(summary = "Find all categories")
+    //@Operation(summary = "Find all categories")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CategoryDto> findAllCategories() {
@@ -51,7 +50,7 @@ public class CategoryController {
         return categoryService.findAll();
     }
 
-    @Operation(summary = "Find category by its id")
+    //@Operation(summary = "Find category by its id")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<CategoryDto> findById(@Valid @PathVariable("id") Long id) {

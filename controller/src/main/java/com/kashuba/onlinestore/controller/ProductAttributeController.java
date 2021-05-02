@@ -3,7 +3,6 @@ package com.kashuba.onlinestore.controller;
 import com.kashuba.onlinestore.dto.ProductAttributeDto;
 import com.kashuba.onlinestore.service.ProductAttributeService;
 import io.swagger.annotations.Api;
-import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,7 @@ public class ProductAttributeController {
         this.productAttributeService = productAttributeService;
     }
 
-    @Operation(summary = "Create product attribute")
+    //@Operation(summary = "Create product attribute")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ProductAttributeDto createProductAttribute(@Valid @RequestBody ProductAttributeDto productAttributeDto) {
@@ -35,7 +34,7 @@ public class ProductAttributeController {
         return productAttributeService.create(productAttributeDto);
     }
 
-    @Operation(summary = "Delete product attribute by its id")
+    //@Operation(summary = "Delete product attribute by its id")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@Valid @PathVariable("id") Long id) {
@@ -43,7 +42,7 @@ public class ProductAttributeController {
         productAttributeService.deleteById(id);
     }
 
-    @Operation(summary = "Find all product attributes")
+    //@Operation(summary = "Find all product attributes")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ProductAttributeDto> findAllProductAttributes() {
@@ -51,7 +50,7 @@ public class ProductAttributeController {
         return productAttributeService.findAll();
     }
 
-    @Operation(summary = "Find product attribute by its id")
+    //@Operation(summary = "Find product attribute by its id")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<ProductAttributeDto> findById(@Valid @PathVariable("id") Long id) {
