@@ -1,0 +1,696 @@
+{
+  "info": {
+    "_postman_id": "6194fb7a-3a79-4bff-8306-e0baff8f2a46",
+    "name": "online-store",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create client",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstName\": \"Kiryl\",\n    \"secondName\": \"Kashuba\",\n    \"phoneNumber\": \"375298024765\",\n    \"email\": \"kashuba.kirya@gmail.com\",\n    \"password\": \"Java1234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clients/?firstName=kirill&secondName=kashuba&phoneNumber=375298024765&email=kashuba.kirya@gmail.com&password=Java1234",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clients",
+            ""
+          ],
+          "query": [
+            {
+              "key": "firstName",
+              "value": "kirill"
+            },
+            {
+              "key": "secondName",
+              "value": "kashuba"
+            },
+            {
+              "key": "phoneNumber",
+              "value": "375298024765"
+            },
+            {
+              "key": "email",
+              "value": "kashuba.kirya@gmail.com"
+            },
+            {
+              "key": "password",
+              "value": "Java1234"
+            }
+          ]
+        },
+        "description": "Create Client"
+      },
+      "response": []
+    },
+    {
+      "name": "Create cart (Does not exist)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/carts/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "carts",
+            ""
+          ]
+        },
+        "description": "Create Client"
+      },
+      "response": []
+    },
+    {
+      "name": "Create Category",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstName\": \"Kiryl\",\n    \"secondName\": \"Kashuba\",\n    \"phoneNumber\": \"375298024765\",\n    \"email\": \"kashuba.kirya@gmail.com\",\n    \"password\": \"Java1234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/categories/?name=laptop",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "categories",
+            ""
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "laptop"
+            }
+          ]
+        },
+        "description": "Create Client"
+      },
+      "response": []
+    },
+    {
+      "name": "Create InstanceProduct",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstName\": \"Kiryl\",\n    \"secondName\": \"Kashuba\",\n    \"phoneNumber\": \"375298024765\",\n    \"email\": \"kashuba.kirya@gmail.com\",\n    \"password\": \"Java1234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clients/?firstName=kirill&secondName=kashuba&phoneNumber=375298024765&email=kashuba.kirya@gmail.com&password=Java1234",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clients",
+            ""
+          ],
+          "query": [
+            {
+              "key": "firstName",
+              "value": "kirill"
+            },
+            {
+              "key": "secondName",
+              "value": "kashuba"
+            },
+            {
+              "key": "phoneNumber",
+              "value": "375298024765"
+            },
+            {
+              "key": "email",
+              "value": "kashuba.kirya@gmail.com"
+            },
+            {
+              "key": "password",
+              "value": "Java1234"
+            }
+          ]
+        },
+        "description": "Create Client"
+      },
+      "response": []
+    },
+    {
+      "name": "add InstanceProduct to cart",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstName\": \"Kiryl\",\n    \"secondName\": \"Kashuba\",\n    \"phoneNumber\": \"375298024765\",\n    \"email\": \"kashuba.kirya@gmail.com\",\n    \"password\": \"Java1234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clients/?firstName=kirill&secondName=kashuba&phoneNumber=375298024765&email=kashuba.kirya@gmail.com&password=Java1234",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clients",
+            ""
+          ],
+          "query": [
+            {
+              "key": "firstName",
+              "value": "kirill"
+            },
+            {
+              "key": "secondName",
+              "value": "kashuba"
+            },
+            {
+              "key": "phoneNumber",
+              "value": "375298024765"
+            },
+            {
+              "key": "email",
+              "value": "kashuba.kirya@gmail.com"
+            },
+            {
+              "key": "password",
+              "value": "Java1234"
+            }
+          ]
+        },
+        "description": "Create Client"
+      },
+      "response": []
+    },
+    {
+      "name": "Create order",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstName\": \"Kiryl\",\n    \"secondName\": \"Kashuba\",\n    \"phoneNumber\": \"375298024765\",\n    \"email\": \"kashuba.kirya@gmail.com\",\n    \"password\": \"Java1234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clients/?firstName=kirill&secondName=kashuba&phoneNumber=375298024765&email=kashuba.kirya@gmail.com&password=Java1234",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clients",
+            ""
+          ],
+          "query": [
+            {
+              "key": "firstName",
+              "value": "kirill"
+            },
+            {
+              "key": "secondName",
+              "value": "kashuba"
+            },
+            {
+              "key": "phoneNumber",
+              "value": "375298024765"
+            },
+            {
+              "key": "email",
+              "value": "kashuba.kirya@gmail.com"
+            },
+            {
+              "key": "password",
+              "value": "Java1234"
+            }
+          ]
+        },
+        "description": "Create Client"
+      },
+      "response": []
+    },
+    {
+      "name": "Create ProductAttribute",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstName\": \"Kiryl\",\n    \"secondName\": \"Kashuba\",\n    \"phoneNumber\": \"375298024765\",\n    \"email\": \"kashuba.kirya@gmail.com\",\n    \"password\": \"Java1234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clients/?firstName=kirill&secondName=kashuba&phoneNumber=375298024765&email=kashuba.kirya@gmail.com&password=Java1234",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clients",
+            ""
+          ],
+          "query": [
+            {
+              "key": "firstName",
+              "value": "kirill"
+            },
+            {
+              "key": "secondName",
+              "value": "kashuba"
+            },
+            {
+              "key": "phoneNumber",
+              "value": "375298024765"
+            },
+            {
+              "key": "email",
+              "value": "kashuba.kirya@gmail.com"
+            },
+            {
+              "key": "password",
+              "value": "Java1234"
+            }
+          ]
+        },
+        "description": "Create Client"
+      },
+      "response": []
+    },
+    {
+      "name": "Create ProductAttributeValue",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstName\": \"Kiryl\",\n    \"secondName\": \"Kashuba\",\n    \"phoneNumber\": \"375298024765\",\n    \"email\": \"kashuba.kirya@gmail.com\",\n    \"password\": \"Java1234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clients/?firstName=kirill&secondName=kashuba&phoneNumber=375298024765&email=kashuba.kirya@gmail.com&password=Java1234",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clients",
+            ""
+          ],
+          "query": [
+            {
+              "key": "firstName",
+              "value": "kirill"
+            },
+            {
+              "key": "secondName",
+              "value": "kashuba"
+            },
+            {
+              "key": "phoneNumber",
+              "value": "375298024765"
+            },
+            {
+              "key": "email",
+              "value": "kashuba.kirya@gmail.com"
+            },
+            {
+              "key": "password",
+              "value": "Java1234"
+            }
+          ]
+        },
+        "description": "Create Client"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Client",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/clients/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clients",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete category",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "Delete cart",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "Delete order",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "Delete InstanceProduct",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "Delete ProductAttribute",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "Delete ProductAttributeValue",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "find Clients",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "find Client by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "find InstanceProduct",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "find InstanceProduct by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/instance_products/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "instance_products",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "find ProductAttributeValue",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "find ProductAttributeValue by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/product_attribute_values/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "product_attribute_values",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "find ProductAttribute",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "find ProductAttribute by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/product_attributes/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "product_attributes",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "find order",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "find order by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/orders/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "orders",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "find category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "find category by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/categories/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "categories",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "find carts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": null
+      },
+      "response": []
+    },
+    {
+      "name": "find Cart by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstName\": \"Kiryl\",\n    \"secondName\": \"Kashuba\",\n    \"phoneNumber\": \"375298024765\",\n    \"email\": \"kashuba.kirya@gmail.com\",\n    \"password\": \"Java1234\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/clients/?firstName=kirill&secondName=kashuba&phoneNumber=375298024765&email=kashuba.kirya@gmail.com&password=Java1234",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "clients",
+            ""
+          ],
+          "query": [
+            {
+              "key": "firstName",
+              "value": "kirill"
+            },
+            {
+              "key": "secondName",
+              "value": "kashuba"
+            },
+            {
+              "key": "phoneNumber",
+              "value": "375298024765"
+            },
+            {
+              "key": "email",
+              "value": "kashuba.kirya@gmail.com"
+            },
+            {
+              "key": "password",
+              "value": "Java1234"
+            }
+          ]
+        },
+        "description": "Create Client"
+      },
+      "response": []
+    }
+  ]
+}
