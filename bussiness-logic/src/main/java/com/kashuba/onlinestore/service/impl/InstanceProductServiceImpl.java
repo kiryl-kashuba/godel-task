@@ -43,14 +43,17 @@ public class InstanceProductServiceImpl implements InstanceProductService {
         instanceProduct.setNumber(instanceProductDto.getNumber());
 
         List<ProductAttribute> productAttributeList = productAttributeRepository.findByCategory_Id(instanceProductDto.getIdOfCategory());
+        int cycleStage = 0; // TODO I think we can get rid of this variable
         for (ProductAttribute productAttribute : productAttributeList) {
             ProductAttributeValue pav = new ProductAttributeValue();
-            pav.setValue(values[productAttributeList.size()]);
+            pav.setValue(values[cycleStage]);
             pav.setProductAttribute(productAttribute);
             pav.setInstanceProduct(instanceProduct);
             productAttributeValueRepository.saveAndFlush(pav);
+            cycleStage++;
         }
-        return instanceProductConverter.toDto(instanceProductRepository.saveAndFlush(instanceProduct)); // TODO что произойдет, если у меня на return'е упадет приложение?
+        return instanceProductConverter.toDto(instanceProductRepository.saveAndFlush(instanceProduct)); // TODO what happens if my application crashes on return?
+
     }
 
     @Override
