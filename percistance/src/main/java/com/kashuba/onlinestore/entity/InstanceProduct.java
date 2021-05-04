@@ -23,17 +23,17 @@ public class InstanceProduct extends BaseEntity {
 
     private String name;
     private String articulation;
-    private int price;
+    private Long price;
     @JsonIgnore
     @OneToMany(mappedBy = "instanceProduct", orphanRemoval = true)
     private List<ProductAttributeValue> productAttributeValue;
-    private int number;
+    private Long number;
     @JsonIgnore
     @ManyToOne(optional = true)
     @JoinColumn(name = "cart_id", nullable = true)
     private Cart cart;
 
-    public InstanceProduct(String name, String articulation, int price) {
+    public InstanceProduct(String name, String articulation, Long price) {
         this.name = name;
         this.articulation = articulation;
         this.price = price;

@@ -22,7 +22,7 @@ public class Order extends BaseEntity {
 
     @CreatedDate
     private LocalDate dateOrder;
-    private int amount;
+    private Long amount;
     @ManyToOne(optional = false)
     @JoinColumn(name = "client_id", nullable = false)
     @JsonBackReference

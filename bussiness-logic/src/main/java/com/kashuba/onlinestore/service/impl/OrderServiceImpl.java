@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDto create(OrderDto orderDto) {
         Client client = clientRepository.findByEmail(orderDto.getEmailOfClient());
         Order order = orderConverter.toModel();
-        int amount = 0;
+        Long amount = 0L;
         List<InstanceProduct> instanceProductList = instanceProductRepository.findByCart_Id(client.getId());
         for (InstanceProduct instanceProduct : instanceProductList) {
             amount += instanceProduct.getPrice() * instanceProduct.getNumber();

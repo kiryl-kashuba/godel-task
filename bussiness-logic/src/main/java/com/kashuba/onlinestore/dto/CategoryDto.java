@@ -8,7 +8,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -17,7 +18,8 @@ import java.util.List;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryDto extends BaseEntityDto {
-    @NotBlank(message = "name is mandatory")
+    @NotNull(message = "Name must not be null")
+    @Size(max = 40, message = "Name must not be longer than 40 characters")
     private String name;
     @JsonIgnore
     private List<ProductAttribute> productAttribute;

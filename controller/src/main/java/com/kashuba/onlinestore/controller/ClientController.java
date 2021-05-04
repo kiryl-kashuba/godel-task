@@ -3,6 +3,7 @@ package com.kashuba.onlinestore.controller;
 import com.kashuba.onlinestore.dto.ClientDto;
 import com.kashuba.onlinestore.service.ClientService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/clients")
+@Validated
+@Slf4j
+@Api(tags = "Controller of clients", description = "Operations with clients")
 @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Successfully retrieved list"),
         @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
@@ -25,18 +29,11 @@ import java.util.Optional;
         @ApiResponse(code = 409, message = "The request could not be completed due to a conflict with the current state of the target resource."),
         @ApiResponse(code = 500, message = "Server ERROR. Something go wrong")
 })
-@Api(tags = "Controller of clients")
-@Validated
-@Slf4j
 public class ClientController {
-    private final ClientService clientService;
-
     @Autowired
-    public ClientController(ClientService clientService) {
-        this.clientService = clientService;
-    }
+    private ClientService clientService;
 
-//    //@Operation(summary = "Create client")
+    @ApiOperation(value = "Registration/create client")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ClientDto createClient(@Valid @RequestBody ClientDto clientDto) {
@@ -44,7 +41,7 @@ public class ClientController {
         return clientService.create(clientDto);
     }
 
-    //    //@Operation(summary = "Delete client by its id")
+    @ApiOperation(value = "Delete client")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@Valid @PathVariable("id") Long id) {
@@ -52,7 +49,7 @@ public class ClientController {
         clientService.deleteById(id);
     }
 
-    //    //@Operation(summary = "Find all clients")
+    @ApiOperation(value = "Find all clients")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ClientDto> findAllClients() {
@@ -60,7 +57,7 @@ public class ClientController {
         return clientService.findAll();
     }
 
-    //    //@Operation(summary = "Find client by its id")
+    @ApiOperation(value = "Find client by ID")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<ClientDto> findById(@Valid @PathVariable("id") Long id) {

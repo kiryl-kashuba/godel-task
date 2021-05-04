@@ -3,6 +3,9 @@ package com.kashuba.onlinestore.controller;
 import com.kashuba.onlinestore.dto.ProductAttributeDto;
 import com.kashuba.onlinestore.service.ProductAttributeService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,18 +18,22 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/product-attributes")
-@Api(tags = "Controller of product attributes")
 @Validated
 @Slf4j
+@Api(tags = "Controller of product attributes", description = "Operations with product attributes")
+@ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Successfully retrieved list"),
+        @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+        @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+        @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+        @ApiResponse(code = 409, message = "The request could not be completed due to a conflict with the current state of the target resource."),
+        @ApiResponse(code = 500, message = "Server ERROR. Something go wrong")
+})
 public class ProductAttributeController {
-    private final ProductAttributeService productAttributeService;
-
     @Autowired
-    public ProductAttributeController(ProductAttributeService productAttributeService) {
-        this.productAttributeService = productAttributeService;
-    }
+    private ProductAttributeService productAttributeService;
 
-    //@Operation(summary = "Create product attribute")
+    @ApiOperation(value = "Create product attribute")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ProductAttributeDto createProductAttribute(@Valid @RequestBody ProductAttributeDto productAttributeDto) {
@@ -34,7 +41,7 @@ public class ProductAttributeController {
         return productAttributeService.create(productAttributeDto);
     }
 
-    //@Operation(summary = "Delete product attribute by its id")
+    @ApiOperation(value = "Delete product attribute")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@Valid @PathVariable("id") Long id) {
@@ -42,7 +49,7 @@ public class ProductAttributeController {
         productAttributeService.deleteById(id);
     }
 
-    //@Operation(summary = "Find all product attributes")
+    @ApiOperation(value = "Find all product attributes")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ProductAttributeDto> findAllProductAttributes() {
@@ -50,7 +57,7 @@ public class ProductAttributeController {
         return productAttributeService.findAll();
     }
 
-    //@Operation(summary = "Find product attribute by its id")
+    @ApiOperation(value = "Find product attribute by ID")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<ProductAttributeDto> findById(@Valid @PathVariable("id") Long id) {

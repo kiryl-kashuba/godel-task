@@ -1,10 +1,11 @@
 package com.kashuba.onlinestore.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.kashuba.onlinestore.entity.Client;
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
@@ -14,25 +15,23 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ClientDto extends BaseEntityDto {
-    @NotBlank(message = "firstName is mandatory")
+    @NotNull(message = "FirstName must not be null")
+    @Size(max = 15, message = "Name must not be longer than 15 characters")
     private String firstName;
-    @NotBlank(message = "secondName is mandatory")
+    @NotNull(message = "SecondName must not be null")
+    @Size(max = 15, message = "Name must not be longer than 15 characters")
     private String secondName;
+    @Size(min = 6, max = 15, message = "Name must be between 6 and 15 characters long")
     private Long phoneNumber;
-    @NotBlank(message = "email is mandatory")
+    @Email
     private String email;
-    @NotBlank(message = "password is mandatory")
+    @Size(min = 5, max = 60, message = "Password must be between 5 and 60 characters long")
     private String password;
-    private String status;
-    private String role;
 
-    public ClientDto(String secondName, Long phoneNumber, String email, String firstName,
-                     Client.Role role, Client.Status status) {
+    public ClientDto(String secondName, Long phoneNumber, String email, String firstName) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.status = status.getValue();
-        this.role = role.getvalueOfRole();
     }
 }

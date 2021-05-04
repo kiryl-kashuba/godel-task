@@ -3,6 +3,9 @@ package com.kashuba.onlinestore.controller;
 import com.kashuba.onlinestore.dto.InstanceProductDto;
 import com.kashuba.onlinestore.service.InstanceProductService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,18 +20,22 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/instance-products")
-@Api(tags = "Controller of instance products")
 @Validated
 @Slf4j
+@Api(tags = "Controller of instance products", description = "Operations with specific product instances")
+@ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Successfully retrieved list"),
+        @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+        @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+        @ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+        @ApiResponse(code = 409, message = "The request could not be completed due to a conflict with the current state of the target resource."),
+        @ApiResponse(code = 500, message = "Server ERROR. Something go wrong")
+})
 public class InstanceProductController {
-    private final InstanceProductService instanceProductService;
-
     @Autowired
-    public InstanceProductController(InstanceProductService instanceProductService) {  //TODO что я тут, блять, делаю?
-        this.instanceProductService = instanceProductService;
-    }
+    private InstanceProductService instanceProductService;
 
-    //@Operation(summary = "Create instance product")
+    @ApiOperation(value = "Create instance product")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public InstanceProductDto create(@Valid @RequestBody InstanceProductDto instanceProductDto) {
@@ -36,7 +43,7 @@ public class InstanceProductController {
         return instanceProductService.create(instanceProductDto);
     }
 
-    //@Operation(summary = "Add instance product to cart")
+    @ApiOperation(value = "Add instance product to cart")
     @PostMapping("/to-cart")
     @ResponseStatus(HttpStatus.CREATED)
     public InstanceProductDto addToCart(@Valid @RequestBody InstanceProductDto instanceProductDto) {
@@ -47,7 +54,7 @@ public class InstanceProductController {
         return instanceProductService.addToCart(instanceProductDto);
     }
 
-    //@Operation(summary = "Delete instance product by its id")
+    @ApiOperation(value = "Delete instance product")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@Valid @PathVariable("id") Long id) {
@@ -55,7 +62,7 @@ public class InstanceProductController {
         instanceProductService.deleteById(id);
     }
 
-    //@Operation(summary = "Find all instance products")
+    @ApiOperation(value = "Find all instance products")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<InstanceProductDto> findAll() {
@@ -63,7 +70,7 @@ public class InstanceProductController {
         return instanceProductService.findAll();
     }
 
-    //@Operation(summary = "Find instance product by its id")
+    @ApiOperation(value = "Find instance product by ID")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<InstanceProductDto> findById(@Valid @PathVariable("id") Long id) {

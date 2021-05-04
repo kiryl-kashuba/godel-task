@@ -18,13 +18,12 @@ public class ClientConverter {
 
     public ClientDto toDto(Client client) {
         return new ClientDto(client.getSecondName(), client.getPhoneNumber(), client.getEmail(),
-                client.getFirstName(), client.getRole(), client.getStatus());
+                client.getFirstName());
     }
 
     public Optional<ClientDto> toOptionalDto(Optional<Client> client) {
         ClientDto clientDto = new ClientDto(client.get().getSecondName(), client.get().getPhoneNumber(),
-                client.get().getEmail(), client.get().getFirstName(), client.get().getRole(),
-                client.get().getStatus());
+                client.get().getEmail(), client.get().getFirstName());
         return Optional.of(clientDto);
     }
 
@@ -32,7 +31,7 @@ public class ClientConverter {
         List<ClientDto> clientDtos = new ArrayList<>();
         for (Client client : clientList) {
             clientDtos.add(new ClientDto(client.getSecondName(), client.getPhoneNumber(), client.getEmail(),
-                    client.getFirstName(), client.getRole(), client.getStatus()));
+                    client.getFirstName()));
         }
         return clientDtos;
     }

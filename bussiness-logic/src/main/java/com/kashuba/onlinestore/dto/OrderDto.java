@@ -15,9 +15,9 @@ public class OrderDto extends BaseEntityDto {
 
     private String emailOfClient;
     private LocalDate dateOrder;
-    private int amount;
+    private Long amount;
 
-    public OrderDto(int amount, LocalDate dateOrder) {
+    public OrderDto(Long amount, LocalDate dateOrder) {
         this.dateOrder = dateOrder;
         this.amount = amount;
     }
