@@ -1,3 +1,3 @@
-## Test test for Godel
+## Test task for Godel
 ---
 ### Author: Kiryl Kashuba
