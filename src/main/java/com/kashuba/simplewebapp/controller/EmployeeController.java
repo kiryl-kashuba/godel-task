@@ -1,7 +1,7 @@
 package com.kashuba.simplewebapp.controller;
 
 import com.kashuba.simplewebapp.dto.EmployeeDto;
-import com.kashuba.simplewebapp.service.DefaultEmployeeService;
+import com.kashuba.simplewebapp.service.EmployeeService;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmployeeController {
 
   @Autowired
-  private DefaultEmployeeService defaultEmployeeService;
+  private EmployeeService defaultEmployeeService;
 
   @PostMapping
   public int createClient(@RequestBody EmployeeDto employeeDto) {
@@ -28,12 +28,12 @@ public class EmployeeController {
 
   @GetMapping("/{id}")
   public EmployeeDto get(@PathVariable Long id) {
-    return defaultEmployeeService.find(id);
+    return defaultEmployeeService.get(id);
   }
 
   @GetMapping("/all")
   public List<EmployeeDto> getAll() {
-    return defaultEmployeeService.findAll();
+    return defaultEmployeeService.getAll();
   }
 
   @DeleteMapping("/{id}")
