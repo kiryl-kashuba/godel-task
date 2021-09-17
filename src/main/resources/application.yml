@@ -1,0 +1,15 @@
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    url: jdbc:postgresql://localhost:8888/employeedb
+    username: root
+    password: 3712
+---
+logging:
+  level:
+    org.springframework.web: ERROR
+    com.kashuba: DEBUG
