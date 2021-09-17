@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DefaultEmployeeService implements Crud<EmployeeDto> {
+public class DefaultEmployeeService implements EmployeeService {
 
   @Autowired
   private EmployeeDao employeeDao;
@@ -28,12 +28,12 @@ public class DefaultEmployeeService implements Crud<EmployeeDto> {
   }
 
   @Override
-  public List<EmployeeDto> findAll() {
+  public List<EmployeeDto> getAll() {
     return employeeDao.getAll();
   }
 
   @Override
-  public EmployeeDto find(Long id) {
+  public EmployeeDto get(Long id) {
     return employeeDao.get(id);
   }
 }

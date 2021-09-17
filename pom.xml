@@ -6,21 +6,6 @@
     <artifactId>online-store</artifactId>
     <groupId>com.kashuba</groupId>
     <version>1.0-SNAPSHOT</version>
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <groupId>org.springframework.boot</groupId>
-            </plugin>
-        </plugins>
-    </build>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -58,29 +43,10 @@
             <groupId>org.springframework.boot</groupId>
         </dependency>
         <dependency>
-            <artifactId>junit-vintage-engine</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>hamcrest-core</artifactId>
-                    <groupId>org.hamcrest</groupId>
-                </exclusion>
-            </exclusions>
-            <groupId>org.junit.vintage</groupId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <artifactId>jackson-annotations</artifactId>
             <groupId>com.fasterxml.jackson.core</groupId>
         </dependency>
-        <dependency>
-            <artifactId>json-smart</artifactId>
-            <groupId>net.minidev</groupId>
-            <scope>compile</scope>
-            <version>2.3</version>
-        </dependency>
     </dependencies>
-
-    <packaging>jar</packaging>
 
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
