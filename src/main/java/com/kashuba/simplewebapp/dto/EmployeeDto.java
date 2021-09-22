@@ -37,4 +37,14 @@ public class EmployeeDto {
     this.gender = gender;
     this.dateOfBirth = dateOfBirth;
   }
+
+  public EmployeeDto(String firstName, String lastName, Long departmentId, String jobTitle,
+      Gender gender, Date dateOfBirth) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.departmentId = departmentId;
+    this.jobTitle = jobTitle;
+    this.gender = gender;
+    this.dateOfBirth = dateOfBirth;
+  }
 }

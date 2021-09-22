@@ -2,11 +2,15 @@ package com.kashuba.simplewebapp.dao;
 
 import com.kashuba.simplewebapp.dto.EmployeeDto;
 import com.kashuba.simplewebapp.dto.Gender;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -19,7 +23,7 @@ public class DefaultEmployeeDao implements EmployeeDao {
       + "job_title = ?, "
       + "gender = ?, date_of_birth = ? WHERE employee_id=?";
   private static final String deleteQuery = "DELETE from EMPLOYEE where employee_id = ?";
-
+  KeyHolder keyHolder = new GeneratedKeyHolder();
   @Autowired
   private JdbcTemplate jdbcTemplate;
 
@@ -35,10 +39,18 @@ public class DefaultEmployeeDao implements EmployeeDao {
         .build();
   }
 
-  public int create(EmployeeDto employeeDto) {
-    return jdbcTemplate.update(createQuery, employeeDto.getFirstName(),
-        employeeDto.getLastName(), employeeDto.getDepartmentId(), employeeDto.getJobTitle(),
-        employeeDto.getGender().toString(), employeeDto.getDateOfBirth());
+  public Long create(EmployeeDto employeeDto) {
+    jdbcTemplate.update(connection -> {
+      PreparedStatement stmt = connection.prepareStatement(createQuery, new String[]{"employee_id"});
+      stmt.setString(1, employeeDto.getFirstName());
+      stmt.setString(2, employeeDto.getLastName());
+      stmt.setLong(3, employeeDto.getDepartmentId());
+      stmt.setString(4, employeeDto.getJobTitle());
+      stmt.setString(5, employeeDto.getGender().toString());
+      stmt.setDate(6, new Date(employeeDto.getDateOfBirth().getTime()));
+      return stmt;
+    }, keyHolder);
+    return keyHolder.getKey().longValue();
   }
 
   public EmployeeDto get(Long id) {
@@ -49,13 +61,28 @@ public class DefaultEmployeeDao implements EmployeeDao {
     return jdbcTemplate.query(getAllQuery, this::mapRowToEmployee);
   }
 
-  public int update(EmployeeDto employeeDto) {
-    return jdbcTemplate.update(updateQuery, employeeDto.getFirstName(), employeeDto.getLastName(),
-        employeeDto.getDepartmentId(), employeeDto.getJobTitle(), employeeDto.getGender().toString(),
-        employeeDto.getDateOfBirth(), employeeDto.getEmployeeId());
+//  public int update2(EmployeeDto employeeDto) {
+//    return jdbcTemplate.update(updateQuery, employeeDto.getFirstName(), employeeDto.getLastName(),
+//        employeeDto.getDepartmentId(), employeeDto.getJobTitle(), employeeDto.getGender().toString(),
+//        employeeDto.getDateOfBirth(), employeeDto.getEmployeeId());
+//  }
+
+  public Long update(EmployeeDto employeeDto) {
+    jdbcTemplate.update(connection -> {
+      PreparedStatement stmt = connection.prepareStatement(updateQuery, new String[]{"employee_id"});
+      stmt.setString(1, employeeDto.getFirstName());
+      stmt.setString(2, employeeDto.getLastName());
+      stmt.setLong(3, employeeDto.getDepartmentId());
+      stmt.setString(4, employeeDto.getJobTitle());
+      stmt.setString(5, employeeDto.getGender().toString());
+      stmt.setDate(6, new Date(employeeDto.getDateOfBirth().getTime()));
+      stmt.setLong(7, employeeDto.getEmployeeId());
+      return stmt;
+    }, keyHolder);
+    return keyHolder.getKey().longValue();
   }
 
-  public int delete(Long id) {
-    return jdbcTemplate.update(deleteQuery, id);
+  public void delete(Long id) {
+    jdbcTemplate.update(deleteQuery, id);
   }
 }

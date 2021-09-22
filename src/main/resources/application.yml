@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:8888/employeedb
+    username: root
+    password: 3712

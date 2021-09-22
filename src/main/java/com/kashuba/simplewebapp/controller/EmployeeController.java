@@ -22,7 +22,7 @@ public class EmployeeController {
   private EmployeeService defaultEmployeeService;
 
   @PostMapping
-  public int createClient(@RequestBody EmployeeDto employeeDto) {
+  public Long createClient(@RequestBody EmployeeDto employeeDto) {
     return defaultEmployeeService.create(employeeDto);
   }
 
@@ -42,7 +42,7 @@ public class EmployeeController {
   }
 
   @PutMapping
-  public int update(@Valid @RequestBody EmployeeDto employeeDto) {
+  public Long update(@Valid @RequestBody EmployeeDto employeeDto) {
     return defaultEmployeeService.update(employeeDto);
   }
 }

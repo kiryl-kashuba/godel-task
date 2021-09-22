@@ -5,14 +5,14 @@ import java.util.List;
 
 public interface EmployeeDao {
 
-  int create(EmployeeDto employeeDto);
+  Long create(EmployeeDto employeeDto);
 
   EmployeeDto get(Long id);
 
   List<EmployeeDto> getAll();
 
-  int update(EmployeeDto employeeDto);
+  Long update(EmployeeDto employeeDto);
 
-  int delete(Long id);
+  void delete(Long id);
 }
 

@@ -21,7 +21,7 @@ public class CrudTest {
 
   @Test
   public void create() throws ParseException {
-    Integer check = defaultEmployeeService.create(new EmployeeDto(22L, "Stan", "Fillow",
+    Long check = defaultEmployeeService.create(new EmployeeDto("Stan", "Fillow",
         543L, "dancer", Gender.MALE,
         new SimpleDateFormat("dd/MM/yyyy").parse("31/12/1998")));
     assertThat(check).isGreaterThan(0);
@@ -29,8 +29,8 @@ public class CrudTest {
 
   @Test
   public void get() {
-    EmployeeDto employeeDto = defaultEmployeeService.get(22L);
-    assertThat(employeeDto.getEmployeeId()).isEqualTo(22);
+    EmployeeDto employeeDto = defaultEmployeeService.get(2L);
+    assertThat(employeeDto.getEmployeeId()).isEqualTo(2L);
   }
 
   @Test

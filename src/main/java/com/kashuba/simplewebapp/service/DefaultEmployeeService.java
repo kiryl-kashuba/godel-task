@@ -1,3 +1,4 @@
+
 package com.kashuba.simplewebapp.service;
 
 import com.kashuba.simplewebapp.dao.EmployeeDao;
@@ -13,12 +14,12 @@ public class DefaultEmployeeService implements EmployeeService {
   private EmployeeDao employeeDao;
 
   @Override
-  public int create(EmployeeDto employeeDto) {
+  public Long create(EmployeeDto employeeDto) {
     return employeeDao.create(employeeDto);
   }
 
   @Override
-  public int update(EmployeeDto employeeDto) {
+  public Long update(EmployeeDto employeeDto) {
     return employeeDao.update(employeeDto);
   }
 

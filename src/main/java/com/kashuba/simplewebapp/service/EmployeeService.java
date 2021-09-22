@@ -5,13 +5,13 @@ import java.util.List;
 
 public interface EmployeeService {
 
-    int create(EmployeeDto employeeDto);
+  Long create(EmployeeDto employeeDto);
 
-    int update(EmployeeDto employeeDto);
+  Long update(EmployeeDto employeeDto);
 
-    void delete(Long id);
+  void delete(Long id);
 
-    List<EmployeeDto> getAll();
+  List<EmployeeDto> getAll();
 
-    EmployeeDto get(Long id);
+  EmployeeDto get(Long id);
 }
